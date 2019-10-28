@@ -12,5 +12,5 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt update && sudo apt install --no-install-recommends yarn
 
 
-#datagrip
+# datagrip
 flatpak install flathub com.jetbrains.DataGrip -y

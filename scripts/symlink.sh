@@ -31,3 +31,4 @@ function linkDotfile {
 
 linkDotfile .zshrc
 linkDotfile .gitconfig
+linkDotfile .config/gtk-3.0/gtk.css

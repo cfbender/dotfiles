@@ -2,6 +2,7 @@
 
 ./symlink.sh
 ./aptinstall.sh
+./flatpakinstall.sh
 ./programs.sh
 ./desktop.sh
 

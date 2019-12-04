@@ -169,4 +169,7 @@ export PATH=${HOME}/.local/bin:$PATH
 if [[ $TILIX_ID ]]; then # Fixes Tilix new pane issue
         source /etc/profile.d/vte.sh
 fi
+
 export PATH=~/bin:$PATH
+export PATH="$(yarn global bin):$PATH"
+

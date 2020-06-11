@@ -33,3 +33,4 @@ linkDotfile .zshrc
 linkDotfile .zprofile
 linkDotfile .gitconfig
 linkDotfile .config/gtk-3.0/gtk.css
+linkDotfile .config/nvim/init.vim

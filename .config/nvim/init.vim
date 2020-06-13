@@ -404,6 +404,10 @@ Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin Remaps and Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " rainbow parens
 let g:rainbow_active = 1
 
@@ -491,4 +495,3 @@ command! -nargs=0 Format :call CocActionAsync('format')
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 map <C-n> :NERDTreeToggle<CR>
-

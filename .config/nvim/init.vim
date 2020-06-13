@@ -402,6 +402,9 @@ call plug#end()
 " rainbow parens
 let g:rainbow_active = 1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin Remaps and Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -459,3 +462,5 @@ command! -nargs=0 Format :call CocActionAsync('format')
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+map <C-n> :NERDTreeToggle<CR>

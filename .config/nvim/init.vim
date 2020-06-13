@@ -39,7 +39,11 @@ au BufRead,BufNewFile *.tsx set filetype=typescriptreact
 
 " Sync system clipboard to vim
 set clipboard=unnamed,unnamedplus
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Disable cursor changing
+set guicursor=
+ 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
@@ -389,6 +393,7 @@ Plug 'mbbill/undotree'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
+Plug 'luochen1990/rainbow'                                        " rainbow parens
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \}
@@ -402,9 +407,31 @@ call plug#end()
 " rainbow parens
 let g:rainbow_active = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugin Remaps and Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" lightline/theme settings
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste'  ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified'  ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+
+let g:coc_global_extensions = [
+  \ 'coc-actions',
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-git',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-omnisharp',
+  \ 'coc-python',
+  \ 'coc-tsserver',
+  \ 'coc-rust-analyzer'
+  \ ]
+
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -464,3 +491,4 @@ command! -nargs=0 Format :call CocActionAsync('format')
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 map <C-n> :NERDTreeToggle<CR>
+

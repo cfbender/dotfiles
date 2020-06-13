@@ -6,6 +6,7 @@
         "typescriptreact",
         "json"
     ],
+    "eslint.packageManager" :"yarn",
     "eslint.options": {
         "parser": "@typescript-eslint/parser"
     },

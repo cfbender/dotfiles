@@ -42,7 +42,115 @@ set clipboard=unnamed,unnamedplus
 
 " Disable cursor changing
 set guicursor=
- 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin Remaps and Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'tpope/vim-sensible'                                         " sensible defaults
+Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " code completion
+Plug 'chaoren/vim-wordmotion'                                     " better word jumping, camelCase, snake_case, etc.
+Plug 'scrooloose/nerdcommenter'                                   " comment things
+Plug 'vim-scripts/paredit.vim'                                    " balance parens
+Plug 'vim-scripts/syntaxcomplete'                                 " syntax completion
+Plug 'quramy/vim-js-pretty-template'                              " pretty template strings
+Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
+Plug 'tpope/vim-fugitive'                                         " git integration
+Plug 'mbbill/undotree'                                            " visual undo tree
+Plug 'sheerun/vim-polyglot'                                       " language packs
+Plug 'preservim/nerdtree'                                         " visual file tree
+Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
+Plug 'luochen1990/rainbow'                                        " rainbow parens
+Plug 'vim-airline/vim-airline'                                    " status line
+Plug 'prettier/vim-prettier', {                        
+  \ 'do': 'yarn install',
+  \}
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'arcticicestudio/nord-vim'
+
+call plug#end()
+
+" rainbow parens
+let g:rainbow_active = 1
+
+" airline settings
+let g:airline#extensions#tabline#enabled = 1
+
+" coc settings
+let g:coc_global_extensions = [
+  \ 'coc-actions',
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-git',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-omnisharp',
+  \ 'coc-python',
+  \ 'coc-tsserver',
+  \ 'coc-rust-analyzer'
+  \ ]
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+     \ pumvisible() ? "\<C-n>" :
+     \ <SID>check_back_space() ? "\<Tab>" :
+     \ coc#refresh()
+
+" GoTo code navigation.
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gy <Plug>(coc-type-definition)
+nmap <leader>gi <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+nmap <leader>g] <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
+nnoremap <leader>cr :CocRestart
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm."
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocActionAsync('doHover')
+    endif
+endfunction
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)"
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+map <C-n> :NERDTreeToggle<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -87,7 +195,13 @@ set smartcase
 
 " Highlight search results
 set hlsearch
-nnoremap <F12> :noh<CR>
+nnoremap <F2> :noh<CR>
+
+" Toggle paste mode with F3
+set pastetoggle=<F3>
+
+" Open undotree with F5
+nnoremap <F5> :UndotreeToggle<cr>
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -130,6 +244,11 @@ if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
+set notermguicolors
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 try
     colorscheme nord
 catch
@@ -159,7 +278,8 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-
+set undodir=~/.vim/undodir
+set undofile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -375,123 +495,3 @@ endfunction
 
 " Give more space for displaying messages.
 set cmdheight=2
-
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'tpope/vim-sensible'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'chaoren/vim-wordmotion'                                     " better word jumping, camelCase, snake_case, etc.
-Plug 'scrooloose/nerdcommenter'                                   " comment things
-Plug 'vim-scripts/paredit.vim'                                    " balance parens
-Plug 'vim-scripts/syntaxcomplete'                                 " syntax completion
-Plug 'quramy/vim-js-pretty-template'                              " pretty template strings
-Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
-Plug 'itchyny/lightline.vim'                                      " colored status
-Plug 'tpope/vim-fugitive'
-Plug 'vim-utils/vim-man'
-Plug 'mbbill/undotree'
-Plug 'sheerun/vim-polyglot'
-Plug 'preservim/nerdtree'
-Plug 'jiangmiao/auto-pairs'
-Plug 'luochen1990/rainbow'                                        " rainbow parens
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \}
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'arcticicestudio/nord-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'flazz/vim-colorschemes'
-
-call plug#end()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugin Remaps and Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" rainbow parens
-let g:rainbow_active = 1
-
-" lightline/theme settings
-let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste'  ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified'  ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
-
-let g:coc_global_extensions = [
-  \ 'coc-actions',
-  \ 'coc-css',
-  \ 'coc-eslint',
-  \ 'coc-git',
-  \ 'coc-html',
-  \ 'coc-json',
-  \ 'coc-omnisharp',
-  \ 'coc-python',
-  \ 'coc-tsserver',
-  \ 'coc-rust-analyzer'
-  \ ]
-
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-     \ pumvisible() ? "\<C-n>" :
-     \ <SID>check_back_space() ? "\<Tab>" :
-     \ coc#refresh()
-
-" GoTo code navigation.
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
-nnoremap <leader>cr :CocRestart
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm."
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocActionAsync('doHover')
-    endif
-endfunction
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)"
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocActionAsync('format')
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-
-map <C-n> :NERDTreeToggle<CR>

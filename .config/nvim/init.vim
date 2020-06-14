@@ -75,7 +75,7 @@ call plug#end()
 let g:rainbow#max_level = 16
 autocmd vimenter * :RainbowParentheses
 
-" airlina settings
+" airline settings
 let g:airline#extensions#tabline#enabled = 1
 
 " coc settings

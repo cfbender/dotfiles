@@ -16,7 +16,7 @@ au FocusGained,BufEnter * checktime
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
+let mapleader = " "
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -57,6 +57,7 @@ Plug 'vim-scripts/syntaxcomplete'                                 " syntax compl
 Plug 'quramy/vim-js-pretty-template'                              " pretty template strings
 Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
 Plug 'tpope/vim-fugitive'                                         " git integration
+Plug 'terryma/vim-multiple-cursors'								  " multiple cursors
 Plug 'mbbill/undotree'                                            " visual undo tree
 Plug 'sheerun/vim-polyglot'                                       " language packs
 Plug 'preservim/nerdtree'                                         " visual file tree
@@ -77,6 +78,10 @@ autocmd vimenter * :RainbowParentheses
 
 " airline settings
 let g:airline#extensions#tabline#enabled = 1
+
+" multiple cursors settings
+let g:multi_cursor_exit_from_visual_mode = 1
+let g:multi_cursor_exit_from_insert_mode = 1
 
 " coc settings
 let g:coc_global_extensions = [
@@ -146,11 +151,12 @@ nmap <leader>qf  <Plug>(coc-fix-current)"
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
+map <F4> :Format<CR>
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
-map <C-n> :NERDTreeToggle<CR>
+map <C-t> :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface

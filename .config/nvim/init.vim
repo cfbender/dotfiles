@@ -61,7 +61,7 @@ Plug 'mbbill/undotree'                                            " visual undo 
 Plug 'sheerun/vim-polyglot'                                       " language packs
 Plug 'preservim/nerdtree'                                         " visual file tree
 Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
-Plug 'luochen1990/rainbow'                                        " rainbow parens
+Plug 'junegunn/rainbow_parentheses.vim'                       	  " rainbow parentheses
 Plug 'vim-airline/vim-airline'                                    " status line
 Plug 'prettier/vim-prettier', {                        
   \ 'do': 'yarn install',
@@ -72,9 +72,10 @@ Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " rainbow parens
-let g:rainbow_active = 1
+let g:rainbow#max_level = 16
+autocmd vimenter * :RainbowParentheses
 
-" airline settings
+" airlina settings
 let g:airline#extensions#tabline#enabled = 1
 
 " coc settings

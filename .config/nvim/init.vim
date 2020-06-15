@@ -16,7 +16,7 @@ au FocusGained,BufEnter * checktime
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = " "
+let mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -209,6 +209,9 @@ set pastetoggle=<F3>
 
 " Open undotree with F5
 nnoremap <F5> :UndotreeToggle<cr>
+
+" match angle brackest
+set matchpairs+=<:>
 
 " Makes search act like search in modern browsers
 set incsearch

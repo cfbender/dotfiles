@@ -64,6 +64,8 @@ Plug 'preservim/nerdtree'                                         " visual file 
 Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
 Plug 'junegunn/rainbow_parentheses.vim'                       	  " rainbow parentheses
 Plug 'vim-airline/vim-airline'                                    " status line
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'prettier/vim-prettier', {                        
   \ 'do': 'yarn install',
   \}
@@ -157,6 +159,14 @@ map <F4> :Format<CR>
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 map <C-t> :NERDTreeToggle<CR>
+nnoremap <leader>u :UndotreeShow<CR>
+
+
+nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <C-p> :GFiles<CR>
+nnoremap <Leader>pf :Files<CR>
+
+nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -206,9 +216,6 @@ nnoremap <F2> :noh<CR>
 
 " Toggle paste mode with F3
 set pastetoggle=<F3>
-
-" Open undotree with F5
-nnoremap <F5> :UndotreeToggle<cr>
 
 " match angle brackest
 set matchpairs+=<:>

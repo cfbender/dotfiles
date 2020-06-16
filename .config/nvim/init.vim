@@ -176,7 +176,6 @@ nnoremap <Leader>pf :Files<CR>
 nmap <leader>gs :G<CR>
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
-nmap <leader>gd :Gvdiff<CR>
 nmap <leader>gdo :Gvdiff origin<CR>
 nmap <leader>gdm :Gvdiff origin/master<CR>
 

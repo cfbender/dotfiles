@@ -163,15 +163,22 @@ map <F4> :Format<CR>
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
+" Trees
 map <C-t> :NERDTreeToggle<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 
-
+" FZF settings
 nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 
-nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
+" Fugitive
+nmap <leader>gs :G<CR>
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gd :Gvdiff<CR>
+nmap <leader>gdo :Gvdiff origin<CR>
+nmap <leader>gdm :Gvdiff origin/master<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -214,10 +221,6 @@ set ignorecase
 
 " When searching try to be smart about cases
 set smartcase
-
-" Highlight search results
-set hlsearch
-nnoremap <F2> :noh<CR>
 
 " Toggle paste mode with F3
 set pastetoggle=<F3>
@@ -338,10 +341,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <C-space> ?
-
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 

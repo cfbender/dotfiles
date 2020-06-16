@@ -5,6 +5,8 @@
 	name = Cody Bender
 [push]
 	default = tracking
+[pull]
+	rebase = true
 [alias]
 	co = checkout
 	st = status

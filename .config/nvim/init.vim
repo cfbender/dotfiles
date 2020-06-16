@@ -43,8 +43,9 @@ set clipboard=unnamed,unnamedplus
 " Disable cursor changing
 set guicursor=
 
-" Scrolling on 
+" Scrolling on and disable click
 set mouse=a
+map <LeftMouse> <Nop>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Remaps and Settings

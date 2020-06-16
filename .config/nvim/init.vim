@@ -43,6 +43,9 @@ set clipboard=unnamed,unnamedplus
 " Disable cursor changing
 set guicursor=
 
+" Scrolling on 
+set mouse=a
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Remaps and Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -309,7 +312,8 @@ set smarttab
 
 " 1 tab == 4 spaces
 set shiftwidth=4
-set tabstop=4
+set tabstop=2
+set softtabstop=2
 
 " Linebreak on 500 characters
 set lbr

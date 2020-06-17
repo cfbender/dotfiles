@@ -8,6 +8,12 @@ dotfilesDir=$(pwd)
 function linkDotfile {
   dest="${HOME}/${1}"
   dateStr=$(date +%Y-%m-%d-%H%M)
+  
+  newDir=$(dirname ${dest})
+  if [ ! -d "${newDir}" ]; then
+  echo "Creating nonexistent directory: ${newDir}"
+  mkdir ${newDir}
+  fi
 
   if [ -h ~/${1} ]; then
     # Existing symlink 
@@ -29,12 +35,7 @@ function linkDotfile {
   ln -s ${dotfilesDir}/${1} ${dest}
 }
 
-linkDotfile .zshrc
-linkDotfile .zprofile
-linkDotfile .gitconfig
-linkDotfile .config/gtk-3.0/gtk.css
-linkDotfile .config/nvim/init.vim
-linkDotfile .config/nvim/include/plugins.vim
-linkDotfile .config/nvim/include/general.vim
-linkDotfile .config/nvim/include/style.vim
-linkDotfile .config/nvim/include/keybinds.vim
+find . -type f -not -path "./scripts/*" -not -path "./.git/*" -not -name "README.md" | sed 's/^\.\///' | while read f
+do
+linkDotfile ${f}
+done

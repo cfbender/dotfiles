@@ -120,6 +120,7 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 
 " Trees
 map <C-t> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 nnoremap <leader>u :UndotreeShow<CR>
 
 " FZF settings

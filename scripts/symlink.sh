@@ -34,3 +34,7 @@ linkDotfile .zprofile
 linkDotfile .gitconfig
 linkDotfile .config/gtk-3.0/gtk.css
 linkDotfile .config/nvim/init.vim
+linkDotfile .config/nvim/include/plugins.vim
+linkDotfile .config/nvim/include/general.vim
+linkDotfile .config/nvim/include/style.vim
+linkDotfile .config/nvim/include/keybinds.vim

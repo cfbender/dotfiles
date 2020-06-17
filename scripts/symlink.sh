@@ -25,7 +25,7 @@ function linkDotfile {
     mv ${dest}{,.${dateStr}}
   fi
 
-  echo "Creating new symlink: ${dest}"
+  echo "Creating new symlink at ${dest} pointing to ${dotfilesDir}/${1}"
   ln -s ${dotfilesDir}/${1} ${dest}
 }
 

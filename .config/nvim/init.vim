@@ -28,6 +28,10 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Sync syntax highlighting to at least 200 lines
 autocmd BufEnter * :syntax sync minlines=200
 
+" There's no need to do syntax highlighting past this many columns. The default
+" of 3000 is a bit and degrades performance.
+set synmaxcol=200
+
 " Absolute numbers in insert mode, otherwise relative
 set relativenumber
 autocmd InsertEnter * :set nu
@@ -38,7 +42,7 @@ au BufRead,BufNewFile *.ts set filetype=typescript
 au BufRead,BufNewFile *.tsx set filetype=typescriptreact
 
 " Sync system clipboard to vim
-set clipboard=unnamed,unnamedplus
+set clipboard=unnamedplus
 
 " Disable cursor changing
 set guicursor=
@@ -47,12 +51,18 @@ set guicursor=
 set mouse=a
 map <LeftMouse> <Nop>
 
+" Shortcut for reloading neovim config.
+noremap <F5> :so ~/.config/nvim/init.vim<CR>
+
+
+" No wrap
+set textwidth=0
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Remaps and Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'tpope/vim-sensible'                                         " sensible defaults
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " code completion
 Plug 'chaoren/vim-wordmotion'                                     " better word jumping, camelCase, snake_case, etc.
 Plug 'scrooloose/nerdcommenter'                                   " comment things
@@ -114,6 +124,18 @@ inoremap <silent><expr> <Tab>
      \ pumvisible() ? "\<C-n>" :
      \ <SID>check_back_space() ? "\<Tab>" :
      \ coc#refresh()
+     
+inoremap <silent><expr> <S-TAB>
+  \ pumvisible() ? "\<C-p>" :
+  \ <SID>check_back_space() ? "\<S-TAB>" :
+  \ coc#refresh()
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm."
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " GoTo code navigation.
 nmap <leader>gd <Plug>(coc-definition)
@@ -126,13 +148,6 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
 nnoremap <leader>cr :CocRestart
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm."
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
@@ -230,6 +245,10 @@ set matchpairs+=<:>
 " Makes search act like search in modern browsers
 set incsearch
 
+" When there's more than one match, complete the longest common prefix among
+" them and show the rest of the options.
+set wildmode=list:longest,full
+
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
@@ -256,6 +275,16 @@ endif
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+
+" Auto format settings
+"   t	Auto-wrap text using textwidth
+"   c	Auto-wrap comments using textwidth, inserting the current comment leader automatically.
+"   r	Automatically insert the current comment leader after hitting <Enter> in Insert mode.
+"   q	Allow formatting of comments with "gq".
+"   j	Where it makes sense, remove a comment leader when joining lines. 
+"   l	Long lines are not broken in insert mode
+
+set formatoptions=jtcrql
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -340,8 +369,8 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+" Disable search highlight when <esc><esc> is pressed
+nnoremap <ESC><ESC> :nohlsearch<CR>
 
 " Smart way to move between windows
 map <C-j> <C-W>j

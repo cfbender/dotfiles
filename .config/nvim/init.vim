@@ -1,5 +1,5 @@
 " Plugins first
-runtime! include/plugins.vi
+runtime! include/plugins.vim
 
 " Other settings
 runtime! include/general.vim

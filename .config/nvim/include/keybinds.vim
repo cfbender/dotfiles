@@ -55,6 +55,10 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)"
 
+" coc-explorer
+nmap <leader>e :CocCommand explorer<CR>
+nmap <leader>ef :CocCommand explorer --position floating<CR>
+
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
 map <F4> :Format<CR>

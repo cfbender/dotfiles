@@ -14,7 +14,6 @@ Plug 'tpope/vim-fugitive'                                         " git integrat
 Plug 'terryma/vim-multiple-cursors'								  " multiple cursors
 Plug 'mbbill/undotree'                                            " visual undo tree
 Plug 'sheerun/vim-polyglot'                                       " language packs
-Plug 'preservim/nerdtree'                                         " visual file tree
 Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
 Plug 'junegunn/rainbow_parentheses.vim'                       	  " rainbow parentheses
 Plug 'flazz/vim-colorschemes'																			" so many colorschemes
@@ -45,6 +44,7 @@ let g:coc_global_extensions = [
   \ 'coc-actions',
   \ 'coc-css',
   \ 'coc-eslint',
+  \ 'coc-explorer',
   \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
@@ -58,5 +58,19 @@ let g:coc_global_extensions = [
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Show hidden files
-let NERDTreeShowHidden=1
+let g:loaded_netrwPlugin = 1
+
+function! AuCocExplorerAutoOpen()
+    let l:use_floating = 0
+
+    " Auto-open explorer when there's no file to show.
+    if @% == '' || @% == '.'
+        if l:use_floating
+            exe ':CocCommand explorer --position floating'
+        else
+            autocmd User CocExplorerOpenPost ++once exe ':only'
+            exe ':CocCommand explorer'
+        endif
+    endif
+endfunction
+autocmd User CocNvimInit call AuCocExplorerAutoOpen()

@@ -67,9 +67,9 @@ map <C-t> :NERDTreeToggle<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 
 " FZF settings
-nnoremap <Leader>ps :Rg<SPACE>
-nnoremap <C-p> :GFiles<CR>
-nnoremap <Leader>pf :Files<CR>
+nnoremap <Leader>g :Rg<SPACE>
+nnoremap <C-f> :GFiles<CR>
+nnoremap <Leader>ff :Files<CR>
 
 " Fugitive
 nmap <leader>gs :G<CR>

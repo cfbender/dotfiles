@@ -17,6 +17,7 @@ Plug 'sheerun/vim-polyglot'                                       " language pac
 Plug 'preservim/nerdtree'                                         " visual file tree
 Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
 Plug 'junegunn/rainbow_parentheses.vim'                       	  " rainbow parentheses
+Plug 'flazz/vim-colorschemes'																			" so many colorschemes
 Plug 'vim-airline/vim-airline'                                    " status line
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'

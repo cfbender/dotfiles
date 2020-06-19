@@ -81,15 +81,8 @@ endif
 set foldcolumn=1
 
 
-" Auto format settings
-"   t	Auto-wrap text using textwidth
-"   c	Auto-wrap comments using textwidth, inserting the current comment leader automatically.
-"   r	Automatically insert the current comment leader after hitting <Enter> in Insert mode.
-"   q	Allow formatting of comments with "gq".
-"   j	Where it makes sense, remove a comment leader when joining lines. 
-"   l	Long lines are not broken in insert mode
-
-set formatoptions=jtcrql
+" Remove o from creating new comment
+autocmd BufNewFile,BufRead * setlocal formatoptions-=o
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts

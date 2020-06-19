@@ -188,3 +188,7 @@ map <leader>q :e ~/buffer<cr>
 
 " Quickly open a markdown buffer for scribble
 map <leader>x :e ~/buffer.md<cr>
+
+" Quickly exit file
+map Q :<Nop>
+map <leader>Q :q<cr>

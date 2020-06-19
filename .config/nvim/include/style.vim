@@ -97,28 +97,18 @@ set formatoptions=jtcrql
 " Enable syntax highlighting
 syntax enable
 
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
-
-set notermguicolors
-if (has("termguicolors"))
-  set termguicolors
-endif
-
 try
     colorscheme nord
 catch
 endtry
 
 set background=dark
+set t_Co=256
 
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
     set guioptions-=e
-    set t_Co=256
     set guitablabel=%M\ %t
 endif
 

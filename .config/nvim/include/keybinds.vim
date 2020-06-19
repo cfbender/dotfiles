@@ -71,7 +71,7 @@ map <C-t> :NERDTreeToggle<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 
 " FZF settings
-nnoremap <Leader>g :Rg<SPACE>
+nnoremap <Leader>rg :Rg<SPACE>
 nnoremap <C-f> :GFiles<CR>
 nnoremap <Leader>ff :Files<CR>
 

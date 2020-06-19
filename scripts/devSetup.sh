@@ -19,6 +19,9 @@ curl -sSL https://get.haskellstack.org/ | sh
 # Python
 sudo pacman -S python
 
+#Lua
+sudo pacman -S lua
+
 # jetbrains
 flatpak install flathub com.jetbrains.DataGrip -y
 

@@ -23,6 +23,8 @@ oldDir=$(pwd)
 git clone https://aur.archlinux.org/aura-bin.git
 cd aura-bin
 makepkg -si
+cd ..
+rm -rf aura-bin
 cd $oldDir
 # tmux and tpm
 sudo pacman -S tmux

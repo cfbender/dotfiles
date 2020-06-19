@@ -7,7 +7,7 @@ function install {
 
   if [ $? -ne 0 ]; then
     echo "Installing: ${1}..."
-    sudo apt install -y $1
+    sudo pacman -S $1
   else
     echo "Already installed: ${1}"
   fi
@@ -15,8 +15,7 @@ function install {
 
 # Basics
 install flatpak
-install gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-install dconf-editor
+
 # Image processing
 install gimp

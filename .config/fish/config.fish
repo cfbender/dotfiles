@@ -1,3 +1,9 @@
+# Auto launch tmux
+if status is-interactive
+and not set -q TMUX
+    exec tmux
+end
+
 set -x TERM xterm-256color
 # Add Nerd Font Support
 set -g theme_nerd_fonts yes

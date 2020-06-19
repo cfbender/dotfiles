@@ -13,15 +13,8 @@
 	cm = commit -m
 	ac = "!f() { git add -A && git commit -m \"$@\";}; f"
 	acp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
-[color]
-    diff = auto
-    status = auto
-    branch = auto
-[color "status"]
-    added = green
-    changed = blue
-    untracked = red 
-[color "diff"]
-    meta = yellow
-    old = red 
-    new = green
+[diff]
+	tool = meld
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3

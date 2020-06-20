@@ -12,10 +12,10 @@ function nvm
     bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
 end
 
-set -x PATH {$HOME}/.local/bin:$PATH
+set -U fish_user_paths $HOME/.local/bin 
 
-set -x PATH ~/bin:$PATH
-set -x PATH "(yarn global bin):$PATH"
+set -U  fish_user_paths ~/bin
+set -U fish_user_paths (yarn global bin)
 
 set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
 

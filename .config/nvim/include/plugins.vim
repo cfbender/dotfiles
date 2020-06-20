@@ -9,6 +9,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " code complet
 Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
 Plug 'flazz/vim-colorschemes'																			" so many colorschemes
 Plug 'dracula/vim', { 'as': 'dracula' }                           " dracula theme
+Plug 'easymotion/vim-easymotion'                                  " better intrafile movement
 Plug 'tpope/vim-fugitive'                                         " git integration
 Plug 'junegunn/fzf.vim'                                           " fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " fuzzy finder for vim
@@ -21,10 +22,8 @@ Plug 'sheerun/vim-polyglot'                                       " language pac
 Plug 'prettier/vim-prettier', {                                   
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-Plug 'unblevable/quick-scope'                                     " better intraline movement with f/t
 Plug 'junegunn/rainbow_parentheses.vim'                       	  " rainbow parentheses
 Plug 'vim-scripts/syntaxcomplete'                                 " syntax completion
-Plug 'justinmk/vim-sneak'                                         " better searching with s/S
 Plug 'mbbill/undotree'                                            " visual undo tree
 Plug 'chaoren/vim-wordmotion'                                     " better word jumping, camelCase, snake_case, etc.
 
@@ -77,3 +76,10 @@ function! AuCocExplorerAutoOpen()
     endif
 endfunction
 autocmd User CocNvimInit call AuCocExplorerAutoOpen()
+
+" EasyMotion 
+map z <Plug>(easymotion-prefix)
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+" Set target color to more sensible red
+hi link EasyMotionTarget SpellBad

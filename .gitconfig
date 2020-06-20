@@ -9,6 +9,7 @@
 	rebase = true
 [alias]
 	co = checkout
+  dt = difftool
 	st = status
 	cm = commit -m
 	ac = "!f() { git add -A && git commit -m \"$@\";}; f"

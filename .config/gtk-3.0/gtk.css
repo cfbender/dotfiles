@@ -1,11 +1,12 @@
 .budgie-panel {
-    background-color: rgba(40,42,54,1);
+  background-color: rgba(40, 42, 54, 1);
 }
 
-.transparent{
-background-color: rgba(40,42,54,0.50);
+.transparent {
+  background-color: rgba(40, 42, 54, 0.5);
 }
 
-.current-workspace{
-	background-color: rgba(0,0,0,.4);
-}@import 'colors.css';
+.current-workspace {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+

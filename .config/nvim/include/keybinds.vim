@@ -190,5 +190,5 @@ map <leader>q :e ~/buffer<cr>
 map <leader>x :e ~/buffer.md<cr>
 
 " Quickly exit file
-map Q :<Nop>
+map Q <Nop>
 map <leader>Q :q<cr>

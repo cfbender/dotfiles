@@ -65,14 +65,14 @@ let g:loaded_netrwPlugin = 1
 
 function! AuCocExplorerAutoOpen()
     let l:use_floating = 0
-
+    let d = expand('%')
     " Auto-open explorer when there's no file to show.
-    if @% == '' || @% == '.'
+    if @% == '' || @% == '.' || isdirectory(d)
         if l:use_floating
-            exe ':CocCommand explorer --position floating'
+            exe ':CocCommand explorer --position floating ' . d
         else
             autocmd User CocExplorerOpenPost ++once exe ':only'
-            exe ':CocCommand explorer'
+            exe ':CocCommand explorer ' . d
         endif
     endif
 endfunction

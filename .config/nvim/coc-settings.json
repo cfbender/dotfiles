@@ -6,10 +6,7 @@
         "typescriptreact",
         "json"
     ],
-    "eslint.packageManager": "yarn",
-    "eslint.options": {
-        "parser": "@typescript-eslint/parser"
-    },
+    "eslint.autoFixOnSave": true,
     "tsserver.log": "verbose",
     "coc.preferences.formatOnSaveFiletypes": [
         "css",

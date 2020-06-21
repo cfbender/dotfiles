@@ -5,11 +5,13 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'                                    " status line
 Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
+Plug 'alvan/vim-closetag'                                         " auto close html/jsx tags
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " code completion
 Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
 Plug 'flazz/vim-colorschemes'																			" so many colorschemes
 Plug 'dracula/vim', { 'as': 'dracula' }                           " dracula theme
 Plug 'easymotion/vim-easymotion'                                  " better intrafile movement
+Plug 'mattn/emmet-vim'                                            " emmet support
 Plug 'tpope/vim-fugitive'                                         " git integration
 Plug 'junegunn/fzf.vim'                                           " fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " fuzzy finder for vim
@@ -64,14 +66,13 @@ let g:loaded_netrwPlugin = 1
 
 function! AuCocExplorerAutoOpen()
     let l:use_floating = 0
-    let d = expand('%')
     " Auto-open explorer when there's no file to show.
-    if @% == '' || @% == '.' || isdirectory(d)
+    if @% == '' || @% == '.' 
         if l:use_floating
-            exe ':CocCommand explorer --position floating ' . d
+            exe ':CocCommand explorer --position floating '
         else
             autocmd User CocExplorerOpenPost ++once exe ':only'
-            exe ':CocCommand explorer ' . d
+            exe ':CocCommand explorer '
         endif
     endif
 endfunction
@@ -83,3 +84,10 @@ map z <Plug>(easymotion-prefix)
 let g:EasyMotion_smartcase = 1
 " Set target color to more sensible red
 hi link EasyMotionTarget SpellBad
+
+" vim-closetag file extensions
+let g:closetag_filenames = "*.html,*.jsx,*.tsx"
+let g:closetag_regions =  {
+\ 'typescript.tsx': 'jsxRegion,tsxRegion',
+\ 'javascript.jsx': 'jsxRegion',
+\ }

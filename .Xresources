@@ -42,7 +42,7 @@ XTerm*selectToClipboard: true
 
 *lighterbg:    base01
 *separator:    base01
-*selection:    base0B
+*selection:    base09
 
 *color0:       base01
 *color1:       base0B

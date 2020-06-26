@@ -1,0 +1,113 @@
+[colors]
+background = ${xrdb:background:#ff0000}
+background2 = ${xrdb:lighterbg:#ff0000}
+selection = #88C0D0
+;foreground = ${xrdb:foreground:#ff0000}
+foreground = #839496
+separator = ${xrdb:separator:#ff0000}
+purple = #b48ead
+red = #bf616a
+lightgreen = #8fbcbb
+lightfg = ${xrdb:color7:#ff0000}
+shade2 = #434c5e
+
+[settings]
+format-background = ${colors.background2}
+format-foreground = ${colors.foreground}
+
+[module/volume]
+type = internal/volume
+
+format-volume-padding = 0
+format-volume-foreground = ${colors.purple}
+format-volume = <label-volume> <bar-volume>
+label-volume = "  %percentage%"
+
+format-muted-padding = 0
+format-muted = <label-muted>
+label-muted = "  "
+label-muted-foreground = ${colors.dark-red}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = 
+format-prefix-foreground = ${colors.lightgreen}
+format-prefix-background = ${colors.background}
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label = %percentage_used%%
+label-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = 
+format-prefix-foreground = ${colors.red}
+format-prefix-background = ${colors.background}
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label = %percentage%%
+label-padding = 2
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %A, %B %dth
+
+label = %date%
+format-padding = 1
+
+[module/time]
+type = internal/date
+interval = 1.0
+date= "%a %b %d"
+time = " %I:%M "
+time-alt = " %A, %B %dth "
+label = %date% %time%
+format = 🕓 <label>
+format-background = ${colors.background2}
+format-foreground = ${colors.foreground}
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+
+label-focused = %name%
+label-focused-padding = 1
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.selection}
+
+label-unfocused = %name%
+label-unfocused-background = ${colors.background2}
+label-unfocused-padding = 1
+label-visible = %name%
+label-visible-padding = 1
+label-visible-background = ${colors.background2}
+label-urgent = %name%
+label-urgent-padding = 1
+index-sort = true
+
+[bar/bar]
+monitor-strict = true
+bottom = false
+modules-left = i3
+modules-center = 
+modules-right = memory cpu volume wired time 
+monitor = ${env:MONITOR1}
+background = ${colors.background}
+foreground = ${colors.foreground}
+font-0 = DankMono Nerd font:size=13;3
+height = 24
+tray-position = right
+tray-padding = 4
+wm-restack = i3
+
+
+[bar/second]
+inherit = bar/bar
+modules-left = i3
+modules-right = time
+modules-center =
+monitor = ${env:MONITOR2}
+tray-position = 

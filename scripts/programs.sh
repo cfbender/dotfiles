@@ -1,5 +1,3 @@
 #!/bin/bash
 
-cd programs/
-
-./devTools.sh
+./devSetup.sh

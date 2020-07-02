@@ -12,7 +12,7 @@ set -x TERM xterm-256color
 set -g theme_nerd_fonts yes
 
 # Set firefox as browser
-set -x BROWSER open
+set -x BROWSER firefox.desktop
 
 function nvm
     bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv

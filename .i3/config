@@ -307,23 +307,38 @@ exec_always --no-startup-id fix_xcursor
 # Same logic applied to everything else.
 
 ## Nord theme colors
-
-set $nord0   #2E3440
-set $nord1   #3B4252
+#darkest base
+set $nord0   #2E3440  
+#dark base
+set $nord1   #3B4252 
+#medium base
 set $nord2   #434C5E
-set $nord3   #4C566A
-set $nord4   #D8DEE9
-set $nord5   #E5E9F0
-set $nord6   #ECEFF4
-set $nord7   #8FBCBB
-set $nord8   #88C0D0
-set $nord9   #81A1C1
-set $nord10  #5E81AC
-set $nord11  #BF616A
-set $nord12  #D08770
-set $nord13  #EBCB8B
-set $nord14  #A3BE8C
-set $nord15  #B48EAD 
+#light base
+set $nord3   #4C566A  
+#medium gray
+set $nord4   #D8DEE9  
+#light gray
+set $nord5   #E5E9F0  
+#barely not white
+set $nord6   #ECEFF4  
+#nordic green
+set $nord7   #8FBCBB  
+#ice blue
+set $nord8   #88C0D0  
+#glacier blue
+set $nord9   #81A1C1  
+#deep ocean blue
+set $nord10  #5E81AC  
+#aurora red
+set $nord11  #BF616A  
+#aurora orange
+set $nord12  #D08770  
+#aurora yellow
+set $nord13  #EBCB8B  
+#aurora green
+set $nord14  #A3BE8C  
+#aurora purple
+set $nord15  #B48EAD  
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 #bar {
@@ -365,11 +380,11 @@ set $nord15  #B48EAD
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-client.focused          $nord15 $nord8  #2f343f $nord8    $nord15
-client.focused_inactive #d8dee8 #d8dee8 #2f343f #d8dee8   #d8dee8 
-client.unfocused        #2f343f #2f343f #d8dee8 #2f343f   #2f343f
-client.urgent           #bf616a #bf616a #2f343f #bf616a   #bf616a
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #ffffff
+client.focused          $nord15 $nord2  $nord6    $nord15   $nord15
+client.focused_inactive $nord2  $nord2  $nord6    $nord9    $nord9
+client.unfocused        $nord2  $nord2  $nord6    $nord2    $nord2
+client.urgent           #bf616a #bf616a $nord6    #bf616a   #bf616a
+client.placeholder      #000000 #0c0c0c $nord6    #000000   #ffffff
 
 client.background       #ffffff
 #############################
@@ -386,11 +401,11 @@ gaps outer 10
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+#smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+#smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner

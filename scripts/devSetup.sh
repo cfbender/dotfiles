@@ -4,9 +4,9 @@
 sudo pacman -S code
 
 # JS/TS
-pacman -S nodejs npm
+sudo pacman -S nodejs npm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
-pacman -S yarn
+sudo pacman -S yarn
 yarn global add typescript
 
 # Rust

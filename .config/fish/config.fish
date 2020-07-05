@@ -6,7 +6,6 @@
 
 # Remove default fish greeting
 set -U fish_greeting ""
-set -x TERM xterm-256color
 
 # Add Nerd Font Support
 set -g theme_nerd_fonts yes

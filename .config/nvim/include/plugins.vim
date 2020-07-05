@@ -67,6 +67,7 @@ let g:rnvimr_ranger_cmd = 'ranger --cmd="set column_ratios 1,1"'
 let g:rnvimr_bw_enable = 1
 let g:rnvimr_ex_enable = 1
 let g:rnvimr_draw_border = 1
+let g:rnvimr_pick_enable = 1
 
 " EasyMotion 
 " Turn on case-insensitive feature

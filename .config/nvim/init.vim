@@ -5,3 +5,5 @@ runtime! include/plugins.vim
 runtime! include/general.vim
 runtime! include/style.vim
 runtime! include/keybinds.vim
+
+set shell=bash

@@ -5,6 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'                                    " status line
 Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
+Plug 'rbgrouleff/bclose.vim'                                      " dependency for ranger
 Plug 'alvan/vim-closetag'                                         " auto close html/jsx tags
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " code completion
 Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
@@ -25,6 +26,7 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'junegunn/rainbow_parentheses.vim'                       	  " rainbow parentheses
+Plug 'francoiscabrol/ranger.vim'                                  " ranger integration
 Plug 'vim-scripts/syntaxcomplete'                                 " syntax completion
 Plug 'mbbill/undotree'                                            " visual undo tree
 Plug 'chaoren/vim-wordmotion'                                     " better word jumping, camelCase, snake_case, etc.
@@ -62,21 +64,23 @@ let g:coc_global_extensions = [
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-let g:loaded_netrwPlugin = 1
+let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
 
-function! AuCocExplorerAutoOpen()
-    let l:use_floating = 0
-    " Auto-open explorer when there's no file to show.
-    if @% == '' || @% == '.' 
-        if l:use_floating
-            exe ':CocCommand explorer --position floating '
-        else
-            autocmd User CocExplorerOpenPost ++once exe ':only'
-            exe ':CocCommand explorer '
-        endif
-    endif
-endfunction
-autocmd User CocNvimInit call AuCocExplorerAutoOpen()
+"let g:loaded_netrwPlugin = 1
+
+"function! AuCocExplorerAutoOpen()
+    "let l:use_floating = 0
+    "" Auto-open explorer when there's no file to show.
+    "if @% == '' || @% == '.' 
+        "if l:use_floating
+            "exe ':CocCommand explorer --position floating '
+        "else
+            "autocmd User CocExplorerOpenPost ++once exe ':only'
+            "exe ':CocCommand explorer '
+        "endif
+    "endif
+"endfunction
+"autocmd User CocNvimInit call AuCocExplorerAutoOpen()
 
 " EasyMotion 
 " Turn on case-insensitive feature

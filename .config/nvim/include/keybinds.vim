@@ -82,6 +82,10 @@ nmap <leader>gu :diffget //2<CR>
 nmap <leader>gdo :Gvdiff origin<CR>
 nmap <leader>gdm :Gvdiff origin/master<CR>
 
+" Ranger
+let g:ranger_map_keys = 0
+map <leader>f :RangerCurrentDirectoryNewTab<CR>
+
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""

@@ -116,6 +116,8 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
+# take screenshot of area and copy to clipboard
+bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/png
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 

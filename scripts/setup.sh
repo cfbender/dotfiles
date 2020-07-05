@@ -32,3 +32,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # ripgrep
 sudo pacman -S ripgrep
 fisher
+
+# screenshot util
+sudo pacman -S maim xclip

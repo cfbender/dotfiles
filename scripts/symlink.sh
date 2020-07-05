@@ -8,17 +8,17 @@ dotfilesDir=$(pwd)
 function linkDotfile {
   dest="${HOME}/${1}"
   dateStr=$(date +%Y-%m-%d-%H%M)
-  
+
   newDir=$(dirname ${dest})
   if [ ! -d "${newDir}" ]; then
   echo "Creating nonexistent directory: ${newDir}"
-  mkdir ${newDir}
+  mkdir -p ${newDir}
   fi
 
   if [ -h ~/${1} ]; then
-    # Existing symlink 
+    # Existing symlink
     echo "Removing existing symlink: ${dest}"
-    rm ${dest} 
+    rm ${dest}
 
   elif [ -f "${dest}" ]; then
     # Existing file

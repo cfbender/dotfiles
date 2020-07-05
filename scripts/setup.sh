@@ -35,3 +35,6 @@ fisher
 
 # screenshot util
 sudo pacman -S maim xclip
+
+# ranger dev icons
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons

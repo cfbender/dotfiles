@@ -22,6 +22,12 @@ set -Ua fish_user_paths $HOME/.cargo/bin
 
 set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
 
+set -gx LANGUAGE "en_US.UTF-8"
+set -gx LC_ALL "en_US.UTF-8"
+
+set -gx VISUAL nvim
+set -gx EDITOR nvim
+
 function gunwip
     git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1
 end

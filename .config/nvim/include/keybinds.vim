@@ -55,10 +55,6 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)"
 
-" coc-explorer
-nmap <leader>e :CocCommand explorer<CR>
-nmap <leader>ef :CocCommand explorer --position floating<CR>
-
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
 map <F4> :Format<CR>
@@ -82,9 +78,8 @@ nmap <leader>gu :diffget //2<CR>
 nmap <leader>gdo :Gvdiff origin<CR>
 nmap <leader>gdm :Gvdiff origin/master<CR>
 
-" Ranger
-let g:ranger_map_keys = 0
-map <leader>f :RangerCurrentDirectoryNewTab<CR>
+" Ranger settings
+nmap <leader>o :RnvimrToggle<CR>
 
 """"""""""""""""""""""""""""""
 " => Visual mode related

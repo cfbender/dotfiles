@@ -79,7 +79,6 @@ endfunction
 autocmd User CocNvimInit call AuCocExplorerAutoOpen()
 
 " EasyMotion 
-map z <Plug>(easymotion-prefix)
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 " Set target color to more sensible red

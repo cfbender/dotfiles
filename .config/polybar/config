@@ -15,18 +15,13 @@ shade2 = #434c5e
 format-background = ${colors.background2}
 format-foreground = ${colors.foreground}
 
-[module/volume]
-type = internal/volume
-
-format-volume-padding = 0
-format-volume-foreground = ${colors.purple}
-format-volume = <label-volume> <bar-volume>
-label-volume = "  %percentage%"
-
-format-muted-padding = 0
-format-muted = <label-muted>
-label-muted = "  "
-label-muted-foreground = ${colors.dark-red}
+[module/network]
+type = internal/network
+interface = enp6s0
+label-connected = %upspeed: 9% ﯴ%downspeed:9% ﯲ
+label-connected-padding = 2
+label-connected-foreground = ${colors.foreground}
+label-connected-background = ${colors.background}
 
 [module/memory]
 type = internal/memory
@@ -65,7 +60,8 @@ date= "%a %b %d"
 time = " %I:%M "
 time-alt = " %A, %B %dth "
 label = %date% %time%
-format = 🕓 <label>
+format =   <label>
+format-padding = 1
 format-background = ${colors.background2}
 format-foreground = ${colors.foreground}
 
@@ -74,18 +70,18 @@ type = internal/i3
 pin-workspaces = true
 
 label-focused = %name%
-label-focused-padding = 1
+label-focused-padding = 2
 label-focused-foreground = ${colors.background}
 label-focused-background = ${colors.selection}
 
 label-unfocused = %name%
 label-unfocused-background = ${colors.background2}
-label-unfocused-padding = 1
+label-unfocused-padding = 2
 label-visible = %name%
-label-visible-padding = 1
+label-visible-padding = 2
 label-visible-background = ${colors.background2}
 label-urgent = %name%
-label-urgent-padding = 1
+label-urgent-padding = 2
 index-sort = true
 
 [bar/bar]
@@ -93,7 +89,7 @@ monitor-strict = true
 bottom = false
 modules-left = i3
 modules-center = 
-modules-right = memory cpu volume wired time 
+modules-right = network memory cpu time 
 monitor = ${env:MONITOR1}
 background = ${colors.background}
 foreground = ${colors.foreground}

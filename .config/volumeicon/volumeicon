@@ -7,7 +7,7 @@ notification_type=1
 
 [StatusIcon]
 stepsize=5
-onclick=urxvt -e 'alsamixer'
+onclick=urxvt -e 'pulseaudio'
 theme=White Gnome
 use_panel_specific_icons=true
 lmb_slider=true

@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # code
-sudo pacman -S code
+sudo pacman -S code --noconfirm
 
 # JS/TS
-sudo pacman -S nodejs npm
+sudo pacman -S nodejs npm --noconfirm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
-sudo pacman -S yarn
+sudo pacman -S yarn --noconfirm
 yarn global add typescript
 
 # Rust
@@ -17,14 +17,14 @@ cargo install cargo-edit
 curl -sSL https://get.haskellstack.org/ | sh
 
 # Python
-sudo pacman -S python
+sudo pacman -S python --noconfirm
 
 #Lua
-sudo pacman -S lua
+sudo pacman -S lua --noconfirm
 
 # jetbrains
 flatpak install flathub com.jetbrains.DataGrip -y
 
 # docker
-sudo pacman -S docker
+sudo pacman -S docker --noconfirm
 

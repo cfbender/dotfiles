@@ -145,7 +145,7 @@ bindsym $mod+Ctrl+Left workspace prev
 set $ws1 1:ﬦ
 set $ws2 2:
 set $ws3 3:
-set $ws4 4:
+set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7:
@@ -301,7 +301,7 @@ exec --no-startup-id clipit
 #exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec dbus-launch compton --config ~/.config/compton.conf
+exec dbus-launch picom --config ~/.config/picom.conf
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 

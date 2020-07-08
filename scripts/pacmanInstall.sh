@@ -47,10 +47,11 @@ install -S tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # ripgrep
 install -S ripgrep
-fisher
-
 # screenshot util
 install -S maim xclip
 
 # ranger dev icons
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+
+sudo chsh -s $(which fish)
+fisher

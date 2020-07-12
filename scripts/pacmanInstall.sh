@@ -36,11 +36,11 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 # aura
 oldDir=$(pwd)
-git clone https://aur.archlinux.org/aura-bin.git
-cd aura-bin
+git clone https://aur.archlinux.org/yay.git
+cd yay
 makepkg -si
 cd ..
-rm -rf aura-bin
+rm -rf yay
 cd $oldDir
 # tmux and tpm
 install tmux

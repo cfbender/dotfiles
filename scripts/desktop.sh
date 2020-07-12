@@ -1,7 +1,5 @@
 #!/bin/bash
 
 # Desktop stuff
-sudo pacman -S i3-gaps i3-exit
-sudo pacman -s rofi picom nitrogen
-
+sudo pacman -S i3-gaps rofi picom nitrogen morc_menu dmenu wmctrl bmenu polybar
 

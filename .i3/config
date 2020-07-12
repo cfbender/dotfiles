@@ -25,9 +25,9 @@ for_window [class="yakuake"] floating enable
 assign [class="plasmashell" window_type="notification"] output primary
 
 # fix notification focusing and placement
-no_focus [class="plasmashell"] 
-for_window [class="plasmashell"] move right 1100 px
-for_window [class="plasmashell"] move down 600 px
+no_focus [class="plasmashell" window_type="notification"] 
+for_window [class="plasmashell" window_type="notification"] move right 1100 px
+for_window [class="plasmashell" window_type="notification"] move down 600 px
 
 ##-----------------------------------------------------------------------------------------------------------
 
@@ -68,16 +68,6 @@ bindsym $mod+d exec rofi -show drun
 
 # launch categorized menu
 bindsym $mod+Shift+z exec --no-startup-id morc_menu
-
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -312,25 +302,10 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
-
 # Autostart applications
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-#exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
 exec dbus-launch picom --config ~/.config/picom.conf
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:

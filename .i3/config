@@ -2,6 +2,35 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 exec --no-startup-if sleep 3
 exec --no-startup-id ~/.screenlayout/home_desktop.sh
+
+##-----------------------------------------------------------------------------------------------------------
+
+## Plasma fix
+
+# kill Plasma Desktop
+exec --no-startup-id wmctrl -c Plasma
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+
+# fix Plasma fly-outs
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable
+for_window [title="plasma-desktop"] floating enable
+for_window [class="krunner"] floating enable
+for_window [class="Kmix"] floating enable
+for_window [class="Klipper"] floating enable
+for_window [class="Plasmoidviewer"] floating enable
+for_window [class="yakuake"] floating enable
+
+# fix notification appearing on the second monitor
+assign [class="plasmashell" window_type="notification"] output primary
+
+# fix notification focusing and placement
+no_focus [class="plasmashell"] 
+for_window [class="plasmashell"] move right 1100 px
+for_window [class="plasmashell"] move down 600 px
+
+##-----------------------------------------------------------------------------------------------------------
+
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
@@ -65,7 +94,6 @@ bindsym $mod+Ctrl+R exec $terminal -e 'ranger'
 bindsym $mod+Ctrl+s exec $terminal -e 'spt'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+F1 exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill

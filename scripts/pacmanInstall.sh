@@ -18,9 +18,6 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 # Image processing
 install gimp
 
-# Desktop stuff
-install rofi
-
 # Get all upgrades
 sudo pacman -Syyu --noconfirm
 

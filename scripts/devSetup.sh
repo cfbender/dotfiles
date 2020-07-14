@@ -28,3 +28,5 @@ flatpak install flathub com.jetbrains.DataGrip -y
 # docker
 sudo pacman -S docker --noconfirm
 
+# Meld
+sudo pacman -S meld --noconfirm

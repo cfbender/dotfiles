@@ -17,5 +17,5 @@
 [diff]
 	tool = meld
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+	tool = meld
+ 	conflictstyle = diff3

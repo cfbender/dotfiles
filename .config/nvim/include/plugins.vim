@@ -5,7 +5,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'                                    " status line
 Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
-Plug 'alvan/vim-closetag'                                         " auto close html/jsx tags
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " code completion
 Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
 Plug 'flazz/vim-colorschemes'																			" so many colorschemes
@@ -75,9 +74,3 @@ let g:EasyMotion_smartcase = 1
 " Set target color to more sensible red
 hi link EasyMotionTarget SpellBad
 
-" vim-closetag file extensions
-let g:closetag_filenames = "*.html,*.jsx,*.tsx"
-let g:closetag_regions =  {
-\ 'typescript.tsx': 'jsxRegion,tsxRegion',
-\ 'javascript.jsx': 'jsxRegion',
-\ }

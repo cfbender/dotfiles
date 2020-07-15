@@ -27,6 +27,8 @@ set -gx LC_ALL "en_US.UTF-8"
 set -gx VISUAL nvim
 set -gx EDITOR nvim
 
+thefuck --alias | source
+
 function gunwip
     git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1
 end
@@ -62,3 +64,4 @@ set -U fish_pager_color_completion normal
 set -U fish_pager_color_description B3A06D yellow
 set -U fish_pager_color_prefix white --bold --underline
 set -U fish_pager_color_progress brwhite --background=cyan
+

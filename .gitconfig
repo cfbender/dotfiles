@@ -4,7 +4,7 @@
 	email = codyfbender@gmail.com
 	name = Cody Bender
 [push]
-	default = tracking
+	default = current
 [pull]
 	rebase = true
 [alias]

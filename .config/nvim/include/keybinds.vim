@@ -73,6 +73,9 @@ nnoremap <Leader>ff :Files<CR>
 
 " Fugitive
 nmap <leader>gs :G<CR>
+nmap <leader>gaa :G add .<CR>
+nmap <leader>gac :G ac
+nmap <leader>gacp :G acp
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 nmap <leader>gdo :Gvdiff origin<CR>

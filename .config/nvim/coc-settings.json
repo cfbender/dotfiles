@@ -1,54 +1,44 @@
 {
-    "eslint.filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "json"
-    ],
-    "eslint.autoFixOnSave": true,
-    "tsserver.log": "verbose",
-    "coc.preferences.formatOnSaveFiletypes": [
-        "css",
-        "markdown",
-        "Markdown",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-    ],
-    "languageserver": {
-        "haskell": {
-            "command": "hie-wrapper",
-            "args": [
-                "--lsp"
-            ],
-            "rootPatterns": [
-                "*.cabal",
-                "stack.yaml",
-                "cabal.project",
-                "package.yaml"
-            ],
-            "filetypes": [
-                "hs",
-                "lhs",
-                "haskell"
-            ],
-            "initializationOptions": {
-                "languageServerHaskell": {}
-            }
-        }
-    },
-    "explorer.width": 42,
-    "explorer.file.showHiddenFiles": true,
-    "explorer.icon.enableNerdfont": true,
-    "explorer.previewAction.onHover": false,
-    "explorer.keyMappings": {
-        "<cr>": [
-            "expandable?",
-            "expand",
-            "open"
-        ],
-        "v": "open:vsplit"
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.autoFixOnSave": true,
+  "tsserver.log": "verbose",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "Markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json"
+  ],
+  "languageserver": {
+    "haskell": {
+      "command": "hie-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml"
+      ],
+      "filetypes": ["hs", "lhs", "haskell"],
+      "initializationOptions": {
+        "languageServerHaskell": {}
+      }
     }
+  },
+  "explorer.width": 42,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
+  "explorer.keyMappings": {
+    "<cr>": ["expandable?", "expand", "open"],
+    "v": "open:vsplit"
+  }
 }

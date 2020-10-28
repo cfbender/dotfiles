@@ -1,8 +1,10 @@
 [core]
     editor = nvim
+	autocrlf = false
 [user]
-	email = codyfbender@gmail.com
+	email = cody.bender@pdq.com
 	name = Cody Bender
+	signingkey = B8C18EFD8F911405797147F4720FA88853F39859
 [push]
 	default = current
 [pull]
@@ -19,3 +21,7 @@
 [merge]
 	tool = meld
  	conflictstyle = diff3
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true

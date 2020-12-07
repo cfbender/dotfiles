@@ -18,7 +18,8 @@ curl -sSL https://get.haskellstack.org/ | sh
 
 # Python
 sudo pacman -S python --noconfirm
-pip install thefuck
+sudo pacman -S gcc --noconfirm
+pip3 install thefuck
 
 #Lua
 sudo pacman -S lua --noconfirm

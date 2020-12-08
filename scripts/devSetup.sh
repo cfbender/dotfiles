@@ -32,3 +32,6 @@ sudo pacman -S docker --noconfirm
 
 # Meld
 sudo pacman -S meld --noconfirm
+
+# Deno
+curl -fsSL https://deno.land/x/install/install.sh | sh

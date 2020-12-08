@@ -19,6 +19,17 @@ end
 set -Ua fish_user_paths (yarn global bin) 
 set -Ua fish_user_paths $HOME/.cargo/bin
 
+set DENO_INSTALL "$HOME/.deno"
+set -Ua fish_user_paths $DENO_INSTALL/bin
+
+function dr 
+  if test (count $argv) -gt 0
+    deno run --allow-read $argv
+  else
+    deno run --allow-read ./index.ts
+  end
+end
+
 set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
 
 set -gx LANGUAGE "en_US.UTF-8"

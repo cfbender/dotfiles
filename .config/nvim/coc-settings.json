@@ -6,7 +6,6 @@
     "typescriptreact"
   ],
   "eslint.autoFixOnSave": true,
-  "tsserver.log": "verbose",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdown",
@@ -40,5 +39,7 @@
   "explorer.keyMappings": {
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit"
-  }
+  },
+  "elixirLS.mixEnv": "dev",
+  "elixirLS.mixTarget": "test "
 }

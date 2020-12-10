@@ -46,6 +46,7 @@ let g:multi_cursor_exit_from_insert_mode = 1
 let g:coc_global_extensions = [
   \ 'coc-actions',
   \ 'coc-css',
+  \ 'coc-elixir',
   \ 'coc-eslint',
   \ 'coc-git',
   \ 'coc-html',

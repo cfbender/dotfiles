@@ -8,9 +8,9 @@ Plug 'jiangmiao/auto-pairs'                                       " pairing for 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " code completion
 Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
 Plug 'flazz/vim-colorschemes'																			" so many colorschemes
+Plug 'ap/vim-css-color'                                           " highlight colors
 Plug 'dracula/vim', { 'as': 'dracula' }                           " dracula theme
 Plug 'easymotion/vim-easymotion'                                  " better intrafile movement
-Plug 'mattn/emmet-vim'                                            " emmet support
 Plug 'tpope/vim-fugitive'                                         " git integration
 Plug 'junegunn/fzf.vim'                                           " fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " fuzzy finder for vim

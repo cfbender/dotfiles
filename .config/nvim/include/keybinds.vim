@@ -84,6 +84,9 @@ nmap <leader>gdm :Gvdiff origin/master<CR>
 " Ranger settings
 nmap <leader>o :RnvimrToggle<CR>
 
+" Folding
+nmap <leader>F :set foldmethod=syntax<CR>
+nmap <leader>FF :set foldmethod=manual<CR>zR
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""

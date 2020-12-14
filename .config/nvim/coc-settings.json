@@ -39,7 +39,5 @@
   "explorer.keyMappings": {
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit"
-  },
-  "elixirLS.mixEnv": "dev",
-  "elixirLS.mixTarget": "test "
+  }
 }

@@ -22,7 +22,16 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm."
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent> <CR> <C-r>=<SID>coc_confirm()<CR>
+function! s:coc_confirm() abort
+  call coc#refresh()
+  if pumvisible()
+    return coc#_select_confirm()
+  else
+    return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  endif
+endfunction
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " GoTo code navigation.
 nmap <leader>gd <Plug>(coc-definition)
@@ -68,7 +77,7 @@ nnoremap <leader>u :UndotreeShow<CR>
 
 " FZF settings
 nnoremap <Leader>rg :Rg<SPACE>
-nnoremap <C-f> :GFiles<CR>
+nnoremap ff :GFiles<CR>
 nnoremap <Leader>ff :Files<CR>
 
 " Fugitive

@@ -28,6 +28,7 @@ Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}                   " ranger integ
 Plug 'vim-scripts/syntaxcomplete'                                 " syntax completion
 Plug 'mbbill/undotree'                                            " visual undo tree
 Plug 'chaoren/vim-wordmotion'                                     " better word jumping, camelCase, snake_case, etc.
+Plug 'tpope/vim-endwise'                                           " add end after do
 
 call plug#end()
 
@@ -59,6 +60,10 @@ let g:coc_global_extensions = [
   \ 'coc-rust-analyzer'
   \ ]
 
+set hidden
+set updatetime=300
+set shortmess+=c
+
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -75,3 +80,4 @@ let g:EasyMotion_smartcase = 1
 " Set target color to more sensible red
 hi link EasyMotionTarget SpellBad
 
+let g:endwise_no_mappings = 1

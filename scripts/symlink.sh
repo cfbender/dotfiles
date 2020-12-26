@@ -35,7 +35,7 @@ function linkDotfile {
   ln -s ${dotfilesDir}/${1} ${dest}
 }
 
-find . -type f -not -path "./scripts/*" -not -path "./.git/*" -not -name "README.md" | sed 's/^\.\///' | while read f
+find . -type f -not -path "./scripts/*" -not -path "./.git/*" -not -path "./assets/*" -not -name "README.md" | sed 's/^\.\///' | while read f
 do
 linkDotfile ${f}
 done

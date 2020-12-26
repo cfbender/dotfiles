@@ -49,6 +49,7 @@ function gwip
     git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"
 end
 
+alias ls "lsd"
 # Nord fish colors
 set -U fish_color_normal normal
 set -U fish_color_command 81a1c1

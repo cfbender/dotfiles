@@ -55,3 +55,5 @@ git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger
 
 sudo chsh -s $(which fish)
 fisher
+
+install lsd

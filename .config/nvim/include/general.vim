@@ -42,9 +42,6 @@ au BufRead,BufNewFile *.tsx set filetype=typescriptreact
 " Sync system clipboard to vim
 set clipboard=unnamedplus
 
-" Disable cursor changing
-set guicursor=
-
 " Scrolling on and disable click
 set mouse=a
 map <LeftMouse> <Nop>

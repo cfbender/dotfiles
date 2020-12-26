@@ -57,7 +57,7 @@ font xft:DankMono Nerd Font 13
 floating_modifier $mod
 
 # start a terminal
-set $terminal alacritty
+set $terminal kitty
 bindsym $mod+Return exec $terminal
 
 # kill focused window

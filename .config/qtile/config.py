@@ -64,15 +64,20 @@ keys = [
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
 
-    Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
+
+    Key([mod], "d", lazy.spawn("rofi -show drun")),
+    Key([mod], "f", lazy.spawn("firefox")),
+    Key([mod, "control"], "r", lazy.spawn("ranger")),
+    Key([mod, "control"], "p", lazy.spawn("bashtop")),
+    Key([mod, "control"], "p", lazy.spawn("bashtop")),
+    Key([mod, "shift"], "p", lazy.spawn("main -s | xclip -selection clipboard -t image/png")),
 ]
 
-groups = [Group(i) for i in "0123456789"]
+groups = [Group(i) for i in "1234567890"]
 
 for i in groups:
     keys.extend([
@@ -90,13 +95,13 @@ for i in groups:
     ])
 
 layouts = [
-    layout.Max(),
-    layout.Stack(num_stacks=2),
+    layout.Max(margin=4),
+    layout.Stack(num_stacks=2, margin=4),
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
     # layout.Columns(),
     # layout.Matrix(),
-    layout.MonadTall(),
+    layout.MonadTall(margin=4),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -168,7 +173,10 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'maketag'},  # gitk
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
+    {'wmclass': 'ssh-askpass'},
+    {'wmclass': 'plasmashell'},
+    {'wmclass': 'Plasma'},
+    {'wmclass': 'plasma-desktop'},
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"

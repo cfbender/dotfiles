@@ -39,3 +39,4 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 
 # Elixir
 sudo pacman -S elixir --noconfirm
+sudo pacman -S erlang --noconfirm

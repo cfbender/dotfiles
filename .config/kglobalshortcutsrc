@@ -1,11 +1,12 @@
 [ActivityManager]
 _k_friendly_name=Activity Manager
+switch-to-activity-430ffac3-61a8-49ed-aa99-b4a2fa7fa915=none,none,Switch to activity "Default"
 switch-to-activity-c96a249a-03b3-4539-8196-902e42124211=none,none,Switch to activity "Default"
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
 Switch to Next Keyboard Layout=Ctrl+Alt+K,none,Switch to Next Keyboard Layout
-_k_friendly_name=KDE Daemon
+_k_friendly_name=Keyboard Layout Switcher
 
 [kaccess]
 Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Toggle Screen Reader On and Off
@@ -15,7 +16,7 @@ _k_friendly_name=Accessibility
 Disable Touchpad=Touchpad Off,Touchpad Off,Disable Touchpad
 Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
 Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Toggle Touchpad
-_k_friendly_name=KDE Daemon
+_k_friendly_name=Touchpad
 
 [kded5]
 Show System Activity=Ctrl+Esc,Ctrl+Esc,Show System Activity
@@ -23,9 +24,9 @@ _k_friendly_name=KDE Daemon
 display=Display\tMeta+P,Display\tMeta+P,Switch Display
 
 [khotkeys]
-_k_friendly_name=KDE Daemon
-{84b71b03-a0d2-43a4-b4a3-ad374c9e1605}=Ctrl+Alt+T,none,Launch Konsole
+_k_friendly_name=Custom Shortcuts Service
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=Meta+Shift+S,none,Search
+{fad14b49-b33d-4d31-9dfb-287c849d9f17}=none,none,Launch Konsole
 
 [kmix]
 _k_friendly_name=Audio Volume
@@ -42,12 +43,12 @@ _k_friendly_name=KRunner
 _launch=Alt+Space\tAlt+F2\tSearch,Alt+Space\tAlt+F2\tSearch,KRunner
 
 [ksmserver]
-Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,none,Halt Without Confirmation
+Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,Ctrl+Alt+Shift+PgDown,Halt Without Confirmation
 Lock Session=Meta+Ctrl+L\tCtrl+Alt+L\tScreensaver,Meta+L\tCtrl+Alt+L\tScreensaver,Lock Session
-Log Out=Ctrl+Alt+Del,none,Log Out
-Log Out Without Confirmation=Ctrl+Alt+Shift+Del,none,Log Out Without Confirmation
-Reboot Without Confirmation=none,none,Reboot Without Confirmation
-_k_friendly_name=System Settings Module
+Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Log Out
+Log Out Without Confirmation=Ctrl+Alt+Shift+Del,Ctrl+Alt+Shift+Del,Log Out Without Confirmation
+Reboot Without Confirmation=none,Ctrl+Alt+Shift+PgUp,Reboot Without Confirmation
+_k_friendly_name=Session Management
 
 [kwin]
 Activate Window Demanding Attention=Ctrl+Alt+A,Ctrl+Alt+A,Activate Window Demanding Attention
@@ -195,6 +196,15 @@ view_actual_size=,Meta+0,Actual Size
 view_zoom_in=Meta+=,Meta+=,Zoom In
 view_zoom_out=Meta+-,Meta+-,Zoom Out
 
+[mediacontrol]
+_k_friendly_name=Media Controller
+mediavolumedown=none,none,Media volume down
+mediavolumeup=none,none,Media volume up
+nextmedia=Media Next,Media Next,Media playback next
+playpausemedia=Media Play,Media Play,Play/Pause media playback
+previousmedia=Media Previous,Media Previous,Media playback previous
+stopmedia=Media Stop,Media Stop,Stop media playback
+
 [org.kde.dolphin.desktop]
 _k_friendly_name=Dolphin
 _launch=Meta+E,Meta+E,Dolphin
@@ -209,7 +219,7 @@ CurrentMonitorScreenShot=,none,Capture Current Monitor
 FullScreenScreenShot=Shift+Print,Shift+Print,Capture Entire Desktop
 RectangularRegionScreenShot=Meta+Shift+Print,Meta+Shift+Print,Capture Rectangular Region
 _k_friendly_name=Spectacle
-_launch=Print,Print,Spectacle
+_launch=Print,Print,Launch Spectacle
 
 [org_kde_powerdevil]
 Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Decrease Keyboard Brightness
@@ -217,6 +227,7 @@ Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Decre
 Hibernate=Hibernate,Hibernate,Hibernate
 Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Increase Keyboard Brightness
 Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Increase Screen Brightness
+PowerDown=Power Down,Power Down,Power Down
 PowerOff=Power Off,Power Off,Power Off
 Sleep=Sleep,Sleep,Suspend
 Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Toggle Keyboard Backlight
@@ -235,13 +246,13 @@ activate task manager entry 6=none,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=none,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=none,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=,Meta+9,Activate Task Manager Entry 9
-activate widget 2=Meta+Ctrl+K,none,Activate Application Launcher Widget
+activate widget 2=Alt+F1,none,Activate Application Launcher Widget
 clear-history=none,none,Clear Clipboard History
 clipboard_action=none,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,none,Next History Item
 cyclePrevAction=none,none,Previous History Item
 edit_clipboard=none,none,Edit Contents...
-manage activities=none,Meta+Q,Activities...
+manage activities=none,Meta+Q,Show Activity Switcher
 next activity=none,none,Walk through activities
 previous activity=none,none,Walk through activities (Reverse)
 repeat_action=none,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
@@ -252,6 +263,10 @@ stop current activity=none,Meta+S,Stop Current Activity
 switch to next activity=none,none,Switch to Next Activity
 switch to previous activity=none,none,Switch to Previous Activity
 toggle do not disturb=none,none,Toggle do not disturb
+
+[systemsettings.desktop]
+_k_friendly_name=System Settings
+_launch=Tools,Tools,System Settings
 
 [yakuake]
 _k_friendly_name=Yakuake

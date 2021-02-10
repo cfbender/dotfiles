@@ -107,3 +107,9 @@ modules-right = time
 modules-center =
 monitor = ${env:MONITOR2}
 tray-position = 
+
+[bar/third]
+inherit = bar/bar
+modules-left = i3
+tray-position = 
+monitor = ${env:MONITOR3}

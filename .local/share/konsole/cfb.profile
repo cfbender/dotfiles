@@ -6,6 +6,7 @@ Font=Iosevka,12,-1,5,57,0,0,0,0,0,Medium
 CursorShape=0
 
 [General]
+Command=/usr/bin/fish
 DimWhenInactive=false
 Directory=/home/cody/code
 Name=cfb

@@ -134,7 +134,11 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # take screenshot of area and copy to clipboard
-bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/png
+bindsym $mod+Shift+p exec maim -su | xclip -selection clipboard -t image/png
+
+bindsym $mod+Ctrl+z exec v4l2-ctl -d /dev/video2 --set-ctrl=zoom_absolute=255
+bindsym $mod+Shift+Ctrl+z exec v4l2-ctl -d /dev/video2 --set-ctrl=zoom_absolute=100
+
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 

@@ -5,7 +5,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'                                    " status line
 Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
-Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " code completion
 Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
 Plug 'flazz/vim-colorschemes'																			" so many colorschemes
 Plug 'ap/vim-css-color'                                           " highlight colors
@@ -29,6 +28,11 @@ Plug 'vim-scripts/syntaxcomplete'                                 " syntax compl
 Plug 'mbbill/undotree'                                            " visual undo tree
 Plug 'chaoren/vim-wordmotion'                                     " better word jumping, camelCase, snake_case, etc.
 Plug 'tpope/vim-endwise'                                           " add end after do
+Plug 'heavenshell/vim-jsdoc', {                                  
+  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+  \ 'do': 'make install'
+\}                                                                " jsdoc comments
+Plug 'neovim/nvim-lspconfig'                                      " lsp quickstart configs
 
 call plug#end()
 
@@ -64,8 +68,6 @@ set hidden
 set updatetime=300
 set shortmess+=c
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Rnvimr
 let g:rnvimr_ranger_cmd = 'ranger --cmd="set column_ratios 1,1"'

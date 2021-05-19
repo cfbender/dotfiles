@@ -7,78 +7,97 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-inoremap <silent><expr> <Tab>
-     \ pumvisible() ? "\<C-n>" :
-     \ <SID>check_back_space() ? "\<Tab>" :
-     \ coc#refresh()
-     
-inoremap <silent><expr> <S-TAB>
-  \ pumvisible() ? "\<C-p>" :
-  \ <SID>check_back_space() ? "\<S-TAB>" :
-  \ coc#refresh()
+"{{{ Completion
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-y>      compe#confirm('<C-y>', 'i')
+"}}}
+
+"inoremap <silent><expr> <Tab>
+     "\ pumvisible() ? "\<C-n>" :
+     "\ <SID>check_back_space() ? "\<Tab>" :
+     "\ coc#refresh()
+     
+"inoremap <silent><expr> <S-TAB>
+  "\ pumvisible() ? "\<C-p>" :
+  "\ <SID>check_back_space() ? "\<S-TAB>" :
+  "\ coc#refresh()
+
+"" Use <c-space> to trigger completion.
+"inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm."
-inoremap <silent> <CR> <C-r>=<SID>coc_confirm()<CR>
-function! s:coc_confirm() abort
-  call coc#refresh()
-  if pumvisible()
-    return coc#_select_confirm()
-  else
-    return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-  endif
-endfunction
+"inoremap <silent> <CR> <C-r>=<SID>coc_confirm()<CR>
+"function! s:coc_confirm() abort
+  "call coc#refresh()
+  "if pumvisible()
+    "return coc#_select_confirm()
+  "else
+    "return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  "endif
+"endfunction
 "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " GoTo code navigation.
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
-nnoremap <leader>cr :CocRestart
+"nmap <leader>gd <Plug>(coc-definition)
+"nmap <leader>gy <Plug>(coc-type-definition)
+"nmap <leader>gi <Plug>(coc-implementation)
+"nmap <leader>gr <Plug>(coc-references)
+"nmap <leader>rn <Plug>(coc-rename)
+"nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+"nmap <leader>g] <Plug>(coc-diagnostic-next)
+"nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
+"nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
+"nnoremap <leader>cr :CocRestart
 
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocActionAsync('doHover')
-    endif
-endfunction
+"function! s:show_documentation()
+    "if (index(['vim','help'], &filetype) >= 0)
+        "execute 'h '.expand('<cword>')
+    "else
+        "call CocActionAsync('doHover')
+    "endif
+"endfunction
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)"
+"" Remap for do codeAction of current line
+"nmap <leader>ac  <Plug>(coc-codeaction)
+"" Fix autofix problem of current line
+"nmap <leader>qf  <Plug>(coc-fix-current)"
 
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocActionAsync('format')
-map <F4> :Format<CR>
+"" Use `:Format` to format current buffer
+"command! -nargs=0 Format :call CocActionAsync('format')
+"map <F4> :Format<CR>
 
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+"" use `:OR` for organize import of current buffer
+"command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Trees
 map <C-t> :NERDTreeToggle<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 
+"{{{ Telescope
+nmap <Leader>f [telescope]
+xmap <Leader>f [telescope]
+
+nnoremap [telescope]f <cmd>Telescope find_files theme=get_dropdown<cr>
+nnoremap [telescope]g <cmd>Telescope live_grep theme=get_dropdown<cr>
+nnoremap [telescope]G <cmd>Telescope git_status theme=get_dropdown<cr>
+nnoremap [telescope]b <cmd>Telescope buffers theme=get_dropdown<cr>
+nnoremap [telescope]h <cmd>Telescope help_tags<cr>
+nnoremap [telescope]r <cmd>Telescope lsp_references<cr>
+"}}}
+
 " FZF settings
-nnoremap <Leader>rg :Rg<SPACE>
-nnoremap ff :GFiles<CR>
-nnoremap <Leader>ff :Files<CR>
+"nnoremap <Leader>rg :Rg<SPACE>
+"nnoremap ff :GFiles<CR>
+"nnoremap <Leader>ff :Files<CR>
 
 " Fugitive
 nmap <leader>gs :G<CR>

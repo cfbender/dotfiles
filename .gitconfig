@@ -17,6 +17,7 @@
 	pom = pull origin main
 	ac = "!f() { git add -A && git commit -m \"$@\";}; f"
 	acp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
+	fuck = "add -A && git commit --amend --no-edit"
 [diff]
 	tool = meld
 [merge]

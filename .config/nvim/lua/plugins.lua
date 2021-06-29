@@ -8,6 +8,15 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute 'packadd packer.nvim'
 end
 
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+  execute 'packadd packer.nvim'
+end
 
 local packer = require 'packer'
 local use = packer.use
@@ -87,7 +96,7 @@ return packer.startup(function()
     }
     use 'scrooloose/nerdcommenter' -- comment things
     use 'terryma/vim-multiple-cursors' -- multiple cursors
-    use 'pope/vim-endwise' -- add end after do
+    use 'tpope/vim-endwise' -- add end after do
 
     -- =======================================--
     --           Workflow plugins            --
@@ -110,8 +119,7 @@ return packer.startup(function()
     -- =======================================--
     use 'pwntester/octo.nvim' -- Github integration, with telescope support!
     use {
-        -- 'lewis6991/gitsigns.nvim',
-        '~/Pkg/gitsigns.nvim',
+        'lewis6991/gitsigns.nvim',
         config = function() require 'plugins.gitsigns' end
     }
     use 'teal-language/vim-teal' -- Teal language support

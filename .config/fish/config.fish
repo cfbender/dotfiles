@@ -33,6 +33,8 @@ end
 
 set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
 
+set --universal FZF_DEFAULT_COMMAND 'fd'
+
 set -gx LANGUAGE "en_US.UTF-8"
 set -gx LC_ALL "en_US.UTF-8"
 

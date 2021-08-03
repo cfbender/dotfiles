@@ -1,0 +1,21 @@
+[cmd_duration]
+disabled = true
+
+[git_branch]
+format = '\[[$symbol$branch]($style)\]'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
+
+[nodejs]
+format = '\[[$symbol($version)]($style)\]'
+symbol = "⬢ "
+
+[memory_usage]
+format = '\[$symbol[$ram( | $swap)]($style)\]'
+
+[package]
+format = '\[[$symbol$version]($style)\]'
+
+[rust]
+format = '\[[$symbol($version)]($style)\]'

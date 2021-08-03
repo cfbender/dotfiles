@@ -59,3 +59,5 @@ sudo chsh -s $(which fish)
 fisher
 
 install lsd
+
+install starship

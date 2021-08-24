@@ -1,40 +1,50 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Remaps and Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! Cond(cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'vim-airline/vim-airline'                                    " status line
-Plug 'jiangmiao/auto-pairs'                                       " pairing for parens and brackets
-Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " code completion
-Plug 'gorodinskiy/vim-coloresque'                                 " highlight colors
-Plug 'flazz/vim-colorschemes'																			" so many colorschemes
-Plug 'ap/vim-css-color'                                           " highlight colors
-Plug 'dracula/vim', { 'as': 'dracula' }                           " dracula theme
-Plug 'easymotion/vim-easymotion'                                  " better intrafile movement
-Plug 'tpope/vim-fugitive'                                         " git integration
-Plug 'junegunn/fzf.vim'                                           " fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " fuzzy finder for vim
-Plug 'quramy/vim-js-pretty-template'                              " pretty template strings
-Plug 'terryma/vim-multiple-cursors'             								  " multiple cursors
-Plug 'scrooloose/nerdcommenter'                                   " comment things
-Plug 'arcticicestudio/nord-vim'                                   " nord color scheme
-Plug 'vim-scripts/paredit.vim'                                    " balance parens
-Plug 'sheerun/vim-polyglot'                                       " language packs
-Plug 'prettier/vim-prettier', {                                   
+Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode'))                                     " status line
+Plug 'jiangmiao/auto-pairs', Cond(!exists('g:vscode'))                                        " pairing for parens and brackets
+Plug 'neoclide/coc.nvim', Cond(!exists('g:vscode'), {'branch': 'release'})                    " code completion
+Plug 'gorodinskiy/vim-coloresque', Cond(!exists('g:vscode'))                                  " highlight colors
+Plug 'flazz/vim-colorschemes', Cond(!exists('g:vscode'))                                      " so many colorschemes
+Plug 'ap/vim-css-color', Cond(!exists('g:vscode'))                                            " highlight colors
+Plug 'dracula/vim', Cond(!exists('g:vscode'), { 'as': 'dracula' })                            " dracula theme
+" use normal easymotion when in vim mode
+Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
+" use vscode easymotion when in vscode mode
+Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymotion' })
+Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))                                          " git integration
+Plug 'junegunn/fzf.vim', Cond(!exists('g:vscode'))                                            " fuzzy finder
+Plug 'junegunn/fzf', Cond(!exists('g:vscode'), { 'do': { -> fzf#install() } })                " fuzzy finder for vim
+Plug 'quramy/vim-js-pretty-template', Cond(!exists('g:vscode'))                               " pretty template strings
+Plug 'terryma/vim-multiple-cursors', Cond(!exists('g:vscode'))             								    " multiple cursors
+Plug 'scrooloose/nerdcommenter', Cond(!exists('g:vscode'))                                    " comment things
+Plug 'arcticicestudio/nord-vim', Cond(!exists('g:vscode'))                                    " nord color scheme
+Plug 'vim-scripts/paredit.vim', Cond(!exists('g:vscode'))                                     " balance parens
+Plug 'sheerun/vim-polyglot', Cond(!exists('g:vscode'))                                        " language packs
+Plug 'prettier/vim-prettier', Cond(!exists('g:vscode'), {                                   
   \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-Plug 'junegunn/rainbow_parentheses.vim'                       	  " rainbow parentheses
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}                   " ranger integration
-Plug 'vim-scripts/syntaxcomplete'                                 " syntax completion
-Plug 'mbbill/undotree'                                            " visual undo tree
-Plug 'chaoren/vim-wordmotion'                                     " better word jumping, camelCase, snake_case, etc.
-Plug 'tpope/vim-endwise'                                           " add end after do
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] })
+Plug 'junegunn/rainbow_parentheses.vim', Cond(!exists('g:vscode'))                       	    " rainbow parentheses
+Plug 'kevinhwang91/rnvimr', Cond(!exists('g:vscode'), {'do': 'make sync'})                    " ranger integration
+Plug 'vim-scripts/syntaxcomplete', Cond(!exists('g:vscode'))                                  " syntax completion
+Plug 'mbbill/undotree', Cond(!exists('g:vscode'))                                             " visual undo tree
+Plug 'chaoren/vim-wordmotion'                                                                 " better word jumping, camelCase, snake_case, etc.
+Plug 'tpope/vim-endwise'                                                                      " add end after do
 
 call plug#end()
 
 " rainbow parens
 let g:rainbow#max_level = 16
-autocmd vimenter * :RainbowParentheses
+if !exists('g:vscode')
+  autocmd vimenter * :RainbowParentheses
+endif
 
 " airline settings
 let g:airline#extensions#tabline#enabled = 1
@@ -65,7 +75,9 @@ set updatetime=300
 set shortmess+=c
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+if !exists('g:vscode')
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+end
 
 " Rnvimr
 let g:rnvimr_ranger_cmd = 'ranger --cmd="set column_ratios 1,1"'

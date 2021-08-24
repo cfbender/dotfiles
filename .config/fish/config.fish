@@ -19,6 +19,7 @@ end
 set -Ua fish_user_paths (yarn global bin) 
 set -Ua fish_user_paths $HOME/.cargo/bin
 set -Ua fish_user_paths $HOME/.gem/ruby/2.7.0/bin
+set -Ua fish_user_paths $HOME/.mix/escripts
 
 set DENO_INSTALL "$HOME/.deno"
 set -Ua fish_user_paths $DENO_INSTALL/bin

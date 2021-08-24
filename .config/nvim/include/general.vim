@@ -17,7 +17,11 @@ au FocusGained,BufEnter * checktime
 let mapleader = " "
 
 " Fast saving
-nmap <leader>w :w!<cr>
+if exists('g:vscode')
+    nmap <leader>w :w<cr>
+else
+    nmap <leader>w :w!<cr>
+endif
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)

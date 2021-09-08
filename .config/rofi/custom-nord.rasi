@@ -41,7 +41,7 @@
 }
 
 #element {
-    padding: 16;
+    padding: 12;
     border: 0 0 1 0;
     border-color: @separatorcolor;
     background-color: @backgroundcoloralternate;

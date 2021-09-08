@@ -18,7 +18,7 @@
 	ac = "!f() { git add -A && git commit -m \"$@\";}; f"
 	acp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	fuck = "!f() { git add -A && git commit --amend --no-edit; }; f"
-	clean-branches = "!f() { git branch --merged | grep -v \\* | xargs git branch -D; }; f"
+	clean-branches = "!f() { git branch --merged | egrep -v \"(^*|master|main)\" | xargs git branch -D; }; f"
 [diff]
 	tool = meld
 [merge]

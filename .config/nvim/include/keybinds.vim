@@ -94,7 +94,11 @@ if !exists('g:vscode')
   " Ranger settings
   nmap <leader>o :RnvimrToggle<CR>
 else
-  nnoremap <leader>ff find<CR>
+  nnoremap <leader>ff <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
+  nnoremap <Leader>rg <Cmd>call VSCodeNotify('find-it-faster.findWithinFiles')<CR>
+  nmap <leader>o <Cmd>call VSCodeNotify('workbench.view.explorer')<CR>
+  nmap <leader>gn <Cmd>call VSCodeNotify('editor.action.marker.next')<CR>
+  nmap <leader>ac <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
 endif 
 
 " Folding

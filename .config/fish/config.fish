@@ -13,13 +13,24 @@ set -g theme_nerd_fonts yes
 # Set firefox as browser
 set -x BROWSER firefox.desktop
 
+set -gx NVM_DIR (brew --prefix nvm)
+
 function nvm
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
 end
+
+function clear-dns
+  sudo killall -HUP mDNSResponder
+end
+
+set -gx EDITOR /opt/homebrew/bin/nvim
+
 set -Ua fish_user_paths (yarn global bin) 
 set -Ua fish_user_paths $HOME/.cargo/bin
+set -Ua fish_user_paths $HOME/.rover/bin
 set -Ua fish_user_paths $HOME/.gem/ruby/2.7.0/bin
 set -Ua fish_user_paths $HOME/.mix/escripts
+set -Ua fish_user_paths /opt/homebrew/bin
 
 set DENO_INSTALL "$HOME/.deno"
 set -Ua fish_user_paths $DENO_INSTALL/bin
@@ -83,3 +94,27 @@ set -U fish_pager_color_completion cdd6f4
 set -U fish_pager_color_description 6c7086
 
 starship init fish | source
+
+source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
+# pnpm
+set -gx PNPM_HOME "/Users/cfb/Library/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
+
+# Bun
+set -Ux BUN_INSTALL "/Users/cfb/.bun"
+set -px --path PATH "/Users/cfb/.bun/bin"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/cfb/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/cfb/Downloads/google-cloud-sdk/path.fish.inc'; end
+  export GPG_TTY=$(tty)
+
+if test -n "$SSH_CONNECTION"
+    set -U PINENTRY_USER_DATA "USE_CURSES=1"
+end
+
+source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/cfb/.ghcup/bin # ghcup-env

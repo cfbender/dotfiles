@@ -163,3 +163,4 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(atuin init zsh)"
+alias bup="brew update && brew upgrade"

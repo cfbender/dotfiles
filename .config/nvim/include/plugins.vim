@@ -35,8 +35,8 @@ Plug 'junegunn/rainbow_parentheses.vim', Cond(!exists('g:vscode'))              
 Plug 'kevinhwang91/rnvimr', Cond(!exists('g:vscode'), {'do': 'make sync'})                    " ranger integration
 Plug 'vim-scripts/syntaxcomplete', Cond(!exists('g:vscode'))                                  " syntax completion
 Plug 'mbbill/undotree', Cond(!exists('g:vscode'))                                             " visual undo tree
-Plug 'chaoren/vim-wordmotion', Cond(!exists('g:vscode'))                                      " better word jumping, camelCase, snake_case, etc.
-Plug 'tpope/vim-endwise'                                                                      " add end after do
+Plug  'chaoren/vim-wordmotion'                                                                " better word jumping, camelCase, snake_case, etc.
+Plug 'tpope/vim-endwise', Cond(!exists('g:vscode'))                                           " add end after do
 
 call plug#end()
 

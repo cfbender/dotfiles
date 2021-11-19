@@ -1,73 +1,74 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set history=500
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
-au FocusGained,BufEnter * checktime
-
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = " "
 
-" Fast saving
 if exists('g:vscode')
+    " Fast saving
     nmap <leader>w :w<cr>
 else
+    " Sets how many lines of history VIM has to remember
+    set history=500
+
+    " Enable filetype plugins
+    filetype plugin on
+    filetype indent on
+
+    " Set to auto read when a file is changed from the outside
+    set autoread
+    au FocusGained,BufEnter * checktime
+
+    " Fast saving
     nmap <leader>w :w!<cr>
+
+    " Absolute numbers in insert mode, otherwise relative
+    set relativenumber
+    autocmd InsertEnter * :set nu
+    autocmd InsertLeave * :set relativenumber
+    " Sync syntax highlighting to at least 200 lines
+    autocmd BufEnter * :syntax sync minlines=200
+    " Differentiate for JSX
+    au BufRead,BufNewFile *.ts set filetype=typescript
+    au BufRead,BufNewFile *.tsx set filetype=typescriptreact
+    " :W sudo saves the file
+    " (useful for handling the permission-denied error)
+    command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+    " There's no need to do syntax highlighting past this many columns. The default
+    " of 3000 is a bit and degrades performance.
+    set synmaxcol=200
+
+
+    " Sync system clipboard to vim
+    set clipboard=unnamedplus
+
+    " Scrolling on and disable click
+    set mouse=a
+    map <LeftMouse> <Nop>
+
+    " Shortcut for reloading neovim config.
+    noremap <F5> :so ~/.config/nvim/init.vim<CR>
+    
+    " No wrap
+    set textwidth=0
+    
+    " Give more space for displaying messages.
+    set cmdheight=2
+
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " => Files, backups and undo
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Turn backup off, since most stuff is in SVN, git etc. anyway...
+    set nobackup
+    set nowb
+    set noswapfile
+    set undodir=~/.vim/undodir
+    set undofile
+
 endif
 
-" :W sudo saves the file
-" (useful for handling the permission-denied error)
-command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
-
-" Sync syntax highlighting to at least 200 lines
-autocmd BufEnter * :syntax sync minlines=200
-
-" There's no need to do syntax highlighting past this many columns. The default
-" of 3000 is a bit and degrades performance.
-set synmaxcol=200
-
-" Absolute numbers in insert mode, otherwise relative
-set relativenumber
-autocmd InsertEnter * :set nu
-autocmd InsertLeave * :set relativenumber
-
-" Differentiate for JSX
-au BufRead,BufNewFile *.ts set filetype=typescript
-au BufRead,BufNewFile *.tsx set filetype=typescriptreact
-
-" Sync system clipboard to vim
-set clipboard=unnamedplus
-
-" Scrolling on and disable click
-set mouse=a
-map <LeftMouse> <Nop>
-
-" Shortcut for reloading neovim config.
-noremap <F5> :so ~/.config/nvim/init.vim<CR>
-
-" No wrap
-set textwidth=0
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git etc. anyway...
-set nobackup
-set nowb
-set noswapfile
-set undodir=~/.vim/undodir
-set undofile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

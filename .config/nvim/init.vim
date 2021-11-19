@@ -8,5 +8,9 @@ runtime! include/plugins.vim
 
 " Other settings
 runtime! include/general.vim
-runtime! include/style.vim
 runtime! include/keybinds.vim
+
+if !exists('g:vscode')
+  runtime! include/style.vim
+endif
+

@@ -20,6 +20,7 @@ set -Ua fish_user_paths (yarn global bin)
 set -Ua fish_user_paths $HOME/.cargo/bin
 set -Ua fish_user_paths $HOME/.gem/ruby/2.7.0/bin
 set -Ua fish_user_paths $HOME/.mix/escripts
+set -Ua fish_user_paths /opt/homebrew/bin
 
 set DENO_INSTALL "$HOME/.deno"
 set -Ua fish_user_paths $DENO_INSTALL/bin
@@ -54,6 +55,8 @@ function gwip
 end
 
 alias ls "lsd"
+alias cat "bat --style=header,grid"
+
 # Nord fish colors
 set -U fish_color_normal normal
 set -U fish_color_command 81a1c1

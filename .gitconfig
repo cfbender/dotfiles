@@ -2,6 +2,7 @@
   editor = nvim
 	autocrlf = false
 	pager = delta
+	excludesfile = /Users/cfb/.gitignore
 [user]
 	email = cody.bender@pdq.com
 	name = Cody Bender
@@ -40,6 +41,11 @@
 	gpgsign = true
 [init]
   defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [interactive]
   diffFilter = delta --color-only
 [add.interactive]

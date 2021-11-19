@@ -1,9 +1,35 @@
-/* to hide the native tabs */
-#TabsToolbar {
-  visibility: collapse;
+#main-window[tabsintitlebar="true"]:not([extradragspace="true"])
+  #TabsToolbar
+  > .toolbar-items {
+  opacity: 0;
+  pointer-events: none;
+}
+#main-window:not([tabsintitlebar="true"]) #TabsToolbar {
+  visibility: collapse !important;
 }
 
-/* to hide the sidebar header */
-#sidebar-header {
-  visibility: collapse;
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]
+  #sidebar-header {
+  display: none;
+}
+
+#titlebar {
+  appearance: none !important;
+  height: 0px;
+}
+
+#titlebar > #toolbar-menubar {
+  margin-top: 0px;
+}
+
+#TabsToolbar {
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+#TabsToolbar > .titlebar-buttonbox-container {
+  display: block;
+  position: absolute;
+  top: 12px;
+  left: 0px;
 }

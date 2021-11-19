@@ -102,6 +102,7 @@ case "$mimetype" in
     text/* | */xml)
         pygmentize_format=terminal
         highlight_format=ansi
+        try safepipe bat --color=always  --style="plain,changes"  "$path" && { dump | trim; exit 5; }
         try safepipe highlight --out-format=${highlight_format} "$path" && { dump | trim; exit 5; }
         try safepipe pygmentize -f ${pygmentize_format} "$path" && { dump | trim; exit 5; }
         exit 2;;

@@ -13,9 +13,12 @@ set -g theme_nerd_fonts yes
 # Set firefox as browser
 set -x BROWSER firefox.desktop
 
+set -gx NVM_DIR (brew --prefix nvm)
+
 function nvm
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
 end
+
 set -Ua fish_user_paths (yarn global bin) 
 set -Ua fish_user_paths $HOME/.cargo/bin
 set -Ua fish_user_paths $HOME/.gem/ruby/2.7.0/bin

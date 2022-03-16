@@ -21,6 +21,7 @@ end
 
 set -Ua fish_user_paths (yarn global bin) 
 set -Ua fish_user_paths $HOME/.cargo/bin
+set -Ua fish_user_paths $HOME/.rover/bin
 set -Ua fish_user_paths $HOME/.gem/ruby/2.7.0/bin
 set -Ua fish_user_paths $HOME/.mix/escripts
 set -Ua fish_user_paths /opt/homebrew/bin

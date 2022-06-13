@@ -25,7 +25,7 @@
 	sws = "!f() { git stash && git sw \"$@\" && git stash pop; }; f"
 	rc = "!f() { git add -A && git rebase --continue; }; f"
 	fuck = "!f() { git add -A && git commit --amend --no-edit; }; f"
-	clean-branches = "!f() { git branch --merged | egrep -v \"(^*|master|main)\" | xargs git branch -D; }; f"
+	clean-branches = "!f() { git branch --merged | egrep -v \"(^master|main)\" | xargs git branch -D; }; f"
 	su = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)
 [diff]
 	tool = meld

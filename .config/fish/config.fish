@@ -91,3 +91,5 @@ set -U fish_pager_color_completion cdd6f4
 set -U fish_pager_color_description 6c7086
 
 starship init fish | source
+
+source /opt/homebrew/opt/asdf/libexec/asdf.fish

@@ -93,3 +93,8 @@ set -U fish_pager_color_description 6c7086
 starship init fish | source
 
 source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
+# pnpm
+set -gx PNPM_HOME "/Users/cfb/Library/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end

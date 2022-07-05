@@ -77,9 +77,9 @@ if !exists('g:vscode')
   nnoremap <leader>u :UndotreeShow<CR>
   
   " FZF settings
-  nnoremap <Leader>rg :Rg<SPACE>
-  nnoremap ff :GFiles<CR>
-  nnoremap <Leader>ff :Files<CR>
+  nnoremap <Leader>rg <cmd>Telescope live_grep<cr>
+  nnoremap ff <cmd>Telescope git_files<cr>
+  nnoremap <Leader>ff <cmd>Telescope find_files<cr>
   
   " Fugitive
   nmap <leader>gs :G<CR>

@@ -22,6 +22,8 @@ Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymot
 Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))                                          " git integration
 Plug 'junegunn/fzf.vim', Cond(!exists('g:vscode'))                                            " fuzzy finder
 Plug 'junegunn/fzf', Cond(!exists('g:vscode'), { 'do': { -> fzf#install() } })                " fuzzy finder for vim
+Plug 'nvim-lua/plenary.nvim'                                                                  " dependency for telescope
+Plug 'nvim-telescope/telescope.nvim'                                                          " extendable fuzzy finder
 Plug 'quramy/vim-js-pretty-template', Cond(!exists('g:vscode'))                               " pretty template strings
 Plug 'terryma/vim-multiple-cursors', Cond(!exists('g:vscode'))             								    " multiple cursors
 Plug 'scrooloose/nerdcommenter', Cond(!exists('g:vscode'))                                    " comment things
@@ -80,7 +82,7 @@ if !exists('g:vscode')
 end
 
 " Rnvimr
-let g:rnvimr_ranger_cmd = 'ranger --cmd="set column_ratios 1,1"'
+let g:rnvimr_ranger_cmd = ['ranger', '--cmd=set column_ratios 1,1']
 let g:rnvimr_bw_enable = 1
 let g:rnvimr_ex_enable = 1
 let g:rnvimr_draw_border = 1
@@ -93,3 +95,41 @@ let g:EasyMotion_smartcase = 1
 hi link EasyMotionTarget SpellBad
 
 let g:endwise_no_mappings = 1
+
+lua << EOF
+require('telescope').setup {
+    defaults = {
+        vimgrep_arguments = {
+            'rg', '--color=never', '--no-heading', '--with-filename',
+            '--line-number', '--column', '--smart-case'
+        },
+        prompt_prefix = "> ",
+        selection_caret = "> ",
+        entry_prefix = "  ",
+        initial_mode = "insert",
+        selection_strategy = "reset",
+        sorting_strategy = "descending",
+        layout_strategy = "horizontal",
+        layout_config = {
+            horizontal = {mirror = false},
+            vertical = {mirror = false}
+        },
+        file_sorter = require'telescope.sorters'.get_fuzzy_file,
+        file_ignore_patterns = {},
+        generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
+        winblend = 0,
+        border = {},
+        borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+        color_devicons = true,
+        use_less = true,
+        path_display = {},
+        set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
+        file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+        grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+        qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+
+        -- Developer configurations: Not meant for general override
+        buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+    }
+}
+EOF

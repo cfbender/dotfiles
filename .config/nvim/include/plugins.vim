@@ -8,7 +8,7 @@ endfunction
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode'))                                     " status line
+Plug 'nvim-lualine/lualine.nvim', Cond(!exists('g:vscode'))                                   " status line
 Plug 'jiangmiao/auto-pairs', Cond(!exists('g:vscode'))                                        " pairing for parens and brackets
 Plug 'neoclide/coc.nvim', Cond(!exists('g:vscode'), {'branch': 'release'})                    " code completion
 Plug 'gorodinskiy/vim-coloresque', Cond(!exists('g:vscode'))                                  " highlight colors
@@ -37,9 +37,12 @@ Plug 'junegunn/rainbow_parentheses.vim', Cond(!exists('g:vscode'))              
 Plug 'kevinhwang91/rnvimr', Cond(!exists('g:vscode'), {'do': 'make sync'})                    " ranger integration
 Plug 'vim-scripts/syntaxcomplete', Cond(!exists('g:vscode'))                                  " syntax completion
 Plug 'mbbill/undotree', Cond(!exists('g:vscode'))                                             " visual undo tree
-Plug  'chaoren/vim-wordmotion'                                                                " better word jumping, camelCase, snake_case, etc.
+Plug 'chaoren/vim-wordmotion'                                                                 " better word jumping, camelCase, snake_case, etc.
 Plug 'tpope/vim-endwise', Cond(!exists('g:vscode'))                                           " add end after do
-Plug 'APZelos/blamer.nvim'                          " add git blame like GitLens
+Plug 'APZelos/blamer.nvim', Cond(!exists('g:vscode'))                                         " add git blame like GitLens
+Plug 'folke/tokyonight.nvim', Cond(!exists('g:vscode'), { 'branch': 'main' })                 " tokyo night theme
+Plug 'kyazdani42/nvim-web-devicons', Cond(!exists('g:vscode'))
+Plug 'romgrk/barbar.nvim', Cond(!exists('g:vscode'))
 call plug#end()
 
 " rainbow parens
@@ -48,8 +51,6 @@ if !exists('g:vscode')
   autocmd vimenter * :RainbowParentheses
 endif
 
-" airline settings
-let g:airline#extensions#tabline#enabled = 1
 
 " multiple cursors settings
 let g:multi_cursor_exit_from_visual_mode = 1
@@ -99,7 +100,21 @@ let g:endwise_no_mappings = 1
 let g:blamer_enabled = 1
 let g:blamer_date_format = '%m/%d/%y %I:%M %p'
 
+" NOTE: If barbar's option dict isn't created yet, create it
+let bufferline = get(g:, 'bufferline', {})
+" Enable/disable close button
+let bufferline.closable = v:true
+
+" Enables/disable clickable tabs
+"  - left-click: go to buffer
+"  - middle-click: delete buffer
+let bufferline.clickable = v:true
+
 lua << EOF
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
 require('telescope').setup {
     defaults = {
         vimgrep_arguments = {
@@ -134,5 +149,11 @@ require('telescope').setup {
         -- Developer configurations: Not meant for general override
         buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
     }
+}
+
+require('lualine').setup {
+  options = {
+    theme = 'tokyonight'
+  }
 }
 EOF

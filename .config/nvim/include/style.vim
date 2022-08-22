@@ -91,7 +91,7 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=o
 syntax enable
 
 try
-    colorscheme nord
+    colorscheme tokyonight
 catch
 endtry
 

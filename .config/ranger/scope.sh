@@ -95,6 +95,8 @@ case "$extension" in
         ;; # fall back to highlight/cat if the text browsers fail
 esac
 
+export COLORTERM=screen-256color
+
 case "$mimetype" in
     # Syntax highlight for text files:
     text/* | */xml)

@@ -19,6 +19,10 @@ function nvm
     bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
 end
 
+function clear-dns
+  sudo killall -HUP mDNSResponder
+end
+
 nvm use 16 >> /dev/null
 set -gx EDITOR /opt/homebrew/bin/nvim
 
@@ -98,3 +102,10 @@ source /opt/homebrew/opt/asdf/libexec/asdf.fish
 set -gx PNPM_HOME "/Users/cfb/Library/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 # pnpm end
+# Bun
+set -Ux BUN_INSTALL "/Users/cfb/.bun"
+set -px --path PATH "/Users/cfb/.bun/bin"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/cfb/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/cfb/Downloads/google-cloud-sdk/path.fish.inc'; end

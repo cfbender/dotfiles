@@ -97,6 +97,8 @@ hi link EasyMotionTarget SpellBad
 let g:endwise_no_mappings = 1
 
 let g:blamer_enabled = 1
+let g:blamer_date_format = '%m/%d/%y %I:%M %p'
+
 lua << EOF
 require('telescope').setup {
     defaults = {

@@ -39,7 +39,7 @@ Plug 'vim-scripts/syntaxcomplete', Cond(!exists('g:vscode'))                    
 Plug 'mbbill/undotree', Cond(!exists('g:vscode'))                                             " visual undo tree
 Plug  'chaoren/vim-wordmotion'                                                                " better word jumping, camelCase, snake_case, etc.
 Plug 'tpope/vim-endwise', Cond(!exists('g:vscode'))                                           " add end after do
-
+Plug 'APZelos/blamer.nvim'                          " add git blame like GitLens
 call plug#end()
 
 " rainbow parens
@@ -96,6 +96,7 @@ hi link EasyMotionTarget SpellBad
 
 let g:endwise_no_mappings = 1
 
+let g:blamer_enabled = 1
 lua << EOF
 require('telescope').setup {
     defaults = {

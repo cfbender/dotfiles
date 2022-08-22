@@ -2,38 +2,32 @@
 " => Plugin keybinds
 """"""""""""""""""""""""""""""
 if !exists('g:vscode')
-  " use <tab> for trigger completion and navigate to the next complete item
-  function! s:check_back_space() abort
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~ '\s'
-  endfunction
-  
-  inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+ " Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-      
-  inoremap <silent><expr> <S-TAB>
-    \ pumvisible() ? "\<C-p>" :
-    \ <SID>check_back_space() ? "\<S-TAB>" :
-    \ coc#refresh()
-  
-  " Use <c-space> to trigger completion.
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
-  
-  " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-  " Coc only does snippet and additional edit on confirm."
-  inoremap <silent> <CR> <C-r>=<SID>coc_confirm()<CR>
-  function! s:coc_confirm() abort
-    call coc#refresh()
-    if pumvisible()
-      return coc#_select_confirm()
-    else
-      return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-    endif
-  endfunction
-  "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-  
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif 
+
   " GoTo code navigation.
   nmap <leader>gd <Plug>(coc-definition)
   nmap <leader>gy <Plug>(coc-type-definition)

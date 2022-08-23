@@ -15,8 +15,8 @@ Plug 'gorodinskiy/vim-coloresque', Cond(!exists('g:vscode'))                    
 Plug 'flazz/vim-colorschemes', Cond(!exists('g:vscode'))                                      " so many colorschemes
 Plug 'ap/vim-css-color', Cond(!exists('g:vscode'))                                            " highlight colors
 Plug 'dracula/vim', Cond(!exists('g:vscode'), { 'as': 'dracula' })                            " dracula theme
-" use normal easymotion when in vim mode
-Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
+" use hop when in vim mode
+Plug 'phaazon/hop.nvim', Cond(!exists('g:vscode'))
 " use vscode easymotion when in vscode mode
 Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymotion' })
 Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))                                          " git integration
@@ -44,6 +44,7 @@ Plug 'folke/tokyonight.nvim', Cond(!exists('g:vscode'), { 'branch': 'main' })   
 Plug 'kyazdani42/nvim-web-devicons', Cond(!exists('g:vscode'))
 Plug 'romgrk/barbar.nvim', Cond(!exists('g:vscode'))
 Plug 'nvim-treesitter/nvim-treesitter', Cond(!exists('g:vscode'), {'do': ':TSUpdate'})
+Plug 'mfussenegger/nvim-treehopper', Cond(!exists('g:vscode'))                                " node selection in visual mode
 call plug#end()
 
 " rainbow parens
@@ -111,8 +112,10 @@ let bufferline.closable = v:true
 "  - middle-click: delete buffer
 let bufferline.clickable = v:true
 
+
 lua << EOF
 vim.g.tokyonight_style = "night"
+vim.g.tokyonight_transparent= true
 vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_italic_variables = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
@@ -172,5 +175,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+require'hop'.setup()
 end
 EOF

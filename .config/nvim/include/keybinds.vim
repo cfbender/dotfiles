@@ -87,6 +87,16 @@ endif
   
   " Ranger settings
   nmap <leader>o :RnvimrToggle<CR>
+
+  " treehopper
+  " m in visual mode will display nodes to select around
+  omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
+  xnoremap <silent> m :lua require('tsht').nodes()<CR>
+
+  " hop.nvim
+  nmap <leader><leader>w :HopWord<CR>
+  nmap <leader><leader>p :HopPattern<CR>
+
 else
   nnoremap <leader>ff <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
   nnoremap <Leader>rg <Cmd>call VSCodeNotify('find-it-faster.findWithinFiles')<CR>

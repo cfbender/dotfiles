@@ -108,7 +108,26 @@ endif
 " Folding
 nmap <leader>F :set foldmethod=syntax<CR>
 nmap <leader>FF :set foldmethod=manual<CR>zR
-""""""""""""""""""""""""""""""
+
+" Barbar
+" Move to previous/next
+nnoremap <silent>    <C-h> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <C-l> <Cmd>BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <S-H> <Cmd>BufferMovePrevious<CR>
+nnoremap <silent>    <S-L> <Cmd>BufferMoveNext<CR>
+" Pin/unpin buffer
+nnoremap <silent>    <leader>tp <Cmd>BufferPin<CR>
+" Close buffer
+nnoremap <silent>    <leader>tc <Cmd>BufferClose<CR>
+" Magic buffer-picking mode
+nnoremap <silent> <C-p>    <Cmd>BufferPick<CR>
+" Sort automatically by...
+nnoremap <silent> <leader>bb <Cmd>BufferOrderByBufferNumber<CR>
+nnoremap <silent> <leader>bd <Cmd>BufferOrderByDirectory<CR>
+nnoremap <silent> <leader>bl <Cmd>BufferOrderByLanguage<CR>
+nnoremap <silent> <leader>bw <Cmd>BufferOrderByWindowNumber<CR>
+"""""""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
@@ -123,16 +142,8 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " Disable search highlight when <esc><esc> is pressed
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
-" Close current tab
-map <leader>tc :tabclose<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1

@@ -10,7 +10,8 @@ brew install \
   fd \
   tmux \
   duti \
-  asdf
+  asdf \
+  pinentry
 
 brew install --cask \
   chromium \

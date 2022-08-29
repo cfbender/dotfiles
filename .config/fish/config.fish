@@ -109,3 +109,9 @@ set -px --path PATH "/Users/cfb/.bun/bin"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/cfb/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/cfb/Downloads/google-cloud-sdk/path.fish.inc'; end
+  export GPG_TTY=$(tty)
+
+if test -n "$SSH_CONNECTION"
+    echo "Using pinentry remote over SSH"
+    set -U PINENTRY_USER_DATA "USE_CURSES=1"
+end

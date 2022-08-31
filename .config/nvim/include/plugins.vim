@@ -166,6 +166,7 @@ require('lualine').setup {
 }
 
 require'nvim-treesitter.configs'.setup {
+  auto_install = true,
   highlight = {
     enable = true,
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -174,7 +175,26 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  ensure_installed = {
+    "typescript",
+    "javascript",
+    "jsdoc",
+    "elixir",
+    "rust",
+    "tsx",
+    "toml",
+    "fish",
+    "json",
+    "yaml",
+    "css",
+    "html",
+    "lua"
+  },
 }
+
+-- requires monkeypatch to https://github.com/mfussenegger/nvim-treehopper/pull/18
+-- TODO: remove after merge
+require("tsht").config.ft_to_parser.typescriptreact = "tsx"
 
 require'hop'.setup()
 end

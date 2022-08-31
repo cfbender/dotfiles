@@ -106,7 +106,10 @@ else
 endif 
 
 " Folding
-nmap <leader>F :set foldmethod=syntax<CR>
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+autocmd BufReadPost,FileReadPost * normal zR
+
 nmap <leader>FF :set foldmethod=manual<CR>zR
 
 " Barbar
@@ -173,33 +176,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
-nmap <M-down> mz:m+<cr>`z
-nmap <M-up> mz:m-2<cr>`z
-vmap <M-down> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-up> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
-
-" Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-endif
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking

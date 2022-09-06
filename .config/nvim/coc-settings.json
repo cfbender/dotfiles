@@ -17,6 +17,7 @@
     "json",
     "elixir"
   ],
+  "codeLens.enable": true,
   "languageserver": {
     "haskell": {
       "command": "hie-wrapper",
@@ -31,6 +32,10 @@
       "initializationOptions": {
         "languageServerHaskell": {}
       }
+    },
+    "elixirLS": {
+      "command": "~/.config/coc/extensions/node_modules/coc-elixir/els-release/language_server.sh",
+      "filetypes": ["elixir", "eelixir"]
     }
   },
   "explorer.width": 42,

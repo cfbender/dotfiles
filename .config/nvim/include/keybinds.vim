@@ -106,9 +106,9 @@ else
 endif 
 
 " Folding
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-autocmd BufReadPost,FileReadPost * normal zR
+"set foldmethod=expr
+"set foldexpr=nvim_treesitter#foldexpr()
+"autocmd BufReadPost,FileReadPost * normal zR
 
 nmap <leader>FF :set foldmethod=manual<CR>zR
 

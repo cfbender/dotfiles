@@ -32,12 +32,9 @@
       "initializationOptions": {
         "languageServerHaskell": {}
       }
-    },
-    "elixirLS": {
-      "command": "~/.config/coc/extensions/node_modules/coc-elixir/els-release/language_server.sh",
-      "filetypes": ["elixir", "eelixir"]
     }
   },
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
   "explorer.width": 42,
   "explorer.file.showHiddenFiles": true,
   "explorer.icon.enableNerdfont": true,

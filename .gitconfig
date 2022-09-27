@@ -4,7 +4,7 @@
 [user]
 	email = cody.bender@pdq.com
 	name = Cody Bender
-	signingkey = B8C18EFD8F911405797147F4720FA88853F39859
+	signingkey = B73884A5E8984488
 [push]
 	default = current
 [pull]

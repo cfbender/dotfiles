@@ -104,16 +104,23 @@ local config = {
   -- Extend LSP configuration
   lsp = {
     -- enable servers that you already have installed without mason
-    servers = {
-      -- "pyright"
-    },
+    servers = {},
     formatting = {
-      disabled = { -- disable formatting capabilities for the listed clients
-        -- "sumneko_lua",
-      },
-      -- filter = function(client) -- fully override the default formatting function
+      disabled = { "sumneko_lua" },
+      -- filter = function(client)
+      --   -- only enable null-ls for javascript files
+      --   if
+      --     vim.bo.filetype == "javascript"
+      --     or vim.bo.filetype == "typescript"
+      --     or vim.bo.filetype == "javascriptreact"
+      --     or vim.bo.filetype == "typescriptreact"
+      --   then
+      --     return client.name == "null-ls"
+      --   end
+      --
+      --   -- enable all other clients
       --   return true
-      -- end
+      -- end,
     },
     -- easily add or disable built in mappings added during LSP attaching
     mappings = {
@@ -177,78 +184,16 @@ local config = {
 
   -- Configure plugins
   plugins = {
-    init = {
-      {
-        "folke/tokyonight.nvim",
-        config = function()
-          require("tokyonight").setup {
-            style = "night",
-            transparent = true,
-            italic_functions = true,
-            italic_variables = true,
-            sidebars = { "qf", "vista_kind", "terminal", "packer" },
-          }
-        end,
-      },
-      {
-        "phaazon/hop.nvim",
-        branch = "v2", -- optional but strongly recommended
-        config = function()
-          -- you can configure Hop the way you like here; see :h hop-config
-          require("hop").setup()
-        end,
-      },
-      { "chaoren/vim-wordmotion" },
-      { "APZelos/blamer.nvim" },
-      {
-        "sindrets/diffview.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        config = function()
-          local actions = require "diffview.actions"
-          require("diffview").setup {
-            view = {
-              merge_tool = {
-                layout = "diff3_mixed",
-              },
-            },
-            keymaps = {
-              view = {
-                ["<leader>co"] = false,
-                ["<leader>ct"] = false,
-                ["<leader>cb"] = false,
-                ["<leader>ca"] = false,
-                ["<leader>mo"] = actions.conflict_choose "ours", -- Choose the OURS version of a conflict
-                ["<leader>mt"] = actions.conflict_choose "theirs", -- Choose the THEIRS version of a conflict
-                ["<leader>mb"] = actions.conflict_choose "base", -- Choose the BASE version of a conflict
-                ["<leader>ma"] = actions.conflict_choose "all", -- Choose all the versions of a conflict
-              },
-            },
-          }
-        end,
-      },
-
-      -- You can disable default plugins as follows:
-      -- ["goolord/alpha-nvim"] = { disable = true },
-
-      -- You can also add new plugins here as well:
-      -- Add plugins, the packer syntax without the "use"
-      -- { "andweeb/presence.nvim" },
-      {
-        "ray-x/lsp_signature.nvim",
-        event = "BufRead",
-        config = function() require("lsp_signature").setup() end,
-      },
-
-      -- We also support a key value style plugin definition similar to NvChad:
-      -- ["ray-x/lsp_signature.nvim"] = {
-      --   event = "BufRead",
-      --   config = function()
-      --     require("lsp_signature").setup()
-      --   end,
-      -- },
-    },
     ["neo-tree"] = {
-      filesystem = { filtered_items = { hide_dotfiles = false, hide_gitignored = false } },
+      window = { position = "right" },
+      filesystem = {
+        filtered_items = {
+          -- use H in neo-tree to un-hide hidden items if you need em
+          hide_dotfiles = true,
+          hide_gitignored = true,
+          hide_by_name = { "node_modules", "_build", ".git", "deps" },
+        },
+      },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
@@ -287,9 +232,13 @@ local config = {
         "lua",
       },
     },
+    ["williamboman/mason.nvim"] = {
+      commit = "a82ef67b20e73f7261c9f950014db7193c6003c3",
+    },
     -- use mason-lspconfig to configure LSP installations
     ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-      ensure_installed = { "elixir-ls", "typescript-language-server", "sumneko_lua" },
+      automatic_installation = true,
+      ensure_installed = { "tsserver", "elixir-ls", "ust_analyzer", "sumneko_lua" },
     },
     -- use mason-tool-installer to configure DAP/Formatters/Linter installation
     ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
@@ -298,6 +247,29 @@ local config = {
     ["notify"] = {
       background_colour = "#000",
     },
+    -- disabling breadcrumbs in heirline
+    -- TODO: remove when https://github.com/AstroNvim/AstroNvim/issues/1043 is resolved
+    heirline = function(config)
+      config[2] = {
+        fallthrough = false,
+        {
+          condition = function()
+            return astronvim.status.condition.buffer_matches {
+              buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
+              filetype = { "NvimTree", "neo-tree", "dashboard", "Outline", "aerial" },
+            }
+          end,
+          init = function() vim.opt_local.winbar = nil end,
+        },
+        astronvim.status.component.file_info {
+          file_icon = { highlight = false },
+          hl = { fg = "winbarnc_fg", bg = "winbarnc_bg" },
+          surround = false,
+        },
+      }
+      -- return the final configuration table
+      return config
+    end,
   },
 
   -- LuaSnip Options

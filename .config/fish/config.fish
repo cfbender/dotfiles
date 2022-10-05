@@ -112,6 +112,5 @@ if [ -f '/Users/cfb/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/cfb/D
   export GPG_TTY=$(tty)
 
 if test -n "$SSH_CONNECTION"
-    echo "Using pinentry remote over SSH"
     set -U PINENTRY_USER_DATA "USE_CURSES=1"
 end

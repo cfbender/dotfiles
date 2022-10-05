@@ -247,29 +247,6 @@ local config = {
     ["notify"] = {
       background_colour = "#000",
     },
-    -- disabling breadcrumbs in heirline
-    -- TODO: remove when https://github.com/AstroNvim/AstroNvim/issues/1043 is resolved
-    heirline = function(config)
-      config[2] = {
-        fallthrough = false,
-        {
-          condition = function()
-            return astronvim.status.condition.buffer_matches {
-              buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
-              filetype = { "NvimTree", "neo-tree", "dashboard", "Outline", "aerial" },
-            }
-          end,
-          init = function() vim.opt_local.winbar = nil end,
-        },
-        astronvim.status.component.file_info {
-          file_icon = { highlight = false },
-          hl = { fg = "winbarnc_fg", bg = "winbarnc_bg" },
-          surround = false,
-        },
-      }
-      -- return the final configuration table
-      return config
-    end,
   },
 
   -- LuaSnip Options
@@ -309,6 +286,7 @@ local config = {
           -- group name in which-key top level menu
           ["b"] = { name = "Buffer" },
         },
+        ["<leader><space>"] = { name = "Hop" },
         ["<leader>m"] = {
           name = "Diffview choose operations",
           -- third key is the key to bring up next level and its displayed

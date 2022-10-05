@@ -6,7 +6,7 @@ IEx.configure(
     syntax_colors: [
       number: :light_yellow,
       atom: :light_cyan,
-      string: :light_black,
+      string: :light_green,
       boolean: [:light_blue],
       nil: [:magenta, :bright]
     ],
@@ -23,7 +23,21 @@ IEx.configure(
       "\e[G",
       :light_magenta,
       # plain string
-      " iex",
+      " %prefix (%counter)",
+      ">",
+      :white,
+      :reset
+    ]
+    |> IO.ANSI.format()
+    |> IO.chardata_to_string(),
+
+  continuation_prompt:
+    [
+      # ANSI CHA, move cursor to column 1
+      "\e[G",
+      :light_magenta,
+      # plain string
+      " ...",
       ">",
       :white,
       :reset

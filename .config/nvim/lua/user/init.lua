@@ -16,7 +16,7 @@ local config = {
     pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
     skip_prompts = false, -- skip prompts about breaking changes
     show_changelog = true, -- show the changelog after performing an update
-    auto_reload = false, -- automatically reload and sync packer after a successful update
+    auto_reload = true, -- automatically reload and sync packer after a successful update
     auto_quit = false, -- automatically quit the current session after a successful update
     -- remotes = { -- easily add new remotes to track
     --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
@@ -47,6 +47,7 @@ local config = {
       spell = true, -- sets vim.opt.spell
       signcolumn = "auto", -- sets vim.opt.signcolumn to auto
       wrap = false, -- sets vim.opt.wrap
+      expandtab = true,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -107,20 +108,20 @@ local config = {
     servers = {},
     formatting = {
       disabled = { "sumneko_lua" },
-      -- filter = function(client)
-      --   -- only enable null-ls for javascript files
-      --   if
-      --     vim.bo.filetype == "javascript"
-      --     or vim.bo.filetype == "typescript"
-      --     or vim.bo.filetype == "javascriptreact"
-      --     or vim.bo.filetype == "typescriptreact"
-      --   then
-      --     return client.name == "null-ls"
-      --   end
-      --
-      --   -- enable all other clients
-      --   return true
-      -- end,
+      filter = function(client)
+        -- only enable null-ls for js/ts
+        if
+          vim.bo.filetype == "javascript"
+          or vim.bo.filetype == "typescript"
+          or vim.bo.filetype == "javascriptreact"
+          or vim.bo.filetype == "typescriptreact"
+        then
+          return client.name == "null-ls"
+        end
+
+        -- enable all other clients
+        return true
+      end,
     },
     -- easily add or disable built in mappings added during LSP attaching
     mappings = {
@@ -238,14 +239,16 @@ local config = {
     -- use mason-lspconfig to configure LSP installations
     ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
       automatic_installation = true,
-      ensure_installed = { "tsserver", "elixir-ls", "ust_analyzer", "sumneko_lua" },
+      ensure_installed = { "tsserver", "elixir-ls", "rust_analyzer", "sumneko_lua" },
     },
-    -- use mason-tool-installer to configure DAP/Formatters/Linter installation
-    ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
+    -- use mason-null-ls to configure DAP/Formatters/Linter installation
+    ["mason-null-ls"] = { -- overrides `require("mason-tool-installer").setup(...)`
       ensure_installed = { "prettierd", "eslint_d", "stylua", "eslint-lsp" },
     },
-    ["notify"] = {
+    notify = {
       background_colour = "#000",
+      top_down = false,
+      timeout = 2000,
     },
   },
 
@@ -301,7 +304,6 @@ local config = {
       },
     },
   },
-
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here

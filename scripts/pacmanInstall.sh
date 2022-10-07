@@ -25,6 +25,7 @@ sudo pacman -Syyu --noconfirm
 # Fish and fisher
 install fish
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 # Alacritty
 install alacritty
 # neovim

@@ -1,39 +1,46 @@
-return {
-	config = function()
-		local status_ok, alpha = pcall(require, "alpha")
-		if not status_ok then
-			return
-		end
+local status_ok, alpha = pcall(require, "alpha")
+if not status_ok then
+	return {}
+end
 
-		local dashboard = require("alpha.themes.dashboard")
-
-		dashboard.section.buttons.val = {
-			dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
-			dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-			dashboard.button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
-			dashboard.button("t", "  Find Text", ":Telescope live_grep<CR>"),
-			dashboard.button("c", "  Configuration", ":e $MYVIMRC<CR>"),
+local dashboard = require("alpha.themes.dashboard")
+return function(config)
+	config.layout[4] = {
+		type = "group",
+		val = {
+			dashboard.button("f", "  Find File", ":Telescope find_files<cr>"),
+			dashboard.button("e", "  New file", "<cmd>enew<cr>"),
+			dashboard.button("r", "  Recent Files", ":Telescope oldfiles<cr>"),
+			dashboard.button("t", "  Find Text", ":Telescope live_grep<cr>"),
+			dashboard.button("s", "  Load previous session", "<cmd>SessionManager! load_last_session<cr>"),
 			dashboard.button("u", "  Update Plugins", ":PackerSync<CR>"),
 			dashboard.button("q", "  Quit Neovim", ":qa!<CR>"),
-		}
+		},
+	}
 
-		local footer = function()
-			local version = " " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
-			if packer_plugins == nil then
-				return version
-			else
-				local total_plugins = "   " .. #vim.tbl_keys(packer_plugins) .. " Plugins"
-				return version .. total_plugins
-			end
+	local footer = function()
+		local neovim_version = "  v"
+			.. vim.version().major
+			.. "."
+			.. vim.version().minor
+			.. "."
+			.. vim.version().patch
+		local astronvim_version = astronvim.updater.version(true)
+
+		local versions = neovim_version .. "   AstroNvim " .. astronvim_version
+		if packer_plugins == nil then
+			return versions
+		else
+			local total_plugins = "   " .. #vim.tbl_keys(packer_plugins) .. " Plugins"
+			return versions .. total_plugins
 		end
+	end
 
-		dashboard.section.footer.val = footer()
+	table.insert(config.layout, { type = "padding", val = 2 })
+	table.insert(
+		config.layout,
+		{ type = "text", val = footer(), opts = { position = "center", hl = "DashboardFooter" } }
+	)
 
-		dashboard.section.footer.opts.hl = "AlphaFooter"
-		dashboard.section.header.opts.hl = "AlphaHeader"
-		dashboard.section.buttons.opts.hl = "AlphaButton"
-
-		dashboard.opts.opts.noautocmd = true
-		alpha.setup(dashboard.opts)
-	end,
-}
+	return config
+end

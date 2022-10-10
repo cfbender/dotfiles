@@ -13,5 +13,6 @@ return { -- overrides `require("treesitter").setup(...)`
 		"css",
 		"html",
 		"lua",
+		"regex",
 	},
 }

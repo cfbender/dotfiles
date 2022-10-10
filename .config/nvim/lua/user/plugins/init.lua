@@ -5,7 +5,7 @@ return {
 	["phaazon/hop.nvim"] = require("user.plugins.custom.hop"),
 	["sindrets/diffview.nvim"] = require("user.plugins.custom.diffview"),
 	["ray-x/lsp_signature.nvim"] = require("user.plugins.custom.lsp_signature"),
-
+	["bennypowers/nvim-regexplainer"] = require("user.plugins.custom.regexplainer"),
 	-- no config needed plugins
 	{ "chaoren/vim-wordmotion" },
 }

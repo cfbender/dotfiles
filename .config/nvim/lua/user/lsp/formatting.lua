@@ -4,13 +4,13 @@ return {
 	filter = function(client)
 		-- only enable null-ls for some filetypes
 		local null_ls_only = {
-			"javascript",
-			"typescript",
-			"javascriptreact",
-			"typescriptreact",
-			"elixir",
-			"rust",
-			"lua",
+			"javascript", -- use prettierd
+			"typescript", -- use prettierd
+			"javascriptreact", -- use prettierd
+			"typescriptreact", -- use prettierd
+			"elixir", -- use mix
+			"rust", -- use rustfmt
+			"lua", -- use stylua
 		}
 		if vim.tbl_contains(null_ls_only, vim.bo.filetype) then
 			return client.name == "null-ls"

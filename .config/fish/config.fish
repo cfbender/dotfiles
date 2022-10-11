@@ -23,7 +23,6 @@ function clear-dns
   sudo killall -HUP mDNSResponder
 end
 
-nvm use 16 >> /dev/null
 set -gx EDITOR /opt/homebrew/bin/nvim
 
 set -Ua fish_user_paths (yarn global bin) 

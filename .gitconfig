@@ -1,6 +1,7 @@
 [core]
     editor = nvim
 	autocrlf = false
+	excludesfile = /Users/cfb/.gitignore
 [user]
 	email = cody.bender@pdq.com
 	name = Cody Bender

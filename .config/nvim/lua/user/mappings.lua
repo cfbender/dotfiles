@@ -12,7 +12,8 @@ return {
 		["<leader><leader>p"] = { "<cmd>HopPattern<cr>", desc = "Hop to a pattern" },
 		["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
 		["<leader>gd"] = { "<cmd>DiffviewOpen<cr>", desc = "View git diff in Diffview" },
-		["<leader>ff"] = {"<cmd>Telescope git_files<cr>", desc = "Search all files in git"},
+		["<leader>gdc"] = { "<cmd>DiffviewClose<cr>", desc = "Close Diffview" },
+		["<leader>ff"] = { "<cmd>Telescope git_files<cr>", desc = "Search all files in git" },
 		-- resize with arrows
 		["<Up>"] = {
 			function()

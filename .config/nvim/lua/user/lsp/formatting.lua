@@ -1,14 +1,18 @@
 return {
 	format_on_save = true,
-	disabled = { "sumneko_lua" },
+	disabled = { "sumneko_lua", "rust_analyzer" },
 	filter = function(client)
-		-- only enable null-ls for js/ts
-		if
-			vim.bo.filetype == "javascript"
-			or vim.bo.filetype == "typescript"
-			or vim.bo.filetype == "javascriptreact"
-			or vim.bo.filetype == "typescriptreact"
-		then
+		-- only enable null-ls for some filetypes
+		local null_ls_only = {
+			"javascript",
+			"typescript",
+			"javascriptreact",
+			"typescriptreact",
+			"elixir",
+			"rust",
+			"lua",
+		}
+		if vim.tbl_contains(null_ls_only, vim.bo.filetype) then
 			return client.name == "null-ls"
 		end
 

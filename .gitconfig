@@ -13,12 +13,13 @@
         sw = switch
         nb = switch -c
 	co = checkout
-  dt = difftool
+    dt = difftool
 	st = status
 	cm = commit -m
 	pom = pull origin main
 	ac = "!f() { git add -A && git commit -m \"$@\";}; f"
 	acp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
+	pf = push --force-if-includes
 	fuck = "!f() { git add -A && git commit --amend --no-edit; }; f"
 	clean-branches = "!f() { git branch --merged | egrep -v \"(^*|master|main)\" | xargs git branch -D; }; f"
 [diff]

@@ -20,6 +20,7 @@
 	ac = "!f() { git add -A && git commit -m \"$@\";}; f"
 	acp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	pf = push --force-with-lease
+	sps = "!f() { git stash && git pom && git stash pop; }; f"
 	fuck = "!f() { git add -A && git commit --amend --no-edit; }; f"
 	clean-branches = "!f() { git branch --merged | egrep -v \"(^*|master|main)\" | xargs git branch -D; }; f"
 [diff]

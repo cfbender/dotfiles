@@ -1,6 +1,13 @@
 #!/bin/bash
 
 # Up from scripts dir
+folder=$(basename "$PWD")
+if [ $folder != "scripts" ]
+then
+	echo "ERROR: Run the symlink script from the scripts directory"
+	exit 1
+fi
+
 cd ..
 
 dotfilesDir=$(pwd)

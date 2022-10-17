@@ -14,6 +14,7 @@ return {
 		["<leader>gd"] = { "<cmd>DiffviewOpen<cr>", desc = "View git diff in Diffview" },
 		["<leader>gdc"] = { "<cmd>DiffviewClose<cr>", desc = "Close Diffview" },
 		["<leader>ff"] = { "<cmd>Telescope git_files<cr>", desc = "Search all files in git" },
+		["<leader>lg"] = { "<cmd>Neogen<cr>", desc = "Generate annotation for the current node" },
 		-- resize with arrows
 		["<Up>"] = {
 			function()

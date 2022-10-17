@@ -7,7 +7,9 @@ return {
 				require("alpha").start(true)
 			end
 		end
+
 		vim.keymap.del("n", "<leader>c")
+
 		if require("core.utils").is_available("bufdelete.nvim") then
 			vim.keymap.set("n", "<leader>c", function()
 				alpha_on_bye("Bdelete!")

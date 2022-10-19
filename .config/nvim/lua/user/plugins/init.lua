@@ -8,6 +8,7 @@ return {
 	["bennypowers/nvim-regexplainer"] = require("user.plugins.custom.regexplainer"), -- Describe the regexp under the cursor
 	["folke/neodev.nvim"] = require("user.plugins.custom.neodev"), -- 💻 Dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
 	["danymat/neogen"] = require("user.plugins.custom.neogen"), -- A better annotation generator. Supports multiple languages and annotation conventions.
+	["nvim-treesitter/playground"] = require("user.plugins.custom.ts-playground"), -- Treesitter playground integrated into Neovim
 	-- no config needed plugins
 	{ "chaoren/vim-wordmotion" }, -- More useful word motions for Vim
 }

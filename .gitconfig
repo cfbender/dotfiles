@@ -25,14 +25,43 @@
 	rc = "!f() { git add -A && git rebase --continue; }; f"
 	fuck = "!f() { git add -A && git commit --amend --no-edit; }; f"
 	clean-branches = "!f() { git branch --merged | egrep -v \"(^*|master|main)\" | xargs git branch -D; }; f"
-[diff]
-	tool = meld
-[merge]
-	tool = meld
- 	conflictstyle = diff3
 [commit]
 	gpgsign = true
 [tag]
 	gpgsign = true
 [init]
-       defaultBranch = main
+  defaultBranch = main
+[interactive]
+  diffFilter = delta --color-only
+[add.interactive]
+  useBuiltin = false # required for git 2.37.0
+
+[delta]
+  commit-decoration-style = bold box ul
+  side-by-side = true
+  dark = true
+  file-decoration-style = none
+  file-style = omit
+  # theme is blue/orange to match github's colorblind mode
+  hunk-header-decoration-style = "#f5e0dc" box ul # Catppuccin Mocha - Rosewater
+  hunk-header-file-style = "#9399b2" # Catppuccin Mocha - Overlay2
+  hunk-header-line-number-style = bold "#11111b" # Catppuccin Mocha - Crust
+  hunk-header-style = file line-number syntax
+  line-numbers = true
+  line-numbers-left-style = "#f5e0dc" # Catppuccin Mocha - Rosewater
+  line-numbers-minus-style = "#fab387" # Catppuccin Mocha - Peach
+  line-numbers-plus-style = "#89b4fa" # Catppuccin Mocha - Blue
+  line-numbers-right-style = "#f5e0dc" # Catppuccin Mocha - Rosewater
+  line-numbers-zero-style = "#9399b2" # Catppuccin Mocha - Overlay2
+  minus-emph-style = normal "#f89c62"  # Catppuccin Mocha - Peach (darkened 10%)
+  minus-style = normal "#4a1e03" # Catppuccin Mocha - Peach (darkened 80%)
+  plus-emph-style = syntax "#609af8" # Catppuccin Mocha - Blue (darkened 10%)
+  plus-style = syntax "#031e4a" # Catppuccin Mocha - Blue (darkened 80%)
+  syntax-theme = Catppuccin-mocha
+  navigate = true    # use n and N to move between diff sections
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default

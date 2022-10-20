@@ -42,6 +42,8 @@ set -gx LC_ALL "en_US.UTF-8"
 set -gx VISUAL nvim
 set -gx EDITOR nvim
 
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+
 thefuck --alias | source
 
 function gunwip

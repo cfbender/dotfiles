@@ -39,10 +39,10 @@
 [delta]
   commit-decoration-style = bold box ul
   side-by-side = true
+  navigate = true    # use n and N to move between diff sections
   dark = true
   file-decoration-style = none
   file-style = omit
-  # theme is blue/orange to match github's colorblind mode
   hunk-header-decoration-style = "#f5e0dc" box ul # Catppuccin Mocha - Rosewater
   hunk-header-file-style = "#9399b2" # Catppuccin Mocha - Overlay2
   hunk-header-line-number-style = bold "#11111b" # Catppuccin Mocha - Crust
@@ -53,12 +53,11 @@
   line-numbers-plus-style = "#89b4fa" # Catppuccin Mocha - Blue
   line-numbers-right-style = "#f5e0dc" # Catppuccin Mocha - Rosewater
   line-numbers-zero-style = "#9399b2" # Catppuccin Mocha - Overlay2
-  minus-emph-style = normal "#f89c62"  # Catppuccin Mocha - Peach (darkened 10%)
-  minus-style = normal "#4a1e03" # Catppuccin Mocha - Peach (darkened 80%)
-  plus-emph-style = syntax "#609af8" # Catppuccin Mocha - Blue (darkened 10%)
-  plus-style = syntax "#031e4a" # Catppuccin Mocha - Blue (darkened 80%)
+  minus-emph-style = normal "#D99B75"  # Catppuccin Mocha - Peach (alpha 98 -> 85)
+  minus-style = syntax "#805B45" # Catppuccin Mocha - Peach (alpha 98 -> 50)
+  plus-emph-style = syntax "#779DD9" # Catppuccin Mocha - Blue (alpha 98 -> 85)
+  plus-style = syntax "#465C80" # Catppuccin Mocha - Blue (alpha 98 -> 50)
   syntax-theme = Catppuccin-mocha
-  navigate = true    # use n and N to move between diff sections
 
 [merge]
   conflictstyle = diff3

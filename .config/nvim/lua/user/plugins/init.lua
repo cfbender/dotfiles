@@ -11,4 +11,5 @@ return {
 	["nvim-treesitter/playground"] = require("user.plugins.custom.ts-playground"), -- Treesitter playground integrated into Neovim
 	-- no config needed plugins
 	{ "chaoren/vim-wordmotion" }, -- More useful word motions for Vim
+	{ "andymass/vim-matchup" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen
 }

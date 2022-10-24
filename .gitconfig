@@ -53,9 +53,9 @@
   line-numbers-plus-style = "#89b4fa" # Catppuccin Mocha - Blue
   line-numbers-right-style = "#f5e0dc" # Catppuccin Mocha - Rosewater
   line-numbers-zero-style = "#9399b2" # Catppuccin Mocha - Overlay2
-  minus-emph-style = normal "#D99B75"  # Catppuccin Mocha - Peach (alpha 98 -> 85)
+  minus-emph-style = normal "#A6775A"  # Catppuccin Mocha - Peach (alpha 98 -> 65)
   minus-style = syntax "#805B45" # Catppuccin Mocha - Peach (alpha 98 -> 50)
-  plus-emph-style = syntax "#779DD9" # Catppuccin Mocha - Blue (alpha 98 -> 85)
+  plus-emph-style = syntax "#5B78A6" # Catppuccin Mocha - Blue (alpha 98 -> 65)
   plus-style = syntax "#465C80" # Catppuccin Mocha - Blue (alpha 98 -> 50)
   syntax-theme = Catppuccin-mocha
 

@@ -54,6 +54,9 @@ terminal:
       - HSL(316, 72%, 91%)
       - HSL(189, 71%, 78%)
       - HSL(226, 64%, 93%)
+  font: Iosevka Nerd Font
+  ligatures: true
+  background: colorScheme
 ssh: {}
 configSync:
   parts: {}

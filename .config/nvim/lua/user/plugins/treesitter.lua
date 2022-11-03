@@ -4,6 +4,7 @@ return { -- overrides `require("treesitter").setup(...)`
 		"javascript",
 		"jsdoc",
 		"elixir",
+		"graphql",
 		"rust",
 		"tsx",
 		"toml",

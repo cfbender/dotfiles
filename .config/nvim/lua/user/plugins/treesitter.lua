@@ -15,5 +15,6 @@ return { -- overrides `require("treesitter").setup(...)`
 		"html",
 		"lua",
 		"regex",
+		"haskell",
 	},
 }

@@ -116,3 +116,5 @@ if test -n "$SSH_CONNECTION"
 end
 
 source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/cfb/.ghcup/bin # ghcup-env

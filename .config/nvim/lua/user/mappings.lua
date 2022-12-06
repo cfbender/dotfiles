@@ -40,6 +40,10 @@ return {
 			end,
 			desc = "Resize split right",
 		},
+		[","] = {
+			"@@",
+			desc = "Replay last used macro",
+		},
 	},
 	t = {
 		["<c-q>"] = { "<c-\\><c-n>", desc = "Terminal normal mode" },

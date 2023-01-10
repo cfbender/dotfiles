@@ -1,6 +1,7 @@
 return {
 	format_on_save = true,
 	disabled = { "sumneko_lua", "rust_analyzer" },
+	timeout_ms = 5000,
 	filter = function(client)
 		-- only enable null-ls for some filetypes
 		local null_ls_only = {

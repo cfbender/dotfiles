@@ -1,62 +1,49 @@
 return {
 	-- You can disable default plugins as follows:
-	-- ["goolord/alpha-nvim"] = { disable = true },
-	["catppuccin/nvim"] = { -- Soothing pastel theme for Neovim
+	-- {"goolord/alpha-nvim", enabled = false},
+	{
+		"catppuccin/nvim", -- Soothing pastel theme for Neovim
+		name = "catppuccin",
+		opts = {
+			dim_inactive = { enabled = true, percentage = 0.25 },
+			integrations = {
+				nvimtree = false,
+				aerial = true,
+				dap = { enabled = true, enable_ui = true },
+				mason = true,
+				neotree = true,
+				notify = true,
+				sandwich = true,
+				semantic_tokens = true,
+				symbols_outline = true,
+				telescope = true,
+				which_key = true,
+			},
+		},
 		config = function()
 			vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 			require("catppuccin").setup()
 		end,
-		as = "catppuccin",
+		lazy = false,
+		priority = 1000,
 	},
-	["phaazon/hop.nvim"] = { -- Neovim motions on speed!
+	{
+		"phaazon/hop.nvim", -- Neovim motions on speed!
 		branch = "v2", -- optional but strongly recommended,
 		config = function()
 			require("hop").setup()
 		end,
 		module = "hop",
+		event = "BufRead",
 		opt = true,
 		setup = function()
 			table.insert(astronvim.file_plugins, "hop.nvim")
 		end,
 	},
-	["sindrets/diffview.nvim"] = { -- Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
+	{
+		"folke/neodev.nvim", -- 💻 Dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
 		opt = true,
-		setup = function()
-			table.insert(astronvim.git_plugins, "diffview.nvim")
-		end,
-		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			local actions = require("diffview.actions")
-			require("diffview").setup({
-				view = {
-					merge_tool = {
-						layout = "diff3_mixed",
-					},
-				},
-				keymaps = {
-					view = {
-						["<leader>co"] = false,
-						["<leader>ct"] = false,
-						["<leader>cb"] = false,
-						["<leader>ca"] = false,
-						["<leader>mo"] = actions.conflict_choose("ours"), -- Choose the OURS version of a conflict
-						["<leader>mt"] = actions.conflict_choose("theirs"), -- Choose the THEIRS version of a conflict
-						["<leader>mb"] = actions.conflict_choose("base"), -- Choose the BASE version of a conflict
-						["<leader>ma"] = actions.conflict_choose("all"), -- Choose all the versions of a conflict
-					},
-				},
-			})
-		end,
-	},
-
-	["ray-x/lsp_signature.nvim"] = { -- LSP signature hint as you type
-		event = "BufRead",
-		config = function()
-			require("lsp_signature").setup()
-		end,
-	},
-	["folke/neodev.nvim"] = { -- 💻 Dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
-		opt = true,
+		event = "BufEnter *.lua",
 		setup = function()
 			table.insert(astronvim.file_plugins, "neodev.nvim")
 		end,
@@ -64,8 +51,11 @@ return {
 			require("neodev").setup({})
 		end,
 	},
-	["danymat/neogen"] = { -- A better annotation generator. Supports multiple languages and annotation conventions.
+	{
+		"danymat/neogen", -- A better annotation generator. Supports multiple languages and annotation conventions.
+		enabled = false, -- TODO: Maybe PR a generator for elixir typespecs a la VS Code
 		opt = true,
+		event = "BufRead",
 		setup = function()
 			table.insert(astronvim.file_plugins, "neogen")
 		end,
@@ -76,24 +66,9 @@ return {
 		-- Uncomment next line if you want to follow only stable versions
 		-- tag = "*"
 	},
-	["bennypowers/nvim-regexplainer"] = { -- Describe the regexp under the cursor
-		opt = true,
-		setup = function()
-			table.insert(astronvim.file_plugins, "nvim-regexplainer")
-		end,
-		config = function()
-			require("regexplainer").setup({
-				mappings = {
-					toggle = "<leader>lx",
-				},
-			})
-		end,
-		requires = {
-			"nvim-treesitter/nvim-treesitter",
-			"MunifTanjim/nui.nvim",
-		},
-	},
-	["nvim-treesitter/playground"] = { -- Treesitter playground integrated into Neovim
+	{
+		"nvim-treesitter/playground", -- Treesitter playground integrated into Neovim
+		enabled = false, -- only turn on for debugging treesitter
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				playground = {
@@ -118,6 +93,6 @@ return {
 		end,
 	},
 	-- no config needed plugins
-	{ "chaoren/vim-wordmotion" }, -- More useful word motions for Vim
-	{ "andymass/vim-matchup" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen
+	"chaoren/vim-wordmotion", -- More useful word motions for Vim
+	"andymass/vim-matchup", -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen
 }

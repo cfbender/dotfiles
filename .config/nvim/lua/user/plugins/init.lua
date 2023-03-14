@@ -36,17 +36,11 @@ return {
 		module = "hop",
 		event = "BufRead",
 		opt = true,
-		setup = function()
-			table.insert(astronvim.file_plugins, "hop.nvim")
-		end,
 	},
 	{
 		"folke/neodev.nvim", -- 💻 Dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
 		opt = true,
 		event = "BufEnter *.lua",
-		setup = function()
-			table.insert(astronvim.file_plugins, "neodev.nvim")
-		end,
 		config = function()
 			require("neodev").setup({})
 		end,
@@ -56,9 +50,6 @@ return {
 		enabled = false, -- TODO: Maybe PR a generator for elixir typespecs a la VS Code
 		opt = true,
 		event = "BufRead",
-		setup = function()
-			table.insert(astronvim.file_plugins, "neogen")
-		end,
 		config = function()
 			require("neogen").setup({})
 		end,

@@ -1,9 +1,10 @@
+local utils = require("astronvim.utils")
 -- Mapping data with "desc" stored directly by vim.keymap.set().
 --
 -- Please use this mappings table to set keyboard mapping since this is the
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
-return {
+local maps = {
 	-- first key is the mode
 	n = {
 		-- second key is the lefthand side of the map
@@ -65,3 +66,14 @@ return {
 		["<esc><esc>"] = { "<c-\\><c-n>:q<cr>", desc = "Terminal quit" },
 	},
 }
+
+if vim.fn.executable("iex") == 1 then
+	maps.n["<leader>te"] = {
+		function()
+			utils.toggle_term_cmd("iex")
+		end,
+		desc = "ToggleTerm iex",
+	}
+end
+
+return maps

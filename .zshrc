@@ -2,73 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/cody/.oh-my-zsh"
-
-
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME=powerlevel10k/powerlevel10k
-POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
-
-POWERLEVEL9K_TIME_FORMAT="%t"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_DISABLE_RPROMPT=false
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-
-POWERLEVEL9K_BATTERY_VERBOSE=false
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%242F╭─'
-POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%242F├─'
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%242F╰─ '
-
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR=' '
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_BACKGROUND=
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND=242
-POWERLEVEL9K_EMPTY_LINE_LEFT_PROMPT_FIRST_SEGMENT_END_SYMBOL='%{%}'
-POWERLEVEL9K_EMPTY_LINE_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='%{%}'
-
-POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%246F|'
-POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%246F|'
-POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL='▓▒░'
-POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='░▒▓'
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
-POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
-
-
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(node_version battery  time)
-
-POWERLEVEL9K_STATUS_BACKGROUND='231'
-POWERLEVEL9K_BATTERY_BACKGROUND='231'
-POWERLEVEL9K_NODE_VERSION_BACKGROUND='078'
-POWERLEVEL9K_TIME_BACKGROUND='231'
-
-POWERLEVEL9K_STATUS_FOREGROUND='236'
-POWERLEVEL9K_BATTERY_FOREGROUND='236'
-POWERLEVEL9K_NODE_VERSION_FOREGROUND='236'
-
-
-POWERLEVEL9K_OS_ICON="echo  "
-POWERLEVEL9K_OS_ICON_BACKGROUND='167'
-POWERLEVEL9K_OS_ICON_FOREGROUND='grey100'
-POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='%B${P9K_CONTENT}'
-
-POWERLEVEL9K_DIR_BACKGROUND='steelblue'
-POWERLEVEL9K_DIR_ICON_FOREGROUND='grey30'
-
-POWERLEVEL9K_VCS_BACKGROUND='231'
-POWERLEVEL9K_VCS_FOREGROUND='236'
-
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$'\uF408 '
+export ZSH="${HOME}/.oh-my-zsh"
 
 
 # Set list of themes to pick from when loading at random
@@ -135,6 +69,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+#catppuccin theme
+source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -172,7 +109,24 @@ fi
 
 export PATH=~/bin:$PATH
 export PATH="$(yarn global bin):$PATH"
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+export FZF_DEFAULT_COMMAND='fd'
+
+export LANGUAGE="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+export VISUAL="nvim"
+export EDITOR="nvim"
+
+export XDG_CONFIG_HOME="$HOME/.config"
 
 alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'
-source /home/cody/.cargo/env
+
+alias ls='lsd'
+alias cat='bat --style=header,grid'
+
+# starship prompt
+eval "$(starship init zsh)"
+

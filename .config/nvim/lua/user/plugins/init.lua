@@ -83,6 +83,42 @@ return {
 			})
 		end,
 	},
+	{
+		-- keybindings for mappings.lua:
+		-- i = {
+		-- 	["<C-CR>"] = {
+		-- 		function()
+		-- 			return vim.fn["codeium#Accept"]()
+		-- 		end,
+		-- 	},
+		-- 	["<S-Left>"] = {
+		-- 		function()
+		-- 			return vim.fn["codeium#CycleCompletions"](-1)
+		-- 		end,
+		-- 	},
+		-- 	["<S-Right>"] = {
+		-- 		function()
+		-- 			return vim.fn["codeium#CycleCompletions"](1)
+		-- 		end,
+		-- 	},
+		-- 	["<C-BS>"] = {
+		-- 		function()
+		-- 			return vim.fn["codeium#Clear"]()
+		-- 		end,
+		-- 	},
+		-- },
+		"Exafunction/codeium.vim",
+		cmd = "Codeium",
+		enabled = false, -- plugin doesn't seem to play nice with astronvim. maybe try again if they rewrite in Lua
+		lazy = false,
+		init = function()
+			vim.g.codeium_disable_bindings = 1
+			vim.g.codeium_idle_delay = 1500
+		end,
+		config = function()
+			vim.api.nvim_set_hl(0, "CodeiumSuggestion", { link = "Comment" })
+		end,
+	},
 	-- no config needed plugins
 	"chaoren/vim-wordmotion", -- More useful word motions for Vim
 	"andymass/vim-matchup", -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen

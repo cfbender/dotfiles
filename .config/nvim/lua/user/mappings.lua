@@ -13,8 +13,18 @@ local maps = {
 		["<leader><leader>w"] = { "<cmd>HopWord<cr>", desc = "Hop to a word" },
 		["<leader><leader>p"] = { "<cmd>HopPattern<cr>", desc = "Hop to a pattern" },
 		["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-		["<leader>gd"] = { "<cmd>DiffviewOpen<cr>", desc = "View git diff in Diffview" },
-		["<leader>gdc"] = { "<cmd>DiffviewClose<cr>", desc = "Close Diffview" },
+		["<leader>gj"] = {
+			function()
+				require("gitsigns").next_hunk()
+			end,
+			desc = "Next Git hunk",
+		},
+		["<leader>gk"] = {
+			function()
+				require("gitsigns").prev_hunk()
+			end,
+			desc = "Previous Git hunk",
+		},
 		["<leader>ff"] = { "<cmd>Telescope git_files<cr>", desc = "Search all files in git" },
 		["<leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume previous telescope search" },
 		["<leader>lg"] = { "<cmd>Neogen<cr>", desc = "Generate annotation for the current node" },

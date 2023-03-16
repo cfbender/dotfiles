@@ -69,9 +69,11 @@ return {
 					.. "."
 					.. vim.version().patch
 				local astronvim_version = updater.version(true)
+				local stats = require("lazy").stats()
+				local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
 
-				local versions = neovim_version .. "   AstroNvim " .. astronvim_version
-				local total_plugins = "   " .. require("lazy").stats().count .. " plugins  "
+				local versions = neovim_version .. "   AstroNvim " .. astronvim_version .. " loaded "
+				local total_plugins = stats.count .. " plugins in " .. ms .. " ms "
 				return versions .. total_plugins
 			end
 

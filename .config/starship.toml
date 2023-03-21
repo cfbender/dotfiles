@@ -1,7 +1,7 @@
 # Sets user-defined palette
 palette = "catppuccin_mocha"
 
-command_timeout = 1000
+command_timeout = 2500
 
 [character]
 # Note the use of Catppuccin color 'maroon'

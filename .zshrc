@@ -134,3 +134,11 @@ alias cat='bat --style=header,grid'
 # starship prompt
 eval "$(starship init zsh)"
 
+# ssh gpg signing
+export GPG_TTY=$(tty)
+
+if [[ ! -z "$SSH_CONNECTION" ]]; then
+  export PINENTRY_USER_DATA="USE_CURSES=1"
+fi
+
+eval $(thefuck --alias)

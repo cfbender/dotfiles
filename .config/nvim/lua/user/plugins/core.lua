@@ -102,6 +102,7 @@ return {
 			return {
 				window = { position = "right" },
 				filesystem = {
+					follow_current_file = true,
 					hijack_netrw_behavior = "open_default",
 					cwd_target = {
 						sidebar = "window",

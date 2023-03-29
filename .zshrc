@@ -146,3 +146,4 @@ eval $(thefuck --alias)
 eval "$(~/.local/bin/mise activate zsh)"
 
 eval "$(zoxide init zsh --cmd cd)"
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env

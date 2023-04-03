@@ -56,7 +56,7 @@ return {
 				button("r", "  Recent Files", ":Telescope oldfiles<cr>"),
 				button("t", "  Find Text", ":Telescope live_grep<cr>"),
 				button("s", "  Load previous session", "<cmd>SessionManager! load_last_session<cr>"),
-				button("u", "  Update Plugins", ":PackerSync<CR>"),
+				button("u", "  Update Plugins", ":Lazy sync<CR>"),
 				button("q", "  Quit Neovim", ":qa!<CR>"),
 			}
 

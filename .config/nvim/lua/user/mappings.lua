@@ -54,6 +54,13 @@ local maps = {
 			end,
 			desc = "Run tests for the current file",
 		},
+		-- coverage
+		["<leader>lc"] = {
+			function()
+				require("coverage").toggle()
+			end,
+			desc = "Toggle coverage info",
+		},
 		-- resize with arrows
 		["<Up>"] = {
 			function()

@@ -57,7 +57,7 @@ return {
 			"marilari88/neotest-vitest",
 			"haydenmeade/neotest-jest",
 		},
-		lazy = "User AstroFile",
+		lazy = false,
 		config = function()
 			require("neotest").setup({
 				discovery = {
@@ -73,6 +73,16 @@ return {
 						end,
 					}),
 				},
+			})
+		end,
+	},
+	{
+		"andythigpen/nvim-coverage",
+		dependencies = "nvim-lua/plenary.nvim",
+		event = "User AstroFile",
+		config = function()
+			require("coverage").setup({
+				lcov_file = "./cover/lcov.info",
 			})
 		end,
 	},

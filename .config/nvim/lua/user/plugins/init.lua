@@ -42,7 +42,38 @@ return {
 		opt = true,
 		event = "BufEnter *.lua",
 		config = function()
-			require("neodev").setup({})
+			require("neodev").setup({
+				library = { plugins = { "neotest" }, types = true },
+			})
+		end,
+	},
+	{
+		"nvim-neotest/neotest", -- An extensible framework for interacting with tests within NeoVim.
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"antoinemadec/FixCursorHold.nvim",
+			"jfpedroza/neotest-elixir",
+			"marilari88/neotest-vitest",
+			"haydenmeade/neotest-jest",
+		},
+		lazy = "User AstroFile",
+		config = function()
+			require("neotest").setup({
+				discovery = {
+					concurrent = 1,
+				},
+				adapters = {
+					require("neotest-elixir"),
+					require("neotest-vitest"),
+					require("neotest-jest")({
+						jestCommand = "npm test --",
+						cwd = function()
+							return vim.fn.getcwd()
+						end,
+					}),
+				},
+			})
 		end,
 	},
 	{

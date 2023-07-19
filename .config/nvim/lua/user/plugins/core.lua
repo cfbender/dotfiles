@@ -53,11 +53,11 @@ return {
 			dashboard.section.buttons.val = {
 				button("f", "  Find File", ":Telescope find_files<cr>"),
 				button("e", "  Browse Files", "<cmd>:Neotree reveal<cr>"),
-				button("r", "  Recent Files", ":Telescope oldfiles<cr>"),
-				button("t", "  Find Text", ":Telescope live_grep<cr>"),
-				button("s", "  Load previous session", "<cmd>SessionManager! load_last_session<cr>"),
+				button("r", "󱋡  Recent Files", ":Telescope oldfiles<cr>"),
+				button("t", "󰈞  Find Text", ":Telescope live_grep<cr>"),
+				button("s", "󰮲  Load previous session", "<cmd>SessionManager! load_last_session<cr>"),
 				button("u", "  Update Plugins", ":Lazy sync<CR>"),
-				button("q", "  Quit Neovim", ":qa!<CR>"),
+				button("q", "  Quit Neovim", ":qa!<CR>"),
 			}
 
 			local footer = function()

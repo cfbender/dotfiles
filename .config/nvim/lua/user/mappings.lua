@@ -28,6 +28,32 @@ local maps = {
 		["<leader>ff"] = { "<cmd>Telescope git_files<cr>", desc = "Search all files in git" },
 		["<leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume previous telescope search" },
 		["<leader>lg"] = { "<cmd>Neogen<cr>", desc = "Generate annotation for the current node" },
+		-- neotest
+		["<leader>n"] = { name = " Neotest", desc = " Neotest" },
+		["<leader>nn"] = {
+			function()
+				require("neotest").run.run()
+			end,
+			desc = "Run the nearest test",
+		},
+		["<leader>nd"] = {
+			function()
+				require("neotest").run.run({ strategy = "dap" })
+			end,
+			desc = "Debug the nearest test",
+		},
+		["<leader>ns"] = {
+			function()
+				require("neotest").summary.toggle()
+			end,
+			desc = "Toggle test summary",
+		},
+		["<leader>nf"] = {
+			function()
+				require("neotest").run.run(vim.fn.expand("%"))
+			end,
+			desc = "Run tests for the current file",
+		},
 		-- resize with arrows
 		["<Up>"] = {
 			function()
@@ -73,7 +99,7 @@ local maps = {
 		["<leader>c"] = {
 			function()
 				local bufs = vim.fn.getbufinfo({ buflisted = true })
-				require("astronvim.utils.buffer").close(0)
+				require("astronvim.utils.buffer").close()
 				if require("astronvim.utils").is_available("alpha-nvim") and not bufs[2] then
 					require("alpha").start(true)
 				end
@@ -93,6 +119,24 @@ if vim.fn.executable("iex") == 1 then
 			utils.toggle_term_cmd("iex")
 		end,
 		desc = "ToggleTerm iex",
+	}
+end
+
+if vim.fn.executable("gobang") == 1 then
+	maps.n["<leader>tb"] = {
+		function()
+			utils.toggle_term_cmd("gobang")
+		end,
+		desc = "ToggleTerm gobang",
+	}
+end
+
+if vim.fn.executable("lazydocker") == 1 then
+	maps.n["<leader>td"] = {
+		function()
+			utils.toggle_term_cmd("lazydocker")
+		end,
+		desc = "ToggleTerm lazydocker",
 	}
 end
 

@@ -4,25 +4,29 @@ return {
 	{
 		"catppuccin/nvim", -- Soothing pastel theme for Neovim
 		name = "catppuccin",
-		opts = {
-			dim_inactive = { enabled = true, percentage = 0.25 },
-			integrations = {
-				nvimtree = false,
-				aerial = true,
-				dap = { enabled = true, enable_ui = true },
-				mason = true,
-				neotree = true,
-				notify = true,
-				sandwich = true,
-				semantic_tokens = true,
-				symbols_outline = true,
-				telescope = true,
-				which_key = true,
-			},
-		},
 		config = function()
-			vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-			require("catppuccin").setup()
+			require("catppuccin").setup({
+				flavour = "mocha",
+				dim_inactive = { enabled = true, percentage = 0.25 },
+				integrations = {
+					cmp = true,
+					dap = { enabled = true, enable_ui = true },
+					hop = true,
+					mason = true,
+					neotest = true,
+					neotree = true,
+					notify = true,
+					nvimtree = false,
+					octo = true,
+					sandwich = true,
+					semantic_tokens = true,
+					symbols_outline = true,
+					telescope = { enabled = true },
+					which_key = true,
+				},
+			})
+
+			vim.cmd([[colorscheme catppuccin]])
 		end,
 		lazy = false,
 		priority = 1000,
@@ -87,6 +91,18 @@ return {
 		end,
 	},
 	{
+		"pwntester/octo.nvim",
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("octo").setup()
+		end,
+	},
+	{
 		"danymat/neogen", -- A better annotation generator. Supports multiple languages and annotation conventions.
 		enabled = false, -- TODO: Maybe PR a generator for elixir typespecs a la VS Code
 		opt = true,
@@ -122,42 +138,6 @@ return {
 					},
 				},
 			})
-		end,
-	},
-	{
-		-- keybindings for mappings.lua:
-		-- i = {
-		-- 	["<C-CR>"] = {
-		-- 		function()
-		-- 			return vim.fn["codeium#Accept"]()
-		-- 		end,
-		-- 	},
-		-- 	["<S-Left>"] = {
-		-- 		function()
-		-- 			return vim.fn["codeium#CycleCompletions"](-1)
-		-- 		end,
-		-- 	},
-		-- 	["<S-Right>"] = {
-		-- 		function()
-		-- 			return vim.fn["codeium#CycleCompletions"](1)
-		-- 		end,
-		-- 	},
-		-- 	["<C-BS>"] = {
-		-- 		function()
-		-- 			return vim.fn["codeium#Clear"]()
-		-- 		end,
-		-- 	},
-		-- },
-		"Exafunction/codeium.vim",
-		cmd = "Codeium",
-		enabled = false, -- plugin doesn't seem to play nice with astronvim. maybe try again if they rewrite in Lua
-		lazy = false,
-		init = function()
-			vim.g.codeium_disable_bindings = 1
-			vim.g.codeium_idle_delay = 1500
-		end,
-		config = function()
-			vim.api.nvim_set_hl(0, "CodeiumSuggestion", { link = "Comment" })
 		end,
 	},
 	-- no config needed plugins

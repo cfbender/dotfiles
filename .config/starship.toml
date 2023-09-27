@@ -5,7 +5,7 @@ command_timeout = 2500
 
 [character]
 # Note the use of Catppuccin color 'maroon'
-success_symbol = "[[♥](green) ❯](maroon)"
+success_symbol = "[[](green) ❯](maroon)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](green)"
 
@@ -26,6 +26,15 @@ symbol = ' '
 
 [elixir]
 symbol = " "
+
+[hostname]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[docker_context]
+disabled = true
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

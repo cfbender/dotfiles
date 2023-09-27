@@ -5,10 +5,10 @@ return {
 	filter = function(client)
 		-- only enable null-ls for some filetypes
 		local null_ls_only = {
-			"javascript", -- use prettierd
-			"typescript", -- use prettierd
-			"javascriptreact", -- use prettierd
-			"typescriptreact", -- use prettierd
+			"javascript", -- use prettier
+			"typescript", -- use prettier
+			"javascriptreact", -- use prettier
+			"typescriptreact", -- use prettier
 			"elixir", -- use mix
 			"rust", -- use rustfmt
 			"lua", -- use stylua

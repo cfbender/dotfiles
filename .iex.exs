@@ -19,8 +19,6 @@ IEx.configure(
   ],
   default_prompt:
     [
-      # ANSI CHA, move cursor to column 1
-      "\e[G",
       :light_magenta,
       # plain string
       " %prefix (%counter)",
@@ -33,8 +31,6 @@ IEx.configure(
 
   continuation_prompt:
     [
-      # ANSI CHA, move cursor to column 1
-      "\e[G",
       :light_magenta,
       # plain string
       " ...",

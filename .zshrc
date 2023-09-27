@@ -67,7 +67,6 @@ plugins=(
         git 
         zsh-autosuggestions 
         zsh-syntax-highlighting
-        asdf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -148,35 +147,9 @@ eval "$(~/.local/bin/mise activate zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
-export RTX_SHELL=zsh
+# bun completions
+[ -s "/Users/cfb/.bun/_bun" ] && source "/Users/cfb/.bun/_bun"
 
-rtx() {
-  local command
-  command="${1:-}"
-  if [ "$#" = 0 ]; then
-    command rtx
-    return
-  fi
-  shift
-
-  case "$command" in
-  deactivate|shell)
-    eval "$(command rtx "$command" "$@")"
-    ;;
-  *)
-    command rtx "$command" "$@"
-    ;;
-  esac
-}
-
-_rtx_hook() {
-  eval "$(rtx hook-env -s zsh)";
-}
-typeset -ag precmd_functions;
-if [[ -z "${precmd_functions[(r)_rtx_hook]+1}" ]]; then
-  precmd_functions=( _rtx_hook ${precmd_functions[@]} )
-fi
-typeset -ag chpwd_functions;
-if [[ -z "${chpwd_functions[(r)_rtx_hook]+1}" ]]; then
-  chpwd_functions=( _rtx_hook ${chpwd_functions[@]} )
-fi
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

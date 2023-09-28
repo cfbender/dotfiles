@@ -18,10 +18,10 @@ return {
 	{
 		"jay-babu/mason-null-ls.nvim",
 		opts = {
-			ensure_installed = { "prettierd", "eslint_d", "stylua", "eslint-lsp", "rustfmt" },
+			ensure_installed = { "prettier", "eslint_d", "stylua", "eslint-lsp" },
 			handlers = {
 				prettierd = function()
-					require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
+					require("null-ls").register(require("null-ls").builtins.formatting.prettier.with({
 						condition = function(utils)
 							return utils.root_has_file("package.json")
 								or utils.root_has_file(".prettierrc")

@@ -56,6 +56,11 @@ local maps = {
 		},
 		-- coverage
 		["<leader>lc"] = {
+			"<cmd>Copilot panel<cr>",
+			desc = "Open copilot panel",
+		},
+		-- coverage
+		["<leader>lv"] = {
 			function()
 				require("coverage").toggle()
 			end,

@@ -27,6 +27,9 @@ symbol = ' '
 [elixir]
 symbol = " "
 
+[haskell]
+symbol = " "
+
 [hostname]
 disabled = true
 

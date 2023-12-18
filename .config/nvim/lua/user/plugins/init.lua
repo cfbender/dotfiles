@@ -140,6 +140,10 @@ return {
 			})
 		end,
 	},
+	{
+		"github/copilot.vim",
+		event = "User AstroFile",
+	},
 	-- no config needed plugins
 	{ "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim
 	{ "andymass/vim-matchup", event = "BufRead" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen

@@ -141,8 +141,12 @@ return {
 		end,
 	},
 	{
-		"github/copilot.vim",
-		event = "User AstroFile",
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({})
+		end,
 	},
 	-- no config needed plugins
 	{ "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim

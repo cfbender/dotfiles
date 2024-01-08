@@ -54,13 +54,21 @@ local maps = {
 			end,
 			desc = "Run tests for the current file",
 		},
-		-- coverage
-		["<leader>lc"] = {
+		-- copilot
+		["<leader>k"] = { name = " Copilot" },
+		["<leader>kp"] = {
 			"<cmd>Copilot panel<cr>",
 			desc = "Open copilot panel",
 		},
+		["<leader>kt"] = {
+			function()
+				local copilot = require("copilot.suggestion")
+				copilot.toggle_auto_trigger()
+			end,
+			desc = "Toggle suggestions",
+		},
 		-- coverage
-		["<leader>lv"] = {
+		["<leader>lc"] = {
 			function()
 				require("coverage").toggle()
 			end,

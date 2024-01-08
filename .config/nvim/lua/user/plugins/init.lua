@@ -145,7 +145,7 @@ return {
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
-			require("copilot").setup({})
+			require("copilot").setup({ suggestion = { auto_trigger = true, keymap = { accept = "<M-=>" } } })
 		end,
 	},
 	-- no config needed plugins

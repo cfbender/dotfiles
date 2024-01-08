@@ -142,3 +142,4 @@ if [[ ! -z "$SSH_CONNECTION" ]]; then
 fi
 
 eval $(thefuck --alias)
+eval "$(~/.local/bin/mise activate zsh)"

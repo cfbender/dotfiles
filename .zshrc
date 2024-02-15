@@ -143,3 +143,5 @@ fi
 
 eval $(thefuck --alias)
 eval "$(~/.local/bin/mise activate zsh)"
+
+eval "$(zoxide init zsh)"

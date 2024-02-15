@@ -62,3 +62,5 @@ fisher
 install lsd
 
 install starship
+
+install zoxide

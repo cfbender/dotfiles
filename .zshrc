@@ -144,4 +144,4 @@ fi
 eval $(thefuck --alias)
 eval "$(~/.local/bin/mise activate zsh)"
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"

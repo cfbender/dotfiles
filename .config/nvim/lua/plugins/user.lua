@@ -283,6 +283,7 @@ return {
   },
   {
     "pwntester/octo.nvim",
+    enabled = false,
     lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",

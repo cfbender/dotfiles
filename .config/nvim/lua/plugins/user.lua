@@ -45,12 +45,8 @@ return {
         status.component.git_diff(),
         status.component.diagnostics(),
         status.component.fill(),
-        status.component.cmd_info(),
         status.component.fill(),
         status.component.lsp(),
-        status.component.treesitter(),
-        -- codeium_status,
-        status.component.nav(),
         -- remove the 2nd mode indicator on the right
       }
 
@@ -196,12 +192,15 @@ return {
       )
     end,
   },
+  -- COLORSCHEMES
+  "shaunsingh/nord.nvim",
+  "Mofiqul/dracula.nvim",
   {
     "catppuccin/nvim", -- Soothing pastel theme for Neovim
     name = "catppuccin",
     config = function()
       require("catppuccin").setup {
-        flavour = "mocha",
+        flavour = "frappe",
         dim_inactive = { enabled = true, percentage = 0.25 },
         integrations = {
           cmp = true,

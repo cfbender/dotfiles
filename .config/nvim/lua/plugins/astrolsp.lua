@@ -25,7 +25,7 @@ return {
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
-          "markdown"
+          "markdown",
         },
       },
       -- filter = function(client) -- fully override the default formatting function
@@ -79,32 +79,32 @@ return {
     handlers = {
       -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server
       function(server, opts) require("lspconfig")[server].setup(opts) end,
-      -- lexical = function(_, opts) 
-      --       local lspconfig = require("lspconfig")
-      --       local configs = require("lspconfig.configs")
-      --
-      --       local lexical_config = {
-      --         filetypes = { "elixir", "eelixir", "heex" },
-      --         cmd = { "/Users/cfb/code/github/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
-      --         settings = {},
-      --       }
-      --
-      --       if not configs.lexical then
-      --         configs.lexical = {
-      --           default_config = {
-      --             filetypes = lexical_config.filetypes,
-      --             cmd = lexical_config.cmd,
-      --             root_dir = function(fname)
-      --               return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
-      --             end,
-      --             -- optional settings
-      --             settings = lexical_config.settings,
-      --           },
-      --         }
-      --       end
-      --
-      --       lspconfig.lexical.setup({})
-      -- end,
+      lexical = function(_, _)
+        local lspconfig = require "lspconfig"
+        local configs = require "lspconfig.configs"
+
+        local lexical_config = {
+          filetypes = { "elixir", "eelixir", "heex" },
+          cmd = { "/Users/cfb/code/github/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
+          settings = {},
+        }
+
+        if not configs.lexical then
+          configs.lexical = {
+            default_config = {
+              filetypes = lexical_config.filetypes,
+              cmd = lexical_config.cmd,
+              root_dir = function(fname)
+                return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
+              end,
+              -- optional settings
+              settings = lexical_config.settings,
+            },
+          }
+        end
+
+        lspconfig.lexical.setup {}
+      end,
       -- the key is the server that is being setup with `lspconfig`
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed

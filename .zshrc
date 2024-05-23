@@ -145,3 +145,13 @@ eval $(thefuck --alias)
 eval "$(~/.local/bin/mise activate zsh)"
 
 eval "$(zoxide init zsh --cmd cd)"
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+
+# bun completions
+[ -s "/Users/cfb/.bun/_bun" ] && source "/Users/cfb/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+eval "$(atuin init zsh)"

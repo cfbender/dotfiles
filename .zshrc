@@ -115,7 +115,11 @@ export PATH=~/bin:$PATH
 export PATH="$(yarn global bin):$PATH"
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
+# FZF config
 export FZF_DEFAULT_COMMAND='fd'
+export FZF_DEFAULT_OPTS="--reverse --ansi --color=bg+:-1,fg:15,fg+:-1,prompt:6,header:5,pointer:2,hl:3,hl+:3,spinner:05,info:15,border:15"
+
+alias yeehaw=rally.sh
 
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"

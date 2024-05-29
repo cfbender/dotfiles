@@ -1,0 +1,30 @@
+session: Houston
+root: ~/code/pdq/houston/
+
+before_start:
+  - docker-compose --project-directory ../devops/local-dev --profile houston up -d
+  - docker-compose up -d
+
+stop:
+  - docker-compose --project-directory ../devops/local-dev stop
+  - docker-compose stop
+
+windows:
+  - name: " "
+    commands:
+      - nvim
+  - name: " "
+    commands:
+      - nvim cfbpad
+    layout: main-vertical
+    panes:
+      - type: horizontal
+        commands:
+          - iex -S mix phx.server
+  - name: " "
+    commands:
+      - clear
+    panes:
+      - type: horizontal
+        commands:
+          - cd assets && npm run dev

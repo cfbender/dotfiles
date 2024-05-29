@@ -123,6 +123,10 @@ export LC_ALL="en_US.UTF-8"
 export VISUAL="nvim"
 export EDITOR="nvim"
 
+alias vconf="nvim ~/.config/nvim/"
+
+alias nup='nvim --headless "+Lazy! sync" +qa'
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'

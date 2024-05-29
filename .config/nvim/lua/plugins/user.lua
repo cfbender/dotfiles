@@ -195,6 +195,7 @@ return {
   -- COLORSCHEMES
   "shaunsingh/nord.nvim",
   "Mofiqul/dracula.nvim",
+  "rebelot/kanagawa.nvim",
   {
     "catppuccin/nvim", -- Soothing pastel theme for Neovim
     name = "catppuccin",
@@ -204,9 +205,30 @@ return {
         dim_inactive = { enabled = true, percentage = 0.25 },
         integrations = {
           cmp = true,
-          dap = { enabled = true, enable_ui = true },
+          dap = true,
+          dap_ui = true,
           hop = true,
           mason = true,
+          native_lsp = {
+            enabled = true,
+            virtual_text = {
+              errors = { "italic" },
+              hints = { "italic" },
+              warnings = { "italic" },
+              information = { "italic" },
+              ok = { "italic" },
+            },
+            underlines = {
+              errors = { "underline" },
+              hints = { "underline" },
+              warnings = { "underline" },
+              information = { "underline" },
+              ok = { "underline" },
+            },
+            inlay_hints = {
+              background = true,
+            },
+          },
           neotest = true,
           neotree = true,
           notify = true,
@@ -216,6 +238,7 @@ return {
           semantic_tokens = true,
           symbols_outline = true,
           telescope = { enabled = true },
+          treesitter = true,
           which_key = true,
         },
       }

@@ -368,6 +368,15 @@ return {
       }
     end,
   },
+  {
+    "preservim/vimux",
+    event = "VeryLazy",
+    init = function()
+      vim.g.VimuxOrientation = "h"
+      vim.g.VimuxHeight = "30"
+      vim.g.VimuxCloseOnExit = true
+    end,
+  },
   -- no config needed plugins
   { "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim
   { "andymass/vim-matchup", event = "BufRead" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen

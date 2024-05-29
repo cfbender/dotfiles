@@ -38,7 +38,37 @@ return {
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
       -- first key is the mode
+      v = {
+        ["<C-c><C-c>"] = {
+          desc = "Send to Vimux",
+          function()
+            -- yank text into v register
+            if vim.api.nvim_get_mode()["mode"] == "n" then
+              vim.cmd 'normal vip"vy'
+            else
+              vim.cmd 'normal "vy'
+            end
+            -- construct command with v register as command to send
+            -- vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
+            vim.cmd "call VimuxRunCommand(@v)"
+          end,
+        },
+      },
       n = {
+        ["<C-c><C-c>"] = {
+          desc = "Send to Vimux",
+          function()
+            -- yank text into v register
+            if vim.api.nvim_get_mode()["mode"] == "n" then
+              vim.cmd 'normal vip"vy'
+            else
+              vim.cmd 'normal "vy'
+            end
+            -- construct command with v register as command to send
+            -- vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
+            vim.cmd "call VimuxRunCommand(@v)"
+          end,
+        },
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
         -- second key is the lefthand side of the map
         -- hop.nvim

@@ -13,7 +13,14 @@ windows:
   - name: " "
     commands:
       - nvim
-  - name: " "
+  - name: "  "
+    commands:
+      - clear
+    panes:
+      - type: vertical
+        commands:
+          - cd assets && npm run dev
+  - name: " "
     commands:
       - nvim cfbpad
     layout: main-vertical
@@ -21,10 +28,3 @@ windows:
       - type: horizontal
         commands:
           - iex -S mix phx.server
-  - name: " "
-    commands:
-      - clear
-    panes:
-      - type: horizontal
-        commands:
-          - cd assets && npm run dev

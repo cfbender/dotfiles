@@ -1,5 +1,6 @@
+"$schema" = 'https://starship.rs/config-schema.json'
 # Sets user-defined palette
-palette = "catppuccin_mocha"
+palette = "catppuccin_frappe"
 
 command_timeout = 2500
 
@@ -20,23 +21,130 @@ disabled = true
 [memory_usage]
 format = '\[$symbol[$ram( | $swap)]($style)\]'
 
-[rust]
-format = '\[[$symbol($version)]($style)\]'
-symbol = ' '
-
-[elixir]
-symbol = " "
-
-[haskell]
-symbol = " "
-
 [hostname]
 disabled = true
 
+[line_break]
+disabled = false
+[package]
+disabled = true
+[docker_context]
+disabled = true
+[c]
+disabled = true
+[cmake]
+disabled = true
+[cobol]
+disabled = true
+[daml]
+disabled = true
+[dart]
+disabled = true
+[deno]
+disabled = true
+[dotnet]
+disabled = true
+[elixir]
+disabled = true
+[elm]
+disabled = true
+[erlang]
+disabled = true
+[fennel]
+disabled = true
+[gleam]
+disabled = true
+[golang]
+disabled = true
+[guix_shell]
+disabled = true
+[haskell]
+disabled = true
+[haxe]
+disabled = true
+[helm]
+disabled = true
+[java]
+disabled = true
+[julia]
+disabled = true
+[kotlin]
+disabled = true
+[gradle]
+disabled = true
+[lua]
+disabled = true
+[nim]
+disabled = true
+[nodejs]
+disabled = true
+[ocaml]
+disabled = true
+[opa]
+disabled = true
+[perl]
+disabled = true
+[php]
+disabled = true
+[pulumi]
+disabled = true
+[purescript]
+disabled = true
+[python]
+disabled = true
+[quarto]
+disabled = true
+[raku]
+disabled = true
+[rlang]
+disabled = true
+[red]
+disabled = true
+[ruby]
+disabled = true
+[rust]
+disabled = true
+[scala]
+disabled = true
+[solidity]
+disabled = true
+[swift]
+disabled = true
+[terraform]
+disabled = true
+[typst]
+disabled = true
+[vlang]
+disabled = true
+[vagrant]
+disabled = true
+[zig]
+disabled = true
+[buf]
+disabled = true
+[nix_shell]
+disabled = true
+[conda]
+disabled = true
+[meson]
+disabled = true
+[spack]
+disabled = true
+[aws]
+disabled = true
 [gcloud]
 disabled = true
-
-[docker_context]
+[openstack]
+disabled = true
+[azure]
+disabled = true
+[nats]
+disabled = true
+[direnv]
+disabled = true
+[env_var]
+disabled = true
+[crystal]
 disabled = true
 
 [palettes.catppuccin_mocha]
@@ -66,3 +174,31 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
+
+[palettes.catppuccin_frappe]
+rosewater = "#f2d5cf"
+flamingo = "#eebebe"
+pink = "#f4b8e4"
+mauve = "#ca9ee6"
+red = "#e78284"
+maroon = "#ea999c"
+peach = "#ef9f76"
+yellow = "#e5c890"
+green = "#a6d189"
+teal = "#81c8be"
+sky = "#99d1db"
+sapphire = "#85c1dc"
+blue = "#8caaee"
+lavender = "#babbf1"
+text = "#c6d0f5"
+subtext1 = "#b5bfe2"
+subtext0 = "#a5adce"
+overlay2 = "#949cbb"
+overlay1 = "#838ba7"
+overlay0 = "#737994"
+surface2 = "#626880"
+surface1 = "#51576d"
+surface0 = "#414559"
+base = "#303446"
+mantle = "#292c3c"
+crust = "#232634"

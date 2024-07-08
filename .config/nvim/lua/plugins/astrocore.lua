@@ -55,6 +55,8 @@ return {
         },
       },
       n = {
+        ["\\"] = false,
+        ["|"] = false,
         ["<C-c><C-c>"] = {
           desc = "Send to Vimux",
           function()

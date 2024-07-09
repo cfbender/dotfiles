@@ -28,3 +28,6 @@ windows:
       - type: horizontal
         commands:
           - iex -S mix phx.server
+  - name: " "
+    commands:
+      - gh dash

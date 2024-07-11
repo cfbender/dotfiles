@@ -1,6 +1,6 @@
 prSections:
   - title: Needs My Review
-    filters: is:pr is:open sort:updated-desc draft:false -author:@me review-requested:@me repo:pdq/houston repo:pdq/rover
+    filters: is:pr is:open sort:updated-desc draft:false -author:@me -reviewed-by:@me repo:pdq/houston repo:pdq/rover
   - title: My Pull Requests
     filters: is:open author:@me
     layout:

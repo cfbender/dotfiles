@@ -165,15 +165,25 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 eval "$(atuin init zsh)"
 alias bup="brew update && brew upgrade"
 
+# this shit don't work because the github CLI is bunk af and won't take a file name 
+# it only uses the committed one, so even if you try to replace it on the fly it won't use it
 function gpc() {
-   if [ ! -d "./.github" ]; then
-     mkdir -p ./.github
-     cp ~/.github/pull_request_template.md ./.github/pull_request_template.md
-     gh pr create -T pull_request_template.md
-     rm -rf ./.github
-   else
-     cp ~/.github/pull_request_template.md ./.github/pull_request_template.md
-     gh pr create -T pull_request_template.md
-     rm ./.github/pull_request_template.md
+  if [ -f "./.github/pull_request_template.md" ]; then
+      cp ./.github/pull_request_template.md ./.github/pull_request_template.md.bak
+      cp ~/.github/pull_request_template.md ./.github/pull_request_template.md
+      gh pr create -T pull_request_template.md
+      cp ./.github/pull_request_template.md.bak ./.github/pull_request_template.md
+      rm ./.github/pull_request_template.md.bak
+  else
+    if [ ! -d "./.github" ]; then
+      mkdir -p ./.github
+      cp ~/.github/pull_request_template.md ./.github/pull_request_template.md
+      gh pr create -T pull_request_template.md
+      rm -rf ./.github
+    else
+      cp ~/.github/pull_request_template.md ./.github/pull_request_template.md
+      gh pr create -T pull_request_template.md
+      rm ./.github/pull_request_template.md
+    fi
   fi
 }

@@ -164,3 +164,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(atuin init zsh)"
 alias bup="brew update && brew upgrade"
+
+function gpc() {
+   if [ ! -d "./.github" ]; then
+     mkdir -p ./.github
+     cp ~/.github/pull_request_template.md ./.github/pull_request_template.md
+     gh pr create -T pull_request_template.md
+     rm -rf ./.github
+   else
+     cp ~/.github/pull_request_template.md ./.github/pull_request_template.md
+     gh pr create -T pull_request_template.md
+     rm ./.github/pull_request_template.md
+  fi
+}

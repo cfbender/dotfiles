@@ -377,6 +377,13 @@ return {
       vim.g.VimuxCloseOnExit = true
     end,
   },
+  {
+    "MeanderingProgrammer/markdown.nvim",
+    main = "render-markdown",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+  },
   -- no config needed plugins
   { "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim
   { "andymass/vim-matchup", event = "BufRead" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen

@@ -1,6 +1,7 @@
 [core]
-    editor = nvim
+  editor = nvim
 	autocrlf = false
+	pager = delta
 [user]
 	email = cody.bender@pdq.com
 	name = Cody Bender
@@ -48,23 +49,35 @@
   side-by-side = true
   navigate = true    # use n and N to move between diff sections
   dark = true
-  file-decoration-style = none
-  file-style = omit
-  hunk-header-decoration-style = "#f5e0dc" box ul # Catppuccin Mocha - Rosewater
-  hunk-header-file-style = "#9399b2" # Catppuccin Mocha - Overlay2
-  hunk-header-line-number-style = bold "#11111b" # Catppuccin Mocha - Crust
-  hunk-header-style = file line-number syntax
-  line-numbers = true
-  line-numbers-left-style = "#f5e0dc" # Catppuccin Mocha - Rosewater
-  line-numbers-minus-style = "#fab387" # Catppuccin Mocha - Peach
-  line-numbers-plus-style = "#89b4fa" # Catppuccin Mocha - Blue
-  line-numbers-right-style = "#f5e0dc" # Catppuccin Mocha - Rosewater
-  line-numbers-zero-style = "#9399b2" # Catppuccin Mocha - Overlay2
-  minus-emph-style = normal "#A6775A"  # Catppuccin Mocha - Peach (alpha 98 -> 65)
-  minus-style = syntax "#805B45" # Catppuccin Mocha - Peach (alpha 98 -> 50)
-  plus-emph-style = syntax "#5B78A6" # Catppuccin Mocha - Blue (alpha 98 -> 65)
-  plus-style = syntax "#465C80" # Catppuccin Mocha - Blue (alpha 98 -> 50)
-  syntax-theme = Catppuccin-mocha
+  blame-palette = "#303446 #292c3c #232634 #414559 #51576d"
+	commit-decoration-style = box ul
+	dark = true
+	file-decoration-style = "#c6d0f5"
+	file-style = "#c6d0f5"
+	hunk-header-decoration-style = box ul
+	hunk-header-file-style = bold
+	hunk-header-line-number-style = bold "#a5adce"
+	hunk-header-style = file line-number syntax
+	line-numbers-left-style = "#737994"
+	line-numbers-minus-style = bold "#e78284"
+	line-numbers-plus-style = bold "#a6d189"
+	line-numbers-right-style = "#737994"
+	line-numbers-zero-style = "#737994"
+	# 25% red 75% base
+	minus-emph-style = bold syntax "#5e4855"
+	# 10% red 90% base
+	minus-style = syntax "#433c4c"
+	# 25% green 75% base
+	plus-emph-style = bold syntax "#4e5b56"
+	# 10% green 90% base
+	plus-style = syntax "#3c444d"
+	map-styles = \
+		bold purple => syntax "#574f6e", \
+		bold blue => syntax "#475270", \
+		bold cyan => syntax "#4a5b6b", \
+		bold yellow => syntax "#5d5958"
+	# Should match the name of the bat theme
+	syntax-theme = Catppuccin Frappe
 
 [merge]
   conflictstyle = diff3

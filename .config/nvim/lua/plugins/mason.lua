@@ -9,14 +9,7 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "ts_ls",
         "lexical",
-        "rust_analyzer",
-        "lua_ls",
-        "yamlls",
-        "html",
-        "hls",
-        "lua_ls",
       })
     end,
   },
@@ -27,8 +20,7 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "eslint_d",
-        "stylua",
+        -- "stylua",
         -- add more arguments for adding more null-ls sources
       })
     end,

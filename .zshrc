@@ -194,7 +194,7 @@ function mt() {
   else
     cat -p \
     <(find lib test -type f -iname "*$1*_test.exs" -exec rg "test\s" --vimgrep -s {} \; | cut -d':' -f1,2) \
-    <(rg "(test|describe).*$1" lib/**/*_test.exs test/**/*_test.exs --vimgrep | cut -d':' -f1,2) \
+    <(rg "(test\s|describe\s).*$1" lib/**/*_test.exs test/**/*_test.exs --vimgrep | cut -d':' -f1,2) \
     | xargs mix test
   fi
 }

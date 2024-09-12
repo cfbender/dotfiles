@@ -107,19 +107,6 @@ return {
           function() require("neotest").run.run(vim.fn.expand "%") end,
           desc = "Run tests for the current file",
         },
-        -- copilot
-        ["<leader>k"] = { name = " Copilot" },
-        ["<leader>kp"] = {
-          "<cmd>Copilot panel<cr>",
-          desc = "Open copilot panel",
-        },
-        ["<leader>kt"] = {
-          function()
-            local copilot = require "copilot.suggestion"
-            copilot.toggle_auto_trigger()
-          end,
-          desc = "Toggle suggestions",
-        },
         -- coverage
         ["<leader>lc"] = {
           function() require("coverage").toggle() end,

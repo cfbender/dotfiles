@@ -12,8 +12,6 @@ return {
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     config.sources = {
       -- Set a formatter
-      null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.prettier,
       null_ls.builtins.formatting.mix,
       null_ls.builtins.diagnostics.credo.with {
         extra_args = { "--ignore", "todo" },

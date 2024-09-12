@@ -5,25 +5,6 @@
 return {
   "andweeb/presence.nvim",
   -- configuring builtins
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   opts = {
-  --     performance = {
-  --       debounce = 300,
-  --       throttle = 120,
-  --       fetching_timeout = 100,
-  --     },
-  --     experimental = {
-  --       ghost_text = true,
-  --     },
-  --     sources = {
-  --       { name = "nvim_lsp", priority = 1000 },
-  --       { name = "luasnip", priority = 700 },
-  --       { name = "path", priority = 650 },
-  --       { name = "buffer", priority = 400 },
-  --     },
-  --   },
-  -- },
   {
     "rebelot/heirline.nvim",
     opts = function(_, opts)

@@ -20,6 +20,9 @@ windows:
       - type: vertical
         commands:
           - cd assets && npm run dev
+  - name: "󰂓󰙨 "
+    commands:
+      - mtw
   - name: " "
     commands:
       - nvim cfbpad

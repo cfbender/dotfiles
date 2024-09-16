@@ -98,7 +98,7 @@ source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="code ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 

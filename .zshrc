@@ -149,7 +149,6 @@ if [[ ! -z "$SSH_CONNECTION" ]]; then
   export PINENTRY_USER_DATA="USE_CURSES=1"
 fi
 
-eval $(thefuck --alias)
 eval "$(~/.local/bin/mise activate zsh)"
 
 eval "$(zoxide init zsh --cmd cd)"

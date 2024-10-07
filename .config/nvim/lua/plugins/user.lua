@@ -146,6 +146,7 @@ return {
   "shaunsingh/nord.nvim",
   "Mofiqul/dracula.nvim",
   "rebelot/kanagawa.nvim",
+  { "rose-pine/neovim", name = "rose-pine" },
   {
     "catppuccin/nvim", -- Soothing pastel theme for Neovim
     name = "catppuccin",
@@ -192,8 +193,6 @@ return {
           which_key = true,
         },
       }
-
-      vim.cmd [[colorscheme catppuccin]]
     end,
     lazy = false,
     priority = 1000,

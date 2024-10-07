@@ -1,151 +1,65 @@
 "$schema" = 'https://starship.rs/config-schema.json'
-# Sets user-defined palette
-palette = "catppuccin_frappe"
+format = """
+$username \
+$directory \
+$git_branch \
+$git_status \
+$fill \
+$memory_usage \
+$time\n  \
+[󱞪](fg:iris) 
+"""
 
-command_timeout = 2500
+palette = "rose-pine"
 
-[character]
-# Note the use of Catppuccin color 'maroon'
-success_symbol = "[[](green) ❯](maroon)"
-error_symbol = "[❯](red)"
-vicmd_symbol = "[❮](green)"
+[palettes.rose-pine]
+overlay = '#26233a'
+love = '#eb6f92'
+gold = '#f6c177'
+rose = '#ebbcba'
+pine = '#31748f'
+foam = '#9ccfd8'
+iris = '#c4a7e7'
 
 [directory]
-truncation_length = 4
-# Catppuccin 'lavender'
-style = "bold lavender"
+format = "[](fg:overlay)[ $path ]($style)[](fg:overlay)"
+style = "bg:overlay fg:pine"
+truncation_length = 3
+truncation_symbol = "…/"
 
-[cmd_duration]
+[directory.substitutions]
+Documents = "󰈙"
+Downloads = " "
+Music = " "
+Pictures = " "
+
+[fill]
+style = "fg:overlay"
+symbol = " "
+
+[git_branch]
+format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay)"
+style = "bg:overlay fg:foam"
+symbol = ""
+
+[git_status]
+style = "bg:overlay fg:love"
+format = '[](fg:overlay)[$all_status$ahead_behind]($style)[](fg:overlay)'
 disabled = true
 
-[memory_usage]
-format = '\[$symbol[$ram( | $swap)]($style)\]'
-
-[hostname]
-disabled = true
-
-[line_break]
+[time]
 disabled = false
-[package]
-disabled = true
-[docker_context]
-disabled = true
-[c]
-disabled = true
-[cmake]
-disabled = true
-[cobol]
-disabled = true
-[daml]
-disabled = true
-[dart]
-disabled = true
-[deno]
-disabled = true
-[dotnet]
-disabled = true
-[elixir]
-disabled = true
-[elm]
-disabled = true
-[erlang]
-disabled = true
-[fennel]
-disabled = true
-[gleam]
-disabled = true
-[golang]
-disabled = true
-[guix_shell]
-disabled = true
-[haskell]
-disabled = true
-[haxe]
-disabled = true
-[helm]
-disabled = true
-[java]
-disabled = true
-[julia]
-disabled = true
-[kotlin]
-disabled = true
-[gradle]
-disabled = true
-[lua]
-disabled = true
-[nim]
-disabled = true
-[nodejs]
-disabled = true
-[ocaml]
-disabled = true
-[opa]
-disabled = true
-[perl]
-disabled = true
-[php]
-disabled = true
-[pulumi]
-disabled = true
-[purescript]
-disabled = true
-[python]
-disabled = true
-[quarto]
-disabled = true
-[raku]
-disabled = true
-[rlang]
-disabled = true
-[red]
-disabled = true
-[ruby]
-disabled = true
-[rust]
-disabled = true
-[scala]
-disabled = true
-[solidity]
-disabled = true
-[swift]
-disabled = true
-[terraform]
-disabled = true
-[typst]
-disabled = true
-[vlang]
-disabled = true
-[vagrant]
-disabled = true
-[zig]
-disabled = true
-[buf]
-disabled = true
-[nix_shell]
-disabled = true
-[conda]
-disabled = true
-[meson]
-disabled = true
-[spack]
-disabled = true
-[aws]
-disabled = true
-[gcloud]
-disabled = true
-[openstack]
-disabled = true
-[azure]
-disabled = true
-[nats]
-disabled = true
-[direnv]
-disabled = true
-[env_var]
-disabled = true
-[crystal]
-disabled = true
+format = "[](fg:overlay)[ $time 󰴈 ]($style)[](fg:overlay)"
+style = "bg:overlay fg:rose"
+time_format = "%I:%M%P"
+use_12hr = true
+
+[username]
+disabled = false
+format = "[](fg:overlay)[ 󰧱 $user ]($style)[](fg:overlay)"
+show_always = true
+style_root = "bg:overlay fg:iris"
+style_user = "bg:overlay fg:iris"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

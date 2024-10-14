@@ -7,10 +7,10 @@ $git_status \
 $fill \
 $memory_usage \
 $time\n  \
-[󱞪](fg:iris) 
+[󱞪](fg:mauve) 
 """
 
-palette = "rose-pine"
+palette = "catppuccin_frappe"
 
 [palettes.rose-pine]
 overlay = '#26233a'
@@ -23,7 +23,7 @@ iris = '#c4a7e7'
 
 [directory]
 format = "[](fg:overlay)[ $path ]($style)[](fg:overlay)"
-style = "bg:overlay fg:pine"
+style = "bg:overlay fg:rosewater"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -39,7 +39,7 @@ symbol = " "
 
 [git_branch]
 format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay)"
-style = "bg:overlay fg:foam"
+style = "bg:overlay fg:peach"
 symbol = ""
 
 [git_status]
@@ -49,17 +49,17 @@ disabled = true
 
 [time]
 disabled = false
-format = "[](fg:overlay)[ $time 󰴈 ]($style)[](fg:overlay)"
-style = "bg:overlay fg:rose"
+format = "[](fg:overlay)[ $time  ]($style)[](fg:overlay)"
+style = "bg:overlay fg:teal"
 time_format = "%I:%M%P"
 use_12hr = true
 
 [username]
 disabled = false
-format = "[](fg:overlay)[ 󰧱 $user ]($style)[](fg:overlay)"
+format = "[](fg:overlay)[  $user ]($style)[](fg:overlay)"
 show_always = true
-style_root = "bg:overlay fg:iris"
-style_user = "bg:overlay fg:iris"
+style_root = "bg:overlay fg:blue"
+style_user = "bg:overlay fg:blue"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
@@ -85,6 +85,7 @@ overlay0 = "#6c7086"
 surface2 = "#585b70"
 surface1 = "#45475a"
 surface0 = "#313244"
+overlay = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
@@ -113,6 +114,7 @@ overlay0 = "#737994"
 surface2 = "#626880"
 surface1 = "#51576d"
 surface0 = "#414559"
+overlay = "#414559"
 base = "#303446"
 mantle = "#292c3c"
 crust = "#232634"

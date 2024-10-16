@@ -201,3 +201,13 @@ function mt() {
 function mtw() {
   fswatch lib test | mix test --listen-on-stdin --stale
 }
+
+source <(pkgx --shellcode)  #docs.pkgx.sh/shellcode
+
+function im() {
+  iex -S mix
+}
+
+function imp() {
+  iex -S mix phx.server
+}

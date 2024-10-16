@@ -26,6 +26,7 @@
 	sws = "!f() { git stash && git sw \"$@\" && git stash pop; }; f"
 	rc = "!f() { git add -A && git rebase --continue; }; f"
 	fuck = "!f() { git add -A && git commit --amend --no-edit; }; f"
+	squash-base = "!f() { (git merge-base HEAD origin/main | xargs git reset --soft) && git add . && git commit; }; f"
 	clean-branches = "!f() { git branch --merged | egrep -v \"(^master|main)\" | xargs git branch -D; }; f"
 	su = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)
 [diff]

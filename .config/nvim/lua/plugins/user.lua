@@ -185,51 +185,49 @@ return {
   {
     "catppuccin/nvim", -- Soothing pastel theme for Neovim
     name = "catppuccin",
-    config = function()
-      require("catppuccin").setup {
-        flavour = "frappe",
-        dim_inactive = { enabled = true, percentage = 0.25 },
-        integrations = {
-          cmp = true,
-          dap = true,
-          dap_ui = true,
-          flash = true,
-          gitsigns = true,
-          mason = true,
-          native_lsp = {
-            enabled = true,
-            virtual_text = {
-              errors = { "italic" },
-              hints = { "italic" },
-              warnings = { "italic" },
-              information = { "italic" },
-              ok = { "italic" },
-            },
-            underlines = {
-              errors = { "underline" },
-              hints = { "underline" },
-              warnings = { "underline" },
-              information = { "underline" },
-              ok = { "underline" },
-            },
-            inlay_hints = {
-              background = true,
-            },
+    opts = {
+      flavour = "frappe",
+      dim_inactive = { enabled = true, percentage = 0.25 },
+      integrations = {
+        cmp = true,
+        dap = true,
+        dap_ui = true,
+        flash = true,
+        gitsigns = true,
+        mason = true,
+        native_lsp = {
+          enabled = true,
+          virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+            ok = { "italic" },
           },
-          neotest = true,
-          neotree = true,
-          notify = true,
-          nvimtree = false,
-          octo = true,
-          sandwich = true,
-          semantic_tokens = true,
-          symbols_outline = true,
-          telescope = { enabled = true },
-          treesitter = true,
-          which_key = true,
+          underlines = {
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
+            ok = { "underline" },
+          },
+          inlay_hints = {
+            background = true,
+          },
         },
-      }
-    end,
+        neotest = true,
+        neotree = true,
+        notify = true,
+        nvimtree = false,
+        octo = true,
+        sandwich = true,
+        semantic_tokens = true,
+        symbols_outline = true,
+        telescope = { enabled = true },
+        treesitter = true,
+        which_key = true,
+      },
+    },
     lazy = false,
     priority = 1000,
   },
@@ -352,6 +350,12 @@ return {
     event = "VeryLazy",
     opts = {},
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+  },
+  {
+    "cbochs/grapple.nvim",
+    opts = {
+      scope = "git_branch",
+    },
   },
   -- no config needed plugins
   { "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim

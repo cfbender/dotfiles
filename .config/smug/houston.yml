@@ -14,23 +14,30 @@ windows:
     commands:
       - nvim
   - name: "  "
+    layout: main-vertical
     commands:
       - clear
     panes:
-      - type: vertical
+      - type: horizontal
         commands:
           - cd assets && npm run dev
+      - type: horizontal
+        commands:
+          - clear
   - name: "󰂓󰙨 "
     commands:
       - mtw
   - name: " "
     commands:
-      - nvim cfbpad
+      - iex -S mix phx.server
     layout: main-vertical
     panes:
       - type: horizontal
         commands:
-          - iex -S mix phx.server
+          - nvim cfbpad
+      - type: horizontal
+        commands:
+          - clear
   - name: " "
     commands:
       - gh dash

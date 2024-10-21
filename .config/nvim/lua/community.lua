@@ -8,6 +8,7 @@ return {
   { import = "astrocommunity.completion.copilot-cmp" },
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.motion.flash-nvim" },
+  { import = "astrocommunity.motion.grapple-nvim" },
   { import = "astrocommunity.pack.elixir-phoenix" },
   { import = "astrocommunity.pack.haskell" },
   { import = "astrocommunity.pack.html-css" },

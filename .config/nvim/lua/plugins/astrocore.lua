@@ -73,10 +73,6 @@ return {
         },
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
         -- second key is the lefthand side of the map
-        -- hop.nvim
-        ["<leader><space>"] = { name = "Hop" },
-        ["<leader><leader>w"] = { "<cmd>HopWord<cr>", desc = "Hop to a word" },
-        ["<leader><leader>p"] = { "<cmd>HopPattern<cr>", desc = "Hop to a pattern" },
         ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
         ["<leader>gj"] = {
           function() require("gitsigns").next_hunk() end,

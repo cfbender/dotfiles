@@ -12,7 +12,7 @@ return {
     features = {
       autoformat = true, -- enable or disable auto formatting on start
       codelens = true, -- enable/disable codelens refresh on start
-      inlay_hints = false, -- enable/disable inlay hints on start
+      inlay_hints = true, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
@@ -28,10 +28,6 @@ return {
           "markdown",
         },
       },
-      -- filter = function(client) -- fully override the default formatting function
-      --   return true
-      -- end
-      --
       disabled = { "sumneko_lua", "rust_analyzer" },
       timeout_ms = 5000,
       filter = function(client)
@@ -59,6 +55,15 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      vtsls = {
+        settings = {
+          typescript = {
+            inlayHints = {
+              variableTypes = { enabled = false },
+            },
+          },
+        },
+      },
       html = {
         filetypes = { "html", "heex" },
       },

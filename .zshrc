@@ -191,9 +191,15 @@ function mt() {
   if [ -z "$1" ]; then
     mix test
   else
+    add_test=""
+
+    if rg -q --no-messages "test" -g "test/**/*_test.exs"; then
+      add_test="lib/**/*_test.exs"
+    fi
+
     cat -p \
     <(find lib test -type f -iname "*$1*_test.exs" -exec rg "test\s" --vimgrep -s {} \; | cut -d':' -f1,2) \
-    <(rg "(test\s|describe\s).*$1" lib/**/*_test.exs test/**/*_test.exs --vimgrep -s | cut -d':' -f1,2) \
+    <(rg "(test\s|describe\s).*$1" -g "lib/**/*_test.exs" -g "$add_test" --vimgrep -s | cut -d':' -f1,2) \
     | xargs mix test
   fi
 }

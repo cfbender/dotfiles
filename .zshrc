@@ -67,6 +67,7 @@ plugins=(
         git 
         zsh-autosuggestions 
         zsh-syntax-highlighting
+        direnv
 )
 
 source $ZSH/oh-my-zsh.sh

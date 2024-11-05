@@ -165,6 +165,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 eval "$(atuin init zsh)"
 alias bup="brew update && brew upgrade"
 
+eval "$(task --completion zsh)"
+
 # this shit don't work because the github CLI is bunk af and won't take a file name 
 # it only uses the committed one, so even if you try to replace it on the fly it won't use it
 function gpc() {

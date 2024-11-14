@@ -8,7 +8,7 @@ $fill \
 $memory_usage \
 $time\n \
 $shell\
-[$indicator](fg:mauve) 
+[>](fg:mauve) 
 """
 
 palette = "catppuccin_frappe"
@@ -66,8 +66,6 @@ style_user = "bg:overlay fg:blue"
 disabled = false
 style = "fg:mauve"
 format = "[$indicator]($style)"
-zsh_indicator = "󱞪"
-bash_indicator = "$"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

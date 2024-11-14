@@ -13,9 +13,6 @@ local config = {
 	color_scheme = flavor,
 	-- for rosepine
 	-- window_frame = theme.window_frame(), -- needed only if using fancy tab bar
-	default_prog = {
-		"C:\\Users\\codyf\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.exe",
-	},
 	window_decorations = "RESIZE",
 }
 

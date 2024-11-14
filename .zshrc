@@ -167,6 +167,10 @@ alias bup="brew update && brew upgrade"
 
 eval "$(task --completion zsh)"
 
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
 # this shit don't work because the github CLI is bunk af and won't take a file name 
 # it only uses the committed one, so even if you try to replace it on the fly it won't use it
 function gpc() {

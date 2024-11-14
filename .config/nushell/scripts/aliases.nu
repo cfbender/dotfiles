@@ -12,7 +12,7 @@ export def mt [pattern?: string] {
         each  { $"($f.name):($in.index + 1)" }
       } | flatten
 
-    $test_files ++ $test_lines | echo ...$in
+    $test_files ++ $test_lines | mix test ...$in
 
   }
 }

@@ -164,13 +164,12 @@ alias df = duf
 alias cat = bat 
 alias dig = dog 
 
-$env.PATH = ($env.PATH | append "~/bin" | append "~/.local/bin" | append "~/.ripgreprc" | append "/opt/homebrew/bin")
-
 source ~/.local/share/atuin/init.nu
 source ~/.zoxide.nu
-use ~/.cache/starship/init.nu
 source ~/.cache/carapace/init.nu
 source ~/.config/nushell/scripts/aliases.nu
+use ~/.cache/starship/init.nu
+use ~/.config/nushell/scripts/mise.gen.nu
 
 
 # The default config record. This is where much of your global configuration is setup.

@@ -1,5 +1,5 @@
 export def mt [pattern?: string] {
-  if pattern == null { 
+  if $pattern == null { 
     mix test
   } else {
 

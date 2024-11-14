@@ -4,7 +4,9 @@ root: ${root}
 windows:
   - name: " "
     commands:
+      - nu
       - nvim
   - name: " "
     commands:
+      - nu
       - clear

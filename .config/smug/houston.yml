@@ -12,10 +12,12 @@ stop:
 windows:
   - name: " "
     commands:
+      - nu
       - nvim
   - name: "  "
     layout: main-vertical
     commands:
+      - nu
       - clear
     panes:
       - type: horizontal
@@ -23,9 +25,11 @@ windows:
           - cd assets && npm run dev
       - type: horizontal
         commands:
+          - nu
           - clear
   - name: "󰂓󰙨 "
     commands:
+      - nu
       - mtw
   - name: " "
     commands:
@@ -34,10 +38,13 @@ windows:
     panes:
       - type: horizontal
         commands:
+          - nu
           - nvim cfbpad
       - type: horizontal
         commands:
+          - nu
           - clear
   - name: " "
     commands:
+      - nu
       - gh dash

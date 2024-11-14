@@ -1,13 +1,14 @@
 "$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
-$username \
 $directory \
 $git_branch \
 $git_status \
 $fill \
 $memory_usage \
-$time\n  \
-[󱞪](fg:mauve) 
+$time\n \
+$shell\
+[$indicator](fg:mauve) 
 """
 
 palette = "catppuccin_frappe"
@@ -60,6 +61,13 @@ format = "[](fg:overlay)[  $user ]($style)[](fg:overlay)"
 show_always = true
 style_root = "bg:overlay fg:blue"
 style_user = "bg:overlay fg:blue"
+
+[shell]
+disabled = false
+style = "fg:mauve"
+format = "[$indicator]($style)"
+zsh_indicator = "󱞪"
+bash_indicator = "$"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

@@ -101,16 +101,10 @@ source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 alias zshconfig="code ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
 
 export PATH=${HOME}/.local/bin:$PATH
-
-if [[ $TILIX_ID ]]; then # Fixes Tilix new pane issue
-        source /etc/profile.d/vte.sh
-fi
 
 export PATH=~/bin:$PATH
 export PATH="$(yarn global bin):$PATH"

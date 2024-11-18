@@ -7,11 +7,9 @@
 	{{- end }}
 [user]
 	name = Cody Bender
+	email = {{ .email | quote }}
 	{{- if eq .chezmoi.hostname "MacBookPro" }}
-	email = {{ .work_email | quote }}
 	signingkey = B73884A5E8984488
-	{{- else }}
-	email = {{ .personal_email | quote }}
 	{{- end}}
 [push]
 	default = current

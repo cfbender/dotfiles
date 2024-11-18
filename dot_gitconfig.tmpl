@@ -1,0 +1,99 @@
+[core]
+  editor = nvim
+	autocrlf = false
+	pager = delta
+	{{- if eq .chezmoi.os "darwin" }}
+	excludesfile = /Users/cfb/.gitignore
+	{{- end }}
+[user]
+	name = Cody Bender
+	{{- if eq .chezmoi.hostname "MacBookPro" }}
+	email = {{ .work_email | quote }}
+	signingkey = B73884A5E8984488
+	{{- else }}
+	email = {{ .personal_email | quote }}
+	{{- end}}
+[push]
+	default = current
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[alias]
+  sw = switch
+  nb = switch -c
+	co = checkout
+  dt = difftool
+	st = status
+	cm = commit -m
+	pom = pull origin main
+	ac = "!f() { git add -A && git commit -m \"$@\";}; f"
+	acp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
+	pf = push --force-with-lease
+	sps = "!f() { git stash && git pom && git stash pop; }; f"
+	sws = "!f() { git stash && git sw \"$@\" && git stash pop; }; f"
+	rc = "!f() { git add -A && git rebase --continue; }; f"
+	fuck = "!f() { git add -A && git commit --amend --no-edit; }; f"
+	squash-base = "!f() { (git merge-base HEAD origin/main | xargs git reset --soft) && git add . && git commit; }; f"
+	clean-branches = "!f() { git branch --merged | egrep -v \"(^master|main)\" | xargs git branch -D; }; f"
+	su = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+ 	conflictstyle = diff3
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[init]
+  defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[interactive]
+  diffFilter = delta --color-only
+[add.interactive]
+  useBuiltin = false # required for git 2.37.0
+
+[delta]
+  commit-decoration-style = bold box ul
+  side-by-side = true
+  navigate = true    # use n and N to move between diff sections
+  dark = true
+  blame-palette = "#303446 #292c3c #232634 #414559 #51576d"
+	commit-decoration-style = box ul
+	dark = true
+	file-decoration-style = "#c6d0f5"
+	file-style = "#c6d0f5"
+	hunk-header-decoration-style = box ul
+	hunk-header-file-style = bold
+	hunk-header-line-number-style = bold "#a5adce"
+	hunk-header-style = file line-number syntax
+	line-numbers-left-style = "#737994"
+	line-numbers-minus-style = bold "#e78284"
+	line-numbers-plus-style = bold "#a6d189"
+	line-numbers-right-style = "#737994"
+	line-numbers-zero-style = "#737994"
+	# 25% red 75% base
+	minus-emph-style = bold syntax "#5e4855"
+	# 10% red 90% base
+	minus-style = syntax "#433c4c"
+	# 25% green 75% base
+	plus-emph-style = bold syntax "#4e5b56"
+	# 10% green 90% base
+	plus-style = syntax "#3c444d"
+	map-styles = \
+		bold purple => syntax "#574f6e", \
+		bold blue => syntax "#475270", \
+		bold cyan => syntax "#4a5b6b", \
+		bold yellow => syntax "#5d5958"
+	# Should match the name of the bat theme
+	syntax-theme = Catppuccin Frappe
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default

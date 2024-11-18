@@ -1,0 +1,4 @@
+.DS_Store
+.config/nvim/.luarc.json
+.config/nvim/lazy-lock.json
+cfbpad

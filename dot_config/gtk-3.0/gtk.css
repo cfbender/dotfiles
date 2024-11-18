@@ -1,0 +1,13 @@
+.budgie-panel {
+  background-color: rgba(40, 42, 54, 1);
+}
+
+.transparent {
+  background-color: rgba(40, 42, 54, 0.5);
+}
+
+.current-workspace {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+@import 'colors.css';

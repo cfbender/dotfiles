@@ -1,0 +1,4 @@
+{{- if ne .chezmoi.hostname "MacBookPro" }}
+dot_config/gh-dash/config.yml
+Brewfile
+{{- end }}

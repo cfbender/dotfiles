@@ -149,15 +149,17 @@ eval "$(~/.local/bin/mise activate zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
+{{- if eq .chezmoi.hostname "MacBookPro" }}
 # bun completions
 [ -s "/Users/cfb/.bun/_bun" ] && source "/Users/cfb/.bun/_bun"
+alias bup="brew update && brew upgrade"
+{{- end}}
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(atuin init zsh)"
-alias bup="brew update && brew upgrade"
 
 eval "$(task --completion zsh)"
 

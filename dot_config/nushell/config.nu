@@ -162,7 +162,7 @@ let theme = {
 alias grep = rg
 alias df = duf 
 alias cat = bat 
-alias dig = dog 
+alias dig = doggo 
 
 source ~/.local/share/atuin/init.nu
 source ~/.zoxide.nu

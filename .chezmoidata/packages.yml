@@ -1,0 +1,28 @@
+packages:
+  darwin:
+    brews:
+      - "git"
+      - "mise"
+      - "pkgx"
+      - "nushell"
+      - "bpytop"
+      - "go"
+      - "starship"
+      - "smug"
+      - "neovim"
+      - "lazygit"
+      - "zoxide"
+      - "atuin"
+      - "fswatch"
+      - "gum"
+      - "bat"
+      - "ripgrep"
+      - "duf"
+      - "doggo"
+      - "lsd"
+      - "tmux"
+      - "fzf"
+      - "gh"
+      - "cloc"
+    casks:
+      - "google-cloud-sdk"

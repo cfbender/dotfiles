@@ -164,14 +164,6 @@ alias df = duf
 alias cat = bat 
 alias dig = doggo 
 
-source ~/.local/share/atuin/init.nu
-source ~/.zoxide.nu
-source ~/.cache/carapace/init.nu
-source ~/.config/nushell/scripts/aliases.nu
-use ~/.cache/starship/init.nu
-use ~/.config/nushell/scripts/mise.gen.nu
-
-
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
     show_banner: false # true or false to enable or disable the welcome banner at startup
@@ -925,4 +917,9 @@ $env.config = {
     ]
 }
 
-$env.RIPGREP_CONFIG_PATH = "~/.ripgreprc"
+source ~/.local/share/atuin/init.nu
+source ~/.zoxide.nu
+source ~/.cache/carapace/init.nu
+source ~/.config/nushell/scripts/aliases.nu
+use ~/.cache/starship/init.nu
+use ~/.config/nushell/scripts/mise.gen.nu

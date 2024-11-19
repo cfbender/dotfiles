@@ -1,4 +1,5 @@
 README.md
+dot_config/nvim/lazy-lock.json
 {{- if ne .chezmoi.hostname "MacBookPro" }}
 dot_config/gh-dash/config.yml
 Brewfile

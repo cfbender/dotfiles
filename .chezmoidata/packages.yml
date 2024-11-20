@@ -5,6 +5,7 @@ packages:
       - "bat"
       - "bpytop"
       - "cloc"
+      - "direnv"
       - "doggo"
       - "duf"
       - "fswatch"

@@ -246,19 +246,17 @@ return {
 	{
 		"nvim-neotest/neotest", -- An extensible framework for interacting with tests within NeoVim.
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-			"antoinemadec/FixCursorHold.nvim",
 			"jfpedroza/neotest-elixir",
 			"marilari88/neotest-vitest",
 			"haydenmeade/neotest-jest",
+			"mrcjkb/neotest-haskell",
 		},
-		lazy = false,
 		config = function()
 			require("neotest").setup({
 				adapters = {
 					require("neotest-elixir"),
 					require("neotest-vitest"),
+					require("neotest-haskell"),
 					require("neotest-jest")({
 						jestCommand = "npm test --",
 						cwd = function()

@@ -13,7 +13,7 @@ local config = {
 	color_scheme = flavor,
 	-- for rosepine
 	-- window_frame = theme.window_frame(), -- needed only if using fancy tab bar
-	window_decorations = "RESIZE",
+	-- window_decorations = "RESIZE",
 }
 
 return config

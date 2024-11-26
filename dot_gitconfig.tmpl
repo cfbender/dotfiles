@@ -8,7 +8,7 @@
 [user]
 	name = Cody Bender
 	email = {{ .email | quote }}
-	{{- if eq .chezmoi.hostname "Codys-MacBook-Pro" }}
+	{{- if eq .chezmoi.os "darwin" }}
 	signingkey = B73884A5E8984488
 	{{- end}}
 [push]

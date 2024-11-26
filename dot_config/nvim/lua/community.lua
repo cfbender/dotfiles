@@ -12,6 +12,7 @@ return {
 	{ import = "astrocommunity.motion.grapple-nvim" },
 	{ import = "astrocommunity.pack.chezmoi" },
 	{ import = "astrocommunity.pack.elixir-phoenix" },
+	{ import = "astrocommunity.pack.go" },
 	{ import = "astrocommunity.pack.haskell" },
 	{ import = "astrocommunity.pack.html-css" },
 	{ import = "astrocommunity.pack.lua" },

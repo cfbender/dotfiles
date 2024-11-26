@@ -1,0 +1,7 @@
+. "$HOME/.cargo/env"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
+
+eval "$(pkgx --shellcode)"  #docs.pkgx.sh/shellcode
+eval "$(~/.local/bin/mise activate bash)"

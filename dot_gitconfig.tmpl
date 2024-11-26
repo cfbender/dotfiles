@@ -8,7 +8,11 @@
 [user]
 	name = Cody Bender
 	email = {{ .email | quote }}
+	{{- if eq .chezmoi.os "darwin" }}
+	signingkey = /Users/cfb/.ssh/id_ed25519.pub
+	{{- else }}
 	signingkey = ~/.ssh/id_ed25519.pub
+	{{- end }}
 [gpg]
 	format = ssh
 [push]

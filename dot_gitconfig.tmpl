@@ -8,9 +8,9 @@
 [user]
 	name = Cody Bender
 	email = {{ .email | quote }}
-	{{- if eq .chezmoi.os "darwin" }}
-	signingkey = B73884A5E8984488
-	{{- end}}
+	signingkey = ~/.ssh/id_ed25519.pub
+[gpg]
+	format = ssh
 [push]
 	default = current
 	autoSetupRemote = true

@@ -360,6 +360,16 @@ return {
 			scope = "git_branch",
 		},
 	},
+	{
+		"zbirenbaum/copilot.lua",
+		opts = {
+			suggestion = {
+				keymap = {
+					accept = "<M-=>",
+				},
+			},
+		},
+	},
 	-- no config needed plugins
 	{ "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim
 	{ "andymass/vim-matchup", event = "BufRead" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen

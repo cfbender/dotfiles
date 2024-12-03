@@ -6,7 +6,7 @@
 return {
 	"AstroNvim/astrocommunity",
 	{ import = "astrocommunity.colorscheme.catppuccin" },
-	{ import = "astrocommunity.completion.copilot-cmp" },
+	{ import = "astrocommunity.completion.copilot-lua" },
 	{ import = "astrocommunity.git.diffview-nvim" },
 	{ import = "astrocommunity.git.fugit2-nvim" },
 	{ import = "astrocommunity.lsp.lsp-signature-nvim" },

@@ -3,7 +3,7 @@ packages:
     brews:
       - "atuin"
       - "bat"
-      - "bpytop"
+      - "bottom"
       - "cloc"
       - "direnv"
       - "doggo"

@@ -24,3 +24,4 @@ export def mtw [] {
 alias im = iex -S mix
 alias imp = iex -S mix phx.server
 alias yeehaw = rally.sh
+alias bup = brew update; brew upgrade

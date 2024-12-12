@@ -92,41 +92,6 @@ return {
 					desc = "Previous Git hunk",
 				},
 				["<leader>ff"] = { "<cmd>Telescope git_files<cr>", desc = "Search all files in git" },
-				["<leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume previous telescope search" },
-				["<leader>lg"] = { "<cmd>Neogen<cr>", desc = "Generate annotation for the current node" },
-				-- neotest
-				["<leader>n"] = { name = " Neotest", desc = " Neotest" },
-				["<leader>nn"] = {
-					function()
-						require("neotest").run.run()
-					end,
-					desc = "Run the nearest test",
-				},
-				["<leader>nd"] = {
-					function()
-						require("neotest").run.run({ strategy = "dap" })
-					end,
-					desc = "Debug the nearest test",
-				},
-				["<leader>ns"] = {
-					function()
-						require("neotest").summary.toggle()
-					end,
-					desc = "Toggle test summary",
-				},
-				["<leader>nf"] = {
-					function()
-						require("neotest").run.run(vim.fn.expand("%"))
-					end,
-					desc = "Run tests for the current file",
-				},
-				-- coverage
-				["<leader>lc"] = {
-					function()
-						require("coverage").toggle()
-					end,
-					desc = "Toggle coverage info",
-				},
 				-- resize with arrows
 				["<Up>"] = {
 					function()

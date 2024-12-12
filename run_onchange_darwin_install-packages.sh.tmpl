@@ -11,4 +11,13 @@ cask {{ . | quote }}
 EOF
 {{ end -}}
 
+if ! command -v rustup 2>&1 >/dev/null
+then
 curl https://sh.rustup.rs -sSf | sh
+fi
+
+if ! command -v mise 2>&1 >/dev/null
+then
+curl https://mise.run | sh
+fi
+

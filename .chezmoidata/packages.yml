@@ -22,7 +22,6 @@ packages:
       - "mise"
       - "neovim"
       - "nushell"
-      - "pkgx"
       - "ripgrep"
       - "smug"
       - "starship"

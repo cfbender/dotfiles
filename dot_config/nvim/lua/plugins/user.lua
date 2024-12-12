@@ -245,6 +245,7 @@ return {
 	},
 	{
 		"nvim-neotest/neotest", -- An extensible framework for interacting with tests within NeoVim.
+		enabled = false,
 		dependencies = {
 			"jfpedroza/neotest-elixir",
 			"marilari88/neotest-vitest",

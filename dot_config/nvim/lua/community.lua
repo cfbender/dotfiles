@@ -25,6 +25,7 @@ return {
 	{ import = "astrocommunity.pack.sql" },
 	{ import = "astrocommunity.pack.typescript" },
 	{ import = "astrocommunity.pack.yaml" },
-	{ import = "astrocommunity.test.neotest" },
+	-- { import = "astrocommunity.test.neotest" },
+	{ import = "astrocommunity.test.vim-test" },
 	{ import = "astrocommunity.test.nvim-coverage" },
 }

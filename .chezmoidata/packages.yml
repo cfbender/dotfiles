@@ -4,6 +4,7 @@ packages:
       - "atuin"
       - "bat"
       - "bottom"
+      - "carapace"
       - "cloc"
       - "curlie"
       - "direnv"
@@ -29,3 +30,4 @@ packages:
       - "zoxide"
     casks:
       - "google-cloud-sdk"
+      - "wezterm"

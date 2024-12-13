@@ -13,7 +13,6 @@ packages:
       - "fswatch"
       - "fzf"
       - "gh"
-      - "ghcup"
       - "git"
       - "git-delta"
       - "go"

@@ -371,6 +371,21 @@ return {
 			},
 		},
 	},
+	{
+		"mrcjkb/haskell-tools.nvim",
+		init = function()
+			local astrolsp_avail, astrolsp = pcall(require, "astrolsp")
+			vim.g.haskell_tools = require("astrocore").extend_tbl({
+				hls = astrolsp_avail and {
+					capabilities = astrolsp.config.capabilities,
+					on_attach = astrolsp.on_attach,
+					settings = { haskell = { formattingProvider = "ormolu" } },
+				} or {
+					settings = { haskell = { formattingProvider = "ormolu" } },
+				},
+			}, vim.g.haskell_tools)
+		end,
+	},
 	-- no config needed plugins
 	{ "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim
 	{ "andymass/vim-matchup", event = "BufRead" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen

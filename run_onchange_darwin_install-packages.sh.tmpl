@@ -21,3 +21,7 @@ then
 curl https://mise.run | sh
 fi
 
+if ! command -v ghcup 2>&1 >/dev/null
+then
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+fi

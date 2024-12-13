@@ -7,6 +7,8 @@ $env.PATH = (
   | append ($env.HOME | path join .cargo bin)
   | append ($env.HOME | path join go bin)
   | append ($env.HOME | path join .local bin)
+  | append ($env.HOME | path join .cabal bin)
+  | append ($env.HOME | path join .ghcup bin)
   | uniq # filter so the paths are unique
 )
 

@@ -48,7 +48,7 @@ return {
 		"goolord/alpha-nvim",
 		opts = function()
 			local dashboard = require("alpha.themes.dashboard")
-			dashboard.section.header.val = require("helpers.ascii").no_bitches
+			dashboard.section.header.val = require("helpers.ascii").Sadge
 
 			dashboard.section.header.opts.hl = "DashboardHeader"
 

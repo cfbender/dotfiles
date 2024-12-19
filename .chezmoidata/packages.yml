@@ -21,6 +21,7 @@ packages:
       - "gum"
       - "lazygit"
       - "lsd"
+      - "magic-wormhole"
       - "neovim"
       - "node"
       - "nushell"

@@ -32,5 +32,6 @@ packages:
       - "yarn"
       - "zoxide"
     casks:
+      - "unnaturalscrollwheels"
       - "google-cloud-sdk"
       - "wezterm"

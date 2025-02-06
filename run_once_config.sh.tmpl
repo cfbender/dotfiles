@@ -17,3 +17,11 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
   ssh-add ~/.ssh/id_ed25519
   {{- end }}
 fi
+
+ if [ ! -d "$(bat --config-dir)/themes/Catppuccin Frappe.tmTheme" ]; then
+   wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+   wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+   wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+   wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+   bat cache --build
+fi

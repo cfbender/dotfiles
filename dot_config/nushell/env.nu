@@ -26,4 +26,7 @@ starship init nu | save -f ~/.cache/starship/init.nu
 
 zoxide init nushell | save -f ~/.zoxide.nu
 
+mkdir ~/.local/share/atuin/
+atuin init nu | save --force ~/.local/share/atuin/init.nu
+
 $env.config.buffer_editor = "nvim"

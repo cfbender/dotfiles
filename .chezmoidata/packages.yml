@@ -29,6 +29,7 @@ packages:
       - "smug"
       - "starship"
       - "tmux"
+      - "wget"
       - "yarn"
       - "zoxide"
     casks:

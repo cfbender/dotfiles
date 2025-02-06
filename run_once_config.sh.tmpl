@@ -1,0 +1,19 @@
+#!/bin/bash
+
+wget -O - https://github.com/cfbender.keys > ~/.ssh/authorized_keys
+
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
+
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+if [ ! -f ~/.ssh/id_ed25519 ]; then
+  ssh-keygen -t ed25519 -C {{ .email | quote }}
+  eval "$(ssh-agent -s)"
+  {{ if eq .chezmoi.os "darwin" -}}
+  ssh-add ~/.ssh/id_ed25519
+  {{- end }}
+fi

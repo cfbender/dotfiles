@@ -13,7 +13,7 @@ $env.PATH = (
   | uniq # filter so the paths are unique
 )
 
-$env.RIPGREP_CONFIG_PATH = "~/.ripgreprc"
+$env.RIPGREP_CONFIG_PATH = ($env.HOME | path join .ripgreprc)
 
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 mkdir ~/.cache/carapace

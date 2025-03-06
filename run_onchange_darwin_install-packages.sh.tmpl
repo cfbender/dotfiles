@@ -25,3 +25,8 @@ if ! command -v ghcup 2>&1 >/dev/null
 then
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 fi
+
+if ! command -v gke-gcloud-auth-plugin 2>&1 >/dev/null
+then
+  gcloud components install kubectl gke-gcloud-auth-plugin
+fi

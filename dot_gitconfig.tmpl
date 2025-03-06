@@ -31,6 +31,7 @@
 	ac = "!f() { git add -A && git commit -m \"$@\";}; f"
 	acp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	pf = push --force-with-lease
+	staash = stash --all
 	sps = "!f() { git stash && git pom && git stash pop; }; f"
 	sws = "!f() { git stash && git sw \"$@\" && git stash pop; }; f"
 	rc = "!f() { git add -A && git rebase --continue; }; f"
@@ -99,3 +100,10 @@
 
 [diff]
   colorMoved = default
+
+[rerere]
+	enabled = true
+
+[maintenance]
+  auto = false
+  strategy = incremental

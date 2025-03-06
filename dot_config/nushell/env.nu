@@ -2,6 +2,7 @@ $env.PATH = (
   $env.PATH
   | split row (char esep)
   | prepend /opt/homebrew/bin
+  | append /opt/homebrew/share/google-cloud-sdk/bin
   | append /usr/local/bin
   | append ($env.HOME | path join bin)
   | append ($env.HOME | path join .cargo bin)

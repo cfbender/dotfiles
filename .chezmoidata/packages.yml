@@ -10,6 +10,7 @@ packages:
       - "direnv"
       - "doggo"
       - "duf"
+      - "fd"
       - "fswatch"
       - "fzf"
       - "gh"
@@ -31,6 +32,7 @@ packages:
       - "tmux"
       - "wget"
       - "yarn"
+      - "yazi"
       - "zoxide"
     casks:
       - "unnaturalscrollwheels"

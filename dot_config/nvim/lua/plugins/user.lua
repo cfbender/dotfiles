@@ -395,6 +395,38 @@ return {
 			}, vim.g.haskell_tools)
 		end,
 	},
+	{
+		"elixir-tools/elixir-tools.nvim",
+		version = "*",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local elixir = require("elixir")
+			local elixirls = require("elixir.elixirls")
+
+			elixir.setup({
+				nextls = { enable = false },
+				elixirls = {
+					enable = true,
+					settings = elixirls.settings({
+						dialyzerEnabled = true,
+						enableTestLenses = false,
+					}),
+					-- on_attach = function(client, bufnr)
+					-- vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+					-- vim.keymap.set("n", "<leader>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+					-- vim.keymap.set("v", "<leader>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+					-- end,
+				},
+				credo = { enable = true },
+				projectionist = {
+					enable = true,
+				},
+			})
+		end,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
 	-- no config needed plugins
 	{ "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim
 	{ "andymass/vim-matchup", event = "BufRead" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen

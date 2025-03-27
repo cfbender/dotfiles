@@ -41,137 +41,117 @@ return {
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
       -- first key is the mode
-			v = {
-				["<C-c><C-c>"] = {
-					desc = "Send to Vimux",
-					function()
-						-- yank text into v register
-						if vim.api.nvim_get_mode()["mode"] == "n" then
-							vim.cmd('normal vip"vy')
-						else
-							vim.cmd('normal "vy')
-						end
-						-- construct command with v register as command to send
-						-- vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
-						vim.cmd("call VimuxRunCommand(@v)")
-					end,
-				},
-			},
-			n = {
-				["\\"] = false,
-				["|"] = false,
-				["<C-c><C-c>"] = {
-					desc = "Send to Vimux",
-					function()
-						-- yank text into v register
-						if vim.api.nvim_get_mode()["mode"] == "n" then
-							vim.cmd('normal vip"vy')
-						else
-							vim.cmd('normal "vy')
-						end
-						-- construct command with v register as command to send
-						-- vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
-						vim.cmd("call VimuxRunCommand(@v)")
-					end,
-				},
-				gl = {
-					function()
-						vim.diagnostic.open_float()
-					end,
-					desc = "Hover diagnostics",
-				},
-				-- second key is the lefthand side of the map
-				["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-				["<leader>gj"] = {
-					function()
-						require("gitsigns").next_hunk()
-					end,
-					desc = "Next Git hunk",
-				},
-				["<leader>gk"] = {
-					function()
-						require("gitsigns").prev_hunk()
-					end,
-					desc = "Previous Git hunk",
-				},
-				["<leader>ff"] = { function() Snacks.picker.git_files() end, desc = "Find Git Files"},
-				-- resize with arrows
-				["<Up>"] = {
-					function()
-						require("smart-splits").resize_up(2)
-					end,
-					desc = "Resize split up",
-				},
-				["<Down>"] = {
-					function()
-						require("smart-splits").resize_down(2)
-					end,
-					desc = "Resize split down",
-				},
-				["<Left>"] = {
-					function()
-						require("smart-splits").resize_left(2)
-					end,
-					desc = "Resize split left",
-				},
-				["<Right>"] = {
-					function()
-						require("smart-splits").resize_right(2)
-					end,
-					desc = "Resize split right",
-				},
-				[","] = {
-					"@@",
-					desc = "Replay last used macro",
-				},
-				["<leader>b"] = { name = "Buffer" },
-				L = {
-					function()
-						require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
-					end,
-					desc = "Next buffer",
-				},
-				H = {
-					function()
-						require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
-					end,
-					desc = "Previous buffer",
-				},
-				["<leader>c"] = {
-					function()
-						local bufs = vim.fn.getbufinfo({ buflisted = true })
-						require("astrocore.buffer").close()
-						if require("astrocore").is_available("alpha-nvim") and not bufs[2] then
-							require("alpha").start(true)
-						end
-					end,
-					desc = "Close buffer",
-				},
-				-- navigate buffer tabs with `H` and `L`
-				-- L = {
-				--   function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-				--   desc = "Next buffer",
-				-- },
-				-- H = {
-				--   function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-				--   desc = "Previous buffer",
-				-- },
+      v = {
+        ["<C-c><C-c>"] = {
+          desc = "Send to Vimux",
+          function()
+            -- yank text into v register
+            if vim.api.nvim_get_mode()["mode"] == "n" then
+              vim.cmd 'normal vip"vy'
+            else
+              vim.cmd 'normal "vy'
+            end
+            -- construct command with v register as command to send
+            -- vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
+            vim.cmd "call VimuxRunCommand(@v)"
+          end,
+        },
+      },
+      n = {
+        ["\\"] = false,
+        ["|"] = false,
+        ["<C-c><C-c>"] = {
+          desc = "Send to Vimux",
+          function()
+            -- yank text into v register
+            if vim.api.nvim_get_mode()["mode"] == "n" then
+              vim.cmd 'normal vip"vy'
+            else
+              vim.cmd 'normal "vy'
+            end
+            -- construct command with v register as command to send
+            -- vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
+            vim.cmd "call VimuxRunCommand(@v)"
+          end,
+        },
+        gl = {
+          function() vim.diagnostic.open_float() end,
+          desc = "Hover diagnostics",
+        },
+        -- second key is the lefthand side of the map
+        ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+        ["<leader>gj"] = {
+          function() require("gitsigns").next_hunk() end,
+          desc = "Next Git hunk",
+        },
+        ["<leader>gk"] = {
+          function() require("gitsigns").prev_hunk() end,
+          desc = "Previous Git hunk",
+        },
+        ["<leader>ff"] = { function() Snacks.picker.git_files() end, desc = "Find Git Files" },
+        -- resize with arrows
+        ["<Up>"] = {
+          function() require("smart-splits").resize_up(2) end,
+          desc = "Resize split up",
+        },
+        ["<Down>"] = {
+          function() require("smart-splits").resize_down(2) end,
+          desc = "Resize split down",
+        },
+        ["<Left>"] = {
+          function() require("smart-splits").resize_left(2) end,
+          desc = "Resize split left",
+        },
+        ["<Right>"] = {
+          function() require("smart-splits").resize_right(2) end,
+          desc = "Resize split right",
+        },
+        [","] = {
+          "@@",
+          desc = "Replay last used macro",
+        },
+        ["<leader>b"] = { name = "Buffer" },
+        L = {
+          function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+          desc = "Next buffer",
+        },
+        H = {
+          function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+          desc = "Previous buffer",
+        },
+        ["<leader>c"] = {
+          function()
+            local bufs = vim.fn.getbufinfo { buflisted = true }
+            require("astrocore.buffer").close()
+            if require("astrocore").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
+          end,
+          desc = "Close buffer",
+        },
+        -- navigate buffer tabs with `H` and `L`
+        -- L = {
+        --   function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+        --   desc = "Next buffer",
+        -- },
+        -- H = {
+        --   function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+        --   desc = "Previous buffer",
+        -- },
 
-				-- mappings seen under group name "Buffer"
-				["<Leader>bD"] = {
-					function()
-						require("astroui.status.heirline").buffer_picker(function(bufnr)
-							require("astrocore.buffer").close(bufnr)
-						end)
-					end,
-					desc = "Pick to close",
-				},
-				-- tables with just a `desc` key will be registered with which-key if it's installed
-				-- this is useful for naming menus
-				["<Leader>b"] = { desc = "Buffers" },
-				-- quick save
-				-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-			},
+        -- mappings seen under group name "Buffer"
+        ["<Leader>bD"] = {
+          function()
+            require("astroui.status.heirline").buffer_picker(
+              function(bufnr) require("astrocore.buffer").close(bufnr) end
+            )
+          end,
+          desc = "Pick to close",
+        },
+        -- tables with just a `desc` key will be registered with which-key if it's installed
+        -- this is useful for naming menus
+        ["<Leader>b"] = { desc = "Buffers" },
+        -- quick save
+        -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+      },
     },
   },
 }

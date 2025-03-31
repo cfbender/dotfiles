@@ -6,6 +6,7 @@ packages:
       - "bottom"
       - "carapace"
       - "cloc"
+      - "coreutils"
       - "curlie"
       - "direnv"
       - "doggo"

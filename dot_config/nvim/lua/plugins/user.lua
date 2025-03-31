@@ -131,16 +131,11 @@ return {
 		end,
 	},
 
-	-- == Colorschemes ==
-	"shaunsingh/nord.nvim",
-	"Mofiqul/dracula.nvim",
-	"rebelot/kanagawa.nvim",
+	-- == Community overrides ==
 	{
-		"catppuccin/nvim", -- Soothing pastel theme for Neovim
-		name = "catppuccin",
+		"catppuccin",
 		opts = {
 			flavour = "frappe",
-			dim_inactive = { enabled = true, percentage = 0.25 },
 			integrations = {
 				blink_cmp = true,
 				dap = true,
@@ -159,11 +154,7 @@ return {
 				which_key = true,
 			},
 		},
-		lazy = false,
-		priority = 1000,
 	},
-
-	-- == Extra Plugins ==
 	{
 		"andythigpen/nvim-coverage",
 		dependencies = "nvim-lua/plenary.nvim",
@@ -174,6 +165,24 @@ return {
 			})
 		end,
 	},
+	{
+		"zbirenbaum/copilot.lua",
+		opts = {
+			suggestion = {
+				keymap = {
+					accept = "<M-=>",
+				},
+			},
+		},
+	},
+	{
+		"cbochs/grapple.nvim",
+		opts = {
+			scope = "git_branch",
+		},
+	},
+
+	-- == Extra Plugins ==
 	{
 		"preservim/vimux",
 		event = "VeryLazy",
@@ -189,22 +198,6 @@ return {
 		event = "VeryLazy",
 		opts = {},
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-	},
-	{
-		"cbochs/grapple.nvim",
-		opts = {
-			scope = "git_branch",
-		},
-	},
-	{
-		"zbirenbaum/copilot.lua",
-		opts = {
-			suggestion = {
-				keymap = {
-					accept = "<M-=>",
-				},
-			},
-		},
 	},
 	{
 		"elixir-tools/elixir-tools.nvim",
@@ -291,11 +284,14 @@ return {
 			vim.g.loaded_netrwPlugin = 1
 		end,
 	},
-	-- no config needed plugins
+
+	-- == No Config Needed Plugins ==
+
 	{ "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim
 	{ "andymass/vim-matchup", event = "BufRead" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen
 
-	--temporary plugins
+	-- == Temporary Plugins ==
+
 	{
 		"nvim-treesitter/playground", -- Treesitter playground integrated into Neovim
 		enabled = false, -- only turn on for debugging treesitter

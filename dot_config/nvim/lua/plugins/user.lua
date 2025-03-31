@@ -1,5 +1,4 @@
 -- You can also add or configure plugins by creating files in this `plugins/` folder
--- PLEASE REMOVE THE EXAMPLES YOU HAVE NO INTEREST IN BEFORE ENABLING THIS FILE
 -- Here are some examples:
 
 ---@type LazySpec
@@ -110,10 +109,6 @@ return {
 		},
 	},
 
-	-- You can disable default plugins as follows:
-	{ "max397574/better-escape.nvim", enabled = false },
-
-	-- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
 	{
 		"L3MON4D3/LuaSnip",
 		config = function(plugin, opts)
@@ -180,30 +175,6 @@ return {
 	"shaunsingh/nord.nvim",
 	"Mofiqul/dracula.nvim",
 	"rebelot/kanagawa.nvim",
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		config = function()
-			require("rose-pine").setup({
-				variant = "main", -- auto, main, moon, or dawn
-				dark_variant = "main", -- main, moon, or dawn
-				dim_inactive_windows = false,
-				extend_background_behind_borders = true,
-
-				enable = {
-					terminal = true,
-					legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-					migrations = true, -- Handle deprecated options automatically
-				},
-
-				styles = {
-					bold = true,
-					italic = false,
-					transparency = false,
-				},
-			})
-		end,
-	},
 	{
 		"catppuccin/nvim", -- Soothing pastel theme for Neovim
 		name = "catppuccin",
@@ -317,6 +288,7 @@ return {
 		"nvim-treesitter/playground", -- Treesitter playground integrated into Neovim
 		enabled = false, -- only turn on for debugging treesitter
 		config = function()
+			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				playground = {
 					enable = true,
@@ -436,7 +408,7 @@ return {
 	},
 	{
 		"mikavilpas/yazi.nvim",
-		event = "VeryLazy",
+		event = "BufEnter",
 		dependencies = { "folke/snacks.nvim", lazy = true },
 		keys = {
 			-- 👇 in this section, choose your own keymappings!

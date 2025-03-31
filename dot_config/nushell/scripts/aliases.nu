@@ -29,3 +29,13 @@ export def bup [] {
   brew update
   brew upgrade
 } 
+
+export def gunwip [] {
+  git log -n 1 | grep -q -c '\--wip--'
+  git reset HEAD~1
+} 
+
+export def gwip [] {
+  git add -A
+  git ls-files --deleted | git rm err> /dev/null | git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"
+}

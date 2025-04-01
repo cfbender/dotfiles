@@ -30,3 +30,8 @@ if ! command -v gke-gcloud-auth-plugin 2>&1 >/dev/null
 then
   gcloud components install kubectl gke-gcloud-auth-plugin
 fi
+
+if ! command -v deno 2>&1 >/dev/null
+then
+  curl -fsSL https://deno.land/install.sh | sh
+fi

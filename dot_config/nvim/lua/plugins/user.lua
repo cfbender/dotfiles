@@ -135,7 +135,7 @@ return {
 	{
 		"catppuccin",
 		opts = {
-			flavour = "frappe",
+			flavour = "mocha",
 			integrations = {
 				blink_cmp = true,
 				dap = true,

@@ -120,7 +120,7 @@ let catppuccin = {
     crust: "#11111b"
   }
 }
-let stheme = $catppuccin.frappe
+let stheme = $catppuccin.mocha
 let theme = {
   separator: $stheme.overlay0
   leading_trailing_space_bg: $stheme.overlay0

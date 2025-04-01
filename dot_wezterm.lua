@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 -- for rosepine
 -- local theme = wezterm.plugin.require('https://github.com/neapsix/wezterm').main
-local flavor = "Catppuccin Frappe"
+local flavor = "Catppuccin Mocha"
 local theme = wezterm.color.get_builtin_schemes()[flavor]
 
 local config = {

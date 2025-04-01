@@ -18,7 +18,7 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
   {{- end }}
 fi
 
- if [ ! -d "$(bat --config-dir)/themes/Catppuccin Frappe.tmTheme" ]; then
+ if [ ! -d "$(bat --config-dir)/themes/Catppuccin Mocha.tmTheme" ]; then
    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme

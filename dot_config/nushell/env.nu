@@ -6,6 +6,7 @@ $env.PATH = (
   | append /usr/local/bin
   | append ($env.HOME | path join bin)
   | append ($env.HOME | path join .cargo bin)
+  | append ($env.HOME | path join .deno bin)
   | append ($env.HOME | path join go bin)
   | append ($env.HOME | path join .local bin)
   | append ($env.HOME | path join .cabal bin)

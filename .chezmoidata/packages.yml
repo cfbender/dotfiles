@@ -17,6 +17,7 @@ packages:
       - "gh"
       - "git"
       - "git-delta"
+      - "git-lfs"
       - "go"
       - "go-task"
       - "gping"

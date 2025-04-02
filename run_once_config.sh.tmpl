@@ -25,3 +25,8 @@ fi
    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
    bat cache --build
 fi
+
+{{ if eq .chezmoi.os "darwin" -}}
+# clear ghostty config in favor of dot_config
+rm -rf ~/Library/Application Support/com.mitchellh.ghostty
+{{ end -}}

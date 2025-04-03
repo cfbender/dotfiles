@@ -1,48 +1,49 @@
-local maxHeight = 34
+local desiredWidth = 60
 
 local function image_size(dimensions)
-	if not dimensions or type(dimensions) ~= "string" then
-		return nil
-	end
-
 	local width, height = dimensions:match("^(%d+)x(%d+)$")
-	if not width or not height then
-		return nil
-	end
 
-	width = tonumber(width)
+	height = tonumber(height)
 
 	-- find width to match 25px height based on aspect ratio
-	local aspect_ratio = tonumber(height) / maxHeight
-	width = math.floor(width / aspect_ratio)
-	if width < 1 then
-		width = 1
+	local aspect_ratio = tonumber(width) / desiredWidth
+	height = math.floor(height / aspect_ratio)
+	if height < 1 then
+		height = 1
 	end
 
-	return tonumber(width), maxHeight * 2
+	return { width = desiredWidth, height = height }
 end
 
-local function command(file, dimensions)
-	if not file or not dimensions then
-		return ""
-	end
+local function image_data(file, dimensions)
 	local size = image_size(dimensions)
-	return string.format("chafa %s --format symbols --symbols vhalf --size %s", file, size)
+	return {
+		height = size.height,
+		cmd = string.format("chafa %s --format symbols --symbols vhalf --size %sx%s", file, size.width, size.height),
+	}
 end
 
 local table = {}
+
 local data = {
 	{
 		name = "sakura",
 		file = "~/assets/lo-fi-sakura.webp",
 		size = "900x506",
 	},
+	{
+		name = "linville",
+		file = "~/assets/linville.png",
+		size = "1536x1024",
+	},
 }
+
 for _, v in pairs(data) do
+	data = image_data(v.file, v.size)
 	table = vim.tbl_extend("force", table, {
 		[v.name] = {
-			cmd = command(v.file, v.size),
-			height = 17, -- half height for vhalf symbols
+			cmd = data.cmd,
+			height = math.ceil(data.height / 2),
 		},
 	})
 end

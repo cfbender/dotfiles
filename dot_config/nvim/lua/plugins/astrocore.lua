@@ -134,12 +134,13 @@ return {
 					end,
 					desc = "Previous Git hunk",
 				},
-				["<leader>ff"] = {
+				["<leader>fx"] = {
 					function()
-						Snacks.picker.git_files()
+						require("snacks").picker.grep_buffers()
 					end,
-					desc = "Find Git Files",
+					desc = "Find word in open buffers",
 				},
+
 				-- resize with arrows
 				["<Up>"] = {
 					function()
@@ -165,38 +166,6 @@ return {
 					end,
 					desc = "Resize split right",
 				},
-				["<leader>b"] = { name = "Buffer" },
-				L = {
-					function()
-						require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
-					end,
-					desc = "Next buffer",
-				},
-				H = {
-					function()
-						require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
-					end,
-					desc = "Previous buffer",
-				},
-				["<leader>c"] = {
-					function()
-						local bufs = vim.fn.getbufinfo({ buflisted = true })
-						require("astrocore.buffer").close()
-						if require("astrocore").is_available("alpha-nvim") and not bufs[2] then
-							require("alpha").start(true)
-						end
-					end,
-					desc = "Close buffer",
-				},
-				-- navigate buffer tabs with `H` and `L`
-				-- L = {
-				--   function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-				--   desc = "Next buffer",
-				-- },
-				-- H = {
-				--   function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-				--   desc = "Previous buffer",
-				-- },
 
 				-- mappings seen under group name "Buffer"
 				["<Leader>bD"] = {
@@ -210,8 +179,18 @@ return {
 				-- tables with just a `desc` key will be registered with which-key if it's installed
 				-- this is useful for naming menus
 				["<Leader>b"] = { desc = "Buffers" },
-				-- quick save
-				-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+				L = {
+					function()
+						require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+					end,
+					desc = "Next buffer",
+				},
+				H = {
+					function()
+						require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+					end,
+					desc = "Previous buffer",
+				},
 			},
 		},
 	},

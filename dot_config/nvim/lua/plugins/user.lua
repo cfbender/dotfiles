@@ -49,6 +49,32 @@ return {
 		opts = {
 			-- customize dashboard options
 			dashboard = {
+				sections = {
+					function()
+						return vim.tbl_extend("force", {
+							section = "terminal",
+							padding = 1,
+						}, require("helpers.chafa").sakura)
+					end,
+					{ section = "keys", gap = 1, padding = 2 },
+					-- { pane = 2, padding = 12 },
+					{ icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+					{
+
+						icon = " ",
+						title = "Git Status",
+						section = "terminal",
+						enabled = function()
+							return require("snacks").git.get_root() ~= nil
+						end,
+						cmd = "git status --short --branch --renames",
+						height = 5,
+						padding = 1,
+						ttl = 5 * 60,
+						indent = 3,
+					},
+					{ section = "startup" },
+				},
 				preset = {
 					header = table.concat(require("helpers.ascii").LETSGO, "\n"),
 					---@type snacks.dashboard.Item[]
@@ -68,7 +94,7 @@ return {
 						{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 						{
 							icon = " ",
-							key = "g",
+							key = "t",
 							desc = "Find Text",
 							action = ":lua Snacks.dashboard.pick('live_grep')",
 						},

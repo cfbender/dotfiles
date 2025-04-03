@@ -5,6 +5,7 @@ packages:
       - "bat"
       - "bottom"
       - "carapace"
+      - "chafa"
       - "cloc"
       - "coreutils"
       - "curlie"

@@ -35,3 +35,9 @@ if ! command -v deno 2>&1 >/dev/null
 then
   curl -fsSL https://deno.land/install.sh | sh
 fi
+
+
+if ! command -v nufmt 2>&1 >/dev/null
+then
+  cargo install --git https://github.com/nushell/nufmt
+fi

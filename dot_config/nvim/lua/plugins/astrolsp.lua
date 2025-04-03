@@ -167,61 +167,57 @@ return {
 							and vim.lsp.semantic_tokens ~= nil
 					end,
 				},
-				-- waiting for help on the conditions before enabling here
-				-- elixirLS doesn't seem to provide the client capability quickly enough
-				-- grr = {
-				-- 	function()
-				-- 		require("snacks.picker").lsp_references()
-				-- 	end,
-				-- 	desc = "LSP References",
-				-- 	cond = function(client, bufnr)
-				-- 		return client.server_capabilities.referencesProvider ~= nil
-				-- 			and vim.api.nvim_buf_is_loaded(bufnr) -- ensure the buffer is loaded
-				-- 	end,
-				-- },
-				-- gI = {
-				-- 	function()
-				-- 		require("snacks.picker").lsp_implementations()
-				-- 	end,
-				-- 	desc = "LSP Implementations",
-				-- 	cond = "textDocument/implementation",
-				-- },
-				--
-				-- gd = {
-				-- 	function()
-				-- 		require("snacks.picker").lsp_definitions()
-				-- 	end,
-				-- 	desc = "LSP Definitions",
-				-- 	cond = "textDocument/definition",
-				-- },
-				-- gy = {
-				-- 	function()
-				-- 		require("snacks.picker").lsp_type_definitions()
-				-- 	end,
-				-- 	desc = "LSP Type Definitions",
-				-- 	cond = "textDocument/typeDefinition",
-				-- },
-				-- ["<Leader>lG"] = {
-				-- 	function()
-				-- 		require("snacks.picker").lsp_workspace_symbols()
-				-- 	end,
-				-- 	desc = "LSP Workspace Symbols",
-				-- 	cond = "workspace/symbol",
-				-- },
-				-- ["<Leader>lR"] = {
-				-- 	function()
-				-- 		require("snacks.picker").lsp_references()
-				-- 	end,
-				-- 	desc = "LSP References (workspace)",
-				-- 	cond = "workspace/references",
-				-- },
+				grr = {
+					function()
+						require("snacks.picker").lsp_references()
+					end,
+					desc = "LSP References",
+					cond = function(client, bufnr)
+						return client.server_capabilities.referencesProvider ~= nil
+							and vim.api.nvim_buf_is_loaded(bufnr) -- ensure the buffer is loaded
+					end,
+				},
+				gI = {
+					function()
+						require("snacks.picker").lsp_implementations()
+					end,
+					desc = "LSP Implementations",
+					cond = "textDocument/implementation",
+				},
+				gd = {
+					function()
+						require("snacks.picker").lsp_definitions()
+					end,
+					desc = "LSP Definitions",
+					cond = "textDocument/definition",
+				},
+				gy = {
+					function()
+						require("snacks.picker").lsp_type_definitions()
+					end,
+					desc = "LSP Type Definitions",
+					cond = "textDocument/typeDefinition",
+				},
+				["<Leader>lG"] = {
+					function()
+						require("snacks.picker").lsp_workspace_symbols()
+					end,
+					desc = "LSP Workspace Symbols",
+					cond = "workspace/symbol",
+				},
+				["<Leader>lR"] = {
+					function()
+						require("snacks.picker").lsp_references()
+					end,
+					desc = "LSP References (workspace)",
+					cond = "workspace/references",
+				},
 			},
 		},
 		-- A custom `on_attach` function to be run after the default `on_attach` function
 		-- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
 		-- on_attach = function(client, bufnr)
-		-- this would disable semanticTokensProvider for all clients
-		-- client.server_capabilities.semanticTokensProvider = nil
+		-- 	require("snacks.notify").info("AstroLSP: attaching " .. client.name, { title = "LSP", timeout = 3000 })
 		-- end,
 	},
 }

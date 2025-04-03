@@ -81,44 +81,6 @@ return {
 					end,
 					desc = "Hover diagnostics",
 				},
-				-- These LSP mappings not in `astrolsp.lua` becuase elixirLS doesn't provide the client capability quickly enough
-				grr = {
-					function()
-						require("snacks.picker").lsp_references()
-					end,
-					desc = "LSP References",
-				},
-				gI = {
-					function()
-						require("snacks.picker").lsp_implementations()
-					end,
-					desc = "LSP Implementations",
-				},
-
-				gd = {
-					function()
-						require("snacks.picker").lsp_definitions()
-					end,
-					desc = "LSP Definitions",
-				},
-				gy = {
-					function()
-						require("snacks.picker").lsp_type_definitions()
-					end,
-					desc = "LSP Type Definitions",
-				},
-				["<Leader>lG"] = {
-					function()
-						require("snacks.picker").lsp_workspace_symbols()
-					end,
-					desc = "LSP Workspace Symbols",
-				},
-				["<Leader>lR"] = {
-					function()
-						require("snacks.picker").lsp_references()
-					end,
-					desc = "LSP References (workspace)",
-				},
 				-- second key is the lefthand side of the map
 				["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
 

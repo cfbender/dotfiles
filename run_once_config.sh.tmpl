@@ -26,6 +26,7 @@ fi
    bat cache --build
 fi
 
+
 {{ if eq .chezmoi.os "darwin" -}}
 # clear ghostty config in favor of dot_config
 rm -rf ~/Library/Application Support/com.mitchellh.ghostty

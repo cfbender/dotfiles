@@ -43,10 +43,11 @@ return {
 		end,
 	},
 
-	-- customize dashboard options
 	{
 		"folke/snacks.nvim",
+		dependencies = { "HiPhish/rainbow-delimiters.nvim" },
 		opts = {
+			-- customize dashboard options
 			dashboard = {
 				preset = {
 					header = table.concat(require("helpers.ascii").LETSGO, "\n"),
@@ -91,6 +92,19 @@ return {
 							action = ":AstroUpdate",
 						},
 						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
+					},
+				},
+			},
+			indent = {
+				scope = {
+					hl = vim.tbl_get(vim.g, "rainbow_delimiters", "highlight") or {
+						"RainbowDelimiterRed",
+						"RainbowDelimiterYellow",
+						"RainbowDelimiterBlue",
+						"RainbowDelimiterOrange",
+						"RainbowDelimiterGreen",
+						"RainbowDelimiterViolet",
+						"RainbowDelimiterCyan",
 					},
 				},
 			},
@@ -147,6 +161,7 @@ return {
 					indentscope_color = "lavender",
 				},
 				octo = true,
+				rainbow_delimiters = true,
 				snacks = {
 					enabled = true,
 					indent_scope_color = "lavender",
@@ -181,6 +196,7 @@ return {
 			scope = "git_branch",
 		},
 	},
+	{ "telescope.nvim", enabled = false }, -- disable because of haskell pack
 
 	-- == Extra Plugins ==
 	{

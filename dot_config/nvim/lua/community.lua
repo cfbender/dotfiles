@@ -11,6 +11,7 @@ return {
 	{ import = "astrocommunity.colorscheme.nord-nvim" },
 	{ import = "astrocommunity.colorscheme.tokyonight-nvim" },
 	{ import = "astrocommunity.completion.copilot-lua" },
+	{ import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
 	{ import = "astrocommunity.git.diffview-nvim" },
 	{ import = "astrocommunity.git.fugit2-nvim" },
 	{ import = "astrocommunity.motion.flash-nvim" },
@@ -26,6 +27,7 @@ return {
 	{ import = "astrocommunity.pack.sql" },
 	{ import = "astrocommunity.pack.typescript" },
 	{ import = "astrocommunity.pack.yaml" },
+	{ import = "astrocommunity.recipes.picker-lsp-mappings" },
 	{ import = "astrocommunity.test.nvim-coverage" },
 	{ import = "astrocommunity.test.vim-test" },
 }

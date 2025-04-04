@@ -96,6 +96,7 @@ return {
 					end,
 					desc = "Previous Git hunk",
 				},
+				-- snacks
 				["<leader>fx"] = {
 					function()
 						require("snacks").picker.grep_buffers()
@@ -113,6 +114,24 @@ return {
 						require("snacks").picker.diagnostics_buffer()
 					end,
 					desc = "Find diagnostics in open buffer",
+				},
+				["<leader>sp"] = {
+					function()
+						require("snacks").picker.lazy()
+					end,
+					desc = "Search for Plugin Spec",
+				},
+				["<leader>sq"] = {
+					function()
+						require("snacks").picker.qflist()
+					end,
+					desc = "Quickfix List",
+				},
+				["<leader>si"] = {
+					function()
+						require("snacks").picker.icons()
+					end,
+					desc = "Icons",
 				},
 
 				-- resize with arrows

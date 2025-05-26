@@ -23,6 +23,7 @@ packages:
       - "go-task"
       - "gping"
       - "gum"
+      - "jj"
       - "lazygit"
       - "lsd"
       - "magic-wormhole"

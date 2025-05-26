@@ -928,6 +928,7 @@ $env.config = {
 
 source ~/.local/share/atuin/init.nu
 source ~/.zoxide.nu
+source ~/completions-jj.nu
 source ~/.cache/carapace/init.nu
 source ~/.config/nushell/scripts/aliases.nu
 use ~/.cache/starship/init.nu

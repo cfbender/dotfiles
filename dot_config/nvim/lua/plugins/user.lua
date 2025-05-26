@@ -22,7 +22,7 @@ return {
 					end
 				end,
 			}
-			opts.statusline = { -- statusline
+			opts.statusline = {                                                         -- statusline
 				hl = { fg = "fg", bg = "bg" },
 				status.component.mode({ mode_text = { padding = { left = 1, right = 1 } } }), -- add the mode text
 				status.component.git_branch(),
@@ -223,7 +223,7 @@ return {
 			scope = "git_branch",
 		},
 	},
-	{ "telescope.nvim", enabled = false }, -- disable because of haskell pack
+	{ "telescope.nvim",         enabled = false }, -- disable because of haskell pack
 
 	-- == Extra Plugins ==
 	{
@@ -293,20 +293,20 @@ return {
 	-- == No Config Needed Plugins ==
 
 	{ "chaoren/vim-wordmotion", event = "BufRead" }, -- More useful word motions for Vim
-	{ "andymass/vim-matchup", event = "BufRead" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen
+	{ "andymass/vim-matchup",   event = "BufRead" }, -- vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen
 
 	-- == Temporary Plugins ==
 
 	{
 		"nvim-treesitter/playground", -- Treesitter playground integrated into Neovim
-		enabled = false, -- only turn on for debugging treesitter
+		enabled = false,            -- only turn on for debugging treesitter
 		config = function()
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				playground = {
 					enable = true,
 					disable = {},
-					updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+					updatetime = 25,    -- Debounced time for highlighting nodes in the playground from source code
 					persist_queries = false, -- Whether the query persists across vim sessions
 					keybindings = {
 						toggle_query_editor = "o",

@@ -43,12 +43,16 @@ export def gwip [] {
 alias pn = pnpm
 
 export def gr [] {
+  let current = git rev-parse --abbrev-ref HEAD
   let branch = git reflog |
     egrep -io "moving from ([^[:space:]]+)" |
     awk '{ print $3 }' | # extract 3rd column
     awk ' !x[$0]++' | # Removes duplicates.  See http://stackoverflow.com/questions/11532157
     egrep -v '^[a-f0-9]{40}$' | # remove hash results
     head -n 100 |
+    lines |
+    where {|b| $b != $current } |
+    str join (char newline) |
     gum filter --limit 1 --placeholder 'select recent' --height 50
 
   git sw $branch

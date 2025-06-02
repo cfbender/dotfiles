@@ -39,6 +39,8 @@
 	squash-base = "!f() { (git merge-base HEAD origin/main | xargs git reset --soft) && git add . && git commit; }; f"
 	clean-branches = "!f() { git branch --merged | egrep -v \"(^master|main)\" | xargs git branch -D; }; f"
 	su = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)
+	recent = for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short) | %(committerdate) | %(authorname)'
+	recent-branch = for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)'
 [diff]
 	tool = meld
 [merge]

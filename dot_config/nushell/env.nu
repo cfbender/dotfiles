@@ -33,4 +33,4 @@ atuin init nu | save --force ~/.local/share/atuin/init.nu
 
 $env.config.buffer_editor = "nvim"
 
-jj util completion nushell | save ~/completions-jj.nu
+jj util completion nushell | save -f ~/completions-jj.nu

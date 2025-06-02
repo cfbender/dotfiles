@@ -12,7 +12,7 @@ windows:
     panes:
       - type: horizontal
         commands:
-          - cd assets; npm run dev
+          - pnpm dev
       - type: horizontal
         commands:
           - clear

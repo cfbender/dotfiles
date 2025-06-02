@@ -39,3 +39,17 @@ export def gwip [] {
   git add -A
   git ls-files --deleted | git rm err> /dev/null | git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"
 }
+
+alias pn = pnpm
+
+export def gr [] {
+  let branch = git reflog |
+    egrep -io "moving from ([^[:space:]]+)" |
+    awk '{ print $3 }' | # extract 3rd column
+    awk ' !x[$0]++' | # Removes duplicates.  See http://stackoverflow.com/questions/11532157
+    egrep -v '^[a-f0-9]{40}$' | # remove hash results
+    head -n 100 |
+    gum filter --limit 1 --placeholder 'select recent' --height 50
+
+  git sw $branch
+}

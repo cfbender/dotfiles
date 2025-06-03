@@ -1,4 +1,10 @@
 [tools]
+deno = "latest"
 elixir = "latest"
-node = "latest"
 erlang = "latest"
+ghcup = "latest"
+go = "latest"
+node = "latest"
+"aqua:pnpm" = "latest"
+rust = "latest"
+task = "latest"

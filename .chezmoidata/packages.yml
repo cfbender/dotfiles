@@ -19,8 +19,6 @@ packages:
       - "git"
       - "git-delta"
       - "git-lfs"
-      - "go"
-      - "go-task"
       - "gping"
       - "gum"
       - "jj"
@@ -28,7 +26,6 @@ packages:
       - "lsd"
       - "magic-wormhole"
       - "neovim"
-      - "node"
       - "nushell"
       - "ripgrep"
       - "smug"
@@ -41,4 +38,4 @@ packages:
     casks:
       - "unnaturalscrollwheels"
       - "google-cloud-sdk"
-      - "wezterm"
+      - "ghostty"

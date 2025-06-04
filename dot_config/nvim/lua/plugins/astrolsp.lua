@@ -10,8 +10,8 @@ return {
 	opts = {
 		-- Configuration table of features provided by AstroLSP
 		features = {
-			codelens = true, -- enable/disable codelens refresh on start
-			inlay_hints = true, -- enable/disable inlay hints on start
+			codelens = true,     -- enable/disable codelens refresh on start
+			inlay_hints = false, -- enable/disable inlay hints on start
 			semantic_tokens = true, -- enable/disable semantic token highlighting
 		},
 		-- customize lsp formatting options
@@ -19,15 +19,11 @@ return {
 			-- control auto formatting on save
 			format_on_save = {
 				enabled = true, -- enable or disable format on save globally
-				allow_filetypes = { -- enable format on save for specified filetypes only
-					-- "go",
-				},
 				ignore_filetypes = { -- disable format on save for specified filetypes
-					-- "python",
 					"markdown",
 				},
 			},
-			disabled = { "sumneko_lua", "rust_analyzer", "prettier" },
+			disabled = { "sumneko_lua", "rust_analyzer", "vtsls" },
 			timeout_ms = 5000,
 		},
 		-- enable servers that you already have installed without mason
@@ -41,14 +37,29 @@ return {
 			vtsls = {
 				settings = {
 					typescript = {
+						updateImportsOnFileMove = { enabled = "always" },
+						inlayHints = {
+							parameterNames = { enabled = "all" },
+							parameterTypes = { enabled = false },
+							variableTypes = { enabled = false },
+							propertyDeclarationTypes = { enabled = true },
+							functionLikeReturnTypes = { enabled = true },
+							enumMemberValues = { enabled = true },
+						},
+					},
+					javascript = {
+						updateImportsOnFileMove = { enabled = "always" },
 						inlayHints = {
 							parameterNames = { enabled = "literals" },
 							parameterTypes = { enabled = false },
-							propertyDeclarationTypes = { enabled = true },
-							functionLikeReturnTypes = { enabled = false },
-							enumMemberValues = { enabled = true },
 							variableTypes = { enabled = false },
+							propertyDeclarationTypes = { enabled = true },
+							functionLikeReturnTypes = { enabled = true },
+							enumMemberValues = { enabled = true },
 						},
+					},
+					vtsls = {
+						enableMoveToFileCodeAction = true,
 					},
 				},
 			},
@@ -61,7 +72,8 @@ return {
 						schemas = {
 							["https://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
 							["https://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-							["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.*.{yml,yaml}",
+							["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] =
+							"docker-compose.*.{yml,yaml}",
 							["https://json.schemastore.org/traefik-v2"] = "traefik.{yml,yaml}",
 						},
 					},
@@ -146,7 +158,7 @@ return {
 					desc = "Toggle LSP semantic highlight (buffer)",
 					cond = function(client)
 						return client.supports_method("textDocument/semanticTokens/full")
-							and vim.lsp.semantic_tokens ~= nil
+								and vim.lsp.semantic_tokens ~= nil
 					end,
 				},
 				grr = {
@@ -156,7 +168,7 @@ return {
 					desc = "LSP References",
 					cond = function(client, bufnr)
 						return client.server_capabilities.referencesProvider ~= nil
-							and vim.api.nvim_buf_is_loaded(bufnr) -- ensure the buffer is loaded
+								and vim.api.nvim_buf_is_loaded(bufnr) -- ensure the buffer is loaded
 					end,
 				},
 				gI = {

@@ -9,9 +9,10 @@ return {
 		opts = {
 			-- Make sure to use the names found in `:Mason`
 			ensure_installed = {
-				"lua-language-server",
 				"elixir-ls",
-				"biome",
+				"lua-language-server",
+				"marksman",
+				"vtsls",
 			},
 		},
 	},

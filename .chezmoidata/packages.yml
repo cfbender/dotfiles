@@ -20,8 +20,6 @@ packages:
       - "git-delta"
       - "git-lfs"
       - "gping"
-      - "gum"
-      - "jj"
       - "lazygit"
       - "lsd"
       - "magic-wormhole"

@@ -5,4 +5,4 @@ eval "$(atuin init bash)"
 
 eval "$(~/.local/bin/mise activate bash)"
 
-. "$HOME/.deno/env"
+. "$HOME/.ghcup/env"

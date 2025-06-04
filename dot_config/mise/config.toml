@@ -8,3 +8,6 @@ node = "latest"
 "aqua:pnpm" = "latest"
 rust = "latest"
 task = "latest"
+
+[settings]
+disable_backends = ["asdf"]

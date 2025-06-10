@@ -5,7 +5,6 @@ $directory \
 $git_branch \
 $git_status \
 $fill \
-$memory_usage \
 $time\n \
 $shell\
 [>](fg:mauve) 
@@ -71,6 +70,32 @@ style_user = "bg:overlay fg:blue"
 disabled = false
 style = "fg:mauve"
 format = "[$indicator]($style)"
+
+[mise]
+disabled = false
+
+[memory_usage]
+disabled = false
+symbol = "🐏"
+threshold = -1 
+format = '$symbol [${ram_pct}]($style) '
+style = "fg:green"
+
+[battery]
+disabled = false
+format = "[$symbol$percentage]($style) "
+
+[[battery.display]]
+threshold = 100
+style = 'fg:rosewater'
+
+[[battery.display]] 
+threshold = 10
+style = "fg:red bold"
+
+[[battery.display]]
+threshold = 30
+style = "fg:yellow bold"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

@@ -10,8 +10,8 @@ return {
 	opts = {
 		-- Configuration table of features provided by AstroLSP
 		features = {
-			codelens = true,     -- enable/disable codelens refresh on start
-			inlay_hints = true, -- enable/disable inlay hints on start
+			codelens = true, -- enable/disable codelens refresh on start
+			inlay_hints = false, -- enable/disable inlay hints on start
 			semantic_tokens = true, -- enable/disable semantic token highlighting
 		},
 		-- customize lsp formatting options
@@ -72,8 +72,7 @@ return {
 						schemas = {
 							["https://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
 							["https://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-							["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] =
-							"docker-compose.*.{yml,yaml}",
+							["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.*.{yml,yaml}",
 							["https://json.schemastore.org/traefik-v2"] = "traefik.{yml,yaml}",
 						},
 					},
@@ -158,7 +157,7 @@ return {
 					desc = "Toggle LSP semantic highlight (buffer)",
 					cond = function(client)
 						return client.supports_method("textDocument/semanticTokens/full")
-								and vim.lsp.semantic_tokens ~= nil
+							and vim.lsp.semantic_tokens ~= nil
 					end,
 				},
 				grr = {
@@ -168,7 +167,7 @@ return {
 					desc = "LSP References",
 					cond = function(client, bufnr)
 						return client.server_capabilities.referencesProvider ~= nil
-								and vim.api.nvim_buf_is_loaded(bufnr) -- ensure the buffer is loaded
+							and vim.api.nvim_buf_is_loaded(bufnr) -- ensure the buffer is loaded
 					end,
 				},
 				gI = {

@@ -10,6 +10,8 @@ node = "latest"
 "aqua:pnpm" = "latest"
 rust = "latest"
 task = "latest"
+"npm:@getgrit/cli" = "latest"
+"npm:@biomejs/biome" = "latest"
 
 [settings]
 disable_backends = ["asdf"]

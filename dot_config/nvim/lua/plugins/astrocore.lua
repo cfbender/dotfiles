@@ -133,6 +133,12 @@ return {
 					end,
 					desc = "Icons",
 				},
+				["<leader>fi"] = {
+					function()
+						require("helpers.snacks").pick_biome_search()
+					end,
+					desc = "Biome search",
+				},
 
 				-- resize with arrows
 				["<Up>"] = {

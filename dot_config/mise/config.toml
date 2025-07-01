@@ -2,6 +2,7 @@
 deno = "latest"
 elixir = "latest"
 erlang = "latest"
+hyperfine = "latest"
 ghcup = "latest"
 go = "latest"
 gum = "latest"
@@ -12,6 +13,9 @@ rust = "latest"
 task = "latest"
 "npm:@getgrit/cli" = "latest"
 "npm:@biomejs/biome" = "latest"
+"npm:@google/gemini-cli" = "latest"
+"npm:@withgraphite/graphite-cli" = "latest"
+yq = "latest"
 
 [settings]
 disable_backends = ["asdf"]

@@ -12,7 +12,7 @@ windows:
     panes:
       - type: horizontal
         commands:
-          - pnpm dev
+          - pnpm -r dev
       - type: horizontal
         commands:
           - clear
@@ -30,6 +30,6 @@ windows:
       - type: horizontal
         commands:
           - clear
-  - name: " "
+  - name: " "
     commands:
-      - gh dash
+      - gemini

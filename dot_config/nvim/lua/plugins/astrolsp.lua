@@ -78,6 +78,9 @@ return {
 					},
 				},
 			},
+			elixirls = {
+				cmd = { vim.uv.os_homedir() .. "/code/github/elixir-ls/release/language_server.sh" },
+			},
 		},
 		-- customize how language servers are attached
 		handlers = {

@@ -11,6 +11,7 @@ $env.PATH = (
   | append ($env.HOME | path join .local bin)
   | append ($env.HOME | path join .cabal bin)
   | append ($env.HOME | path join .ghcup bin)
+  | append ($env.HOME | path join Library pnpm)
   | uniq # filter so the paths are unique
 )
 
@@ -34,3 +35,6 @@ atuin init nu | save --force ~/.local/share/atuin/init.nu
 $env.config.buffer_editor = "nvim"
 
 jj util completion nushell | save -f ~/completions-jj.nu
+
+# pnpm
+$env.PNPM_HOME = $env.HOME | path join Library pnpm 

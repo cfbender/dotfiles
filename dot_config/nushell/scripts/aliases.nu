@@ -61,3 +61,7 @@ export def gr [] {
 export def gd [] {
   git diff | diffnav
 }
+
+export def gdp [] {
+  gh pr diff | diffnav
+}

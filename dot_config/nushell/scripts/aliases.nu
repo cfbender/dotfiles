@@ -57,3 +57,7 @@ export def gr [] {
 
   git sw $branch
 }
+
+export def gd [] {
+  git diff | diffnav
+}

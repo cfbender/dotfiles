@@ -1,5 +1,6 @@
 [tools]
 deno = "latest"
+"go:github.com/dlvhdr/diffnav" = "latest"
 elixir = "latest"
 erlang = "latest"
 hyperfine = "latest"
@@ -8,6 +9,8 @@ go = "latest"
 gum = "latest"
 jj = "latest"
 node = "latest"
+"cargo:https://github.com/nushell/nufmt" = "latest"
+"go:github.com/opencode-ai/opencode" = "latest"
 "aqua:pnpm" = "latest"
 rust = "latest"
 task = "latest"
@@ -19,3 +22,4 @@ yq = "latest"
 
 [settings]
 disable_backends = ["asdf"]
+experimental = true

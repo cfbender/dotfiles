@@ -20,13 +20,3 @@ if ! command -v gke-gcloud-auth-plugin 2>&1 >/dev/null
 then
   gcloud components install kubectl gke-gcloud-auth-plugin
 fi
-
-if ! command -v nufmt 2>&1 >/dev/null
-then
-  cargo install --git https://github.com/nushell/nufmt
-fi
-
-if ! command -v diffnav 2>&1 >/dev/null
-then
-  go install github.com/dlvhdr/diffnav@latest
-fi

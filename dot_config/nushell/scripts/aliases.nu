@@ -65,3 +65,7 @@ export def gd [] {
 export def gdp [] {
   gh pr diff | diffnav
 }
+
+export def gss [] {
+  gt sync; gt submit --stack
+}

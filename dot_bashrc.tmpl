@@ -6,3 +6,7 @@ eval "$(atuin init bash)"
 eval "$(~/.local/bin/mise activate bash)"
 
 . "$HOME/.ghcup/env"
+
+{{- if eq .chezmoi.os "darwin" }}
+export PATH="/opt/homebrew/bin:$PATH"
+{{- end}}

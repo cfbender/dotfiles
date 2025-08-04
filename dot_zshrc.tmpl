@@ -152,6 +152,7 @@ eval "$(zoxide init zsh --cmd cd)"
 {{- if eq .chezmoi.os "darwin" }}
 # bun completions
 [ -s "/Users/cfb/.bun/_bun" ] && source "/Users/cfb/.bun/_bun"
+export PATH="/opt/homebrew/bin:$PATH"
 alias bup="brew update && brew upgrade"
 {{- end}}
 

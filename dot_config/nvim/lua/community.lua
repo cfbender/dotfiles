@@ -4,7 +4,7 @@
 
 ---@type LazySpec
 return {
-	{ "AstroNvim/astrocommunity", dev = true },
+	{ "AstroNvim/astrocommunity", branch = "main" },
 	{ import = "astrocommunity.colorscheme.catppuccin" },
 	{ import = "astrocommunity.colorscheme.dracula-nvim" },
 	{ import = "astrocommunity.colorscheme.kanagawa-nvim" },

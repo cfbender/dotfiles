@@ -11,12 +11,14 @@ cask {{ . | quote }}
 EOF
 {{ end -}}
 
-if ! command -v mise 2>&1 >/dev/null
-then
-curl https://mise.run | sh
+if ! command -v mise 2>&1 >/dev/null; then
+  curl https://mise.run | sh
 fi
 
-if ! command -v gke-gcloud-auth-plugin 2>&1 >/dev/null
-then
+if ! command -v gke-gcloud-auth-plugin 2>&1 >/dev/null; then
   gcloud components install kubectl gke-gcloud-auth-plugin
+fi
+
+if ! command -v rust-analyzer 2>&1 >/dev/null; then
+  rustup component add rust-analyzer
 fi

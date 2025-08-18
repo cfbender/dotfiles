@@ -19,6 +19,7 @@ return {
 			"markdown",
 			"markdown_inline",
 			"nu",
+			"powershell",
 			"regex",
 			"rust",
 			"toml",

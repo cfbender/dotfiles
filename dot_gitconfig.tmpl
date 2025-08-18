@@ -15,12 +15,6 @@
 	{{- end }}
 [gpg]
 	format = ssh
-[gpg.ssh]
-	{{- if eq .chezmoi.os "darwin" }}
-	allowedSignersFile = /Users/cfb/.ssh/id_ed25519.pub
-	{{- else }}
-	allowedSignersFile = ~/.ssh/id_ed25519.pub
-	{{- end }}
 [push]
 	default = current
 	autoSetupRemote = true

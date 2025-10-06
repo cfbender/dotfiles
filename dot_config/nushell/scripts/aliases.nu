@@ -25,11 +25,6 @@ alias im = iex -S mix
 alias imp = iex -S mix phx.server
 alias yeehaw = rally.sh
 
-export def bup [] {
-  brew update
-  brew upgrade
-} 
-
 export def gunwip [] {
   git log -n 1 | grep -q -c '\--wip--'
   git reset HEAD~1
@@ -68,4 +63,30 @@ export def gdp [] {
 
 export def gss [] {
   gt sync; gt submit --stack
+}
+
+export def nup [] {
+  nvim --headless "+Lazy! sync" +qa
+}
+
+export def bup [] {
+  brew update
+  brew upgrade
+} 
+
+export def fup [] {
+  [1 2 3] | par-each { |x| 
+    if $x == 1 { 
+      echo "Updating neovim dependencies ..." | gum style --foreground "#40a02b" --bold
+      nup
+    } else if $x == 2 {
+      echo "Updating homebrew packages ..." | gum style --foreground "#df8e1d" --bold
+      bup
+    } else {
+      echo "Updating mise tools ..." | gum style --foreground "#209fb5" --bold
+      mise up
+    }
+  }
+
+  echo "All done! 🎉" | gum style --foreground 212 --bold
 }

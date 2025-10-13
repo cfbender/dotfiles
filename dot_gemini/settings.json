@@ -1,5 +1,13 @@
 {
-	"preferredEditor": "neovim",
-	"theme": "Default"
+  "general": {
+    "preferredEditor": "neovim"
+  },
+  "ui": {
+    "theme": "Default"
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  }
 }
-

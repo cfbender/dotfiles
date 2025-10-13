@@ -13,6 +13,7 @@ return {
 				"lua-language-server",
 				"marksman",
 				"vtsls",
+				"typos-lsp",
 			},
 		},
 	},

@@ -30,6 +30,6 @@ windows:
       - type: horizontal
         commands:
           - clear
-  - name: " "
+  - name: "󱚥 "
     commands:
-      - gemini
+      - claude

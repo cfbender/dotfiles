@@ -38,3 +38,5 @@ jj util completion nushell | save -f ~/completions-jj.nu
 
 # pnpm
 $env.PNPM_HOME = $env.HOME | path join Library pnpm 
+
+ulimit -n 4096

@@ -1,4 +1,5 @@
 [tools]
+bun = "latest"
 deno = "latest"
 "go:github.com/dlvhdr/diffnav" = "latest"
 elixir = "latest"
@@ -25,3 +26,6 @@ yq = "latest"
 disable_backends = ["asdf"]
 experimental = true
 idiomatic_version_file_enable_tools = ["rust"]
+
+[settings.npm]
+bun = true

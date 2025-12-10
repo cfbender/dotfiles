@@ -12,7 +12,7 @@ $env.PATH = (
   | append ($env.HOME | path join .cabal bin)
   | append ($env.HOME | path join .ghcup bin)
   | append ($env.HOME | path join Library pnpm)
-  | append /opt/homebrew/bin/opt/coreutils/libexec/gnubin
+  | append /opt/homebrew/opt/coreutils/libexec/gnubin
   | uniq # filter so the paths are unique
 )
 

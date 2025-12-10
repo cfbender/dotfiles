@@ -14,6 +14,8 @@ return {
 				"marksman",
 				"vtsls",
 				"typos-lsp",
+				"hlint",
+				"fourmolu",
 			},
 		},
 	},

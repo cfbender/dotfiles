@@ -237,12 +237,42 @@ return {
 				javascriptreact = { "biome" },
 				typescript = { "biome" },
 				typescriptreact = { "biome" },
+				haskell = { "fourmolu" },
 			})
 
 			return opts
 		end,
 	},
+	{
+		"mrcjkb/haskell-tools.nvim",
+		version = "^6",
+		init = function()
+			local astrolsp_avail, astrolsp = pcall(require, "astrolsp")
+			local base_opts = astrolsp_avail
+					and {
+						capabilities = astrolsp.config.capabilities,
+						on_attach = astrolsp.on_attach,
+					}
+				or {}
 
+			local opts = require("astrocore").extend_tbl({
+				settings = {
+					haskell = {
+						plugin = {
+							hlint = {
+								--https://github.com/haskell/haskell-language-server/issues/4674
+								diagnosticsOn = false,
+							},
+						},
+					},
+				},
+			}, base_opts)
+
+			vim.g.haskell_tools = require("astrocore").extend_tbl({
+				hls = opts,
+			}, vim.g.haskell_tools)
+		end,
+	},
 	-- == Extra Plugins ==
 	{
 		"preservim/vimux",
@@ -305,6 +335,15 @@ return {
 			-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
 			-- vim.g.loaded_netrw = 1
 			vim.g.loaded_netrwPlugin = 1
+		end,
+	},
+	{
+		"mfussenegger/nvim-lint",
+		event = "VeryLazy",
+		config = function()
+			require("lint").linters_by_ft = {
+				haskell = { "hlint" },
+			}
 		end,
 	},
 

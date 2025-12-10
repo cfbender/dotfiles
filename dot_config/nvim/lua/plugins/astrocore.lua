@@ -192,5 +192,22 @@ return {
 				},
 			},
 		},
+		autocmds = {
+			lint = {
+				{
+					event = { "BufEnter", "InsertLeave", "TextChanged", "BufWritePost" },
+					desc = "Lint file on haskell buffer changed",
+					callback = function()
+						if vim.bo.filetype ~= "haskell" then
+							return
+						end
+
+						-- try_lint without arguments runs the linters defined in `linters_by_ft`
+						-- for the current filetype
+						require("lint").try_lint("hlint")
+					end,
+				},
+			},
+		},
 	},
 }

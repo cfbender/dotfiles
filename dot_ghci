@@ -1,1 +1,2 @@
 :set prompt " "
+:set -Wno-x-partial -Wno-unrecognised-warning-flags

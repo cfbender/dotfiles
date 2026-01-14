@@ -27,17 +27,5 @@ IEx.configure(
       :reset
     ]
     |> IO.ANSI.format()
-    |> IO.chardata_to_string(),
-
-  continuation_prompt:
-    [
-      :light_magenta,
-      # plain string
-      " ...",
-      ">",
-      :white,
-      :reset
-    ]
-    |> IO.ANSI.format()
     |> IO.chardata_to_string()
 )

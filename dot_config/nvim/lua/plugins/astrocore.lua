@@ -115,6 +115,25 @@ return {
 					end,
 					desc = "Find diagnostics in open buffer",
 				},
+				["<leader>f."] = {
+					function()
+						local word = vim.fn.expand("<cword>")
+						local ft = vim.bo.filetype
+						if ft == "elixir" then
+							require("snacks").picker.grep({ search = "def " .. word .. "\\(" })
+						elseif
+							ft == "typescript"
+							or ft == "typescriptreact"
+							or ft == "javascript"
+							or ft == "javascriptreact"
+						then
+							require("snacks").picker.grep({ search = "(const|let|function) " .. word .. "[\\( =]" })
+						else
+							require("snacks").picker.grep_word()
+						end
+					end,
+					desc = "Find definition of word under cursor",
+				},
 				["<leader>sp"] = {
 					function()
 						require("snacks").picker.lazy()

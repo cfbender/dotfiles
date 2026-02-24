@@ -1,7 +1,6 @@
 [tools]
 bun = "latest"
 deno = "latest"
-"go:github.com/dlvhdr/diffnav" = "latest"
 elixir = "latest"
 erlang = "latest"
 hyperfine = "latest"

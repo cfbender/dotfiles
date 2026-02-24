@@ -62,7 +62,7 @@ export def gdp [] {
 }
 
 export def gss [] {
-  gt sync; gt submit --stack
+  gt sync; gt submit --stack --update-only
 }
 
 export def nup [] {

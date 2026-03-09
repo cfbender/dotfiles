@@ -180,7 +180,9 @@ return {
 								filter = function(item)
 									-- exclude defdelegates from results, so we can jump directly to the
 									-- real impl
-									return not item.text:match("defdelegate") and not item.text:match("%suse%s")
+									return not item.text:match("defdelegate")
+										and not item.text:match("%suse%s")
+										and not item.text:match("defaction")
 								end,
 							},
 						})

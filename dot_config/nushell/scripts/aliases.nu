@@ -66,12 +66,12 @@ export def gss [] {
 }
 
 export def nup [] {
-  nvim --headless "+Lazy! sync" +qa
+  nvim --headless +AstroUpdate +MasonToolsUpdateSync +qa
 }
 
 export def bup [] {
   brew update
-  brew upgrade
+  brew upgrade --cask --greedy
 } 
 
 export def fup [] {

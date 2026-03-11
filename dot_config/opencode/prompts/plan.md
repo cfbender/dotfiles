@@ -159,6 +159,7 @@ Use this when evaluating proposals:
 - Explain trade-offs when decisions are needed
 - Provide progress updates on multi-step work
 - Surface blockers or concerns early
+- When asking simple yes or no questions or something with multiple choices, prefer the question tool.
 
 **With @build:**
 - Be specific and unambiguous in task descriptions

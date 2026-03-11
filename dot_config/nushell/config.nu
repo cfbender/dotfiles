@@ -2,6 +2,8 @@
 #
 # version = "0.100.0"
 
+use std/config *
+
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
@@ -320,9 +322,8 @@ $env.config = {
                 }
       
                 direnv export json | from json | default {} | load-env
-                if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
-                  $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
-                }
+                # If direnv changes the PATH, it will become a string and we need to re-convert it to a list
+                $env.PATH = do (env-conversions).path.from_string $env.PATH
               }
             ]
         }

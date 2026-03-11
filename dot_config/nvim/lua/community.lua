@@ -5,12 +5,12 @@
 ---@type LazySpec
 return {
 	{ "AstroNvim/astrocommunity", branch = "main" },
+	{ import = "astrocommunity.ai.sidekick-nvim" },
 	{ import = "astrocommunity.colorscheme.catppuccin" },
 	{ import = "astrocommunity.colorscheme.dracula-nvim" },
 	{ import = "astrocommunity.colorscheme.kanagawa-nvim" },
 	{ import = "astrocommunity.colorscheme.nord-nvim" },
 	{ import = "astrocommunity.colorscheme.tokyonight-nvim" },
-	{ import = "astrocommunity.completion.avante-nvim" },
 	{ import = "astrocommunity.completion.copilot-lua" },
 	{ import = "astrocommunity.editing-support.conform-nvim" },
 	{ import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },

@@ -1,13 +1,32 @@
 {
   "general": {
-    "preferredEditor": "neovim"
+    "preferredEditor": "neovim",
+    "previewFeatures": true,
+    "sessionRetention": {
+      "enabled": true,
+      "warningAcknowledged": true,
+      "maxAge": "30d"
+    }
   },
   "ui": {
-    "theme": "Default"
+    "theme": "Default",
+    "footer": {
+      "hideModelInfo": true
+    },
+    "showStatusInTitle": true
   },
   "security": {
     "auth": {
-      "selectedType": "oauth-personal"
+      "selectedType": "vertex-ai"
     }
+  },
+  "tools": {
+    "shell": {
+      "showColor": true
+    }
+  },
+  "experimental": {
+    "plan": true
   }
 }
+

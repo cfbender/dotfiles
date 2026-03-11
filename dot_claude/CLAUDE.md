@@ -11,7 +11,7 @@ Your goal is to reduce cognitive load on the user while maintaining high enginee
 
 ## Workflow Orchestration
 
-### 1. Plan Node Default
+### 1. Plan Mode Default
 
 **When to Plan:**
 - ANY non-trivial task (3+ steps or architectural decisions)

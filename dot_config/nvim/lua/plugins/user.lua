@@ -346,6 +346,99 @@ return {
 			}
 		end,
 	},
+	{
+		"folke/sidekick.nvim",
+		specs = {
+			{
+				"AstroNvim/astrocore",
+				---@param opts AstroCoreOpts
+				opts = function(_, opts)
+					local maps = assert(opts.mappings)
+					local prefix = "<Leader>A"
+
+					local function ask_input(context_var, selection_text)
+						require("snacks").input({
+							prompt = "Ask about this:",
+							icon = "󰚩 ",
+							win = {
+								title_pos = "left",
+								relative = "cursor",
+								row = -3, -- Row above the cursor
+								col = 0, -- Align with the cursor
+								keys = {
+									i_cr = {
+										"<CR>",
+										function(self)
+											local text = self:text()
+											if not text or text == "" then
+												return
+											end
+											self:close()
+											vim.schedule(function()
+												local msg = selection_text and (text .. "\n" .. selection_text)
+													or (text .. " " .. context_var)
+												require("sidekick.cli").send({ msg = msg, submit = true })
+											end)
+										end,
+										mode = { "i", "n" },
+										desc = "submit",
+									},
+									i_s_cr = {
+										"<S-CR>",
+										function(self)
+											local text = self:text()
+											if not text or text == "" then
+												return
+											end
+											self:close()
+											vim.schedule(function()
+												local msg = selection_text and (text .. "\n" .. selection_text)
+													or (text .. " " .. context_var)
+												require("sidekick.cli").send({ msg = msg })
+											end)
+										end,
+										mode = "i",
+										desc = "append",
+									},
+								},
+								footer = {
+									{ " ", "SnacksFooter" },
+									{ " <CR> ", "SnacksFooterKey" },
+									{ " submit ", "SnacksFooterDesc" },
+									{ " ", "SnacksFooter" },
+									{ " <S-CR> ", "SnacksFooterKey" },
+									{ " append ", "SnacksFooterDesc" },
+									{ " ", "SnacksFooter" },
+								},
+							},
+						}, function() end)
+					end
+
+					-- Normal mode mappings overrides
+					maps.n[prefix .. "a"] = {
+						function()
+							ask_input("{this}")
+						end,
+						desc = "Ask about this",
+					}
+					maps.n[prefix .. "s"] = nil
+					maps.n[prefix .. "d"] = nil
+
+					-- Visual mode mappings overrides
+					maps.x[prefix] = { desc = require("astroui").get_icon("Sidekick", 1, true) .. "Sidekick" }
+					maps.x[prefix .. "a"] = {
+						function()
+							local region =
+								vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
+							local selection = table.concat(region, "\n")
+							ask_input("{selection}", selection)
+						end,
+						desc = "Ask about selection",
+					}
+				end,
+			},
+		},
+	},
 
 	-- == No Config Needed Plugins ==
 

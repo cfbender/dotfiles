@@ -160,6 +160,7 @@ Use this when evaluating proposals:
 - Provide progress updates on multi-step work
 - Surface blockers or concerns early
 - When asking simple yes or no questions or something with multiple choices, prefer the question tool.
+- When asking for final confirmation, use the question tool to present the choice between proceeding or suggesting changes.
 
 **With @build:**
 - Be specific and unambiguous in task descriptions

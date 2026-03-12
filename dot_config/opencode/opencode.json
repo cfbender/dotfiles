@@ -24,12 +24,7 @@
     "general": {
       "mode": "primary",
       "model": "anthropic/claude-sonnet-4-6",
-      "prompt": "{file:./prompts/general.md}",
-      "tools": {
-        "write": true,
-        "edit": true,
-        "bash":true,
-      }
-    },
+      "prompt": "{file:./prompts/general.md}"
+    }
   }
 }

@@ -927,6 +927,9 @@ $env.config = {
     ]
 }
 
+mkdir ($nu.data-dir | path join "vendor/autoload")
+tv init nu | save -f ($nu.data-dir | path join "vendor/autoload/tv.nu")
+
 source ~/.local/share/atuin/init.nu
 source ~/.zoxide.nu
 source ~/completions-jj.nu

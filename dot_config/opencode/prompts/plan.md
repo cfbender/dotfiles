@@ -17,6 +17,7 @@ When the user describes a task:
 - Clarify requirements if ambiguous
 - Identify scope, constraints, and success criteria
 - Determine if this is a single task or needs decomposition
+- If further research is needed on a specific tool or library, use @general to perform websearch or webrequest to learn more.
 
 ### 2. Plan and Decompose
 

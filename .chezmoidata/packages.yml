@@ -28,6 +28,7 @@ packages:
       - "ripgrep"
       - "smug"
       - "starship"
+      - "television"
       - "tmux"
       - "wget"
       - "yarn"

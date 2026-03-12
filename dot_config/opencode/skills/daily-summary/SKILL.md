@@ -72,15 +72,15 @@ Format the summary using **Slack mrkdwn** (not standard Markdown) so it can be p
 _Looking back to [SINCE_DATE]_
 
 *✅ Merged*
-• *PR Title* (https://app.graphite.com/github/pr/pdq/houston/NUMBER|#NUMBER) — `branch-name`
+• *PR Title* (https://app.graphite.com/github/pr/pdq/houston/NUMBER) — `branch-name`
 • ...
 
 *🚧 Needs More Work*
-• *PR Title* (https://app.graphite.com/github/pr/pdq/houston/NUMBER|#NUMBER) — `branch-name` — [reason: draft / changes requested / WIP]
+• *PR Title* (https://app.graphite.com/github/pr/pdq/houston/NUMBER) — `branch-name` — [reason: draft / changes requested / WIP]
 • ...
 
 *👀 Ready for Review*
-• *PR Title* (https://app.graphite.com/github/pr/pdq/houston/NUMBER|#NUMBER) — `branch-name`
+• *PR Title* (https://app.graphite.com/github/pr/pdq/houston/NUMBER) — `branch-name`
 • ...
 ```
 

@@ -1,68 +1,73 @@
-# Default terminal
-set-option -g default-terminal "tmux-256color"
-set-option -g default-shell {{ output "brew" "--prefix"  | trim }}/bin/nu
+# =============================================================================
+# Tmux Configuration
+# =============================================================================
 
-# Use vim key bindings
+# -----------------------------------------------------------------------------
+# General Settings
+# -----------------------------------------------------------------------------
+set-option -g default-terminal "tmux-256color"
+set-option -g default-shell {{ output "brew" "--prefix" | trim }}/bin/nu
+
+# Vim key bindings
 set-option -g mode-keys vi
 set-option -g status-keys vi
 
-# Turn the mouse on
+# Mouse support
 set-option -g mouse on
 
-# Turn the clipboard on
+# Clipboard
 set -g set-clipboard on
 
-# Time in milliseconds for which tmux waits after an escape
+# No escape delay
 set-option -g escape-time 0
 
-# Enable supported focus events
+# Focus events for vim integration
 set-option -g focus-events on
 
-# History settings
+# History
 set-option -g history-limit 10000
 set-option -g history-file ~/.tmux/tmuxhistory
 
-# Activity
+# Activity monitoring (disabled)
 set-option -g monitor-activity off
 set-option -g visual-activity off
 
-# Start window index at 1
+# Window/pane indexing starts at 1
 set-option -g base-index 1
-
-# Start pane index at 1
 set-option -g pane-base-index 1
 
-# Rename window to reflect current program
+# Window management
 set-option -g -w automatic-rename on
-
-# Renumber windows when one is closed
 set-option -g renumber-windows on
 
-# No bells at all
+# No bells
 set-option -g bell-action none
 
-# Enable RGB color if running in xterm
+# RGB color support
 set-option -g -a terminal-overrides ",xterm-256color:Tc"
 
-# Unbind default prefix key
+# Don't exit tmux when closing a session
+set -g detach-on-destroy off
+
+# -----------------------------------------------------------------------------
+# Key Bindings
+# -----------------------------------------------------------------------------
+
+# Prefix key: C-a
 unbind-key C-b
-
-# Set default prefix key
 set-option -g prefix C-a
-
-# Bind "C-a C-a" to send "C-a"
 bind-key C-a send-prefix
 
 # Reload configuration
 bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
 
-# Switch panes
+# Pane navigation (Alt + hjkl)
 bind-key -n M-h select-pane -L
 bind-key -n M-j select-pane -D
 bind-key -n M-k select-pane -U
 bind-key -n M-l select-pane -R
 
-# Switch windows
+# Window navigation
 unbind-key n
 bind-key -n M-p previous-window
 bind-key -n M-n next-window
@@ -77,7 +82,7 @@ bind-key -n M-8 select-window -t:8
 bind-key -n M-9 select-window -t:9
 bind-key -n M-0 select-window -t:10
 
-# Split pane with same directory
+# Split panes (with current path)
 unbind-key '"'
 unbind-key '%'
 bind-key '-' split-window -v -c "#{pane_current_path}"
@@ -85,7 +90,7 @@ bind-key '\' split-window -h -c "#{pane_current_path}"
 bind-key '_' split-window -fv -c "#{pane_current_path}"
 bind-key '|' split-window -fh -c "#{pane_current_path}"
 
-# Resize panes
+# Resize panes (Alt + Shift + hjkl)
 bind-key -n M-H resize-pane -L 2
 bind-key -n M-J resize-pane -D 1
 bind-key -n M-K resize-pane -U 1
@@ -100,77 +105,32 @@ unbind-key '}'
 bind-key -r H swap-pane -U
 bind-key -r L swap-pane -D
 
-# Kill pane
+# Kill pane/window
 bind-key x kill-pane
-
-# Swap windows across themselves
-bind-key -r '<' swap-window -t -1
-bind-key -r '>' swap-window -t +1
-
-# Kill window
 unbind-key '&'
 bind-key X kill-window
 bind-key K kill-window -a
-set -g detach-on-destroy off  # don't exit from tmux when closing a session
 
-# Rally
+# Swap windows
+bind-key -r '<' swap-window -t -1
+bind-key -r '>' swap-window -t +1
+
+# Rally integration
 bind s display-popup -E -w 80% -h 70% rally.sh
 
-
-# List of plugins
+# -----------------------------------------------------------------------------
+# Plugins
+# -----------------------------------------------------------------------------
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tmux-plugins/tmux-battery'
 
-
-# set -g @catppuccin_flavor "mocha"
-# set -g @catppuccin_window_status_style "rounded"
-# # leave this unset to let applications set the window title
-# set -g @catppuccin_window_text " #W"
-# set -g @catppuccin_window_current_text " #W"
-# set -g @catppuccin_window_status "icon"
-# set -g @catppuccin_window_current_background "#{@thm_mauve}"
-
-# run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
-
-# Make the status line pretty and add some modules
-# set -g status-right-length 100
-# set -g status-left-length 100
-# set -g status-left ""
-# set -g status-right "#[bg=#{@thm_flamingo},fg=#{@thm_crust}]#[reverse]#[noreverse]󱀙  "
-# set -ag status-right "#[fg=#{@thm_fg},bg=#{@thm_mantle}] #(memory.sh) "
-# set -agF status-right "#{E:@catppuccin_status_cpu}"
-# set -ag status-right "#{E:@catppuccin_status_session}"
-# set -ag status-right "#{E:@catppuccin_status_uptime}"
-# set -agF status-right "#{E:@catppuccin_status_battery}"
-
-# tmux-powerkit configuration
+# Powerkit theme (Catppuccin Mocha)
 set -g @plugin 'fabioluciano/tmux-powerkit'
 set -g @powerkit_theme 'catppuccin'
 set -g @powerkit_theme_variant 'mocha'
 set -g @powerkit_plugin_datetime_format "%a %b %d - %I:%M %p"
 set -g @powerkit_plugins 'datetime,cpu,memory,git,temperature,battery,loadvg'
 
-# set -g @plugin "arcticicestudio/nord-tmux"
-
-#set -g @plugin 'dracula/tmux'
-
-# set -g @plugin 'rose-pine/tmux'
-# set -g @rose_pine_variant 'main' # Options are 'main', 'moon' or 'dawn'
-# set -g @rose_pine_date_time '%r' # It accepts the date UNIX command format (man date for info)
-# set -g @rose_pine_bar_bg_disabled_color_option 'default'
-# set -g @rose_pine_disable_active_window_menu 'on' # Disables the menu that shows the active window on the left
-# set -g @rose_pine_left_separator ' > ' # The strings to use as separators are 1-space padded
-# set -g @rose_pine_right_separator ' < ' # Accepts both normal chars & nerdfont icons
-# set -g @rose_pine_field_separator ' | ' # Again, 1-space padding, it updates with prefix + I
-# set -g @rose_pine_window_separator ' - ' # Replaces the default `:` between the window number and name
-# set -g @rose_pine_session_icon '' # Changes the default icon to the left of the session name
-# set -g @rose_pine_current_window_icon '' # Changes the default icon to the left of the active window name
-# set -g @rose_pine_folder_icon '' # Changes the default icon to the left of the current directory folder
-# set -g @rose_pine_username_icon '' # Changes the default icon to the right of the hostname
-# set -g @rose_pine_hostname_icon '󰒋' # Changes the default icon to the right of the hostname
-# set -g @rose_pine_date_time_icon '󰃰' # Changes the default icon to the right of the date module
-# set -g @rose_pine_window_status_separator "  " # Changes the default icon that appears between window names
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+# Initialize TPM (keep at bottom)
 run -b '~/.tmux/plugins/tpm/tpm'

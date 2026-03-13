@@ -1,6 +1,34 @@
+# =============================================================================
+# Ripgrep Configuration
+# =============================================================================
+
+# Output formatting
 --max-columns=150
+--max-columns-preview
+
+# Search behavior
 --smart-case
 --hidden
---ignore-vcs
---trim
+
+# Performance
 --no-require-git
+
+# Ignore patterns
+--glob=!.git
+--glob=!node_modules
+--glob=!_build
+--glob=!deps
+--glob=!.elixir_ls
+--glob=!coverage
+--glob=!.next
+--glob=!dist
+--glob=!*.min.js
+--glob=!*.map
+
+# Colors (Catppuccin-inspired)
+--colors=line:fg:yellow
+--colors=line:style:bold
+--colors=path:fg:green
+--colors=path:style:bold
+--colors=match:fg:red
+--colors=match:style:bold

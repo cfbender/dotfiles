@@ -1,5 +1,15 @@
-Host github.com
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_ed25519
+# =============================================================================
+# SSH Configuration
+# =============================================================================
 
+# Global defaults
+Host *
+	AddKeysToAgent yes
+	UseKeychain yes
+	IdentitiesOnly yes
+	ServerAliveInterval 60
+	ServerAliveCountMax 3
+
+# GitHub
+Host github.com
+	IdentityFile ~/.ssh/id_ed25519

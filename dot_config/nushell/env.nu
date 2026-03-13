@@ -35,7 +35,10 @@ atuin init nu | save --force ~/.local/share/atuin/init.nu
 
 $env.config.buffer_editor = "nvim"
 
-jj util completion nushell | save -f ~/completions-jj.nu
+# jj completions (only generate if jj is available)
+if (which jj | is-not-empty) {
+  jj util completion nushell | save -f ~/completions-jj.nu
+}
 
 # pnpm
 $env.PNPM_HOME = $env.HOME | path join Library pnpm 

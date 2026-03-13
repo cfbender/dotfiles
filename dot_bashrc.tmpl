@@ -1,12 +1,23 @@
-. "$HOME/.cargo/env"
+# =============================================================================
+# Bash Configuration
+# =============================================================================
 
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash)"
+# Cargo environment
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
-eval "$(~/.local/bin/mise activate bash)"
+# Atuin shell history
+if [[ -f ~/.bash-preexec.sh ]]; then
+  source ~/.bash-preexec.sh
+  command -v atuin &>/dev/null && eval "$(atuin init bash)"
+fi
 
-. "$HOME/.ghcup/env"
+# Mise version manager
+[[ -x "$HOME/.local/bin/mise" ]] && eval "$(~/.local/bin/mise activate bash)"
+
+# GHCup Haskell environment
+[[ -f "$HOME/.ghcup/env" ]] && . "$HOME/.ghcup/env"
 
 {{- if eq .chezmoi.os "darwin" }}
-export PATH="/opt/homebrew/bin:$PATH"
-{{- end}}
+# Homebrew
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+{{- end }}

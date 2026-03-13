@@ -1,30 +1,65 @@
 [core]
-  editor = nvim
+	editor = nvim
 	autocrlf = false
 	pager = delta
-	{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 	excludesfile = /Users/cfb/.gitignore
-	{{- end }}
+{{- end }}
+
 [user]
 	name = Cody Bender
 	email = {{ .email | quote }}
-	{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 	signingkey = /Users/cfb/.ssh/id_ed25519.pub
-	{{- else }}
+{{- else }}
 	signingkey = ~/.ssh/id_ed25519.pub
-	{{- end }}
+{{- end }}
+
 [gpg]
 	format = ssh
+
+[commit]
+	gpgsign = true
+
+[tag]
+	gpgsign = true
+
+[init]
+	defaultBranch = main
+
 [push]
 	default = current
 	autoSetupRemote = true
+
 [pull]
 	rebase = true
+
+[diff]
+	tool = diffnav
+	colorMoved = default
+
+[merge]
+	tool = meld
+	conflictstyle = diff3
+
+[rerere]
+	enabled = true
+
+[maintenance]
+	auto = false
+	strategy = incremental
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
 [alias]
-  sw = switch
-  nb = switch -c
+	sw = switch
+	nb = switch -c
 	co = checkout
-  dt = difftool
+	dt = difftool
 	st = status
 	cm = commit -m
 	pom = pull origin main
@@ -41,35 +76,20 @@
 	su = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)
 	recent = for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short) | %(committerdate) | %(authorname)'
 	recent-branch = for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)'
-[diff]
-	tool = diffnav
-[merge]
-	tool = meld
- 	conflictstyle = diff3
-[commit]
-	gpgsign = true
-[tag]
-	gpgsign = true
-[init]
-  defaultBranch = main
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[interactive]
-  diffFilter = delta --color-only
-[add.interactive]
-  useBuiltin = false # required for git 2.37.0
 
+[interactive]
+	diffFilter = delta --color-only
+
+[add.interactive]
+	useBuiltin = false
+
+# Delta configuration (Catppuccin Frappe theme)
 [delta]
-  commit-decoration-style = bold box ul
-  side-by-side = true
-  navigate = true    # use n and N to move between diff sections
-  dark = true
-  blame-palette = "#303446 #292c3c #232634 #414559 #51576d"
-	commit-decoration-style = box ul
+	side-by-side = true
+	navigate = true
 	dark = true
+	syntax-theme = Catppuccin Mocha
+	commit-decoration-style = bold box ul
 	file-decoration-style = "#c6d0f5"
 	file-style = "#c6d0f5"
 	hunk-header-decoration-style = box ul
@@ -81,6 +101,7 @@
 	line-numbers-plus-style = bold "#a6d189"
 	line-numbers-right-style = "#737994"
 	line-numbers-zero-style = "#737994"
+	blame-palette = "#303446 #292c3c #232634 #414559 #51576d"
 	# 25% red 75% base
 	minus-emph-style = bold syntax "#5e4855"
 	# 10% red 90% base
@@ -94,18 +115,3 @@
 		bold blue => syntax "#475270", \
 		bold cyan => syntax "#4a5b6b", \
 		bold yellow => syntax "#5d5958"
-	# Should match the name of the bat theme
-	syntax-theme = Catppuccin Mocha
-
-[merge]
-  conflictstyle = diff3
-
-[diff]
-  colorMoved = default
-
-[rerere]
-	enabled = true
-
-[maintenance]
-  auto = false
-  strategy = incremental

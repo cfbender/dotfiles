@@ -6,14 +6,16 @@
       "enabled": true,
       "warningAcknowledged": true,
       "maxAge": "30d"
-    }
+    },
+    "vimMode": true
   },
   "ui": {
     "theme": "Default",
     "footer": {
-      "hideModelInfo": true
+      "hideModelInfo": false
     },
-    "showStatusInTitle": true
+    "showStatusInTitle": true,
+    "showModelInfoInChat": true
   },
   "security": {
     "auth": {
@@ -27,6 +29,8 @@
   },
   "experimental": {
     "plan": true
+  },
+  "model": {
+    "name": "gemini-3-pro"
   }
 }
-

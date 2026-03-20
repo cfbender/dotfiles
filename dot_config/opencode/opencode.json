@@ -17,15 +17,13 @@
       "model": "openai/gpt-5.3-codex",
       "prompt": "{file:./prompts/deep.md}",
       "reasoningEffort": "xhigh",
-      "permission": {
-        "edit": "deny",
-      }
     },
     "search": {
       "mode": "subagent",
       "model": "google/gemini-3-flash-preview",
       "prompt": "{file:./prompts/search.md}",
       "permission": {
+        "*": "ask",
         "edit": "deny",
       }
     },
@@ -34,6 +32,7 @@
       "model": "openai/gpt-5.4",
       "prompt": "{file:./prompts/oracle.md}",
       "permission": {
+        "*": "ask",
         "edit": "deny",
       }
     },
@@ -42,6 +41,7 @@
       "model": "anthropic/claude-sonnet-4-6",
       "prompt": "{file:./prompts/librarian.md}",
       "permission": {
+        "*": "ask",
         "edit": "deny",
       }
     },

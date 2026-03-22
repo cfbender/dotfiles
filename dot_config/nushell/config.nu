@@ -936,4 +936,4 @@ source ~/completions-jj.nu
 source ~/.cache/carapace/init.nu
 source ~/.config/nushell/scripts/aliases.nu
 use ~/.cache/starship/init.nu
-use ~/.config/nushell/scripts/mise.gen.nu
+use ($nu.default-config-dir | path join mise.nu)

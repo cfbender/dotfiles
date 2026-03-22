@@ -30,6 +30,7 @@
     "oracle": {
       "mode": "subagent",
       "model": "openai/gpt-5.4",
+      "reasoningEffort": "medium",
       "prompt": "{file:./prompts/oracle.md}",
       "permission": {
         "*": "ask",

@@ -23,6 +23,7 @@ packages:
       - "lazygit"
       - "lsd"
       - "magic-wormhole"
+      - "mise"
       - "neovim"
       - "nushell"
       - "ripgrep"

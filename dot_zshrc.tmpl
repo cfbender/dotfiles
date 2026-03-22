@@ -90,7 +90,6 @@ _cached_init() {
 # Tool Initialization (cached for speed)
 # -----------------------------------------------------------------------------
 _cached_init starship 'starship init zsh'
-_cached_init mise '~/.local/bin/mise activate zsh'
 _cached_init zoxide 'zoxide init zsh --cmd cd'
 _cached_init atuin 'atuin init zsh'
 _cached_init task-completions 'task --completion zsh'
@@ -169,3 +168,5 @@ function im() {
 function imp() {
   iex -S mix phx.server
 }
+
+eval "$(mise activate zsh)"

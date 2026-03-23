@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-handoff"],
+  "plugin": ["opencode-handoff", "opencode-agent-skills", "@tarquinen/opencode-dcp@latest"],
   "agent": {
     "smart": {
       "mode": "primary",

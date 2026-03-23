@@ -37,6 +37,8 @@ if (which jj | is-not-empty) {
   jj util completion nushell | save -f ~/completions-jj.nu
 }
 
+$env.OPENCODE_AGENT_SKILLS_SUPERPOWERS_MODE = true
+
 # pnpm
 $env.PNPM_HOME = $env.HOME | path join Library pnpm 
 

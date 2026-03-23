@@ -47,7 +47,7 @@ export FZF_DEFAULT_OPTS="
 # -----------------------------------------------------------------------------
 # PATH Configuration (deduplicated)
 # -----------------------------------------------------------------------------
-typeset -U path  # Zsh: ensure unique entries
+typeset -U path # Zsh: ensure unique entries
 
 path=(
   "$HOME/.local/bin"
@@ -75,13 +75,13 @@ _cached_init() {
   local cmd=$2
   local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/${name}.zsh"
   local bin_path
-  
+
   # Extract binary name (first word of command, or use name)
   bin_path=$(command -v "${cmd%% *}" 2>/dev/null)
-  
+
   if [[ ! -f "$cache" ]] || [[ -n "$bin_path" && "$bin_path" -nt "$cache" ]]; then
     mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-    eval "$cmd" > "$cache" 2>/dev/null || return 1
+    eval "$cmd" >"$cache" 2>/dev/null || return 1
   fi
   source "$cache"
 }
@@ -150,8 +150,8 @@ function mt() {
 
     cat -p \
       <(find lib test -type f -iname "*$1*_test.exs" -exec rg "test\s" --vimgrep -s {} \; | cut -d':' -f1,2) \
-      <(rg "(test\s|describe\s).*$1" -g "lib/**/*_test.exs" -g "$add_test" --vimgrep -s | cut -d':' -f1,2) \
-      | xargs mix test
+      <(rg "(test\s|describe\s).*$1" -g "lib/**/*_test.exs" -g "$add_test" --vimgrep -s | cut -d':' -f1,2) |
+      xargs mix test
   fi
 }
 
@@ -170,3 +170,4 @@ function imp() {
 }
 
 eval "$(mise activate zsh)"
+export OPENCODE_AGENT_SKILLS_SUPERPOWERS_MODE=true

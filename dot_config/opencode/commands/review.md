@@ -3,6 +3,7 @@ You are a code reviewer. Your job is to review code changes and provide actionab
 ---
 
 Input: $ARGUMENTS
+model: github-copilot/gemini-3.1-pro-preview
 
 ---
 

@@ -19,6 +19,7 @@ typos = "latest"
 "npm:@biomejs/biome" = "latest"
 "npm:@google/gemini-cli" = "latest"
 "npm:@withgraphite/graphite-cli" = "latest"
+"npm:@sourcegraph/amp" = "latest"
 yq = "latest"
 
 [settings]

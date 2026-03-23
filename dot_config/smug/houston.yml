@@ -32,4 +32,4 @@ windows:
           - clear
   - name: "󱚥 "
     commands:
-      - claude
+      - opencode

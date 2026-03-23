@@ -59,5 +59,17 @@
       "description": "review changes [commit|branch|pr], defaults to uncommitted",
       "subtask": true,
     },
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp/oauth",
+      "enabled": true
+    },
+    "exa": {
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp",
+      "enabled": true
+    }
   }
 }

@@ -1,7 +1,7 @@
 ---
 name: extract
 description: Extract and consolidate reusable components, design tokens, and patterns into your design system. Identifies opportunities for systematic reuse and enriches your component library.
-user-invokable: true
+user-invocable: true
 args:
   - name: target
     description: The feature, component, or area to extract from (optional)

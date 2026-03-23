@@ -1,7 +1,7 @@
 ---
 name: harden
 description: Improve interface resilience through better error handling, i18n support, text overflow handling, and edge case management. Makes interfaces robust and production-ready.
-user-invokable: true
+user-invocable: true
 args:
   - name: target
     description: The feature or area to harden (optional)

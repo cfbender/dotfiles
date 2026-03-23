@@ -1,7 +1,7 @@
 ---
 name: normalize
 description: Normalize design to match your design system and ensure consistency
-user-invokable: true
+user-invocable: true
 args:
   - name: feature
     description: The page, route, or feature to normalize (optional)
@@ -9,6 +9,12 @@ args:
 ---
 
 Analyze and redesign the feature to perfectly match our design system standards, aesthetics, and established patterns.
+
+## MANDATORY PREPARATION
+
+Use the frontend-design skill — it contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no design context exists yet, you MUST run teach-impeccable first.
+
+---
 
 ## Plan
 

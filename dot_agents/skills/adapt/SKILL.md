@@ -1,7 +1,7 @@
 ---
 name: adapt
 description: Adapt designs to work across different screen sizes, devices, contexts, or platforms. Ensures consistent experience across varied environments.
-user-invokable: true
+user-invocable: true
 args:
   - name: target
     description: The feature or component to adapt (optional)
@@ -12,6 +12,12 @@ args:
 ---
 
 Adapt existing designs to work effectively across different contexts - different screen sizes, devices, platforms, or use cases.
+
+## MANDATORY PREPARATION
+
+Use the frontend-design skill — it contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no design context exists yet, you MUST run teach-impeccable first. Additionally gather: target platforms/devices and usage contexts.
+
+---
 
 ## Assess Adaptation Challenge
 

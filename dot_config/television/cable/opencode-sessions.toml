@@ -1,0 +1,24 @@
+[metadata]
+name = "opencode-sessions"
+description = "List and attach to opencode sessions"
+requirements = ["opencode", "jq"]
+
+[source]
+command = "opencode session list --format json | jq -r '.[] | \"\\(.id)\\t\\(.title)\\t\\(.directory | gsub(\"^\" + env.HOME; \"~\"))\\t\\(.updated / 1000 | strftime(\"%Y-%m-%d %H:%M\"))\"'"
+display = "{split:\t:1}  {split:\t:2}  {split:\t:3}"
+output = "{split:\t:0}"
+shell = "bash"
+
+[preview]
+command = "opencode db \"SELECT title, directory, datetime(time_created/1000, 'unixepoch', 'localtime') as created, datetime(time_updated/1000, 'unixepoch', 'localtime') as updated, coalesce(summary_files,0) as files, coalesce(summary_additions,0) as adds, coalesce(summary_deletions,0) as dels FROM session WHERE id = '{split:\t:0}'\" --format json 2>/dev/null | jq -r '.[0] | \"Title: \\(.title)\\nDirectory: \\(.directory)\\nCreated: \\(.created)\\nUpdated: \\(.updated)\\nFiles: \\(.files) (+\\(.adds) -\\(.dels))\\n\"' && echo '---' && opencode db \"SELECT json_extract(m.data, '\\$.role') as role, substr(json_extract(p.data, '\\$.text'), 1, 150) as text FROM part p JOIN message m ON p.message_id = m.id WHERE p.session_id = '{split:\t:0}' AND json_extract(p.data, '\\$.type') = 'text' AND json_extract(m.data, '\\$.role') IN ('user', 'assistant') ORDER BY p.time_created DESC LIMIT 10\" --format json 2>/dev/null | jq -r '[.[] | select(.text | startswith(\"<\") | not) | \"\\(.role): \\(.text)\"] | reverse | join(\"\\n\\n\")'"
+shell = "bash"
+
+[actions.attach]
+description = "Resume the selected opencode session"
+command = "opencode --session '{split:\t:0}'"
+mode = "execute"
+
+[actions.delete]
+description = "Delete the selected opencode session"
+command = "opencode session delete '{split:\t:0}'"
+mode = "fork"

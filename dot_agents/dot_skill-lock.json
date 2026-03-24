@@ -172,14 +172,33 @@
       "installedAt": "2026-03-13T18:27:05.991Z",
       "updatedAt": "2026-03-23T00:56:16.687Z"
     },
+    "simplify": {
+      "source": "brianlovin/claude-config",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/brianlovin/claude-config.git",
+      "skillPath": "skills/simplify/SKILL.md",
+      "skillFolderHash": "83566973442dc05bcf5abbe83053e8a8e5f50b6b",
+      "installedAt": "2026-03-23T21:37:58.111Z",
+      "updatedAt": "2026-03-24T02:59:59.107Z"
+    },
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "skillFolderHash": "2cc38c81352e5c6e51c750ee11b8e2d0df28a7ae",
+      "pluginName": "agent-browser",
+      "installedAt": "2026-03-23T21:38:03.978Z",
+      "updatedAt": "2026-03-24T03:00:02.019Z"
+    },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
       "skillPath": "skills/react-best-practices/SKILL.md",
       "skillFolderHash": "69bf4a7eeeaa772290c1c5efd19da0865f903af8",
-      "installedAt": "2026-03-13T18:31:42.320Z",
-      "updatedAt": "2026-03-23T00:56:18.674Z"
+      "installedAt": "2026-03-24T15:07:30.413Z",
+      "updatedAt": "2026-03-24T15:07:30.413Z"
     }
   },
   "dismissed": {
@@ -187,12 +206,15 @@
   },
   "lastSelectedAgents": [
     "amp",
+    "antigravity",
     "cline",
     "codex",
     "cursor",
+    "deepagents",
     "gemini-cli",
     "github-copilot",
     "kimi-cli",
-    "opencode"
+    "opencode",
+    "warp"
   ]
 }

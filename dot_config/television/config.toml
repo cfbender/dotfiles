@@ -245,6 +245,7 @@ fallback_channel = "files"
 "docker-images" = ["docker run"]
 "git-repos" = ["nvim", "code", "hx", "git clone"]
 "channels-completion" = ["tv"]
+"opencode-sessions" = ["opencode"]
 
 
 [shell_integration.keybindings]

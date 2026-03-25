@@ -4,7 +4,7 @@
 
 ---@type LazySpec
 return {
-	{ "AstroNvim/astrocommunity", branch = "main" },
+	{ "AstroNvim/astrocommunity",                                       branch = "main" },
 	{ import = "astrocommunity.ai.sidekick-nvim" },
 	{ import = "astrocommunity.colorscheme.catppuccin" },
 	{ import = "astrocommunity.colorscheme.dracula-nvim" },
@@ -34,4 +34,5 @@ return {
 	{ import = "astrocommunity.recipes.picker-lsp-mappings" },
 	{ import = "astrocommunity.test.nvim-coverage" },
 	{ import = "astrocommunity.test.vim-test" },
+	{ import = "astrocommunity.utility.noice-nvim" },
 }

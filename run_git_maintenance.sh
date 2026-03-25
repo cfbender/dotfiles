@@ -1,8 +1,8 @@
 #!/bin/sh
 
-TARGETS=$(ls -d ~/code/pdq/* ~/code/github/* ~/code/playground/*  ~/.local/share/chezmoi)
+for TARGET in ~/code/pdq/* ~/code/github/* ~/code/playground/* ~/.local/share/chezmoi; do
+  [ -d "$TARGET" ] || continue
 
-# loop through targets and append repo = target for maintenance in git config
-for TARGET in $TARGETS; do
-  git config --global --add maintenance.repo $TARGET
+  # loop through targets and append repo = target for maintenance in git config
+  git config --global --add maintenance.repo "$TARGET"
 done

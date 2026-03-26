@@ -125,7 +125,7 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
-        bind "Ctrl o" { SwitchToMode "normal"; }
+        bind "Ctrl w" { SwitchToMode "normal"; }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 floating true
@@ -148,6 +148,14 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
+        bind "Ctrl w" {
+            Run "zally.sh" "--inside" {
+                floating true
+                cwd "~/.local/bin"
+                close_on_exit true
+            }
+            SwitchToMode "normal"
+        }
     }
     shared_except "locked" {
         bind "Alt +" { Resize "Increase"; }
@@ -163,12 +171,21 @@ keybinds clear-defaults=true {
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
         bind "Ctrl q" { Quit; }
+        bind "Alt 1" { GoToTab 1; SwitchToMode "normal"; }
+        bind "Alt 2" { GoToTab 2; SwitchToMode "normal"; }
+        bind "Alt 3" { GoToTab 3; SwitchToMode "normal"; }
+        bind "Alt 4" { GoToTab 4; SwitchToMode "normal"; }
+        bind "Alt 5" { GoToTab 5; SwitchToMode "normal"; }
+        bind "Alt 6" { GoToTab 6; SwitchToMode "normal"; }
+        bind "Alt 7" { GoToTab 7; SwitchToMode "normal"; }
+        bind "Alt 8" { GoToTab 8; SwitchToMode "normal"; }
+        bind "Alt 9" { GoToTab 9; SwitchToMode "normal"; }
     }
     shared_except "locked" "move" {
         bind "Ctrl h" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
-        bind "Ctrl o" { SwitchToMode "session"; }
+        bind "Ctrl w" { SwitchToMode "session"; }
     }
     shared_except "locked" "scroll" {
         bind "Alt left" { MoveFocusOrTab "left"; }

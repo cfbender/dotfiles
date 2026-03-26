@@ -43,8 +43,13 @@ set-option -g renumber-windows on
 # No bells
 set-option -g bell-action none
 
-# RGB color support
+# RGB color support + Unicode handling
 set-option -g -a terminal-overrides ",xterm-256color:Tc"
+set-option -g -a terminal-overrides ",xterm-ghostty:Tc"
+set-option -g -a terminal-overrides ",alacritty:Tc"
+
+# Treat ambiguous-width characters as single-width (Nerd Font/Powerline glyphs)
+set-option -g -q utf8 on
 
 # Don't exit tmux when closing a session
 set -g detach-on-destroy off

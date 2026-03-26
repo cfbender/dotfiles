@@ -18,6 +18,11 @@ $env.PATH = (
 
 $env.RIPGREP_CONFIG_PATH = ($env.HOME | path join .ripgreprc)
 
+# Locale settings for consistent Unicode handling
+$env.LANG = "en_US.UTF-8"
+$env.LANGUAGE = "en_US.UTF-8"
+$env.LC_ALL = "en_US.UTF-8"
+
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 mkdir ~/.cache/carapace
 carapace _carapace nushell | save --force ~/.cache/carapace/init.nu

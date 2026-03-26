@@ -22,6 +22,7 @@ source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 # -----------------------------------------------------------------------------
 # Environment Variables
 # -----------------------------------------------------------------------------
+export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export VISUAL="nvim"
@@ -34,6 +35,11 @@ export BUN_INSTALL="$HOME/.bun"
 # SSH/GPG configuration
 if [[ -n "$SSH_CONNECTION" ]]; then
   export PINENTRY_USER_DATA="USE_CURSES=1"
+
+  # Fall back to xterm-256color if the remote lacks terminfo for exotic terminals
+  if ! infocmp "$TERM" &>/dev/null; then
+    export TERM=xterm-256color
+  fi
 fi
 
 # FZF configuration (Catppuccin Mocha theme)
@@ -124,7 +130,7 @@ alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'
 
 # Misc
-alias yeehaw=rally.sh
+alias yeehaw=zally.sh
 
 {{- if eq .chezmoi.os "darwin" }}
 alias bup="brew update && brew upgrade"

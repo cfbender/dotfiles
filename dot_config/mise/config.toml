@@ -20,6 +20,7 @@ typos = "latest"
 "npm:@withgraphite/graphite-cli" = "latest"
 "npm:@sourcegraph/amp" = "latest"
 yq = "latest"
+zellij = "latest"
 
 [settings]
 disable_backends = ["asdf"]

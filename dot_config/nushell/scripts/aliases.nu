@@ -23,7 +23,7 @@ export def mtw [] {
 
 alias im = iex -S mix
 alias imp = iex -S mix phx.server
-alias yeehaw = rally.sh
+alias yeehaw = zally.sh
 
 export def gunwip [] {
   git log -n 1 | grep -q -c '\--wip--'

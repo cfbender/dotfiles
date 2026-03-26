@@ -15,6 +15,7 @@ return {
 			"javascript",
 			"jsdoc",
 			"json",
+			"kdl",
 			"liquid",
 			"lua",
 			"markdown",

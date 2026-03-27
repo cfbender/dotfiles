@@ -1,6 +1,10 @@
 #!/bin/bash
 
-wget -O - https://github.com/cfbender.keys > ~/.ssh/authorized_keys
+wget -O - https://github.com/cfbender.keys >~/.ssh/authorized_keys
+
+if [ ! -d ~/.oh-my-zsh/ ]; then
+ 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -13,21 +17,22 @@ fi
 if [ ! -f ~/.ssh/id_ed25519 ]; then
   ssh-keygen -t ed25519 -C {{ .email | quote }}
   eval "$(ssh-agent -s)"
-  {{ if eq .chezmoi.os "darwin" -}}
   ssh-add ~/.ssh/id_ed25519
-  {{- end }}
 fi
 
- if [ ! -d "$(bat --config-dir)/themes/Catppuccin Mocha.tmTheme" ]; then
-   wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
-   wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
-   wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
-   wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
-   bat cache --build
+if [ ! -d "$(bat --config-dir)/themes/Catppuccin Mocha.tmTheme" ]; then
+  wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+  wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+  wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+  wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+  bat cache --build
 fi
-
 
 {{ if eq .chezmoi.os "darwin" -}}
 # clear ghostty config in favor of dot_config
 rm -rf ~/Library/Application Support/com.mitchellh.ghostty
 {{ end -}}
+
+if [ ! -d ~/.ghcup/ ]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+fi

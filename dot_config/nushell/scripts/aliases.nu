@@ -74,14 +74,43 @@ export def bup [] {
   brew upgrade --cask --greedy
 } 
 
+export def pup [] {
+  sudo pacman -Syu
+}
+
+export def aup [] {
+  sudo apt update
+  sudo apt upgrade -y
+}
+
 export def fup [] {
   [1 2 3 4] | par-each { |x| 
     if $x == 1 { 
       echo "Updating neovim dependencies ..." | gum style --foreground "#40a02b" --bold
       nup
     } else if $x == 2 {
-      echo "Updating homebrew packages ..." | gum style --foreground "#df8e1d" --bold
-      bup
+      let package_manager = if (which brew | is-not-empty) {
+        "brew"
+      } else if (which pacman | is-not-empty) {
+        "pacman"
+      } else if (which apt | is-not-empty) {
+        "apt"
+      } else {
+        null
+      }
+
+      if $package_manager == "brew" {
+        echo "Updating homebrew packages ..." | gum style --foreground "#df8e1d" --bold
+        bup
+      } else if $package_manager == "pacman" {
+        echo "Updating pacman packages..." | gum style --foreground "#df8e1d" --bold
+        pup
+      } else if $package_manager == "apt" {
+        echo "Updating apt packages..." | gum style --foreground "#df8e1d" --bold
+        aup
+      } else {
+        echo "Skipping system package update (no brew/pacman/apt found)." | gum style --foreground "#d20f39" --bold
+      }
     } else if $x == 3 {
       echo "Updating agent skills..." | gum style --foreground "#ea76cb" --bold
       npx skills update

@@ -24,8 +24,8 @@ $env.LANGUAGE = "en_US.UTF-8"
 $env.LC_ALL = "en_US.UTF-8"
 
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+mkdir $"($nu.cache-dir)"
+carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
 
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu

@@ -13,19 +13,10 @@ set -g theme_nerd_fonts yes
 # Set firefox as browser
 set -x BROWSER firefox.desktop
 
-set -gx NVM_DIR (brew --prefix nvm)
-
-function nvm
-    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
-end
-
 function clear-dns
   sudo killall -HUP mDNSResponder
 end
 
-set -gx EDITOR /opt/homebrew/bin/nvim
-
-set -Ua fish_user_paths (yarn global bin) 
 set -Ua fish_user_paths $HOME/.cargo/bin
 set -Ua fish_user_paths $HOME/.rover/bin
 set -Ua fish_user_paths $HOME/.gem/ruby/2.7.0/bin
@@ -34,14 +25,6 @@ set -Ua fish_user_paths /opt/homebrew/bin
 
 set DENO_INSTALL "$HOME/.deno"
 set -Ua fish_user_paths $DENO_INSTALL/bin
-
-function dr 
-  if test (count $argv) -gt 0
-    deno run --allow-read $argv
-  else
-    deno run --allow-read ./index.ts
-  end
-end
 
 set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
 
@@ -55,11 +38,10 @@ set -gx EDITOR nvim
 
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 
-thefuck --alias | source
-
 function gunwip
     git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1
 end
+
 function gwip
     git add -A
     git rm (git ls-files --deleted) 2>/dev/null
@@ -95,8 +77,6 @@ set -U fish_pager_color_description 6c7086
 
 starship init fish | source
 
-source /opt/homebrew/opt/asdf/libexec/asdf.fish
-
 # pnpm
 set -gx PNPM_HOME "/Users/cfb/Library/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
@@ -114,7 +94,5 @@ if [ -f '/Users/cfb/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/cfb/D
 if test -n "$SSH_CONNECTION"
     set -U PINENTRY_USER_DATA "USE_CURSES=1"
 end
-
-source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/cfb/.ghcup/bin # ghcup-env

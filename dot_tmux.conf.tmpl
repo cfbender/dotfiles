@@ -6,7 +6,16 @@
 # General Settings
 # -----------------------------------------------------------------------------
 set-option -g default-terminal "tmux-256color"
-set-option -g default-shell {{ output "brew" "--prefix" | trim }}/bin/nu
+
+{{ if eq .chezmoi.os "linux" -}}
+  {{ if eq .chezmoi.osRelease.id "arch" -}}
+    set-option -g default-shell /usr/bin/nu
+  {{ else -}}
+# Other Linux distribution configuration (e.g., debian, fedora)
+  {{ end -}}
+{{ else -}}
+  set-option -g default-shell {{ output "brew" "--prefix" | trim }}/bin/nu
+{{ end -}}
 
 # Vim key bindings
 set-option -g mode-keys vi

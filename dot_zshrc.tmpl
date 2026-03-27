@@ -92,13 +92,13 @@ _cached_init() {
   source "$cache"
 }
 
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
+eval "$(atuin init zsh)"
+
 # -----------------------------------------------------------------------------
 # Tool Initialization (cached for speed)
 # -----------------------------------------------------------------------------
-_cached_init starship 'starship init zsh'
-_cached_init zoxide 'zoxide init zsh --cmd cd'
-_cached_init atuin 'atuin init zsh'
-_cached_init task-completions 'task --completion zsh'
 
 # Carapace completions
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'

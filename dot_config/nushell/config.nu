@@ -932,7 +932,10 @@ tv init nu | save -f ($nu.data-dir | path join "vendor/autoload/tv.nu")
 
 source ~/.local/share/atuin/init.nu
 source ~/.zoxide.nu
-source ~/.cache/carapace/init.nu
+source $"($nu.cache-dir)/carapace.nu"
 source ~/.config/nushell/scripts/aliases.nu
-use ~/.cache/starship/init.nu
+
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
 use ($nu.default-config-dir | path join mise.nu)

@@ -7,7 +7,6 @@ Include /Users/cfb/.config/colima/ssh_config
 # Global defaults
 Host *
 	AddKeysToAgent yes
-	UseKeychain yes
 	IdentitiesOnly yes
 	ServerAliveInterval 60
 	ServerAliveCountMax 3

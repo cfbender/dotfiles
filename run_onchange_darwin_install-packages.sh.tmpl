@@ -1,23 +1,14 @@
-{{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
-
-brew bundle --file=/dev/stdin <<EOF
+{{ if eq .chezmoi.os "darwin" -}}
+  brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.darwin.brews -}}
-brew {{ . | quote }}
+  brew {{ . | quote }}
 {{ end -}}
 {{ range .packages.darwin.casks -}}
-cask {{ . | quote }}
+  cask {{ . | quote }}
 {{ end -}}
-EOF
+  EOF
 {{ end -}}
-
-if ! command -v mise 2>&1 >/dev/null; then
-  curl https://mise.run | sh
-fi
-
-if ! command -v gke-gcloud-auth-plugin 2>&1 >/dev/null; then
-  gcloud components install kubectl gke-gcloud-auth-plugin
-fi
 
 if ! command -v rust-analyzer 2>&1 >/dev/null; then
   rustup component add rust-analyzer

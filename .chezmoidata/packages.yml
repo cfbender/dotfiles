@@ -1,10 +1,49 @@
 packages:
+  arch_linux:
+    pacman:
+      - "atuin"
+      - "bat"
+      - "bottom"
+      - "chafa"
+      - "cloc"
+      - "coreutils"
+      - "curlie"
+      - "direnv"
+      - "doggo"
+      - "duf"
+      - "fd"
+      - "fzf"
+      - "ghostty"
+      - "git"
+      - "git-delta"
+      - "git-lfs"
+      - "lazygit"
+      - "lsd"
+      - "magic-wormhole"
+      - "mise"
+      - "neovim"
+      - "nushell"
+      - "ripgrep"
+      - "starship"
+      - "television"
+      - "tmux"
+      - "wget"
+      - "yarn"
+      - "yazi"
+      - "zoxide"
+
+    flatpak:
+      - "zen_browser"
+
+    aur:
+      - "openlinkhub"
+      - "carapace-bin"
+
   darwin:
     brews:
       - "atuin"
       - "bat"
       - "bottom"
-      - "carapace"
       - "chafa"
       - "cloc"
       - "coreutils"

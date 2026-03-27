@@ -1,0 +1,14 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "linux" -}}
+
+# Update package DB and install official packages
+sudo pacman -Syu --needed --noconfirm {{ range .packages.arch_linux.pacman }}{{ . | quote }} {{ end }}
+
+# Install AUR helper if missing (example using yay)
+if ! command -v paru &>/dev/null; then
+    echo "AUR helper not found. Skipping AUR packages."
+else
+    # Install AUR packages
+    paru -S --needed --noconfirm {{ range .packages.arch_linux.aur }}{{ . | quote }} {{ end }}
+fi
+{{ end -}}

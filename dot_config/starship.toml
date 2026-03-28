@@ -7,14 +7,14 @@ $git_status \
 $fill \
 $time\n \
 $shell\
-[>](fg:mauve) 
+[>](fg:fg) 
 """
 
-palette = "catppuccin_mocha"
+palette = "kanso-ink"
 
 [character]
-success_symbol = "[[󰄛](green) ❯](peach)"
-error_symbol = "[[󰄛](red) ❯](peach)"
+success_symbol = "[[󰄛](green) ❯](orange)"
+error_symbol = "[[󰄛](red) ❯](orange)"
 vimcmd_symbol = "[󰄛 ❮](subtext1)"
 
 [palettes.rose-pine]
@@ -26,9 +26,22 @@ pine = '#31748f'
 foam = '#9ccfd8'
 iris = '#c4a7e7'
 
+[palettes.kanso-ink]
+overlay = "#14171D"
+fg = "#C5C9C7"
+red = "#C4746E"
+green = "#8A9A7B"
+blue = "#8BA4B0"
+yellow = "#C4B28A"
+magenta = "#A292A3"
+orange = "#B98D7B"
+cyan = "#8EA4A2"
+black = "#14171D"
+white = "#C5C9C7"
+
 [directory]
 format = "(fg:overlay)[ $path ]($style)(fg:overlay)"
-style = "bg:overlay fg:rosewater"
+style = "bg:overlay fg:blue"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -44,18 +57,18 @@ symbol = " "
 
 [git_branch]
 format = "(fg:overlay)[ $symbol $branch ]($style)(fg:overlay)"
-style = "bg:overlay fg:peach"
+style = "bg:overlay fg:orange"
 symbol = ""
 
 [git_status]
-style = "bg:overlay fg:love"
+style = "bg:overlay fg:red"
 format = '(fg:overlay)[$all_status$ahead_behind]($style)(fg:overlay)'
 disabled = true
 
 [time]
 disabled = false
 format = "(fg:overlay)[ $time  ]($style)(fg:overlay)"
-style = "bg:overlay fg:teal"
+style = "bg:overlay fg:cyan"
 time_format = "%I:%M%P"
 use_12hr = true
 
@@ -68,7 +81,7 @@ style_user = "bg:overlay fg:blue"
 
 [shell]
 disabled = false
-style = "fg:mauve"
+style = "fg:orange"
 format = "[$indicator]($style)"
 
 [mise]
@@ -77,7 +90,7 @@ disabled = false
 [memory_usage]
 disabled = false
 symbol = "🐏"
-threshold = -1 
+threshold = -1
 format = '$symbol [${ram_pct}]($style) '
 style = "fg:green"
 
@@ -87,9 +100,9 @@ format = "[$symbol$percentage]($style) "
 
 [[battery.display]]
 threshold = 100
-style = 'fg:rosewater'
+style = 'fg:fg'
 
-[[battery.display]] 
+[[battery.display]]
 threshold = 10
 style = "fg:red bold"
 

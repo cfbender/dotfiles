@@ -172,6 +172,12 @@ return {
 		end,
 	},
 
+	{
+		"webhooked/kanso.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+
 	-- == Community overrides ==
 	{
 		"catppuccin",

@@ -1,3 +1,4 @@
+{{- $models := splitList "\n" (trim (output "opencode" "models")) -}}
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": ["opencode-agent-skills", "@tarquinen/opencode-dcp@latest"],
@@ -5,13 +6,13 @@
   "agent": {
     "smart": {
       "mode": "primary",
-      "model": "anthropic/claude-opus-4-6",
+      "model": "{{- if has "anthropic/claude-opus-4-6" $models -}}anthropic/claude-opus-4-6{{- else if has "github-copilot/claude-opus-4.6" $models -}}github-copilot/claude-opus-4.6{{- else -}}anthropic/claude-opus-4-6{{- end -}}",
       "prompt": "{file:./prompts/smart.md}",
       "color": "#74c7ec"
     },
     "rush": {
       "mode": "primary",
-      "model": "anthropic/claude-haiku-4-5",
+      "model": "{{- if has "anthropic/claude-haiku-4-5" $models -}}anthropic/claude-haiku-4-5{{- else if has "github-copilot/claude-haiku-4.5" $models -}}github-copilot/claude-haiku-4.5{{- else -}}anthropic/claude-haiku-4-5{{- end -}}",
       "prompt": "{file:./prompts/rush.md}",
       "color": "#f38ba8"
     },
@@ -41,7 +42,7 @@
     },
     "librarian": {
       "mode": "subagent",
-      "model": "anthropic/claude-sonnet-4-6",
+      "model": "{{- if has "anthropic/claude-sonnet-4-6" $models -}}anthropic/claude-sonnet-4-6{{- else if has "github-copilot/claude-sonnet-4.6" $models -}}github-copilot/claude-sonnet-4.6{{- else -}}anthropic/claude-sonnet-4-6{{- end -}}",
       "prompt": "{file:./prompts/librarian.md}",
       "permission": {
         "edit": "deny",

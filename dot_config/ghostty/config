@@ -1,2 +1,11 @@
 theme = kanso-ink.conf
-font-family = "BerkeleyMono Nerd Font"
+font-family = "BerkeleyMono"
+font-size = 13.0
+macos-titlebar-proxy-icon = hidden
+window-height = 50
+window-width = 135
+selection-clear-on-copy = true
+keybind = performable:ctrl+v=paste_from_clipboard
+keybind = performable:ctrl+c=copy_to_clipboard
+keybind = performable:ctrl+v=paste_from_clipboard
+keybind = performable:ctrl+c=copy_to_clipboard

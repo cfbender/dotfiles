@@ -76,6 +76,7 @@ export def bup [] {
 
 export def pup [] {
   sudo pacman -Syu
+  paru -Syu
 }
 
 export def aup [] {
@@ -84,6 +85,8 @@ export def aup [] {
 }
 
 export def fup [] {
+  # Pre-authenticate sudo so par-each threads can use cached credentials
+  sudo -v
   [1 2 3 4] | par-each { |x| 
     if $x == 1 { 
       echo "Updating neovim dependencies ..." | gum style --foreground "#40a02b" --bold

@@ -6,20 +6,16 @@
 ---@type LazySpec
 return {
 	"AstroNvim/astrocore",
-	--- temporary config for astronvim v6
-	version = false,
-	branch = "v3",
-	---
 	---@type AstroCoreOpts
 	opts = {
 		-- Configure core features of AstroNvim
 		features = {
-			large_buf = { size = 1024 * 256, lines = 10000 },          -- set global limits for large files for disabling features like treesitter
-			autopairs = true,                                          -- enable autopairs at start
+			large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
+			autopairs = true, -- enable autopairs at start
 			blink_cmp = true,
 			diagnostics = { virtual_text = true, virtual_lines = false }, -- diagnostic settings on startup
-			highlighturl = true,                                       -- highlight URLs at start
-			notifications = true,                                      -- enable notifications at start
+			highlighturl = true, -- highlight URLs at start
+			notifications = true, -- enable notifications at start
 		},
 		-- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
 		diagnostics = {
@@ -28,12 +24,12 @@ return {
 		},
 		-- vim options can be configured here
 		options = {
-			opt = {               -- vim.opt.<key>
+			opt = { -- vim.opt.<key>
 				relativenumber = false, -- sets vim.opt.relativenumber
-				number = true,      -- sets vim.opt.number
-				spell = true,       -- sets vim.opt.spell
+				number = true, -- sets vim.opt.number
+				spell = true, -- sets vim.opt.spell
 				signcolumn = "yes", -- sets vim.opt.signcolumn to yes
-				wrap = false,       -- sets vim.opt.wrap
+				wrap = false, -- sets vim.opt.wrap
 				clipboard = "unnamedplus",
 			},
 			g = { -- vim.g.<key>
@@ -126,10 +122,10 @@ return {
 						if ft == "elixir" then
 							require("snacks").picker.grep({ search = "def " .. word .. "\\(" })
 						elseif
-								ft == "typescript"
-								or ft == "typescriptreact"
-								or ft == "javascript"
-								or ft == "javascriptreact"
+							ft == "typescript"
+							or ft == "typescriptreact"
+							or ft == "javascript"
+							or ft == "javascriptreact"
 						then
 							require("snacks").picker.grep({ search = "(const|let|function) " .. word .. "[\\( =]" })
 						else

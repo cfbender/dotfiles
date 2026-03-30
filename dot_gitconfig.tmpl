@@ -83,19 +83,47 @@
 [add.interactive]
 	useBuiltin = false
 
-# Delta configuration (Catppuccin Frappe theme)
+# Delta configuration
 [delta]
 	side-by-side = true
 	navigate = true
 	dark = true
-	syntax-theme = Catppuccin Mocha
 	commit-decoration-style = bold box ul
-	file-decoration-style = "#c6d0f5"
-	file-style = "#c6d0f5"
 	hunk-header-decoration-style = box ul
 	hunk-header-file-style = bold
-	hunk-header-line-number-style = bold "#a5adce"
 	hunk-header-style = file line-number syntax
+{{- /* To switch themes, change the condition below */ -}}
+{{- if true }}
+	# Kanso Ink theme
+	syntax-theme = Kanso-Ink
+	file-decoration-style = "#C5C9C7"
+	file-style = "#C5C9C7"
+	hunk-header-line-number-style = bold "#5C6066"
+	line-numbers-left-style = "#5C6066"
+	line-numbers-minus-style = bold "#C4746E"
+	line-numbers-plus-style = bold "#8A9A7B"
+	line-numbers-right-style = "#5C6066"
+	line-numbers-zero-style = "#5C6066"
+	blame-palette = "#14171d #1b1d23 #22242a #2b2e33 #37393e"
+	# 25% red 75% base
+	minus-emph-style = bold syntax "#402e31"
+	# 10% red 90% base
+	minus-style = syntax "#252025"
+	# 25% green 75% base
+	plus-emph-style = bold syntax "#313734"
+	# 10% green 90% base
+	plus-style = syntax "#1f2426"
+	map-styles = \
+		bold purple => syntax "#37353e", \
+		bold blue => syntax "#313a41", \
+		bold cyan => syntax "#323a3e", \
+		bold yellow => syntax "#403d38"
+{{- else }}
+	# Catppuccin Frappe theme
+	syntax-theme = Catppuccin Mocha
+	file-decoration-style = "#c6d0f5"
+	file-style = "#c6d0f5"
+	hunk-header-line-number-style = bold "#a5adce"
 	line-numbers-left-style = "#737994"
 	line-numbers-minus-style = bold "#e78284"
 	line-numbers-plus-style = bold "#a6d189"
@@ -115,3 +143,4 @@
 		bold blue => syntax "#475270", \
 		bold cyan => syntax "#4a5b6b", \
 		bold yellow => syntax "#5d5958"
+{{- end }}

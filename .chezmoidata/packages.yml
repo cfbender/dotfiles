@@ -3,6 +3,7 @@ packages:
     pacman:
       - "atuin"
       - "bat"
+      - "bottles"
       - "bottom"
       - "chafa"
       - "cloc"

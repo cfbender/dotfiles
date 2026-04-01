@@ -1,7 +1,7 @@
 {{- $models := splitList "\n" (trim (output "opencode" "models")) -}}
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-agent-skills", "@tarquinen/opencode-dcp@latest"],
+  "plugin": ["opencode-agent-skills", "@tarquinen/opencode-dcp@latest", "superpowers@git+https://github.com/obra/superpowers.git"],
   "default_agent": "smart",
   "agent": {
     "smart": {

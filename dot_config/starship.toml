@@ -5,6 +5,7 @@ $directory \
 $git_branch \
 $git_status \
 $fill \
+$hostname \
 $time\n \
 $shell\
 [>](fg:fg) 
@@ -78,6 +79,13 @@ format = "(fg:overlay)[  $user ]($style)(fg:overlay)"
 show_always = true
 style_root = "bg:overlay fg:blue"
 style_user = "bg:overlay fg:blue"
+
+[hostname]
+ssh_only = false
+format = '[$ssh_symbol](bold blue) [$hostname](bold yellow) '
+trim_at = '.'
+disabled = false
+ssh_symbol = "󰣀"
 
 [shell]
 disabled = false

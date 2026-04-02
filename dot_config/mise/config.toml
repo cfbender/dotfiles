@@ -19,6 +19,7 @@ typos = "latest"
 "npm:@google/gemini-cli" = "latest"
 "npm:@withgraphite/graphite-cli" = "latest"
 "npm:@sourcegraph/amp" = "latest"
+"cargo:https://github.com/cfbender/venturi" = "latest"
 yq = "latest"
 zellij = "latest"
 

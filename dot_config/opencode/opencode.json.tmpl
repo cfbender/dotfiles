@@ -1,7 +1,7 @@
 {{- $models := splitList "\n" (trim (output "opencode" "models")) -}}
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-agent-skills", "@tarquinen/opencode-dcp@latest", "superpowers@git+https://github.com/obra/superpowers.git"],
+  "plugin": ["opencode-agent-skills", "@tarquinen/opencode-dcp@latest"],
   "default_agent": "smart",
   "agent": {
     "smart": {
@@ -55,16 +55,19 @@
       "disable": true
     },
   },
-  "mcp": {
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp/oauth",
-      "enabled": true
-    },
-    "exa": {
-      "type": "remote",
-      "url": "https://mcp.exa.ai/mcp",
-      "enabled": true
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://10.0.69.239:11434/v1"
+      },
+      "models": {
+        "gemma4": {
+          "name": "Gemma 4",
+          "tools": true
+        }
+      }
     }
   }
 }

@@ -1,25 +1,38 @@
 [tools]
+# Core languages & runtimes
 bun = "latest"
 deno = "latest"
 elixir = "latest"
 erlang = "latest"
-hyperfine = "latest"
 ghcup = "latest"
 go = "latest"
-gum = "latest"
 node = "latest"
-"cargo:https://github.com/nushell/nufmt" = "latest"
-opencode = "latest"
-"aqua:pnpm" = "latest"
 rust = "latest"
+
+# Cargo packages
+"cargo:fastmod" = "latest"
+"cargo:https://github.com/cfbender/venturi" = "latest"
+"cargo:https://github.com/nushell/nufmt" = "latest"
+
+# npm packages
+"npm:@biomejs/biome" = "latest"
+"npm:@getgrit/cli" = "latest"
+"npm:@google/gemini-cli" = "latest"
+"npm:@sourcegraph/amp" = "latest"
+"npm:@tobilu/qmd" = "latest"
+"npm:@withgraphite/graphite-cli" = "latest"
+
+# Aqua packages
+"aqua:pnpm" = "latest"
+
+# CLI tools
+ast-grep = "latest"
+gum = "latest"
+hyperfine = "latest"
+opencode = "latest"
+rtk = "latest"
 task = "latest"
 typos = "latest"
-"npm:@getgrit/cli" = "latest"
-"npm:@biomejs/biome" = "latest"
-"npm:@google/gemini-cli" = "latest"
-"npm:@withgraphite/graphite-cli" = "latest"
-"npm:@sourcegraph/amp" = "latest"
-"cargo:https://github.com/cfbender/venturi" = "latest"
 yq = "latest"
 zellij = "latest"
 

@@ -49,8 +49,8 @@ export def bup [] {
     brew upgrade --cask --greedy
 }
 export def pup [] {
-    sudo pacman -Syu
-    paru -Syu
+    sudo pacman -Syu --noconfirm
+    paru -Syu --noconfirm
 }
 export def aup [] {
     sudo apt update

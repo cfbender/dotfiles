@@ -22,6 +22,9 @@ rust = "latest"
 "npm:@tobilu/qmd" = "latest"
 "npm:@withgraphite/graphite-cli" = "latest"
 
+# go packages
+"go:github.com/charmbracelet/crush" = "latest"
+
 # Aqua packages
 "aqua:pnpm" = "latest"
 

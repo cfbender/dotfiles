@@ -1,0 +1,8 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "options": {
+    "attribution": {
+      "trailer_style": "none"
+    }
+  }
+}

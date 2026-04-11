@@ -11,14 +11,17 @@ rust = "latest"
 
 # Cargo packages
 "cargo:fastmod" = "latest"
-"cargo:https://github.com/cfbender/venturi" = "latest"
 "cargo:https://github.com/nushell/nufmt" = "latest"
+
+# Linux-only packages
+{{- if eq .chezmoi.os "linux" }}
+"cargo:https://github.com/cfbender/venturi" = "latest"
+{{- end }}
 
 # npm packages
 "npm:@biomejs/biome" = "latest"
 "npm:@getgrit/cli" = "latest"
 "npm:@google/gemini-cli" = "latest"
-"npm:@sourcegraph/amp" = "latest"
 "npm:@tobilu/qmd" = "latest"
 "npm:@withgraphite/graphite-cli" = "latest"
 

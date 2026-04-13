@@ -82,7 +82,7 @@ return {
 				cmd = { vim.uv.os_homedir() .. "/code/github/elixir-ls/release/language_server.sh" },
 			},
 			dexter = {
-				cmd = { vim.uv.os_homedir() .. "//code/github/dexter/dexter", "lsp" },
+				cmd = { vim.uv.os_homedir() .. "/code/github/dexter/dexter", "lsp" },
 				root_markers = { ".dexter.db", ".git", "mix.exs" },
 				filetypes = { "elixir", "eelixir", "heex" },
 				init_options = {

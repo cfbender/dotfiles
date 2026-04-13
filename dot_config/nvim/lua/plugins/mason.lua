@@ -9,7 +9,6 @@ return {
 		opts = {
 			-- Make sure to use the names found in `:Mason`
 			ensure_installed = {
-				"elixir-ls",
 				"lua-language-server",
 				"marksman",
 				"vtsls",

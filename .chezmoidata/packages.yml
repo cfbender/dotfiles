@@ -41,6 +41,7 @@ packages:
       - "openlinkhub"
       - "carapace-bin"
       - "comby-bin"
+      - "vicinae-bin"
 
   darwin:
     brews:

@@ -1,0 +1,82 @@
+# Kanso Ink Theme for Vicinae
+# https://github.com/webhooked/kanso.nvim
+
+[meta]
+name = "Kanso Ink"
+description = "Minimal dark palette inspired by kanso.nvim"
+variant = "dark"
+inherits = "vicinae-dark"
+
+[colors.core]
+accent = "#8BA4B0"
+accent_foreground = "#14171D"
+background = "#14171D"
+foreground = "#C5C9C7"
+secondary_background = "#1F1F26"
+border = "#22262D"
+
+[colors.main_window]
+border = "#22262D"
+footer = { background = "colors.core.secondary_background" }
+
+[colors.settings_window]
+border = "#22262D"
+
+[colors.accents]
+blue = "#8BA4B0"
+green = "#8A9A7B"
+magenta = "#A292A3"
+orange = "#B98D7B"
+red = "#C4746E"
+yellow = "#C4B28A"
+cyan = "#8EA4A2"
+purple = "#8992A7"
+
+# For now, shortcuts cannot have their own dedicated background
+[colors.shortcut]
+border = "colors.core.border"
+
+[colors.text]
+default = "colors.core.foreground"
+muted = "#A4A7A4"
+danger = "#C34043"
+success = "#98BB6C"
+placeholder = "#75797F"
+selection = { background = "#3E424A", foreground = "#C5C9C7" }
+
+[colors.text.links]
+default = "#8BA4B0"
+visited = "#A292A3"
+
+[colors.input]
+border = "#22262D"
+border_focus = "#8BA4B0"
+border_error = "#C34043"
+
+[colors.button.primary]
+background = "#22262D"
+foreground = "#C5C9C7"
+hover = { background = "#393B44" }
+focus = { outline = "colors.core.accent" }
+
+[colors.list.item.hover]
+foreground = "#C5C9C7"
+secondary_foreground = "#A4A7A4"
+
+[colors.list.item.selection]
+background = "#22262D"
+foreground = "#C5C9C7"
+secondary_background = "#22262D"
+secondary_foreground = "#A4A7A4"
+
+[colors.grid.item]
+background = "#1F1F26"
+hover = { outline = "#8BA4B0" }
+selection = { outline = "#8BA4B0" }
+
+[colors.scrollbars]
+background = "#22262D"
+
+[colors.loading]
+bar = "#8BA4B0"
+spinner = "#8BA4B0"

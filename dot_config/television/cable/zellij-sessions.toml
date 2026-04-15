@@ -1,0 +1,63 @@
+[metadata]
+name = "zellij-sessions"
+description = "List and manage zellij sessions"
+requirements = ["zellij", "jq"]
+
+[source]
+command = '''
+while IFS= read -r line; do
+  session=${line%% *}
+  [[ -z "$session" ]] && continue
+  age=""; [[ "$line" =~ \[Created\ (.+)\ ago\] ]] && age="${BASH_REMATCH[1]}"
+  icon="●"; status="running"
+  [[ "$line" == *"(current)"* ]] && icon="⚡" && status="current"
+  [[ "$line" == *"EXITED"* ]] && icon="💤" && status="exited"
+  printf '%s\t%s\t%s\t%s\n' "$session" "$icon" "$age" "$status"
+done < <(zellij list-sessions -n -r 2>/dev/null)
+'''
+display = "{split:\t:1} {split:\t:0}  {split:\t:2}"
+output = "{split:\t:0}"
+shell = "bash"
+
+[preview]
+command = '''
+session='{split:\t:0}'
+status='{split:\t:3}'
+echo "━━━ $session ━━━"
+echo ""
+if [[ "$status" == "exited" ]]; then
+  echo "💤 EXITED — attach to resurrect"
+  exit 0
+fi
+ZELLIJ_SESSION_NAME="$session" zellij action list-panes -t -c -j 2>/dev/null | jq -r '
+  def short_cwd: gsub("^" + env.HOME; "~");
+  def short_cmd: split("/") | last;
+  def trim(n): if length > n then .[:n] + "…" else . end;
+  (group_by(.tab_position)[] |
+    "\n┃ 󰓩  " + (.[0].tab_name | if . == " " or . == "" or . == null then "Tab " + (.[0].tab_position + 1 | tostring) else . end),
+    "┃ ──────────────────",
+    (.[] | select(.is_plugin | not) |
+      if (.pane_command // "") != "" and .pane_command != "-" then
+        "┃   " + (.pane_command | short_cmd) + "  " + (.pane_cwd | short_cwd)
+      else
+        "┃   " + (.title | trim(60))
+      end
+    )
+  )
+'
+'''
+shell = "bash"
+
+[actions.attach]
+description = "Attach to selected session"
+command = "zellij attach '{split:\t:0}'"
+mode = "execute"
+
+[actions.kill]
+description = "Kill selected session"
+command = "zellij kill-session '{split:\t:0}'"
+mode = "fork"
+
+[keybindings]
+enter = "actions:attach"
+ctrl-d = ["actions:kill", "reload_source"]

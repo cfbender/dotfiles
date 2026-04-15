@@ -1,0 +1,121 @@
+[metadata]
+name = "zally"
+description = "Project directories prioritized by active zellij sessions"
+requirements = ["zellij"]
+
+[source]
+command = '''
+STATE_DIR="$HOME/.local/state/zally"
+mkdir -p "$STATE_DIR"
+
+DIRS=()
+NAMES=()
+for dir in ~/code/pdq/* ~/code/github/* ~/code/playground/* ~/.local/share/chezmoi; do
+  [[ -d "$dir" ]] || continue
+  DIRS+=("$dir")
+  NAMES+=("$(basename "$dir" | tr '[:lower:]' '[:upper:]')")
+done
+
+# Build session status map (parallel arrays)
+SESS_NAMES=()
+SESS_STATUS=()
+while IFS= read -r line; do
+  s=${line%% *}
+  [[ -z "$s" ]] && continue
+  st="running"
+  [[ "$line" == *"(current)"* ]] && st="current"
+  [[ "$line" == *"EXITED"* ]] && st="exited"
+  SESS_NAMES+=("$s")
+  SESS_STATUS+=("$st")
+done < <(zellij list-sessions -n 2>/dev/null)
+
+get_status() {
+  local target="$1" i
+  for i in "${!SESS_NAMES[@]}"; do
+    [[ "${SESS_NAMES[$i]}" == "$target" ]] && printf '%s' "${SESS_STATUS[$i]}" && return
+  done
+  printf 'none'
+}
+
+get_mtime() {
+  local f="$STATE_DIR/$1"
+  if [[ -f "$f" ]]; then
+    stat -f '%m' "$f" 2>/dev/null || echo 0
+  else
+    echo 0
+  fi
+}
+
+# Emit sortable lines: priority|mtime|dir\ticon SESSION
+LINES=()
+for i in "${!DIRS[@]}"; do
+  name="${NAMES[$i]}"
+  dir="${DIRS[$i]}"
+  st=$(get_status "$name")
+  mtime=$(get_mtime "$name")
+  case "$st" in
+    current) icon="⚡"; prio=1 ;;
+    running) icon="●";  prio=1 ;;
+    exited)  icon="💤"; prio=2 ;;
+    none)    icon="○";  prio=3 ;;
+  esac
+  LINES+=("${prio}|${mtime}|${dir}"$'\t'"${icon} ${name}")
+done
+
+# Sort: priority asc, mtime desc (negate by sorting reversed on field 2)
+printf '%s\n' "${LINES[@]}" | sort -t'|' -k1,1n -k2,2rn | while IFS='|' read -r _ _ rest; do
+  printf '%s\n' "$rest"
+done
+'''
+display = "{split:\t:1}"
+output = "{split:\t:0}"
+shell = "bash"
+
+[preview]
+command = '''
+display='{split:\t:1}'
+session="${display#* }"
+icon="${display%% *}"
+dir='{split:\t:0}'
+
+echo "━━━ $session ━━━"
+echo ""
+
+if [[ "$icon" == "○" ]]; then
+  echo "No active session"
+  echo ""
+  ls -1 --color=always "$dir" 2>/dev/null | head -40
+  exit 0
+fi
+
+if [[ "$icon" == "💤" ]]; then
+  echo "💤 EXITED — attach to resurrect"
+  exit 0
+fi
+
+ZELLIJ_SESSION_NAME="$session" zellij action list-panes -t -c -j 2>/dev/null | jq -r '
+  def short_cwd: gsub("^" + env.HOME; "~");
+  def short_cmd: split("/") | last;
+  def trim(n): if length > n then .[:n] + "…" else . end;
+  (group_by(.tab_position)[] |
+    "\n┃ 󰓩  " + (.[0].tab_name | if . == " " or . == "" or . == null then "Tab " + (.[0].tab_position + 1 | tostring) else . end),
+    "┃ ──────────────────",
+    (.[] | select(.is_plugin | not) |
+      if (.pane_command // "") != "" and .pane_command != "-" then
+        "┃   " + (.pane_command | short_cmd) + "  " + (.pane_cwd | short_cwd)
+      else
+        "┃   " + (.title | trim(60))
+      end
+    )
+  )
+'
+'''
+shell = "bash"
+
+[actions.kill]
+description = "Kill selected zellij session"
+command = "zellij kill-session \"$(basename '{split:\t:0}' | tr '[:lower:]' '[:upper:]')\""
+mode = "fork"
+
+[keybindings]
+ctrl-d = ["actions:kill", "reload_source"]

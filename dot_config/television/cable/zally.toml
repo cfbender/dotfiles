@@ -76,7 +76,7 @@ ZELLIJ_SESSION_NAME="$session" zellij action list-panes -t -c -j 2>/dev/null | j
   (group_by(.tab_position)[] |
     "\n┃ 󰓩  " + (.[0].tab_name | if . == " " or . == "" or . == null then "Tab " + (.[0].tab_position + 1 | tostring) else . end),
     "┃ ──────────────────",
-    (.[] | select(.is_plugin | not) |
+    (.[] | select((.is_plugin | not) and (.is_floating | not)) |
       if (.pane_command // "") != "" and .pane_command != "-" then
         "┃   " + (.pane_command | short_cmd) + "  " + (.pane_cwd | short_cwd)
       else

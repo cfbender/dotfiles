@@ -1,0 +1,4 @@
+yazi:
+  plugins:
+    - dangooddd/kanagawa
+    - yazi-rs/plugins:full-border

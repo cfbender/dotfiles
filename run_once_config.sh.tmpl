@@ -36,3 +36,5 @@ rm -rf ~/Library/Application Support/com.mitchellh.ghostty
 if [ ! -d ~/.ghcup/ ]; then
   curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 fi
+
+ya pkg add {{ range .yazi.plugins }}{{ . | quote }} {{ end }}

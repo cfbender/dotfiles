@@ -8,7 +8,7 @@ use std/config *
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
 # https://github.com/nushell/nu_scripts/tree/main/themes
-source ~/.config/nushell/themes/kanso-ink.nu
+source ~/.config/nushell/themes/kanagawa-wave.nu
 
 # Modern unix
 alias grep = rg

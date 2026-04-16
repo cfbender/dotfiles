@@ -1,4 +1,4 @@
-theme = kanso-ink.conf
+theme = Kanagawa Wave
 font-family = "BerkeleyMono"
 font-size = 13.0
 macos-titlebar-proxy-icon = hidden

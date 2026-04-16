@@ -11,7 +11,7 @@ $shell\
 [>](fg:fg) 
 """
 
-palette = "kanso-ink"
+palette = "kanagawa-wave"
 
 [character]
 success_symbol = "[[󰄛](green) ❯](orange)"
@@ -27,18 +27,18 @@ pine = '#31748f'
 foam = '#9ccfd8'
 iris = '#c4a7e7'
 
-[palettes.kanso-ink]
-overlay = "#14171D"
-fg = "#C5C9C7"
-red = "#C4746E"
-green = "#8A9A7B"
-blue = "#8BA4B0"
-yellow = "#C4B28A"
-magenta = "#A292A3"
-orange = "#B98D7B"
-cyan = "#8EA4A2"
-black = "#14171D"
-white = "#C5C9C7"
+[palettes.kanagawa-wave]
+overlay = "#1F1F28"
+fg = "#DCD7BA"
+red = "#E46876"
+green = "#98BB6C"
+blue = "#7E9CD8"
+yellow = "#E6C384"
+magenta = "#957FB8"
+orange = "#FFA066"
+cyan = "#7AA89F"
+black = "#16161D"
+white = "#DCD7BA"
 
 [directory]
 format = "(fg:overlay)[ $path ]($style)(fg:overlay)"

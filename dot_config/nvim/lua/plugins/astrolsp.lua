@@ -47,6 +47,9 @@ return {
 							functionLikeReturnTypes = { enabled = true },
 							enumMemberValues = { enabled = true },
 						},
+						experimental = {
+							useTsgo = true,
+						},
 					},
 					javascript = {
 						updateImportsOnFileMove = { enabled = "always" },

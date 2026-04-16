@@ -173,7 +173,7 @@ return {
 	},
 
 	{
-		"webhooked/kanso.nvim",
+		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
 	},

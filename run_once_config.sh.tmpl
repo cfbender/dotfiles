@@ -37,4 +37,8 @@ if [ ! -d ~/.ghcup/ ]; then
   curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 fi
 
+if ! command -v mise &>/dev/null; then
+  curl https://mise.run | sh
+fi
+
 ya pkg add {{ range .yazi.plugins }}{{ . | quote }} {{ end }}|| true

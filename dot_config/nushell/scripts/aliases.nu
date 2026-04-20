@@ -88,6 +88,7 @@ export def fup [] {
       }
     } else {
       echo "Updating mise tools ..." | gum style --foreground "#209fb5" --bold
+      mise self-update;
       mise up
     }
   }

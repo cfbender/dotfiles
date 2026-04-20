@@ -46,8 +46,147 @@ Examples:
 
 Use `rtk ls <dir>` explicitly when you need a compact directory listing.
 Never use `find . -type f` or `ls -la -R` to explore a directory — use rtk ls instead.
+Do not use `rtk grep` to search for patterns in a directory.
 
-Example: `rtk ls src/java/org/apache/cassandra/db/`
+Examples from rtk docs:
+```
+### Files
+```bash
+rtk ls .                        # Token-optimized directory tree
+rtk read file.rs                # Smart file reading
+rtk read file.rs -l aggressive  # Signatures only (strips bodies)
+rtk smart file.rs               # 2-line heuristic code summary
+rtk find "*.rs" .               # Compact find results
+rtk grep "pattern" .            # Grouped search results
+rtk diff file1 file2            # Condensed diff
+```
+
+### Git
+```bash
+rtk git status                  # Compact status
+rtk git log -n 10               # One-line commits
+rtk git diff                    # Condensed diff
+rtk git add                     # -> "ok"
+rtk git commit -m "msg"         # -> "ok abc1234"
+rtk git push                    # -> "ok main"
+rtk git pull                    # -> "ok 3 files +10 -2"
+```
+
+### GitHub CLI
+```bash
+rtk gh pr list                  # Compact PR listing
+rtk gh pr view 42               # PR details + checks
+rtk gh issue list               # Compact issue listing
+rtk gh run list                 # Workflow run status
+```
+
+### Test Runners
+```bash
+rtk jest                        # Jest compact (failures only)
+rtk vitest                      # Vitest compact (failures only)
+rtk playwright test             # E2E results (failures only)
+rtk pytest                      # Python tests (-90%)
+rtk go test                     # Go tests (NDJSON, -90%)
+rtk cargo test                  # Cargo tests (-90%)
+rtk rake test                   # Ruby minitest (-90%)
+rtk rspec                       # RSpec tests (JSON, -60%+)
+rtk err <cmd>                   # Filter errors only from any command
+rtk test <cmd>                  # Generic test wrapper - failures only (-90%)
+```
+
+### Build & Lint
+```bash
+rtk lint                        # ESLint grouped by rule/file
+rtk lint biome                  # Supports other linters
+rtk tsc                         # TypeScript errors grouped by file
+rtk next build                  # Next.js build compact
+rtk prettier --check .          # Files needing formatting
+rtk cargo build                 # Cargo build (-80%)
+rtk cargo clippy                # Cargo clippy (-80%)
+rtk ruff check                  # Python linting (JSON, -80%)
+rtk golangci-lint run           # Go linting (JSON, -85%)
+rtk rubocop                     # Ruby linting (JSON, -60%+)
+```
+
+### Package Managers
+```bash
+rtk pnpm list                   # Compact dependency tree
+rtk pip list                    # Python packages (auto-detect uv)
+rtk pip outdated                # Outdated packages
+rtk bundle install              # Ruby gems (strip Using lines)
+rtk prisma generate             # Schema generation (no ASCII art)
+```
+
+### AWS
+```bash
+rtk aws sts get-caller-identity # One-line identity
+rtk aws ec2 describe-instances  # Compact instance list
+rtk aws lambda list-functions   # Name/runtime/memory (strips secrets)
+rtk aws logs get-log-events     # Timestamped messages only
+rtk aws cloudformation describe-stack-events  # Failures first
+rtk aws dynamodb scan           # Unwraps type annotations
+rtk aws iam list-roles          # Strips policy documents
+rtk aws s3 ls                   # Truncated with tee recovery
+```
+
+### Containers
+```bash
+rtk docker ps                   # Compact container list
+rtk docker images               # Compact image list
+rtk docker logs <container>     # Deduplicated logs
+rtk docker compose ps           # Compose services
+rtk kubectl pods                # Compact pod list
+rtk kubectl logs <pod>          # Deduplicated logs
+rtk kubectl services            # Compact service list
+```
+
+### Data & Analytics
+```bash
+rtk json config.json            # Structure without values
+rtk deps                        # Dependencies summary
+rtk env -f AWS                  # Filtered env vars
+rtk log app.log                 # Deduplicated logs
+rtk curl <url>                  # Auto-detect JSON + schema
+rtk wget <url>                  # Download, strip progress bars
+rtk summary <long command>      # Heuristic summary
+rtk proxy <command>             # Raw passthrough + tracking
+```
+
+## Global Flags
+
+```bash
+-u, --ultra-compact    # ASCII icons, inline format (extra token savings)
+-v, --verbose          # Increase verbosity (-v, -vv, -vvv)
+```
+
+## Examples
+
+**Directory listing:**
+```
+# ls -la (45 lines, ~800 tokens)        # rtk ls (12 lines, ~150 tokens)
+drwxr-xr-x  15 user staff 480 ...       my-project/
+-rw-r--r--   1 user staff 1234 ...       +-- src/ (8 files)
+...                                      |   +-- main.rs
+                                         +-- Cargo.toml
+```
+
+**Git operations:**
+```
+# git push (15 lines, ~200 tokens)       # rtk git push (1 line, ~10 tokens)
+Enumerating objects: 5, done.             ok main
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+...
+```
+
+**Test output:**
+```
+# cargo test (200+ lines on failure)     # rtk test cargo test (~20 lines)
+running 15 tests                          FAILED: 2/15 tests
+test utils::test_parse ... ok               test_edge_case: assertion failed
+test utils::test_format ... ok              test_overflow: panic at utils.rs:18
+...
+```
 
 ⚠️ **Name collision**: If `rtk gain` fails, you may have reachingforthejack/rtk (Rust Type Kit) installed instead. Verify with `which rtk`.
 

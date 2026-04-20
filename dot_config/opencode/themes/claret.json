@@ -1,205 +1,87 @@
 {
   "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "dBg": "#180E10",
+    "dBgSoft": "#211618",
+    "dBgMute": "#2B1F22",
+    "dDivider": "#3A2E25",
+    "dText": "#DDD3C7",
+    "dText3": "#9E9288",
+    "dText4": "#71685E",
+    "dRose1": "#C75B7A",
+    "dRose2": "#B04A68",
+    "dGold1": "#D4A76A",
+    "dGold2": "#C5975B",
+    "dSage1": "#8FA86E",
+    "dSage2": "#7A9460",
+    "dType1": "#8995A8",
+    "dTerra1": "#C44536",
+    "lBg": "#FDF8F3",
+    "lBgSoft": "#F5EDE3",
+    "lBgMute": "#E8DDD0",
+    "lDivider": "#D4C8B8",
+    "lText": "#2A1F1A",
+    "lText3": "#7D7068",
+    "lText4": "#A09489",
+    "lRose1": "#8B2252",
+    "lRose2": "#722F37",
+    "lGold1": "#7D5B38",
+    "lGold2": "#9A7245",
+    "lSage1": "#5A6B40",
+    "lSage2": "#4A5934",
+    "lType1": "#4A5670",
+    "lTerra1": "#A03025"
+  },
   "theme": {
-    "primary": {
-      "dark": "#C75B7A",
-      "light": "#8B2252"
-    },
-    "secondary": {
-      "dark": "#8995A8",
-      "light": "#4A5670"
-    },
-    "accent": {
-      "dark": "#D4A76A",
-      "light": "#7D5B38"
-    },
-    "error": {
-      "dark": "#C44536",
-      "light": "#A03025"
-    },
-    "warning": {
-      "dark": "#D4A76A",
-      "light": "#7D5B38"
-    },
-    "success": {
-      "dark": "#8FA86E",
-      "light": "#5A6B40"
-    },
-    "info": {
-      "dark": "#8995A8",
-      "light": "#4A5670"
-    },
-    "text": {
-      "dark": "#DDD3C7",
-      "light": "#2A1F1A"
-    },
-    "textMuted": {
-      "dark": "#9E9288",
-      "light": "#7D7068"
-    },
-    "background": {
-      "dark": "#180E10",
-      "light": "#FDF8F3"
-    },
-    "backgroundPanel": {
-      "dark": "#211618",
-      "light": "#F5EDE3"
-    },
-    "backgroundElement": {
-      "dark": "#2B1F22",
-      "light": "#E8DDD0"
-    },
-    "border": {
-      "dark": "#3A2E25",
-      "light": "#D4C8B8"
-    },
-    "borderActive": {
-      "dark": "#C75B7A",
-      "light": "#8B2252"
-    },
-    "borderSubtle": {
-      "dark": "#3A2E25",
-      "light": "#D4C8B8"
-    },
-    "diffAdded": {
-      "dark": "#8FA86E",
-      "light": "#5A6B40"
-    },
-    "diffRemoved": {
-      "dark": "#C44536",
-      "light": "#A03025"
-    },
-    "diffContext": {
-      "dark": "#211618",
-      "light": "#F5EDE3"
-    },
-    "diffHunkHeader": {
-      "dark": "#2B1F22",
-      "light": "#E8DDD0"
-    },
-    "diffHighlightAdded": {
-      "dark": "#1D2418",
-      "light": "#EAF1E2"
-    },
-    "diffHighlightRemoved": {
-      "dark": "#2A1417",
-      "light": "#F5E3E1"
-    },
-    "diffAddedBg": {
-      "dark": "#1D2418",
-      "light": "#EAF1E2"
-    },
-    "diffRemovedBg": {
-      "dark": "#2A1417",
-      "light": "#F5E3E1"
-    },
-    "diffContextBg": {
-      "dark": "#211618",
-      "light": "#F5EDE3"
-    },
-    "diffLineNumber": {
-      "dark": "#9E9288",
-      "light": "#7D7068"
-    },
-    "diffAddedLineNumberBg": {
-      "dark": "#1D2418",
-      "light": "#EAF1E2"
-    },
-    "diffRemovedLineNumberBg": {
-      "dark": "#2A1417",
-      "light": "#F5E3E1"
-    },
-    "markdownText": {
-      "dark": "#DDD3C7",
-      "light": "#2A1F1A"
-    },
-    "markdownHeading": {
-      "dark": "#C75B7A",
-      "light": "#8B2252"
-    },
-    "markdownLink": {
-      "dark": "#8995A8",
-      "light": "#4A5670"
-    },
-    "markdownLinkText": {
-      "dark": "#8995A8",
-      "light": "#4A5670"
-    },
-    "markdownCode": {
-      "dark": "#8FA86E",
-      "light": "#5A6B40"
-    },
-    "markdownBlockQuote": {
-      "dark": "#9E9288",
-      "light": "#7D7068"
-    },
-    "markdownEmph": {
-      "dark": "#D4A76A",
-      "light": "#7D5B38"
-    },
-    "markdownStrong": {
-      "dark": "#C75B7A",
-      "light": "#8B2252"
-    },
-    "markdownHorizontalRule": {
-      "dark": "#9E9288",
-      "light": "#7D7068"
-    },
-    "markdownListItem": {
-      "dark": "#DDD3C7",
-      "light": "#2A1F1A"
-    },
-    "markdownListEnumeration": {
-      "dark": "#9E9288",
-      "light": "#7D7068"
-    },
-    "markdownImage": {
-      "dark": "#8995A8",
-      "light": "#4A5670"
-    },
-    "markdownImageText": {
-      "dark": "#8995A8",
-      "light": "#4A5670"
-    },
-    "markdownCodeBlock": {
-      "dark": "#8FA86E",
-      "light": "#5A6B40"
-    },
-    "syntaxComment": {
-      "dark": "#71685E",
-      "light": "#A09489"
-    },
-    "syntaxKeyword": {
-      "dark": "#C75B7A",
-      "light": "#8B2252"
-    },
-    "syntaxFunction": {
-      "dark": "#D4A76A",
-      "light": "#7D5B38"
-    },
-    "syntaxVariable": {
-      "dark": "#DDD3C7",
-      "light": "#2A1F1A"
-    },
-    "syntaxString": {
-      "dark": "#8FA86E",
-      "light": "#5A6B40"
-    },
-    "syntaxNumber": {
-      "dark": "#D4A76A",
-      "light": "#7D5B38"
-    },
-    "syntaxType": {
-      "dark": "#8995A8",
-      "light": "#4A5670"
-    },
-    "syntaxOperator": {
-      "dark": "#9E9288",
-      "light": "#7D7068"
-    },
-    "syntaxPunctuation": {
-      "dark": "#9E9288",
-      "light": "#7D7068"
-    }
+    "primary": { "dark": "dRose1", "light": "lRose1" },
+    "secondary": { "dark": "dType1", "light": "lType1" },
+    "accent": { "dark": "dGold1", "light": "lGold1" },
+    "error": { "dark": "dTerra1", "light": "lTerra1" },
+    "warning": { "dark": "dGold1", "light": "lGold1" },
+    "success": { "dark": "dSage1", "light": "lSage1" },
+    "info": { "dark": "dType1", "light": "lType1" },
+    "text": { "dark": "dText", "light": "lText" },
+    "textMuted": { "dark": "dText3", "light": "lText3" },
+    "background": { "dark": "dBg", "light": "lBg" },
+    "backgroundPanel": { "dark": "dBgSoft", "light": "lBgSoft" },
+    "backgroundElement": { "dark": "dBgMute", "light": "lBgMute" },
+    "border": { "dark": "dDivider", "light": "lDivider" },
+    "borderActive": { "dark": "dRose1", "light": "lRose1" },
+    "borderSubtle": { "dark": "dDivider", "light": "lDivider" },
+    "diffAdded": { "dark": "dSage1", "light": "lSage1" },
+    "diffRemoved": { "dark": "dTerra1", "light": "lTerra1" },
+    "diffContext": { "dark": "dBgSoft", "light": "lBgSoft" },
+    "diffHunkHeader": { "dark": "dBgMute", "light": "lBgMute" },
+    "diffHighlightAdded": { "dark": "dSage1", "light": "lSage1" },
+    "diffHighlightRemoved": { "dark": "dTerra1", "light": "lTerra1" },
+    "diffAddedBg": { "dark": "#8FA86E40", "light": "#5A6B4040" },
+    "diffRemovedBg": { "dark": "#C4453640", "light": "#A0302540" },
+    "diffContextBg": { "dark": "dBgSoft", "light": "lBgSoft" },
+    "diffLineNumber": { "dark": "dText3", "light": "lText3" },
+    "diffAddedLineNumberBg": { "dark": "#8FA86E20", "light": "#5A6B4020" },
+    "diffRemovedLineNumberBg": { "dark": "#C4453620", "light": "#A0302520" },
+    "markdownText": { "dark": "dText", "light": "lText" },
+    "markdownHeading": { "dark": "dRose1", "light": "lRose1" },
+    "markdownLink": { "dark": "dType1", "light": "lType1" },
+    "markdownLinkText": { "dark": "dType1", "light": "lType1" },
+    "markdownCode": { "dark": "dSage1", "light": "lSage1" },
+    "markdownBlockQuote": { "dark": "dText3", "light": "lText3" },
+    "markdownEmph": { "dark": "dGold1", "light": "lGold1" },
+    "markdownStrong": { "dark": "dRose1", "light": "lRose1" },
+    "markdownHorizontalRule": { "dark": "dText3", "light": "lText3" },
+    "markdownListItem": { "dark": "dText", "light": "lText" },
+    "markdownListEnumeration": { "dark": "dText3", "light": "lText3" },
+    "markdownImage": { "dark": "dType1", "light": "lType1" },
+    "markdownImageText": { "dark": "dType1", "light": "lType1" },
+    "markdownCodeBlock": { "dark": "dSage1", "light": "lSage1" },
+    "syntaxComment": { "dark": "dText4", "light": "lText4" },
+    "syntaxKeyword": { "dark": "dRose1", "light": "lRose1" },
+    "syntaxFunction": { "dark": "dGold1", "light": "lGold1" },
+    "syntaxVariable": { "dark": "dText", "light": "lText" },
+    "syntaxString": { "dark": "dSage1", "light": "lSage1" },
+    "syntaxNumber": { "dark": "dGold1", "light": "lGold1" },
+    "syntaxType": { "dark": "dType1", "light": "lType1" },
+    "syntaxOperator": { "dark": "dText3", "light": "lText3" },
+    "syntaxPunctuation": { "dark": "dText3", "light": "lText3" }
   }
 }

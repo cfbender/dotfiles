@@ -331,7 +331,7 @@ ui {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "kanagawa"
+theme "claret"
  
 // Choose the base input mode of zellij.
 // Default: normal

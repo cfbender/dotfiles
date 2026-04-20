@@ -1,0 +1,15 @@
+themes {
+  claret {
+    bg		"#180E10"
+    fg		"#DDD3C7"
+    red		"#C44536"
+    green	"#8FA86E"
+    blue	"#8995A8"
+    yellow	"#D4A76A"
+    magenta "#B04A68"
+    orange	"#C5975B"
+    cyan	"#7A9460"
+    black	"#180E10"
+    white	"#DDD3C7"
+  }
+}

@@ -178,6 +178,18 @@ return {
 		priority = 1000,
 	},
 
+	{
+		"cfbender/claret.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			variant = "dark",
+		},
+		config = function(_, opts)
+			require("claret").setup(opts)
+		end,
+	},
+
 	-- == Community overrides ==
 	{
 		"catppuccin",

@@ -6,6 +6,7 @@ requirements = ["zellij"]
 [source]
 command = '''
 STATE_DIR="$HOME/.local/state/zally"
+HIDE_SESSION="${ZALLY_HIDE_SESSION:-}"
 
 # Build session status lookup: "|NAME=S|..." (C=current, R=running, E=exited)
 SESS=""
@@ -20,10 +21,12 @@ done < <(zellij list-sessions -n 2>/dev/null)
 SESS+="|"
 
 SORTABLE=""
-for dir in ~/code/pdq/* ~/code/github/* ~/code/playground/* ~/.local/share/chezmoi; do
+for dir in ~/code/*/*/ ~/.local/share/chezmoi; do
   [[ -d "$dir" ]] || continue
+  dir=${dir%/}
   name=${dir##*/}
   name=${name^^}
+  [[ "$name" == "$HIDE_SESSION" ]] && continue
   case "$SESS" in
     *"|${name}=C|"*) icon="⚡"; prio=1 ;;
     *"|${name}=R|"*) icon="●";  prio=1 ;;
@@ -32,7 +35,7 @@ for dir in ~/code/pdq/* ~/code/github/* ~/code/playground/* ~/.local/share/chezm
   esac
   f="$STATE_DIR/$name"
   if [[ -f "$f" ]]; then
-    mtime=$(stat -f '%m' "$f")
+    mtime=$(stat -c '%Y' "$f" 2>/dev/null || stat -f '%m' "$f" 2>/dev/null || echo 0)
   else
     mtime=0
   fi

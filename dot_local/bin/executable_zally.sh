@@ -2,6 +2,10 @@
 
 set -eu
 
+if [[ "${1:-}" == "--inside" ]]; then
+  export ZALLY_HIDE_SESSION="${ZELLIJ_SESSION_NAME:-}"
+fi
+
 TARGET=$(tv zally --no-sort) || true
 
 [[ -z "$TARGET" ]] && exit 1

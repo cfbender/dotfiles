@@ -71,5 +71,5 @@ rules = [
   { name = "*", is = "orphan", fg = "#C44536" },
   { name = "*", is = "exec", fg = "#8FA86E" },
   { name = "*/", fg = "#D4A76A" },
-  { name = "*", fg = "#DDD3C7" }
+  { name = "*", fg = "#DDD3C7" },
 ]

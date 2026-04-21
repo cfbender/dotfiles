@@ -150,6 +150,18 @@
 
     <dict>
       <key>name</key>
+      <string>JSON Key</string>
+      <key>scope</key>
+      <string>support.type.property-name, meta.object-literal.key, string.json meta.structure.dictionary.key.json</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#B04A68</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>name</key>
       <string>Operator</string>
       <key>scope</key>
       <string>keyword.operator</string>

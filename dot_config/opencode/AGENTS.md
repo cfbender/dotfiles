@@ -141,3 +141,7 @@ Example: `fastmod --accept-all --fixed-strings old_name new_name -e java,yaml .`
 At the start of every conversation, load the following skills using the `skill` tool before responding to the user:
 
 1. **caveman** — Always use caveman mode (full intensity) for all responses
+
+## Reminders
+
+When asking questions, if multiple choice use the question tool in opencode

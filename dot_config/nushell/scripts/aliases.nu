@@ -96,15 +96,16 @@ export def fup [] {
 }
 export def sync-claret [] {
     let claret = $"($env.HOME)/code/github/claret.nvim/ports"
-    let chezmoi = $"($env.HOME)/.local/share/chezmoi/dot_config"
+    let chezmoi = $"($env.HOME)/.local/share/chezmoi"
     let copies = [
         [src, dst];
-        ["bat/ClaretDark.tmTheme", "bat/themes/Claret.tmTheme"]
-        ["ghostty/claret-dark.conf", "ghostty/themes/claret"]
-        ["kitty/claret.conf", "kitty/claret.conf"]
-        ["opencode/claret.json", "opencode/themes/claret.json"]
-        ["yazi/claret-dark.yazi", "yazi/flavors/claret.yazi"]
-        ["zellij/claret-dark.kdl", "zellij/themes/claret.kdl"]
+        ["bat/ClaretDark.tmTheme", "dot_config/bat/themes/Claret.tmTheme"]
+        ["ghostty/claret-dark.conf", "dot_config/ghostty/themes/claret"]
+        ["kitty/claret.conf", "dot_config/kitty/claret.conf"]
+        ["opencode/claret.json", "dot_config/opencode/themes/claret.json"]
+        ["vicinae/claret-dark.toml", "dot_local/share/vicinae/themes/claret-dark.toml"]
+        ["yazi/claret-dark.yazi", "dot_config/yazi/flavors/claret.yazi"]
+        ["zellij/claret-dark.kdl", "dot_config/zellij/themes/claret.kdl"]
     ]
     for entry in $copies {
         let from = $"($claret)/($entry.src)"

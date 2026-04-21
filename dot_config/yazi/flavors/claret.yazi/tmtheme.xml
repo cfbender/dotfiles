@@ -150,6 +150,18 @@
 
     <dict>
       <key>name</key>
+      <string>JSON/YAML/TOML Keys</string>
+      <key>scope</key>
+      <string>meta.mapping.key string, support.type.property-name.json, punctuation.support.type.property-name.json, support.type.property-name.toml, punctuation.support.type.property-name.toml, entity.name.tag.yaml, support.type.property-name.yaml</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#B04A68</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>name</key>
       <string>Operator</string>
       <key>scope</key>
       <string>keyword.operator</string>

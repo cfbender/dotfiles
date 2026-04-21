@@ -150,9 +150,9 @@
 
     <dict>
       <key>name</key>
-      <string>JSON Key</string>
+      <string>JSON/YAML/TOML Keys</string>
       <key>scope</key>
-      <string>support.type.property-name, meta.object-literal.key, string.json meta.structure.dictionary.key.json</string>
+      <string>meta.mapping.key string, support.type.property-name.json, punctuation.support.type.property-name.json, support.type.property-name.toml, punctuation.support.type.property-name.toml, entity.name.tag.yaml, support.type.property-name.yaml</string>
       <key>settings</key>
       <dict>
         <key>foreground</key>

@@ -94,3 +94,33 @@ export def fup [] {
   }
     echo "All done! 🎉" | gum style --foreground 212 --bold
 }
+export def sync-claret [] {
+    let claret = $"($env.HOME)/code/github/claret.nvim/ports"
+    let chezmoi = $"($env.HOME)/.local/share/chezmoi/dot_config"
+    let copies = [
+        [src, dst];
+        ["bat/ClaretDark.tmTheme", "bat/themes/Claret.tmTheme"]
+        ["ghostty/claret-dark.conf", "ghostty/themes/claret"]
+        ["kitty/claret.conf", "kitty/claret.conf"]
+        ["opencode/claret.json", "opencode/themes/claret.json"]
+        ["yazi/claret-dark.yazi", "yazi/flavors/claret.yazi"]
+        ["zellij/claret-dark.kdl", "zellij/themes/claret.kdl"]
+    ]
+    for entry in $copies {
+        let from = $"($claret)/($entry.src)"
+        let to = $"($chezmoi)/($entry.dst)"
+        if ($from | path exists) {
+            if ($from | path type) == "dir" {
+                rm -rf $to
+                cp -r $from $to
+            } else {
+                cp $from $to
+            }
+            print $"  ✓ ($entry.src) → ($entry.dst)"
+        } else {
+            print $"  ✗ ($entry.src) not found, skipping"
+        }
+    }
+    print ""
+    print "Note: starship port is a palette fragment — merge manually if changed."
+}

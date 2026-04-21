@@ -2,7 +2,7 @@
 {{- $preferOpenRouter := eq .chezmoi.os "darwin" -}}
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-agent-skills", "@tarquinen/opencode-dcp@latest", "superpowers@git+https://github.com/obra/superpowers.git"],
+  "plugin": ["@tarquinen/opencode-dcp@latest", "superpowers@git+https://github.com/obra/superpowers.git"],
   "default_agent": "smart",
   "agent": {
     "smart": {

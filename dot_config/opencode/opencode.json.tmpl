@@ -9,20 +9,20 @@
       "mode": "primary",
       "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/anthropic/claude-opus-4.7" $models -}}openrouter/anthropic/claude-opus-4.7{{- else if has "anthropic/claude-opus-4-7" $models -}}anthropic/claude-opus-4-7{{- else if has "openrouter/anthropic/claude-opus-4.6" $models -}}openrouter/anthropic/claude-opus-4.6{{- else if has "anthropic/claude-opus-4-6" $models -}}anthropic/claude-opus-4-6{{- else -}}github-copilot/claude-opus-4.6{{- end -}}{{- else -}}{{- if has "anthropic/claude-opus-4-7" $models -}}anthropic/claude-opus-4-7{{- else if has "anthropic/claude-opus-4-6" $models -}}anthropic/claude-opus-4-6{{- else if has "github-copilot/claude-opus-4.6" $models -}}github-copilot/claude-opus-4.6{{- else if has "openrouter/anthropic/claude-opus-4.7" $models -}}openrouter/anthropic/claude-opus-4.7{{- else if has "openrouter/anthropic/claude-opus-4.6" $models -}}openrouter/anthropic/claude-opus-4.6{{- else -}}github-copilot/claude-opus-4.6{{- end -}}{{- end -}}",
       "prompt": "{file:./prompts/smart.md}",
-      "color": "#74c7ec"
+      "color": "#8995A8"
     },
     "rush": {
       "mode": "primary",
       "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/anthropic/claude-haiku-4.5" $models -}}openrouter/anthropic/claude-haiku-4.5{{- else if has "anthropic/claude-haiku-4-5" $models -}}anthropic/claude-haiku-4-5{{- else -}}github-copilot/claude-haiku-4.5{{- end -}}{{- else -}}{{- if has "anthropic/claude-haiku-4-5" $models -}}anthropic/claude-haiku-4-5{{- else if has "github-copilot/claude-haiku-4.5" $models -}}github-copilot/claude-haiku-4.5{{- else if has "openrouter/anthropic/claude-haiku-4.5" $models -}}openrouter/anthropic/claude-haiku-4.5{{- else -}}github-copilot/claude-haiku-4.5{{- end -}}{{- end -}}",
       "prompt": "{file:./prompts/rush.md}",
-      "color": "#f38ba8"
+      "color": "#C75B7A"
     },
     "deep": {
       "mode": "primary",
       "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/openai/gpt-5.3-codex" $models -}}openrouter/openai/gpt-5.3-codex{{- else if has "openai/gpt-5.3-codex" $models -}}openai/gpt-5.3-codex{{- else -}}github-copilot/gpt-5.3-codex{{- end -}}{{- else -}}{{- if has "openai/gpt-5.3-codex" $models -}}openai/gpt-5.3-codex{{- else if has "github-copilot/gpt-5.3-codex" $models -}}github-copilot/gpt-5.3-codex{{- else if has "openrouter/openai/gpt-5.3-codex" $models -}}openrouter/openai/gpt-5.3-codex{{- else -}}github-copilot/gpt-5.3-codex{{- end -}}{{- end -}}",
       "prompt": "{file:./prompts/deep.md}",
       "reasoningEffort": "xhigh",
-      "color": "#cba6f7"
+      "color": "#D4A76A"
     },
     "search": {
       "mode": "subagent",

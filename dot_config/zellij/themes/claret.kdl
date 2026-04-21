@@ -1,15 +1,136 @@
+// Claret theme (UI-component spec) - frames in gold
+// Palette:
+//   bg       24 8 16       bg_soft  33 22 24    bg_mute  43 31 34    divider 58 46 37
+//   text     221 211 199   text_3   158 146 136 text_4   113 104 94
+//   rose_1   199 91 122    rose_2   176 74 104
+//   gold_1   212 167 106   gold_2   197 151 91
+//   sage_1   143 168 110   sage_2   122 148 96
+//   type_1   137 149 168   terra_1  196 69 54
 themes {
   claret {
-    bg		"#180E10"
-    fg		"#DDD3C7"
-    red		"#C44536"
-    green	"#8FA86E"
-    blue	"#8995A8"
-    yellow	"#D4A76A"
-    magenta "#B04A68"
-    orange	"#C5975B"
-    cyan	"#7A9460"
-    black	"#180E10"
-    white	"#DDD3C7"
+    text_unselected {
+      base 221 211 199
+      background 24 8 16
+      emphasis_0 212 167 106
+      emphasis_1 137 149 168
+      emphasis_2 143 168 110
+      emphasis_3 199 91 122
+    }
+    text_selected {
+      base 221 211 199
+      background 43 31 34
+      emphasis_0 212 167 106
+      emphasis_1 137 149 168
+      emphasis_2 143 168 110
+      emphasis_3 199 91 122
+    }
+    ribbon_selected {
+      base 24 8 16
+      background 199 91 122
+      emphasis_0 212 167 106
+      emphasis_1 221 211 199
+      emphasis_2 143 168 110
+      emphasis_3 137 149 168
+    }
+    ribbon_unselected {
+      base 24 8 16
+      background 221 211 199
+      emphasis_0 199 91 122
+      emphasis_1 137 149 168
+      emphasis_2 143 168 110
+      emphasis_3 212 167 106
+    }
+    table_title {
+      base 212 167 106
+      background 0
+      emphasis_0 199 91 122
+      emphasis_1 137 149 168
+      emphasis_2 143 168 110
+      emphasis_3 221 211 199
+    }
+    table_cell_selected {
+      base 221 211 199
+      background 43 31 34
+      emphasis_0 212 167 106
+      emphasis_1 137 149 168
+      emphasis_2 143 168 110
+      emphasis_3 199 91 122
+    }
+    table_cell_unselected {
+      base 221 211 199
+      background 24 8 16
+      emphasis_0 212 167 106
+      emphasis_1 137 149 168
+      emphasis_2 143 168 110
+      emphasis_3 199 91 122
+    }
+    list_selected {
+      base 221 211 199
+      background 43 31 34
+      emphasis_0 212 167 106
+      emphasis_1 137 149 168
+      emphasis_2 143 168 110
+      emphasis_3 199 91 122
+    }
+    list_unselected {
+      base 221 211 199
+      background 24 8 16
+      emphasis_0 212 167 106
+      emphasis_1 137 149 168
+      emphasis_2 143 168 110
+      emphasis_3 199 91 122
+    }
+    frame_unselected {
+      base 58 46 37
+      background 0
+      emphasis_0 113 104 94
+      emphasis_1 58 46 37
+      emphasis_2 58 46 37
+      emphasis_3 58 46 37
+    }
+    frame_selected {
+      base 212 167 106
+      background 0
+      emphasis_0 197 151 91
+      emphasis_1 221 211 199
+      emphasis_2 199 91 122
+      emphasis_3 0
+    }
+    frame_highlight {
+      base 199 91 122
+      background 0
+      emphasis_0 212 167 106
+      emphasis_1 199 91 122
+      emphasis_2 199 91 122
+      emphasis_3 199 91 122
+    }
+    exit_code_success {
+      base 143 168 110
+      background 0
+      emphasis_0 137 149 168
+      emphasis_1 24 8 16
+      emphasis_2 212 167 106
+      emphasis_3 199 91 122
+    }
+    exit_code_error {
+      base 196 69 54
+      background 0
+      emphasis_0 212 167 106
+      emphasis_1 0
+      emphasis_2 0
+      emphasis_3 0
+    }
+    multiplayer_user_colors {
+      player_1 199 91 122
+      player_2 137 149 168
+      player_3 0
+      player_4 212 167 106
+      player_5 143 168 110
+      player_6 0
+      player_7 196 69 54
+      player_8 0
+      player_9 0
+      player_10 0
+    }
   }
 }

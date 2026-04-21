@@ -41,7 +41,7 @@ black = "#16161D"
 white = "#DCD7BA"
 
 [palettes.claret]
-overlay = "#180E10"
+overlay = "#180810"
 fg = "#DDD3C7"
 red = "#C44536"
 green = "#8FA86E"
@@ -50,7 +50,7 @@ yellow = "#D4A76A"
 magenta = "#B04A68"
 orange = "#C5975B"
 cyan = "#7A9460"
-black = "#180E10"
+black = "#180810"
 white = "#DDD3C7"
 
 [directory]

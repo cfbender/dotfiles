@@ -8,38 +8,38 @@ cwd = { fg = "#D4A76A" }
 hovered = { reversed = true }
 preview_hovered = { reversed = true }
 
-find_keyword = { fg = "#D4A76A", bg = "#180E10" }
+find_keyword = { fg = "#D4A76A", bg = "#180810" }
 find_position = {}
 
 tab_active = { reversed = true }
 tab_inactive = {}
 tab_width = 1
 
-count_copied = { fg = "#180E10", bg = "#8FA86E" }
-count_cut = { fg = "#180E10", bg = "#C44536" }
-count_selected = { fg = "#180E10", bg = "#D4A76A" }
+count_copied = { fg = "#180810", bg = "#8FA86E" }
+count_cut = { fg = "#180810", bg = "#C44536" }
+count_selected = { fg = "#180810", bg = "#D4A76A" }
 
 border_symbol = "│"
 border_style = { fg = "#DDD3C7" }
 
 
 [mode]
-normal_main = { fg = "#180E10", bg = "#8995A8" }
-normal_alt = { fg = "#8995A8", bg = "#180E10" }
-select_main = { fg = "#180E10", bg = "#C75B7A" }
-select_alt = { fg = "#C75B7A", bg = "#180E10" }
-unset_main = { fg = "#180E10", bg = "#D4A76A" }
-unset_alt = { fg = "#D4A76A", bg = "#180E10" }
+normal_main = { fg = "#180810", bg = "#8995A8" }
+normal_alt = { fg = "#8995A8", bg = "#180810" }
+select_main = { fg = "#180810", bg = "#C75B7A" }
+select_alt = { fg = "#C75B7A", bg = "#180810" }
+unset_main = { fg = "#180810", bg = "#D4A76A" }
+unset_alt = { fg = "#D4A76A", bg = "#180810" }
 
 
 [status]
 sep_left = { open = "", close = "" }
 sep_right = { open = "", close = "" }
-overall = { fg = "#DDD3C7", bg = "#180E10" }
+overall = { fg = "#DDD3C7", bg = "#180810" }
 
-progress_label = { fg = "#8995A8", bg = "#180E10", bold = true }
-progress_normal = { fg = "#180E10", bg = "#180E10" }
-progress_error = { fg = "#180E10", bg = "#180E10" }
+progress_label = { fg = "#8995A8", bg = "#180810", bold = true }
+progress_normal = { fg = "#180810", bg = "#180810" }
+progress_error = { fg = "#180810", bg = "#180810" }
 
 perm_type = { fg = "#8FA86E" }
 perm_read = { fg = "#D4A76A" }
@@ -73,7 +73,7 @@ hovered = { fg = "#C75B7A" }
 cols = 2
 separator = " - "
 separator_style = { fg = "#9E9288" }
-mask = { bg = "#180E10" }
+mask = { bg = "#180810" }
 rest = { fg = "#9E9288" }
 cand = { fg = "#8995A8" }
 desc = { fg = "#DDD3C7" }
@@ -83,7 +83,7 @@ on = { fg = "#8FA86E" }
 run = { fg = "#C75B7A" }
 desc = {}
 hovered = { reversed = true, bold = true }
-footer = { fg = "#180E10", bg = "#DDD3C7" }
+footer = { fg = "#180810", bg = "#DDD3C7" }
 
 [notify]
 title_info = { fg = "#8FA86E" }

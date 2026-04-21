@@ -14,7 +14,7 @@ layout {
     tab name="  " split_direction="vertical" {
         pane
         pane split_direction="horizontal" {
-            pane command="pnpm" close_on_exit=false {
+            pane command="aube" close_on_exit=false {
                 args "-r" "dev"
             }
             pane

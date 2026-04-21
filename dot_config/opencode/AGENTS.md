@@ -42,153 +42,65 @@ Examples:
 
 ## rtk
 
-**Usage**: Token-optimized shell proxy. All standard commands are rewritten automatically via the Claude Code hook.
+**rtk is a token-optimized shell proxy installed via a shell hook.** Standard commands
+(`git`, `ls`, `cargo test`, `tsc`, `docker ps`, `aws …`, etc.) are automatically rewritten
+to their `rtk` equivalents before execution. You generally do not need to type `rtk`
+yourself — the hook does it.
 
-Use `rtk ls <dir>` explicitly when you need a compact directory listing.
-Never use `find . -type f` or `ls -la -R` to explore a directory — use rtk ls instead.
-Do not use `rtk grep` to search for patterns in a directory.
+### Core rules
 
-Examples from rtk docs:
-```
-### Files
-```bash
-rtk ls .                        # Token-optimized directory tree
-rtk read file.rs                # Smart file reading
-rtk read file.rs -l aggressive  # Signatures only (strips bodies)
-rtk smart file.rs               # 2-line heuristic code summary
-rtk find "*.rs" .               # Compact find results
-rtk grep "pattern" .            # Grouped search results
-rtk diff file1 file2            # Condensed diff
-```
+1. **Never bypass rtk to get "more output."** If `git status`, `ls`, `cargo test`, or any
+   supported command returns compact output, that is rtk intercepting — by design.
+   Raw commands are not more informative; they are just more tokens.
+2. **Do not loop re-running the same command with different flags hoping for verbose
+   output.** The hook will re-intercept. Instead, rethink the question.
+3. **If the output isn't sufficient, narrow the command, don't widen it.** Pick a more
+   targeted subcommand or path that answers the exact question with minimal input.
 
-### Git
-```bash
-rtk git status                  # Compact status
-rtk git log -n 10               # One-line commits
-rtk git diff                    # Condensed diff
-rtk git add                     # -> "ok"
-rtk git commit -m "msg"         # -> "ok abc1234"
-rtk git push                    # -> "ok main"
-rtk git pull                    # -> "ok 3 files +10 -2"
-```
+### Interpreting rtk-shaped output
 
-### GitHub CLI
-```bash
-rtk gh pr list                  # Compact PR listing
-rtk gh pr view 42               # PR details + checks
-rtk gh issue list               # Compact issue listing
-rtk gh run list                 # Workflow run status
-```
+If a command returns unusually terse output (e.g. `ok main`, `FAILED: 2/15 tests`,
+single-line git status, a tree with file counts) — that is a signal rtk intercepted.
+Treat it as authoritative. Do not retry the raw command.
 
-### Test Runners
-```bash
-rtk jest                        # Jest compact (failures only)
-rtk vitest                      # Vitest compact (failures only)
-rtk playwright test             # E2E results (failures only)
-rtk pytest                      # Python tests (-90%)
-rtk go test                     # Go tests (NDJSON, -90%)
-rtk cargo test                  # Cargo tests (-90%)
-rtk rake test                   # Ruby minitest (-90%)
-rtk rspec                       # RSpec tests (JSON, -60%+)
-rtk err <cmd>                   # Filter errors only from any command
-rtk test <cmd>                  # Generic test wrapper - failures only (-90%)
-```
+### When output feels insufficient
 
-### Build & Lint
-```bash
-rtk lint                        # ESLint grouped by rule/file
-rtk lint biome                  # Supports other linters
-rtk tsc                         # TypeScript errors grouped by file
-rtk next build                  # Next.js build compact
-rtk prettier --check .          # Files needing formatting
-rtk cargo build                 # Cargo build (-80%)
-rtk cargo clippy                # Cargo clippy (-80%)
-rtk ruff check                  # Python linting (JSON, -80%)
-rtk golangci-lint run           # Go linting (JSON, -85%)
-rtk rubocop                     # Ruby linting (JSON, -60%+)
-```
+Ask: *what is the smallest additional input that answers my actual question?* Then:
 
-### Package Managers
-```bash
-rtk pnpm list                   # Compact dependency tree
-rtk pip list                    # Python packages (auto-detect uv)
-rtk pip outdated                # Outdated packages
-rtk bundle install              # Ruby gems (strip Using lines)
-rtk prisma generate             # Schema generation (no ASCII art)
-```
+- Need one function? → `qmd get <file>:<line> -l <count>`
+- Need files containing X? → `rg -l X .`
+- Need the failing test detail? → re-run that single test by name, not the whole suite
+- Need a specific file's structure? → `rtk read <file> -l aggressive` or `rtk smart <file>`
+- Need full raw output (rare)? → `rtk proxy <command>` is the explicit passthrough
 
-### AWS
-```bash
-rtk aws sts get-caller-identity # One-line identity
-rtk aws ec2 describe-instances  # Compact instance list
-rtk aws lambda list-functions   # Name/runtime/memory (strips secrets)
-rtk aws logs get-log-events     # Timestamped messages only
-rtk aws cloudformation describe-stack-events  # Failures first
-rtk aws dynamodb scan           # Unwraps type annotations
-rtk aws iam list-roles          # Strips policy documents
-rtk aws s3 ls                   # Truncated with tee recovery
-```
+### Useful explicit invocations
 
-### Containers
-```bash
-rtk docker ps                   # Compact container list
-rtk docker images               # Compact image list
-rtk docker logs <container>     # Deduplicated logs
-rtk docker compose ps           # Compose services
-rtk kubectl pods                # Compact pod list
-rtk kubectl logs <pod>          # Deduplicated logs
-rtk kubectl services            # Compact service list
-```
-
-### Data & Analytics
-```bash
-rtk json config.json            # Structure without values
-rtk deps                        # Dependencies summary
-rtk env -f AWS                  # Filtered env vars
-rtk log app.log                 # Deduplicated logs
-rtk curl <url>                  # Auto-detect JSON + schema
-rtk wget <url>                  # Download, strip progress bars
-rtk summary <long command>      # Heuristic summary
-rtk proxy <command>             # Raw passthrough + tracking
-```
-
-## Global Flags
+Most commands auto-rewrite. Use explicit `rtk` forms when you want a specific mode:
 
 ```bash
--u, --ultra-compact    # ASCII icons, inline format (extra token savings)
--v, --verbose          # Increase verbosity (-v, -vv, -vvv)
+rtk ls <dir>                   # compact directory tree (not find / ls -R)
+rtk read <file> -l aggressive  # signatures only
+rtk smart <file>               # 2-line heuristic summary
+rtk err <cmd>                  # errors-only filter for any command
+rtk test <cmd>                 # generic failures-only test wrapper
+rtk proxy <cmd>                # explicit raw passthrough (use sparingly)
 ```
 
-## Examples
+### Flags
 
-**Directory listing:**
 ```
-# ls -la (45 lines, ~800 tokens)        # rtk ls (12 lines, ~150 tokens)
-drwxr-xr-x  15 user staff 480 ...       my-project/
--rw-r--r--   1 user staff 1234 ...       +-- src/ (8 files)
-...                                      |   +-- main.rs
-                                         +-- Cargo.toml
+-u, --ultra-compact    # extra-compact output
+-v, -vv, -vvv          # escalate verbosity only if genuinely needed
 ```
 
-**Git operations:**
-```
-# git push (15 lines, ~200 tokens)       # rtk git push (1 line, ~10 tokens)
-Enumerating objects: 5, done.             ok main
-Counting objects: 100% (5/5), done.
-Delta compression using up to 8 threads
-...
-```
+### Do not
 
-**Test output:**
-```
-# cargo test (200+ lines on failure)     # rtk test cargo test (~20 lines)
-running 15 tests                          FAILED: 2/15 tests
-test utils::test_parse ... ok               test_edge_case: assertion failed
-test utils::test_format ... ok              test_overflow: panic at utils.rs:18
-...
-```
+- Do not run `find . -type f` or `ls -laR` to explore — use `rtk ls` / `rg -l`.
+- Do not run `rtk grep` for content search — use `rg` (ripgrep section above).
+- Do not retry a command with `--verbose`/`-vv` just to defeat rtk's compaction.
 
-⚠️ **Name collision**: If `rtk gain` fails, you may have reachingforthejack/rtk (Rust Type Kit) installed instead. Verify with `which rtk`.
+⚠️ **Name collision**: If `rtk` behaves unexpectedly, verify with `which rtk` — the
+reachingforthejack/rtk (Rust Type Kit) binary is unrelated.
 
 ## ast-grep
 

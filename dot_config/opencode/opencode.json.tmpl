@@ -35,7 +35,7 @@
     "oracle": {
       "mode": "subagent",
       "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/openai/gpt-5.4" $models -}}openrouter/openai/gpt-5.4{{- else if has "openai/gpt-5.4" $models -}}openai/gpt-5.4{{- else -}}github-copilot/gpt-5.4{{- end -}}{{- else -}}{{- if has "openai/gpt-5.4" $models -}}openai/gpt-5.4{{- else if has "github-copilot/gpt-5.4" $models -}}github-copilot/gpt-5.4{{- else if has "openrouter/openai/gpt-5.4" $models -}}openrouter/openai/gpt-5.4{{- else -}}github-copilot/gpt-5.4{{- end -}}{{- end -}}",
-      "reasoningEffort": "medium",
+      "reasoningEffort": "xhigh",
       "prompt": "{file:./prompts/oracle.md}",
       "permission": {
         "edit": "deny",

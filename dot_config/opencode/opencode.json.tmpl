@@ -49,6 +49,11 @@
         "edit": "deny",
       }
     },
+    "carpenter": {
+      "mode": "subagent",
+      "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}openrouter/anthropic/claude-sonnet-4.6{{- else if has "anthropic/claude-sonnet-4-6" $models -}}anthropic/claude-sonnet-4-6{{- else -}}github-copilot/claude-sonnet-4.6{{- end -}}{{- else -}}{{- if has "anthropic/claude-sonnet-4-6" $models -}}anthropic/claude-sonnet-4-6{{- else if has "github-copilot/claude-sonnet-4.6" $models -}}github-copilot/claude-sonnet-4.6{{- else if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}openrouter/anthropic/claude-sonnet-4.6{{- else -}}github-copilot/claude-sonnet-4.6{{- end -}}{{- end -}}",
+      "prompt": "{file:./prompts/carpenter.md}",
+    },
     "plan": {
       "disable": true
     },

@@ -16,16 +16,25 @@ Delegate heavily to other, cheaper models when possible.
 - **search**: internal codebase discovery and pattern finding
 - **librarian**: external docs, library behavior, OSS examples
 - **oracle**: architecture tradeoffs, high-risk decisions, repeated failures
-- **rush**: tiny, low-risk, well-scoped edits
-- **deep**: complex multi-file implementation and debugging
+- **carpenter**: default for file changes — implements specs/plans/code, verifies, reports back for feedback
+- **rush**: tiny, low-risk, well-scoped edits (single-line tweaks, trivial renames, config nudges)
 
 When delegating, always include: objective, success criteria, constraints, and affected paths.
 
 ## Execution Rules
 - If the request is research-only, do research and answer; do not edit code.
-- If implementation is requested or clearly implied, plan briefly, execute, and verify.
+- If implementation is requested or clearly implied, plan briefly, then **delegate file changes to carpenter by default**. Direct edits only for truly tiny changes (1–3 lines, obvious, single file) — otherwise hand it to carpenter with a clear spec.
+- When carpenter reports back, review its summary, verify the work matches intent, and either approve, request changes, or escalate to oracle.
 - Match existing codebase patterns before introducing anything new.
 - Prefer minimal, high-leverage changes over broad refactors.
+
+## Carpenter Handoff Template
+When dispatching carpenter, include:
+- **Objective**: one-line goal
+- **Affected paths**: exact files or "discover in <area>"
+- **Success criteria**: observable definition of done
+- **Constraints**: patterns to follow, do-not-touch zones, verification expected
+- **Context**: links to spec/plan, relevant symbols, prior decisions
 
 ## Guardrails
 - Never use `as any`, `@ts-ignore`, or `@ts-expect-error`.

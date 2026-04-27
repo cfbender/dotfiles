@@ -45,9 +45,9 @@ chezmoi at `dot_config/opencode/quorum.json`.
 {
   "$schema": "https://raw.githubusercontent.com/GITHUB_OWNER/quorum/main/schema.json",
   "models": [
-    { "id": "openrouter/anthropic/claude-opus-4.7", "label": "opus" },
-    { "id": "openrouter/openai/gpt-5.4",            "label": "gpt5" },
-    { "id": "openrouter/google/gemini-3-pro",       "label": "gemini" }
+    { "providerID": "openrouter", "modelID": "anthropic/claude-opus-4.7", "label": "opus" },
+    { "providerID": "openrouter", "modelID": "openai/gpt-5.4",            "label": "gpt5" },
+    { "providerID": "openrouter", "modelID": "google/gemini-3-pro",       "label": "gemini" }
   ],
   "concurrency": 3,
   "timeoutMs": 120000,
@@ -60,8 +60,11 @@ chezmoi at `dot_config/opencode/quorum.json`.
 
 Field semantics:
 
-- `models`: array of `{id, label}`. Length defines the quorum size. The label
-  is a short identifier used in synthesis output ("opus said X, gpt5 said Y").
+- `models`: array of `{providerID, modelID, label}`. Length defines the
+  quorum size. `providerID` and `modelID` match the split used by opencode's
+  `session.prompt` body shape (e.g., `providerID: "openrouter"`,
+  `modelID: "anthropic/claude-opus-4.7"`). The label is a short identifier
+  used in synthesis output ("opus said X, gpt5 said Y").
 - `concurrency`: maximum number of in-flight model requests. Defaults to the
   size of the `models` array (fire all at once).
 - `timeoutMs`: per-model request ceiling. Stragglers are dropped from the
@@ -77,10 +80,12 @@ Field semantics:
 - `specDir`: path, relative to the current working directory, where approved
   designs are written.
 
-Provider routing: the plugin uses opencode's internal client to dispatch
-model calls. It does not speak to openrouter directly. This gives it auth,
-retry, and multi-provider support (openrouter, anthropic, github-copilot,
-ollama, etc.) for free — any provider configured in `opencode.json` works.
+Provider routing: the plugin uses opencode's internal HTTP client
+(`client.session.create` + `client.session.prompt` + `client.session.delete`)
+to dispatch model calls through throwaway child sessions. It does not speak
+to providers directly. This gives it auth, retry, and multi-provider
+support (openrouter, anthropic, github-copilot, ollama, etc.) for free —
+any provider configured in `opencode.json` works.
 
 Failure handling:
 
@@ -123,57 +128,94 @@ quorum/
 
 ### 3.2 Hooks
 
-The plugin registers two hooks:
+The plugin returns a single `Hooks` object combining two surfaces:
 
-1. A first-message hook equivalent to the pattern used by the
-   `openrouter-session` plugin in this repo: walk `parentID` to identify root
-   sessions, and prepend the bootstrap block to the first user message of each
-   root session (cached per root session ID).
-2. A tool registration hook that adds the `quorum_consult` tool to the
-   orchestrator's tool set.
+1. **`experimental.chat.system.transform`** — pushes the quorum bootstrap
+   block onto `output.system` (the system-prompt array). This mirrors how
+   the `superpowers` plugin injects its bootstrap and is known to survive
+   agent transitions (opencode issue #226). The bootstrap is added on every
+   invocation; opencode handles deduplication at the system-prompt level.
+2. **`tool.quorum_consult`** — a custom tool registered via the `tool()`
+   helper from `@opencode-ai/plugin/tool`. The tool is part of the returned
+   hooks object under the `tool` key; opencode's `tool/registry.ts` picks
+   it up automatically.
 
 ### 3.3 `quorum_consult` tool surface
 
+Defined via `tool()` from `@opencode-ai/plugin/tool`. Args use zod schemas
+(`tool.schema`). Returns a JSON-stringified payload (tool return type is
+`Promise<string>`).
+
+```ts
+import { tool } from "@opencode-ai/plugin/tool"
+
+tool({
+  description:
+    "Fan out a planning prompt to the configured quorum of models and " +
+    "return their responses for synthesis. Use when starting any creative " +
+    "or planning work before writing code.",
+  args: {
+    topic:   tool.schema.string().describe("short label; used for spec filename slug"),
+    prompt:  tool.schema.string().describe("the full prompt sent to each quorum member"),
+    context: tool.schema.string().optional().describe("optional extra context appended to each member's prompt"),
+  },
+  async execute(args, ctx) {
+    // implementation (§3.4)
+    return JSON.stringify(payload)
+  },
+})
+```
+
+The JSON payload returned has the shape:
+
 ```ts
 {
-  name: "quorum_consult",
-  description:
-    "Fan out a planning prompt to the configured quorum of models and return " +
-    "their responses for synthesis. Use when starting any creative or planning " +
-    "work before writing code.",
-  parameters: {
-    topic: string,    // short label; used for spec filename slug
-    prompt: string,   // the full prompt sent to each quorum member
-    context?: string, // optional extra context appended to each member's prompt
-  },
-  returns: {
-    responses: Array<{
-      label: string,
-      modelId: string,
-      ok: boolean,
-      text?: string,
-      error?: string,
-      elapsedMs: number,
-      truncated: boolean,
-    }>,
-    synthesisPrompt: string, // template wrapping the responses (see §6)
-    meta: {
-      topic: string,
-      startedAt: string,         // ISO timestamp
-      droppedModels: string[],   // labels that errored or timed out
-    }
+  responses: Array<{
+    label: string,
+    providerID: string,
+    modelID: string,
+    ok: boolean,
+    text?: string,
+    error?: string,
+    elapsedMs: number,
+    truncated: boolean,
+  }>,
+  synthesisPrompt: string, // template wrapping the responses (see §6)
+  meta: {
+    topic: string,
+    startedAt: string,         // ISO timestamp
+    droppedModels: string[],   // labels that errored or timed out
   }
 }
 ```
 
 ### 3.4 Fan-out semantics
 
-- Implemented as `Promise.all` with per-request `Promise.race` against a
-  timeout timer, gated by a `p-limit`-style concurrency limiter.
-- All calls go through the opencode `client` object (the same object the
-  `openrouter-session` plugin receives on init), not direct HTTP to providers.
-- Each dispatch is logged via `client.app.log` for debugging through
-  opencode's log stream.
+Per configured model, the tool executes a three-step sequence against the
+opencode client:
+
+1. `client.session.create({ body: { parentID: ctx.sessionID }, throwOnError: true })`
+   — creates a throwaway child session linked to the calling session.
+2. `client.session.prompt({ path: { id: childID }, body: { model: { providerID, modelID }, tools: {}, system: "...", parts: [{ type: "text", text: memberPrompt }] }, throwOnError: true })`
+   — blocks until the model responds. `tools: {}` disables all tool use so
+   the model produces a pure completion. `system` is the per-member system
+   prompt (see §6.1).
+3. `client.session.delete({ path: { id: childID } })` — cleans up to avoid
+   accumulating throwaway sessions in storage.
+
+The text response is extracted by filtering `response.data.parts` for
+`type === "text"` and concatenating their `.text` fields.
+
+Orchestration:
+
+- `Promise.all` over the models array, each call wrapped in a
+  `Promise.race` against a `setTimeout(config.timeoutMs)` rejection.
+- Concurrency limit enforced via a `p-limit`-style limiter when
+  `config.concurrency < config.models.length`.
+- Each dispatch is logged via `client.app.log` at `service: "quorum"` so it
+  appears in opencode's log stream for debugging.
+- A timed-out or errored call is recorded in `droppedModels` with the
+  label, and its response entry gets `ok: false` with the error string.
 
 ### 3.5 Explicit non-responsibilities
 
@@ -283,8 +325,8 @@ The orchestrator produces a synthesis with these sections:
 
 ### 5.1 Injected block
 
-Prepended to the first user message of each root session when
-`triggerMode: "auto"`:
+Pushed onto the system-prompt array (`output.system`) via
+`experimental.chat.system.transform` when `triggerMode: "auto"`:
 
 ```markdown
 <quorum-bootstrap>
@@ -311,12 +353,16 @@ and let it guide you.
 
 ### 5.2 Session scoping
 
-- Bootstrap fires once per root session, cached by root session ID (same
-  caching pattern as `openrouter-session`).
-- Subagent sessions (those with a `parentID`) are never bootstrapped. They
-  inherit context from the orchestrator but do not invoke `quorum_consult`
-  themselves — the tool refuses to run in subagent sessions and returns an
-  informative error. Quorum is a root-session discipline.
+- Bootstrap is pushed onto the system prompt on every hook invocation; the
+  `experimental.chat.system.transform` hook is designed for exactly this
+  pattern. opencode handles system-prompt composition — the plugin does not
+  need to cache or deduplicate.
+- Subagent sessions (those with a `parentID`) inherit the system prompt
+  from the orchestrator context. The `quorum_consult` tool's `execute`
+  function resolves its root session ID (walking `parentID` chain via
+  `client.session.get`, same pattern as `openrouter-session`) and refuses
+  to run in subagent sessions, returning an informative error string.
+  Quorum is a root-session discipline.
 
 ### 5.3 Trigger decision
 
@@ -329,11 +375,13 @@ duplicate judgment the model already performs well.
 
 ### 5.4 `triggerMode` values
 
-- `"auto"`: bootstrap injected, skill self-triggers. Default.
-- `"manual"`: bootstrap not injected; tool and skill still available. The
-  user must explicitly invoke quorum (e.g., "use quorum to design this").
-- `"off"`: plugin loads but does nothing. Tool is not registered; no
-  injection occurs. Kill switch for quiet sessions.
+- `"auto"`: bootstrap pushed onto system prompt, skill self-triggers.
+  Default.
+- `"manual"`: bootstrap not pushed; tool still registered. The user must
+  explicitly invoke quorum (e.g., "use quorum to design this").
+- `"off"`: plugin loads but returns an empty hooks object. Tool is not
+  registered; no system-prompt injection occurs. Kill switch for quiet
+  sessions.
 
 ## 6. Synthesis prompt template (returned by the tool)
 

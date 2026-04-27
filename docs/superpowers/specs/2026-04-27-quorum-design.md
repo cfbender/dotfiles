@@ -71,9 +71,12 @@ Field semantics:
   quorum; the synthesis output notes which were dropped.
 - `maxTokens`: per-response cap. Responses that hit the cap are marked
   `truncated: true` in the tool return.
-- `reasoningEffort`: passed through when the provider supports reasoning
-  controls. Default `"high"` — quorum members should think hard, since
-  synthesis quality depends on response quality.
+- `reasoningEffort`: included in the per-member system prompt as a reasoning
+  instruction. opencode's current `session.prompt` body exposes
+  `providerID`/`modelID` selection but not a per-call reasoning-effort field;
+  if that API appears later, this config field can be passed through directly.
+  Default `"high"` — quorum members should think hard, since synthesis
+  quality depends on response quality.
 - `triggerMode`: `"auto"` (bootstrap injected, skill self-triggers on planning
   work) | `"manual"` (no bootstrap; user must explicitly invoke) | `"off"`
   (plugin loads but tool is not registered and nothing is injected).

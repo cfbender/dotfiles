@@ -43,7 +43,7 @@ chezmoi at `dot_config/opencode/quorum.json`.
 
 ```jsonc
 {
-  "$schema": "https://raw.githubusercontent.com/GITHUB_OWNER/quorum/main/schema.json",
+  "$schema": "https://raw.githubusercontent.com/cfbender/quorum/main/schema.json",
   "models": [
     { "providerID": "openrouter", "modelID": "anthropic/claude-opus-4.7", "label": "opus" },
     { "providerID": "openrouter", "modelID": "openai/gpt-5.4",            "label": "gpt5" },
@@ -599,10 +599,8 @@ skipped.
 ### 8.1 Repository
 
 Standalone at `~/code/github/quorum`, published as
-`github.com/GITHUB_OWNER/quorum`. The `GITHUB_OWNER` placeholder is resolved
-at repo-initialization time — the user confirms their GitHub account, and
-every occurrence of `GITHUB_OWNER` in the spec, `package.json`, and config
-schema URL is replaced with that account name.
+`github.com/cfbender/quorum` using the remote
+`git@github.com:cfbender/quorum.git`.
 
 ### 8.2 Package shape
 
@@ -648,7 +646,7 @@ In `dot_config/opencode/opencode.json.tmpl`:
 ```jsonc
 "plugin": [
   "@tarquinen/opencode-dcp@latest",
-  "quorum@git+https://github.com/GITHUB_OWNER/quorum.git"
+  "quorum@git+https://github.com/cfbender/quorum.git"
   // superpowers entry removed
 ]
 ```
@@ -671,7 +669,7 @@ Removal of superpowers from this repo:
 
 For v0.1.0, the git URL resolves to default-branch HEAD. Stability can be
 tightened later by pinning to a tag
-(`quorum@git+https://github.com/GITHUB_OWNER/quorum.git#v0.1.0`). HEAD-tracking is
+(`quorum@git+https://github.com/cfbender/quorum.git#v0.1.0`). HEAD-tracking is
 acceptable for the initial release.
 
 ### 8.6 Activation

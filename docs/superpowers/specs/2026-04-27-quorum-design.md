@@ -69,7 +69,10 @@ Field semantics:
   size of the `models` array (fire all at once).
 - `timeoutMs`: per-model request ceiling. Stragglers are dropped from the
   quorum; the synthesis output notes which were dropped.
-- `maxTokens`: per-response cap. Responses that hit the cap are marked
+- `maxTokens`: per-response cap applied locally before the tool returns the
+  response to the orchestrator. opencode's current `session.prompt` body does
+  not expose a per-call token cap, so v0.1 also reinforces the desired length
+  in the member prompt. Responses that hit the local cap are marked
   `truncated: true` in the tool return.
 - `reasoningEffort`: included in the per-member system prompt as a reasoning
   instruction. opencode's current `session.prompt` body exposes

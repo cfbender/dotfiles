@@ -102,6 +102,18 @@ rtk proxy <cmd>                # explicit raw passthrough (use sparingly)
 ⚠️ **Name collision**: If `rtk` behaves unexpectedly, verify with `which rtk` — the
 reachingforthejack/rtk (Rust Type Kit) binary is unrelated.
 
+### Pitfalls — when to bypass the hook
+
+When a command fails with `rtk:` in the error, prepend `rtk proxy` to skip the rewrite. Known cases:
+
+- **`sudo <cmd>`** — sudo strips PATH, so `sudo rtk <cmd>` fails with `sudo: rtk: command not found`. Run as `rtk proxy sudo <cmd>` (or just `sudo <cmd>` — the hook will still rewrite, so prefer `rtk proxy`).
+- **`find` with compound expressions** (`-not`, `-exec`, `-and`, `-or`) — `rtk find` rejects these. Use `rtk proxy find <args>`.
+- **Need raw, unfiltered output** (piping into a parser, exact byte capture, diffing tool output verbatim) — `rtk proxy <cmd>` returns the unmodified stdout/stderr.
+- **`git diff` (and other large outputs)** — RTK truncates long output silently, so you may miss hunks past the cutoff. For a full diff (especially when reviewing changes before commit), use `rtk proxy git diff` or redirect to a file.
+- **File doesn't exist / binary not installed** — errors like `rtk: Failed to read file` or `rtk: Failed to execute command` mean the underlying file or tool is missing, not an RTK bug. Don't retry through `rtk proxy`; fix the path or install the tool.
+
+Rule of thumb: one `rtk:` error = switch to `rtk proxy` for that call. Two failures in a row on the same command = stop, the issue isn't RTK.
+
 ## ast-grep
 
 Use `ast-grep run --pattern <pattern> --rewrite <replacement> --lang <lang> -U .`

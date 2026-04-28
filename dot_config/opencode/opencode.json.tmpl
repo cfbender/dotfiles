@@ -58,20 +58,53 @@
       "mode": "primary",
       "model": "{{ $smartModel }}",
       "prompt": "{file:./prompts/smart.md}",
-      "color": "#8995A8"
+      "color": "#8995A8",
+      "permission": {
+        "read": {
+          "*": "allow",
+          "*.env": "deny",
+          "*.env.*": "deny",
+          "*.env.example": "allow"
+        },
+        "external_directory": {
+          "/tmp/**": "allow"
+        }
+      }
     },
     "rush": {
       "mode": "primary",
       "model": "{{ $rushModel }}",
       "prompt": "{file:./prompts/rush.md}",
-      "color": "#C75B7A"
+      "color": "#C75B7A",
+      "permission": {
+        "read": {
+          "*": "allow",
+          "*.env": "deny",
+          "*.env.*": "deny",
+          "*.env.example": "allow"
+        },
+        "external_directory": {
+          "/tmp/**": "allow"
+        }
+      }
     },
     "deep": {
       "mode": "primary",
       "model": "{{ $deepModel }}",
       "prompt": "{file:./prompts/deep.md}",
       "reasoningEffort": "xhigh",
-      "color": "#D4A76A"
+      "color": "#D4A76A",
+      "permission": {
+        "read": {
+          "*": "allow",
+          "*.env": "deny",
+          "*.env.*": "deny",
+          "*.env.example": "allow"
+        },
+        "external_directory": {
+          "/tmp/**": "allow"
+        }
+      }
     },
     "search": {
       "mode": "subagent",

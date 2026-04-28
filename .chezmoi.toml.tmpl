@@ -1,6 +1,10 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $work := promptBoolOnce . "work" "Is this a work machine" -}}
+{{- $useOpenRouter := promptBoolOnce . "useOpenRouter" "Use OpenRouter provider" -}}
 
 [data]
   email = {{ $email | quote }}
+  work = {{ $work }}
+  useOpenRouter = {{ $useOpenRouter }}
 [edit]
     command = "nvim"

@@ -1,0 +1,86 @@
+{{- $useOpenRouter := .useOpenRouter -}}
+{{- $work := .work -}}
+
+{{- /* Quorum provider + model selection */ -}}
+{{- $provider := "opencode-go" -}}
+{{- $sonnetModel := "qwen3.5-plus" -}}
+{{- $codexModel := "minimax-m2.7" -}}
+{{- $kimiModel := "kimi-k2.5" -}}
+{{- $glmModel := "glm-5.1" -}}
+{{- $opusModel := "deepseek-v4-pro" -}}
+{{- $gpt55Model := "mimo-v2.5-pro" -}}
+{{- $geminiModel := "qwen3.6-plus" -}}
+
+{{- if $useOpenRouter -}}
+  {{- $provider = "openrouter" -}}
+  {{- $sonnetModel = "anthropic/claude-sonnet-4.6" -}}
+  {{- $codexModel = "openai/gpt-5.3-codex" -}}
+  {{- $kimiModel = "moonshotai/kimi-k2.6" -}}
+  {{- $glmModel = "z-ai/glm-5.1" -}}
+  {{- $opusModel = "anthropic/claude-opus-4.7" -}}
+  {{- $gpt55Model = "openai/gpt-5.5" -}}
+  {{- $geminiModel = "google/gemini-3.1-pro-preview" -}}
+{{- else if $work -}}
+  {{- $provider = "github-copilot" -}}
+  {{- $sonnetModel = "claude-sonnet-4.6" -}}
+  {{- $codexModel = "gpt-5.3-codex" -}}
+  {{- $kimiModel = "claude-sonnet-4.6" -}}
+  {{- $glmModel = "claude-sonnet-4.6" -}}
+  {{- $opusModel = "claude-opus-4.7" -}}
+  {{- $gpt55Model = "gpt-5.4" -}}
+  {{- $geminiModel = "gemini-3.1-pro-preview" -}}
+{{- end -}}
+{
+  "$schema": "https://raw.githubusercontent.com/cfbender/quorum/main/schema.json",
+  "members": [
+    {
+      "name": "quorum-sonnet",
+      "providerID": "{{ $provider }}",
+      "modelID": "{{ $sonnetModel }}",
+      "label": "sonnet"
+    },
+    {
+      "name": "quorum-gpt-codex",
+      "providerID": "{{ $provider }}",
+      "modelID": "{{ $codexModel }}",
+      "label": "gpt-codex"
+    },
+    {
+      "name": "quorum-kimi",
+      "providerID": "{{ $provider }}",
+      "modelID": "{{ $kimiModel }}",
+      "label": "kimi"
+    },
+    {
+      "name": "quorum-z-glm",
+      "providerID": "{{ $provider }}",
+      "modelID": "{{ $glmModel }}",
+      "label": "z-glm"
+    }
+  ],
+  "deepMembers": [
+    {
+      "name": "quorum-opus",
+      "providerID": "{{ $provider }}",
+      "modelID": "{{ $opusModel }}",
+      "label": "opus",
+      "reasoningEffort": "xhigh"
+    },
+    {
+      "name": "quorum-gpt5.5",
+      "providerID": "{{ $provider }}",
+      "modelID": "{{ $gpt55Model }}",
+      "label": "gpt-5.5",
+      "reasoningEffort": "xhigh"
+    },
+    {
+      "name": "quorum-gemini",
+      "providerID": "{{ $provider }}",
+      "modelID": "{{ $geminiModel }}",
+      "label": "gemini",
+      "reasoningEffort": "xhigh"
+    }
+  ],
+  "triggerMode": "auto",
+  "specDir": "docs/quorum/specs"
+}

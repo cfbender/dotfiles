@@ -1,5 +1,54 @@
 {{- $models := splitList "\n" (trim (output "opencode" "models")) -}}
-{{- $preferOpenRouter := eq .chezmoi.os "darwin" -}}
+{{- $useOpenRouter := .useOpenRouter -}}
+{{- $work := .work -}}
+
+{{- /* Declare model variables with defaults (opencode-go for personal) */ -}}
+{{- $smartModel := "opencode-go/deepseek-v4-pro" -}}
+{{- $rushModel := "opencode-go/deepseek-v4-flash" -}}
+{{- $deepModel := "opencode-go/mimo-v2.5-pro" -}}
+{{- $searchModel := "opencode-go/deepseek-v4-flash" -}}
+{{- $oracleModel := "opencode-go/qwen3.6-plus" -}}
+{{- $librarianModel := "opencode-go/kimi-k2.6" -}}
+{{- $carpenterModel := "opencode-go/mimo-v2.5-pro" -}}
+
+{{- if $work -}}
+  {{- /* Work: github-copilot defaults, upgrade if openrouter/direct available */ -}}
+  {{- $smartModel = "github-copilot/claude-opus-4.6" -}}
+  {{- $rushModel = "github-copilot/claude-haiku-4.5" -}}
+  {{- $deepModel = "github-copilot/gpt-5.3-codex" -}}
+  {{- $searchModel = "github-copilot/gemini-3-flash-preview" -}}
+  {{- $oracleModel = "github-copilot/gpt-5.4" -}}
+  {{- $librarianModel = "github-copilot/claude-sonnet-4.6" -}}
+  {{- $carpenterModel = "github-copilot/claude-sonnet-4.6" -}}
+
+  {{- if $useOpenRouter -}}
+    {{- if has "openrouter/anthropic/claude-opus-4.7" $models -}}{{- $smartModel = "openrouter/anthropic/claude-opus-4.7" -}}
+    {{- else if has "openrouter/anthropic/claude-opus-4.6" $models -}}{{- $smartModel = "openrouter/anthropic/claude-opus-4.6" -}}{{- end -}}
+    {{- if has "openrouter/anthropic/claude-haiku-4.5" $models -}}{{- $rushModel = "openrouter/anthropic/claude-haiku-4.5" -}}{{- end -}}
+    {{- if has "openrouter/openai/gpt-5.3-codex" $models -}}{{- $deepModel = "openrouter/openai/gpt-5.3-codex" -}}{{- end -}}
+    {{- if has "openrouter/google/gemini-3-flash-preview" $models -}}{{- $searchModel = "openrouter/google/gemini-3-flash-preview" -}}{{- end -}}
+    {{- if has "openrouter/openai/gpt-5.4" $models -}}{{- $oracleModel = "openrouter/openai/gpt-5.4" -}}{{- end -}}
+    {{- if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}{{- $librarianModel = "openrouter/anthropic/claude-sonnet-4.6" -}}{{- $carpenterModel = "openrouter/anthropic/claude-sonnet-4.6" -}}{{- end -}}
+  {{- else -}}
+    {{- if has "anthropic/claude-opus-4-7" $models -}}{{- $smartModel = "anthropic/claude-opus-4-7" -}}
+    {{- else if has "anthropic/claude-opus-4-6" $models -}}{{- $smartModel = "anthropic/claude-opus-4-6" -}}{{- end -}}
+    {{- if has "anthropic/claude-haiku-4-5" $models -}}{{- $rushModel = "anthropic/claude-haiku-4-5" -}}{{- end -}}
+    {{- if has "openai/gpt-5.3-codex" $models -}}{{- $deepModel = "openai/gpt-5.3-codex" -}}{{- end -}}
+    {{- if has "openai/gpt-5.4" $models -}}{{- $oracleModel = "openai/gpt-5.4" -}}{{- end -}}
+    {{- if has "anthropic/claude-sonnet-4-6" $models -}}{{- $librarianModel = "anthropic/claude-sonnet-4-6" -}}{{- $carpenterModel = "anthropic/claude-sonnet-4-6" -}}{{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- /* Personal: nvidia defaults already set, upgrade if openrouter enabled */ -}}
+  {{- if $useOpenRouter -}}
+    {{- if has "openrouter/anthropic/claude-opus-4.7" $models -}}{{- $smartModel = "openrouter/anthropic/claude-opus-4.7" -}}
+    {{- else if has "openrouter/anthropic/claude-opus-4.6" $models -}}{{- $smartModel = "openrouter/anthropic/claude-opus-4.6" -}}{{- end -}}
+    {{- if has "openrouter/anthropic/claude-haiku-4.5" $models -}}{{- $rushModel = "openrouter/anthropic/claude-haiku-4.5" -}}{{- end -}}
+    {{- if has "openrouter/openai/gpt-5.3-codex" $models -}}{{- $deepModel = "openrouter/openai/gpt-5.3-codex" -}}{{- end -}}
+    {{- if has "openrouter/google/gemini-3-flash-preview" $models -}}{{- $searchModel = "openrouter/google/gemini-3-flash-preview" -}}{{- end -}}
+    {{- if has "openrouter/openai/gpt-5.4" $models -}}{{- $oracleModel = "openrouter/openai/gpt-5.4" -}}{{- end -}}
+    {{- if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}{{- $librarianModel = "openrouter/anthropic/claude-sonnet-4.6" -}}{{- $carpenterModel = "openrouter/anthropic/claude-sonnet-4.6" -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": ["@tarquinen/opencode-dcp@latest", "quorum@git+https://github.com/cfbender/quorum.git"],
@@ -7,52 +56,52 @@
   "agent": {
     "smart": {
       "mode": "primary",
-      "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/anthropic/claude-opus-4.7" $models -}}openrouter/anthropic/claude-opus-4.7{{- else if has "anthropic/claude-opus-4-7" $models -}}anthropic/claude-opus-4-7{{- else if has "openrouter/anthropic/claude-opus-4.6" $models -}}openrouter/anthropic/claude-opus-4.6{{- else if has "anthropic/claude-opus-4-6" $models -}}anthropic/claude-opus-4-6{{- else -}}github-copilot/claude-opus-4.6{{- end -}}{{- else -}}{{- if has "anthropic/claude-opus-4-7" $models -}}anthropic/claude-opus-4-7{{- else if has "anthropic/claude-opus-4-6" $models -}}anthropic/claude-opus-4-6{{- else if has "github-copilot/claude-opus-4.6" $models -}}github-copilot/claude-opus-4.6{{- else if has "openrouter/anthropic/claude-opus-4.7" $models -}}openrouter/anthropic/claude-opus-4.7{{- else if has "openrouter/anthropic/claude-opus-4.6" $models -}}openrouter/anthropic/claude-opus-4.6{{- else -}}github-copilot/claude-opus-4.6{{- end -}}{{- end -}}",
+      "model": "{{ $smartModel }}",
       "prompt": "{file:./prompts/smart.md}",
       "color": "#8995A8"
     },
     "rush": {
       "mode": "primary",
-      "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/anthropic/claude-haiku-4.5" $models -}}openrouter/anthropic/claude-haiku-4.5{{- else if has "anthropic/claude-haiku-4-5" $models -}}anthropic/claude-haiku-4-5{{- else -}}github-copilot/claude-haiku-4.5{{- end -}}{{- else -}}{{- if has "anthropic/claude-haiku-4-5" $models -}}anthropic/claude-haiku-4-5{{- else if has "github-copilot/claude-haiku-4.5" $models -}}github-copilot/claude-haiku-4.5{{- else if has "openrouter/anthropic/claude-haiku-4.5" $models -}}openrouter/anthropic/claude-haiku-4.5{{- else -}}github-copilot/claude-haiku-4.5{{- end -}}{{- end -}}",
+      "model": "{{ $rushModel }}",
       "prompt": "{file:./prompts/rush.md}",
       "color": "#C75B7A"
     },
     "deep": {
       "mode": "primary",
-      "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/openai/gpt-5.3-codex" $models -}}openrouter/openai/gpt-5.3-codex{{- else if has "openai/gpt-5.3-codex" $models -}}openai/gpt-5.3-codex{{- else -}}github-copilot/gpt-5.3-codex{{- end -}}{{- else -}}{{- if has "openai/gpt-5.3-codex" $models -}}openai/gpt-5.3-codex{{- else if has "github-copilot/gpt-5.3-codex" $models -}}github-copilot/gpt-5.3-codex{{- else if has "openrouter/openai/gpt-5.3-codex" $models -}}openrouter/openai/gpt-5.3-codex{{- else -}}github-copilot/gpt-5.3-codex{{- end -}}{{- end -}}",
+      "model": "{{ $deepModel }}",
       "prompt": "{file:./prompts/deep.md}",
       "reasoningEffort": "xhigh",
       "color": "#D4A76A"
     },
     "search": {
       "mode": "subagent",
-      "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/google/gemini-3-flash-preview" $models -}}openrouter/google/gemini-3-flash-preview{{- else -}}github-copilot/gemini-3-flash-preview{{- end -}}{{- else -}}{{- if has "github-copilot/gemini-3-flash-preview" $models -}}github-copilot/gemini-3-flash-preview{{- else if has "openrouter/google/gemini-3-flash-preview" $models -}}openrouter/google/gemini-3-flash-preview{{- else -}}github-copilot/gemini-3-flash-preview{{- end -}}{{- end -}}",
+      "model": "{{ $searchModel }}",
       "prompt": "{file:./prompts/search.md}",
       "permission": {
-        "edit": "deny",
+        "edit": "deny"
       }
     },
     "oracle": {
       "mode": "subagent",
-      "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/openai/gpt-5.4" $models -}}openrouter/openai/gpt-5.4{{- else if has "openai/gpt-5.4" $models -}}openai/gpt-5.4{{- else -}}github-copilot/gpt-5.4{{- end -}}{{- else -}}{{- if has "openai/gpt-5.4" $models -}}openai/gpt-5.4{{- else if has "github-copilot/gpt-5.4" $models -}}github-copilot/gpt-5.4{{- else if has "openrouter/openai/gpt-5.4" $models -}}openrouter/openai/gpt-5.4{{- else -}}github-copilot/gpt-5.4{{- end -}}{{- end -}}",
+      "model": "{{ $oracleModel }}",
       "reasoningEffort": "xhigh",
       "prompt": "{file:./prompts/oracle.md}",
       "permission": {
-        "edit": "deny",
+        "edit": "deny"
       }
     },
     "librarian": {
       "mode": "subagent",
-      "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}openrouter/anthropic/claude-sonnet-4.6{{- else if has "anthropic/claude-sonnet-4-6" $models -}}anthropic/claude-sonnet-4-6{{- else -}}github-copilot/claude-sonnet-4.6{{- end -}}{{- else -}}{{- if has "anthropic/claude-sonnet-4-6" $models -}}anthropic/claude-sonnet-4-6{{- else if has "github-copilot/claude-sonnet-4.6" $models -}}github-copilot/claude-sonnet-4.6{{- else if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}openrouter/anthropic/claude-sonnet-4.6{{- else -}}github-copilot/claude-sonnet-4.6{{- end -}}{{- end -}}",
+      "model": "{{ $librarianModel }}",
       "prompt": "{file:./prompts/librarian.md}",
       "permission": {
-        "edit": "deny",
+        "edit": "deny"
       }
     },
     "carpenter": {
       "mode": "subagent",
-      "model": "{{- if $preferOpenRouter -}}{{- if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}openrouter/anthropic/claude-sonnet-4.6{{- else if has "anthropic/claude-sonnet-4-6" $models -}}anthropic/claude-sonnet-4-6{{- else -}}github-copilot/claude-sonnet-4.6{{- end -}}{{- else -}}{{- if has "anthropic/claude-sonnet-4-6" $models -}}anthropic/claude-sonnet-4-6{{- else if has "github-copilot/claude-sonnet-4.6" $models -}}github-copilot/claude-sonnet-4.6{{- else if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}openrouter/anthropic/claude-sonnet-4.6{{- else -}}github-copilot/claude-sonnet-4.6{{- end -}}{{- end -}}",
-      "prompt": "{file:./prompts/carpenter.md}",
+      "model": "{{ $carpenterModel }}",
+      "prompt": "{file:./prompts/carpenter.md}"
     },
     "plan": {
       "disable": true

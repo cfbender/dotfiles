@@ -24,12 +24,6 @@
       "providerID": "openrouter",
       "modelID": "z-ai/glm-5.1",
       "label": "z-glm"
-    },
-    {
-      "name": "quorum-deepseek",
-      "providerID": "openrouter",
-      "modelID": "deepseek/deepseek-v4-pro",
-      "label": "deepseek"
     }
   ],
   "deepMembers": [

@@ -1,85 +1,83 @@
 {{- $useOpenRouter := .useOpenRouter -}}
 {{- $work := .work -}}
 
-{{- /* Quorum provider + model selection */ -}}
-{{- $provider := "opencode-go" -}}
-{{- $sonnetModel := "qwen3.5-plus" -}}
-{{- $codexModel := "minimax-m2.7" -}}
-{{- $kimiModel := "kimi-k2.5" -}}
-{{- $glmModel := "glm-5.1" -}}
-{{- $opusModel := "deepseek-v4-pro" -}}
-{{- $gpt55Model := "mimo-v2.5-pro" -}}
-{{- $geminiModel := "qwen3.6-plus" -}}
+{{- /* Build members + deepMembers per branch. */ -}}
+{{- $members := list -}}
+{{- $deepMembers := list -}}
 
-{{- if $useOpenRouter -}}
-  {{- $provider = "openrouter" -}}
-  {{- $sonnetModel = "anthropic/claude-sonnet-4.6" -}}
-  {{- $codexModel = "openai/gpt-5.3-codex" -}}
-  {{- $kimiModel = "moonshotai/kimi-k2.6" -}}
-  {{- $glmModel = "z-ai/glm-5.1" -}}
-  {{- $opusModel = "anthropic/claude-opus-4.7" -}}
-  {{- $gpt55Model = "openai/gpt-5.5" -}}
-  {{- $geminiModel = "google/gemini-3.1-pro-preview" -}}
-{{- else if $work -}}
-  {{- $provider = "github-copilot" -}}
-  {{- $sonnetModel = "claude-sonnet-4.6" -}}
-  {{- $codexModel = "gpt-5.3-codex" -}}
-  {{- $kimiModel = "claude-sonnet-4.6" -}}
-  {{- $glmModel = "claude-sonnet-4.6" -}}
-  {{- $opusModel = "claude-opus-4.7" -}}
-  {{- $gpt55Model = "gpt-5.4" -}}
-  {{- $geminiModel = "gemini-3.1-pro-preview" -}}
+{{- if $work -}}
+  {{- if $useOpenRouter -}}
+    {{- $members = list
+      (dict "name" "quorum-sonnet-4.6"     "providerID" "openrouter" "modelID" "anthropic/claude-sonnet-4.6"   "label" "sonnet-4.6")
+      (dict "name" "quorum-gpt-5.3-codex"  "providerID" "openrouter" "modelID" "openai/gpt-5.3-codex"          "label" "gpt-5.3-codex")
+      (dict "name" "quorum-kimi-k2.6"      "providerID" "openrouter" "modelID" "moonshotai/kimi-k2.6"          "label" "kimi-k2.6")
+      (dict "name" "quorum-glm-5.1"        "providerID" "openrouter" "modelID" "z-ai/glm-5.1"                  "label" "glm-5.1")
+    -}}
+    {{- $deepMembers = list
+      (dict "name" "quorum-opus-4.7"       "providerID" "openrouter" "modelID" "anthropic/claude-opus-4.7"     "label" "opus-4.7")
+      (dict "name" "quorum-gpt-5.5"        "providerID" "openrouter" "modelID" "openai/gpt-5.5"                "label" "gpt-5.5")
+      (dict "name" "quorum-gemini-3.1-pro" "providerID" "openrouter" "modelID" "google/gemini-3.1-pro-preview" "label" "gemini-3.1-pro")
+    -}}
+  {{- else -}}
+    {{- $members = list
+      (dict "name" "quorum-sonnet-4.6"     "providerID" "anthropic"  "modelID" "claude-sonnet-4.6"             "label" "sonnet-4.6")
+      (dict "name" "quorum-gpt-5.3-codex"  "providerID" "openai"     "modelID" "gpt-5.3-codex"                 "label" "gpt-5.3-codex")
+      (dict "name" "quorum-gpt-5.4"        "providerID" "openai"     "modelID" "gpt-5.4"                       "label" "gpt-5.4")
+    -}}
+    {{- $deepMembers = list
+      (dict "name" "quorum-opus-4.7"       "providerID" "anthropic"  "modelID" "claude-opus-4.7"               "label" "opus-4.7")
+      (dict "name" "quorum-gpt-5.5"        "providerID" "openai"     "modelID" "gpt-5.5"                       "label" "gpt-5.5")
+    -}}
+  {{- end -}}
+{{- else -}}
+  {{- if $useOpenRouter -}}
+    {{- $members = list
+      (dict "name" "quorum-haiku-4.5"      "providerID" "openrouter" "modelID" "anthropic/claude-haiku-4.5"    "label" "haiku-4.5")
+      (dict "name" "quorum-gpt-5.4-nano"   "providerID" "openrouter" "modelID" "openai/gpt-5.4-nano"           "label" "gpt-5.4-nano")
+      (dict "name" "quorum-kimi-k2.6"      "providerID" "openrouter" "modelID" "moonshotai/kimi-k2.6"          "label" "kimi-k2.6")
+      (dict "name" "quorum-glm-5.1"        "providerID" "openrouter" "modelID" "z-ai/glm-5.1"                  "label" "glm-5.1")
+    -}}
+    {{- $deepMembers = list
+      (dict "name" "quorum-sonnet-4.6"     "providerID" "openrouter" "modelID" "anthropic/claude-sonnet-4.6"   "label" "sonnet-4.6")
+      (dict "name" "quorum-gpt-5.4"        "providerID" "openrouter" "modelID" "openai/gpt-5.4"                "label" "gpt-5.4")
+      (dict "name" "quorum-gemini-3-flash" "providerID" "openrouter" "modelID" "google/gemini-3-flash-preview" "label" "gemini-3-flash")
+    -}}
+  {{- else -}}
+    {{- $members = list
+      (dict "name" "quorum-qwen3.5-plus"     "providerID" "opencode-go" "modelID" "qwen3.5-plus"                  "label" "qwen3.5-plus")
+      (dict "name" "quorum-minimax-m2.7"     "providerID" "opencode-go" "modelID" "minimax-m2.7"                  "label" "minimax-m2.7")
+      (dict "name" "quorum-kimi-k2.5"        "providerID" "opencode-go" "modelID" "kimi-k2.5"                     "label" "kimi-k2.5")
+      (dict "name" "quorum-glm-5.1"          "providerID" "opencode-go" "modelID" "glm-5.1"                       "label" "glm-5.1")
+    -}}
+    {{- $deepMembers = list
+      (dict "name" "quorum-deepseek-v4-pro"  "providerID" "opencode-go" "modelID" "deepseek-v4-pro"               "label" "deepseek-v4-pro")
+      (dict "name" "quorum-mimo-v2.5-pro"    "providerID" "opencode-go" "modelID" "mimo-v2.5-pro"                 "label" "mimo-v2.5-pro")
+      (dict "name" "quorum-qwen3.6-plus"     "providerID" "opencode-go" "modelID" "qwen3.6-plus"                  "label" "qwen3.6-plus")
+    -}}
+  {{- end -}}
 {{- end -}}
 {
   "$schema": "https://raw.githubusercontent.com/cfbender/quorum/main/schema.json",
   "members": [
+{{- range $i, $m := $members }}{{ if $i }},{{ end }}
     {
-      "name": "quorum-sonnet",
-      "providerID": "{{ $provider }}",
-      "modelID": "{{ $sonnetModel }}",
-      "label": "sonnet"
-    },
-    {
-      "name": "quorum-gpt-codex",
-      "providerID": "{{ $provider }}",
-      "modelID": "{{ $codexModel }}",
-      "label": "gpt-codex"
-    },
-    {
-      "name": "quorum-kimi",
-      "providerID": "{{ $provider }}",
-      "modelID": "{{ $kimiModel }}",
-      "label": "kimi"
-    },
-    {
-      "name": "quorum-z-glm",
-      "providerID": "{{ $provider }}",
-      "modelID": "{{ $glmModel }}",
-      "label": "z-glm"
+      "name": "{{ $m.name }}",
+      "providerID": "{{ $m.providerID }}",
+      "modelID": "{{ $m.modelID }}",
+      "label": "{{ $m.label }}"
     }
+{{- end }}
   ],
   "deepMembers": [
+{{- range $i, $m := $deepMembers }}{{ if $i }},{{ end }}
     {
-      "name": "quorum-opus",
-      "providerID": "{{ $provider }}",
-      "modelID": "{{ $opusModel }}",
-      "label": "opus",
-      "reasoningEffort": "xhigh"
-    },
-    {
-      "name": "quorum-gpt5.5",
-      "providerID": "{{ $provider }}",
-      "modelID": "{{ $gpt55Model }}",
-      "label": "gpt-5.5",
-      "reasoningEffort": "xhigh"
-    },
-    {
-      "name": "quorum-gemini",
-      "providerID": "{{ $provider }}",
-      "modelID": "{{ $geminiModel }}",
-      "label": "gemini",
+      "name": "{{ $m.name }}",
+      "providerID": "{{ $m.providerID }}",
+      "modelID": "{{ $m.modelID }}",
+      "label": "{{ $m.label }}",
       "reasoningEffort": "xhigh"
     }
+{{- end }}
   ],
   "triggerMode": "auto",
   "specDir": "docs/quorum/specs"

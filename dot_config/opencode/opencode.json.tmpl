@@ -1,52 +1,50 @@
-{{- $models := splitList "\n" (trim (output "opencode" "models")) -}}
 {{- $useOpenRouter := .useOpenRouter -}}
 {{- $work := .work -}}
 
-{{- /* Declare model variables with defaults (opencode-go for personal) */ -}}
-{{- $smartModel := "opencode-go/deepseek-v4-pro" -}}
-{{- $rushModel := "opencode-go/deepseek-v4-flash" -}}
-{{- $deepModel := "opencode-go/mimo-v2.5-pro" -}}
-{{- $searchModel := "opencode-go/deepseek-v4-flash" -}}
-{{- $oracleModel := "opencode-go/qwen3.6-plus" -}}
-{{- $librarianModel := "opencode-go/kimi-k2.6" -}}
-{{- $carpenterModel := "opencode-go/mimo-v2.5-pro" -}}
+{{- /* Per-branch agent model selection. Each branch is self-contained. */ -}}
+{{- $smartModel := "" -}}
+{{- $rushModel := "" -}}
+{{- $deepModel := "" -}}
+{{- $searchModel := "" -}}
+{{- $oracleModel := "" -}}
+{{- $librarianModel := "" -}}
+{{- $carpenterModel := "" -}}
 
 {{- if $work -}}
-  {{- /* Work: github-copilot defaults, upgrade if openrouter/direct available */ -}}
-  {{- $smartModel = "github-copilot/claude-opus-4.6" -}}
-  {{- $rushModel = "github-copilot/claude-haiku-4.5" -}}
-  {{- $deepModel = "github-copilot/gpt-5.3-codex" -}}
-  {{- $searchModel = "github-copilot/gemini-3-flash-preview" -}}
-  {{- $oracleModel = "github-copilot/gpt-5.4" -}}
-  {{- $librarianModel = "github-copilot/claude-sonnet-4.6" -}}
-  {{- $carpenterModel = "github-copilot/claude-sonnet-4.6" -}}
-
   {{- if $useOpenRouter -}}
-    {{- if has "openrouter/anthropic/claude-opus-4.7" $models -}}{{- $smartModel = "openrouter/anthropic/claude-opus-4.7" -}}
-    {{- else if has "openrouter/anthropic/claude-opus-4.6" $models -}}{{- $smartModel = "openrouter/anthropic/claude-opus-4.6" -}}{{- end -}}
-    {{- if has "openrouter/anthropic/claude-haiku-4.5" $models -}}{{- $rushModel = "openrouter/anthropic/claude-haiku-4.5" -}}{{- end -}}
-    {{- if has "openrouter/openai/gpt-5.3-codex" $models -}}{{- $deepModel = "openrouter/openai/gpt-5.3-codex" -}}{{- end -}}
-    {{- if has "openrouter/google/gemini-3-flash-preview" $models -}}{{- $searchModel = "openrouter/google/gemini-3-flash-preview" -}}{{- end -}}
-    {{- if has "openrouter/openai/gpt-5.4" $models -}}{{- $oracleModel = "openrouter/openai/gpt-5.4" -}}{{- end -}}
-    {{- if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}{{- $librarianModel = "openrouter/anthropic/claude-sonnet-4.6" -}}{{- $carpenterModel = "openrouter/anthropic/claude-sonnet-4.6" -}}{{- end -}}
+    {{- $smartModel     = "openrouter/anthropic/claude-opus-4.7"      -}}
+    {{- $rushModel      = "openrouter/anthropic/claude-haiku-4.5"     -}}
+    {{- $deepModel      = "openrouter/openai/gpt-5.3-codex"           -}}
+    {{- $searchModel    = "openrouter/google/gemini-3-flash-preview"  -}}
+    {{- $oracleModel    = "openrouter/openai/gpt-5.4"                 -}}
+    {{- $librarianModel = "openrouter/anthropic/claude-sonnet-4.6"    -}}
+    {{- $carpenterModel = "openrouter/anthropic/claude-sonnet-4.6"    -}}
   {{- else -}}
-    {{- if has "anthropic/claude-opus-4-7" $models -}}{{- $smartModel = "anthropic/claude-opus-4-7" -}}
-    {{- else if has "anthropic/claude-opus-4-6" $models -}}{{- $smartModel = "anthropic/claude-opus-4-6" -}}{{- end -}}
-    {{- if has "anthropic/claude-haiku-4-5" $models -}}{{- $rushModel = "anthropic/claude-haiku-4-5" -}}{{- end -}}
-    {{- if has "openai/gpt-5.3-codex" $models -}}{{- $deepModel = "openai/gpt-5.3-codex" -}}{{- end -}}
-    {{- if has "openai/gpt-5.4" $models -}}{{- $oracleModel = "openai/gpt-5.4" -}}{{- end -}}
-    {{- if has "anthropic/claude-sonnet-4-6" $models -}}{{- $librarianModel = "anthropic/claude-sonnet-4-6" -}}{{- $carpenterModel = "anthropic/claude-sonnet-4-6" -}}{{- end -}}
+    {{- $smartModel     = "anthropic/claude-opus-4-7"                 -}}
+    {{- $rushModel      = "anthropic/claude-haiku-4-5"                -}}
+    {{- $deepModel      = "openai/gpt-5.3-codex"                      -}}
+    {{- $searchModel    = "openai/gpt-5.4-nano"                      -}}
+    {{- $oracleModel    = "openai/gpt-5.4"                            -}}
+    {{- $librarianModel = "anthropic/claude-sonnet-4-6"               -}}
+    {{- $carpenterModel = "anthropic/claude-sonnet-4-6"               -}}
   {{- end -}}
 {{- else -}}
-  {{- /* Personal: nvidia defaults already set, upgrade if openrouter enabled */ -}}
   {{- if $useOpenRouter -}}
-    {{- if has "openrouter/anthropic/claude-opus-4.7" $models -}}{{- $smartModel = "openrouter/anthropic/claude-opus-4.7" -}}
-    {{- else if has "openrouter/anthropic/claude-opus-4.6" $models -}}{{- $smartModel = "openrouter/anthropic/claude-opus-4.6" -}}{{- end -}}
-    {{- if has "openrouter/anthropic/claude-haiku-4.5" $models -}}{{- $rushModel = "openrouter/anthropic/claude-haiku-4.5" -}}{{- end -}}
-    {{- if has "openrouter/openai/gpt-5.3-codex" $models -}}{{- $deepModel = "openrouter/openai/gpt-5.3-codex" -}}{{- end -}}
-    {{- if has "openrouter/google/gemini-3-flash-preview" $models -}}{{- $searchModel = "openrouter/google/gemini-3-flash-preview" -}}{{- end -}}
-    {{- if has "openrouter/openai/gpt-5.4" $models -}}{{- $oracleModel = "openrouter/openai/gpt-5.4" -}}{{- end -}}
-    {{- if has "openrouter/anthropic/claude-sonnet-4.6" $models -}}{{- $librarianModel = "openrouter/anthropic/claude-sonnet-4.6" -}}{{- $carpenterModel = "openrouter/anthropic/claude-sonnet-4.6" -}}{{- end -}}
+    {{- $smartModel     = "openrouter/anthropic/claude-sonnet-4.6"    -}}
+    {{- $rushModel      = "openrouter/anthropic/claude-haiku-4.5"     -}}
+    {{- $deepModel      = "openrouter/openai/gpt-5.4"                 -}}
+    {{- $searchModel    = "openrouter/google/gemini-3-flash-preview"  -}}
+    {{- $oracleModel    = "openrouter/openai/gpt-5.4"                 -}}
+    {{- $librarianModel = "openrouter/anthropic/claude-haiku-4.5"     -}}
+    {{- $carpenterModel = "openrouter/anthropic/claude-haiku-4.5"     -}}
+  {{- else -}}
+    {{- $smartModel     = "opencode-go/deepseek-v4-pro"               -}}
+    {{- $rushModel      = "opencode-go/deepseek-v4-flash"             -}}
+    {{- $deepModel      = "opencode-go/mimo-v2.5-pro"                 -}}
+    {{- $searchModel    = "opencode-go/deepseek-v4-flash"             -}}
+    {{- $oracleModel    = "opencode-go/qwen3.6-plus"                  -}}
+    {{- $librarianModel = "opencode-go/kimi-k2.6"                     -}}
+    {{- $carpenterModel = "opencode-go/mimo-v2.5-pro"                 -}}
   {{- end -}}
 {{- end -}}
 {

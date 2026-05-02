@@ -17,6 +17,8 @@ fi
 # GHCup Haskell environment
 [[ -f "$HOME/.ghcup/env" ]] && . "$HOME/.ghcup/env"
 
+eval "$(starship init bash)"
+
 {{- if eq .chezmoi.os "darwin" }}
 # Homebrew
 [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"

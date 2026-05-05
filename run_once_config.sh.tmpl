@@ -41,4 +41,11 @@ if ! command -v mise &>/dev/null; then
   curl https://mise.run | sh
 fi
 
-ya pkg add {{ range .yazi.plugins }}{{ . | quote }} {{ end }}|| true
+ya pkg add {{ range .yazi.plugins }}{{ . | quote }} {{ end }} || true
+
+if [ ! -d ~/.agents/skills ]; then
+  mkdir -p ~/.agents/skills
+  cd ~/.agents/skills
+  npx skills experimental_install
+  cd -
+fi

@@ -12,18 +12,18 @@
 
 {{- if $work -}}
   {{- if $useOpenRouter -}}
-    {{- $smartModel     = "openrouter/anthropic/claude-opus-4.7"      -}}
+    {{- $smartModel     = "openrouter/openai/gpt-5.3-codex"           -}}
     {{- $rushModel      = "openrouter/anthropic/claude-haiku-4.5"     -}}
-    {{- $deepModel      = "openrouter/openai/gpt-5.3-codex"           -}}
+    {{- $deepModel      = "openrouter/openai/gpt-5.5"                 -}}
     {{- $searchModel    = "openrouter/google/gemini-3-flash-preview"  -}}
     {{- $oracleModel    = "openrouter/openai/gpt-5.4"                 -}}
     {{- $librarianModel = "openrouter/anthropic/claude-sonnet-4.6"    -}}
     {{- $carpenterModel = "openrouter/anthropic/claude-sonnet-4.6"    -}}
   {{- else -}}
-    {{- $smartModel     = "anthropic/claude-opus-4-7"                 -}}
+    {{- $smartModel     = "openai/gpt-5.3-codex"                      -}}
     {{- $rushModel      = "anthropic/claude-haiku-4-5"                -}}
-    {{- $deepModel      = "openai/gpt-5.3-codex"                      -}}
-    {{- $searchModel    = "openai/gpt-5.4-nano"                      -}}
+    {{- $deepModel      = "openai/gpt-5.5"                            -}}
+    {{- $searchModel    = "openai/gpt-5.4-nano"                       -}}
     {{- $oracleModel    = "openai/gpt-5.4"                            -}}
     {{- $librarianModel = "anthropic/claude-sonnet-4-6"               -}}
     {{- $carpenterModel = "anthropic/claude-sonnet-4-6"               -}}
@@ -32,7 +32,7 @@
   {{- if $useOpenRouter -}}
     {{- $smartModel     = "openrouter/anthropic/claude-sonnet-4.6"    -}}
     {{- $rushModel      = "openrouter/anthropic/claude-haiku-4.5"     -}}
-    {{- $deepModel      = "openrouter/openai/gpt-5.4"                 -}}
+    {{- $deepModel      = "openrouter/openai/gpt-5.3-codex"           -}}
     {{- $searchModel    = "openrouter/google/gemini-3-flash-preview"  -}}
     {{- $oracleModel    = "openrouter/openai/gpt-5.4"                 -}}
     {{- $librarianModel = "openrouter/anthropic/claude-haiku-4.5"     -}}
@@ -56,6 +56,7 @@
       "mode": "primary",
       "model": "{{ $smartModel }}",
       "prompt": "{file:./prompts/smart.md}",
+      "reasoningEffort": "default",
       "color": "#8995A8",
       "permission": {
         "read": {

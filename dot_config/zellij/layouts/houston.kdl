@@ -21,18 +21,13 @@ layout {
         }
     }
     tab name="󰂓󰙨 " {
-        pane command="panopticon" close_on_exit=false
+        pane 
     }
     tab name=" " split_direction="vertical" {
         pane command="iex" close_on_exit=false {
             args "-S" "mix" "phx.server"
         }
-        pane split_direction="horizontal" {
-            pane command="nvim" close_on_exit=false {
-                args "cfbpad"
-            }
-            pane
-        }
+        pane split_direction="horizontal"
     }
     tab name="󱚥 " {
         pane command="opencode" close_on_exit=false borderless=true

@@ -785,6 +785,10 @@ source ~/.zoxide.nu
 source $"($nu.cache-dir)/carapace.nu"
 source ~/.config/nushell/scripts/aliases.nu
 
+def ra [] {
+    overlay use --reload ~/.config/nushell/scripts/aliases.nu
+}
+
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 

@@ -57,41 +57,31 @@ export def aup [] {
     sudo apt upgrade -y
 }
 export def fup [] {
-    # Pre-authenticate sudo so par-each threads can use cached credentials
-    sudo -v
-    [1, 2, 3] | par-each { |x| 
-    if $x == 1 { 
-      echo "Updating neovim dependencies ..." | gum style --foreground "#40a02b" --bold
-      nup
-    } else if $x == 2 {
-      let package_manager = if (which brew | is-not-empty) {
-        "brew"
-      } else if (which pacman | is-not-empty) {
-        "pacman"
-      } else if (which apt | is-not-empty) {
-        "apt"
-      } else {
-        null
-      }
-
-      if $package_manager == "brew" {
-        echo "Updating homebrew packages ..." | gum style --foreground "#df8e1d" --bold
-        bup
-      } else if $package_manager == "pacman" {
-        echo "Updating pacman packages..." | gum style --foreground "#df8e1d" --bold
-        pup
-      } else if $package_manager == "apt" {
-        echo "Updating apt packages..." | gum style --foreground "#df8e1d" --bold
-        aup
-      } else {
-        echo "Skipping system package update (no brew/pacman/apt found)." | gum style --foreground "#d20f39" --bold
-      }
-    } else {
-      echo "Updating mise tools ..." | gum style --foreground "#209fb5" --bold
-      mise self-update;
-      mise up
+    echo "Updating neovim dependencies ..." | gum style --foreground "#40a02b" --bold
+    nup
+    let package_manager = if (which brew | is-not-empty) { "brew" } else if (which pacman | is-not-empty) { "pacman" } else if (which apt | is-not-empty) { "apt" } else { null }
+    match $package_manager {
+        "brew" => {
+            echo "Updating homebrew packages ..." | gum style --foreground "#df8e1d" --bold
+            bup
+        }
+        "pacman" => {
+            echo "Updating pacman packages..." | gum style --foreground "#df8e1d" --bold
+            pup
+        }
+        "apt" => {
+            echo "Updating apt packages..." | gum style --foreground "#df8e1d" --bold
+            aup
+        }
+        _ => {
+            echo "Skipping system package update (no brew/pacman/apt found)." | gum style --foreground "#d20f39" --bold
+        }
     }
-  }
+    echo "Updating mise tools ..." | gum style --foreground "#209fb5" --bold
+    mise self-update
+    mise up
+    echo "Updating skills..." | gum style --foreground "#7287fd" --bold
+    bunx skills update -g
     echo "All done! 🎉" | gum style --foreground 212 --bold
 }
 export def sync-claret [] {
@@ -105,17 +95,23 @@ export def sync-claret [] {
             if ($from | path type) == "dir" {
                 rm -rf $to
                 cp -r $from $to
-            } else {
-                cp $from $to
-            }
+            } else { cp $from $to }
             let target = $"~/(($entry.dst | str replace --all 'dot_' '.'))"
             chezmoi apply $target
             print $"  ✓ ($entry.src) → ($entry.dst) \(applied\)"
-        } else {
-            print $"  ✗ ($entry.src) not found, skipping"
-        }
+        } else { print $"  ✗ ($entry.src) not found, skipping" }
     }
     bat cache --build
     print ""
     print "Note: starship port is a palette fragment — merge manually if changed."
+}
+export def zr [session?: string] {
+    let target = if $session == null { "all sessions" } else { $"session '($session)'" }
+    let confirmed = (try {
+        gum confirm $"Reset ($target)?"
+        true
+    } catch { false })
+    if $confirmed {
+        if $session == null { zellij delete-all-sessions -y -f } else { zellij delete-session $session -f }
+    }
 }

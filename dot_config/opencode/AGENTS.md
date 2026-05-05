@@ -24,11 +24,31 @@ Project-specific guidance (`CLAUDE.md` / local `AGENTS.md`) overrides this file.
 
 ## qmd
 
-Use `qmd get <file>:<line> -l <count>` to read a specific passage from a file.
-Never read an entire file to inspect one function — use qmd first.
-If you know the file path and approximate line number, qmd is always the right call.
+`qmd` reads from its index (not directly from the filesystem). `qmd get` only works for indexed files.
 
-Example: `qmd get src/main/App.java:120 -l 30`
+For any repo, bootstrap once before using `qmd get`:
+- `qmd collection add . --name $(basename "$PWD")`
+- `qmd update`
+- `qmd embed --chunk-strategy auto`
+
+Prefer adding narrower, domain-specific collections (instead of indexing the whole repo)
+for better signal and faster updates. Put project-specific collection commands in the
+project's local `AGENTS.local.md`.
+
+Automation rule:
+- At session start, if qmd results look stale/missing, run `qmd update` before relying on `qmd get`.
+- If `qmd update` reports missing vectors (e.g. "Run 'qmd embed'..."), run
+  `qmd embed --chunk-strategy auto`.
+- Re-run `qmd update` after branch switches, large pulls, or broad edits.
+- Re-run `qmd embed --chunk-strategy auto` after large content changes when semantic
+  `qmd query` quality matters.
+
+Retrieval rule:
+- If the location is unknown conceptually: `qmd query "<concept>" --files --min-score 0.4`
+- If you already know file + line: `qmd get <file>:<line> -l <count>`
+- If you do not know exact location: use `rg -n` first, then `qmd get`.
+
+Example: `qmd get lib/my_app/accounts/user.ex:120 -l 30`
 
 ## ripgrep
 

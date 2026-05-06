@@ -97,3 +97,4 @@ Example: `fastmod --accept-all --fixed-strings old_name new_name -e java,yaml .`
 ## Reminders
 
 When asking questions, if multiple choice use the question tool in opencode
+- When starting an Octto interactive session, detect the device LAN IP first and include a LAN URL (`http://<device-ip>:<port>`, e.g. `http://10.0.69.26:<port>`) in the chat response (alongside the session URL) so the user can open it from another machine.

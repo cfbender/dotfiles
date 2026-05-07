@@ -12,19 +12,19 @@
 
 {{- if $work -}}
   {{- if $useOpenRouter -}}
-    {{- $smartModel     = "openrouter/openai/gpt-5.4"                 -}}
+    {{- $smartModel     = "openrouter/anthropic/opus-4.7"             -}}
     {{- $rushModel      = "openrouter/anthropic/claude-haiku-4.5"     -}}
     {{- $deepModel      = "openrouter/openai/gpt-5.5"                 -}}
     {{- $searchModel    = "openrouter/openai/gpt-5.4-mini"            -}}
-    {{- $oracleModel    = "openrouter/anthropic/opus-4.7"             -}}
+    {{- $oracleModel    = "openrouter/openai/gpt-5.4"                 -}}
     {{- $librarianModel = "openrouter/anthropic/claude-sonnet-4.6"    -}}
     {{- $carpenterModel = "openrouter/anthropic/claude-sonnet-4.6"    -}}
   {{- else -}}
-    {{- $smartModel     = "openai/gpt-5.4"                            -}}
+    {{- $smartModel     = "anthropic/claude-opus-4-7"                 -}}
     {{- $rushModel      = "anthropic/claude-haiku-4-5"                -}}
     {{- $deepModel      = "openai/gpt-5.5"                            -}}
     {{- $searchModel    = "openai/gpt-5.4-mini"                       -}}
-    {{- $oracleModel    = "anthropic/claude-opus-4-7"                 -}}
+    {{- $oracleModel    = "openai/gpt-5.4"                            -}}
     {{- $librarianModel = "anthropic/claude-sonnet-4-6"               -}}
     {{- $carpenterModel = "anthropic/claude-sonnet-4-6"               -}}
   {{- end -}}

@@ -272,10 +272,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
-      "skillFolderHash": "a500c5b9a481e6fac8c9bb87cd4c4e16c3f46e1a",
-      "pluginName": "mattpocock-skills",
+      "skillFolderHash": "77638955bebe492948244f1338e54ca1a9445c29",
       "installedAt": "2026-05-05T15:29:30.289Z",
-      "updatedAt": "2026-05-05T15:29:30.289Z"
+      "updatedAt": "2026-05-07T18:33:13.295Z"
     },
     "triage": {
       "source": "mattpocock/skills",

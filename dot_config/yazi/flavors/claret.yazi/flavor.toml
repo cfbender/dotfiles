@@ -68,8 +68,8 @@ rules = [
   { mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#B04A68" },
   { mime = "application/json", fg = "#8995A8" },
   { mime = "application/toml", fg = "#8995A8" },
-  { name = "*", is = "orphan", fg = "#C44536" },
-  { name = "*", is = "exec", fg = "#8FA86E" },
-  { name = "*/", fg = "#D4A76A" },
-  { name = "*", fg = "#DDD3C7" }
+  { url = "*", is = "orphan", fg = "#C44536" },
+  { url = "*", is = "exec", fg = "#8FA86E" },
+  { url = "*/", fg = "#D4A76A" },
+  { url = "*", fg = "#DDD3C7" }
 ]

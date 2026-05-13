@@ -1,0 +1,41 @@
+name: Deploy opencode registry
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "dot_config/opencode/opencode.jsonc"
+      - "dot_config/opencode/cesium.json"
+      - "dot_config/opencode/profiles/**"
+      - "dot_config/opencode/prompts/**"
+      - "dot_config/opencode/skills/**"
+      - "dot_config/opencode/commands/**"
+      - "registry/**"
+      - ".github/workflows/deploy-registry.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # auto-version reads git commit count
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build registry
+        working-directory: registry
+        run: node build.mjs
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: registry

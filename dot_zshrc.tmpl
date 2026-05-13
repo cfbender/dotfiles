@@ -32,6 +32,13 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 export GPG_TTY=$(tty)
 export BUN_INSTALL="$HOME/.bun"
 
+# Default OCX profile (overridable per-directory via direnv .envrc)
+{{- if .work }}
+export OCX_PROFILE="${OCX_PROFILE:-work-or}"
+{{- else }}
+export OCX_PROFILE="${OCX_PROFILE:-personal-zen}"
+{{- end }}
+
 # SSH/GPG configuration
 if [[ -n "$SSH_CONNECTION" ]]; then
   export PINENTRY_USER_DATA="USE_CURSES=1"
@@ -131,6 +138,9 @@ alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commi
 
 # Misc
 alias yeehaw=zally.sh
+
+# OpenCode via ocx (resolves OCX_PROFILE from env or .envrc override)
+alias oc='ocx oc'
 
 {{- if eq .chezmoi.os "darwin" }}
 alias bup="brew update && brew upgrade"

@@ -1,0 +1,12 @@
+# Sets the default OCX_PROFILE for OpenCode launches via `ocx oc`.
+# Templated by chezmoi from the .work boolean.
+# Per-directory overrides (e.g. via direnv .envrc) take precedence.
+export-env {
+    if ($env.OCX_PROFILE? | is-empty) {
+{{- if .work }}
+        $env.OCX_PROFILE = "work-or"
+{{- else }}
+        $env.OCX_PROFILE = "personal-zen"
+{{- end }}
+    }
+}

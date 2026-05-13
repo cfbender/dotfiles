@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cfbender/quorum/main/schema.json",
+  "members": [
+    {
+      "name": "quorum-deepseek-v4-pro",
+      "providerID": "opencode-go",
+      "modelID": "deepseek-v4-pro",
+      "label": "deepseek-v4-pro"
+    },
+    {
+      "name": "quorum-mimo-v2.5-pro",
+      "providerID": "opencode-go",
+      "modelID": "mimo-v2.5-pro",
+      "label": "mimo-v2.5-pro"
+    },
+    {
+      "name": "quorum-qwen3.6-plus",
+      "providerID": "opencode-go",
+      "modelID": "qwen3.6-plus",
+      "label": "qwen3.6-plus"
+    }
+  ],
+  "triggerMode": "auto",
+  "specDir": "docs/quorum/specs"
+}

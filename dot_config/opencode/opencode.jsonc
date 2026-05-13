@@ -1,0 +1,102 @@
+{
+  // Base OpenCode config. Profiles in ./profiles/<name>/opencode.jsonc
+  // override only the per-agent `model` field. Everything else (prompts,
+  // permissions, plugins, default agent) lives here.
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "@tarquinen/opencode-dcp@latest",
+    "quorum@git+https://github.com/cfbender/quorum.git",
+    "@cfbender/cesium"
+  ],
+  "default_agent": "smart",
+  "agent": {
+    "smart": {
+      "mode": "primary",
+      "prompt": "{file:./prompts/smart.md}",
+      "reasoningEffort": "medium",
+      "color": "#8995A8",
+      "permission": {
+        "read": {
+          "*": "allow",
+          "*.env": "deny",
+          "*.env.*": "deny",
+          "*.env.example": "allow"
+        },
+        "external_directory": {
+          "/tmp/**": "allow"
+        }
+      }
+    },
+    "rush": {
+      "mode": "primary",
+      "prompt": "{file:./prompts/rush.md}",
+      "color": "#C75B7A",
+      "permission": {
+        "read": {
+          "*": "allow",
+          "*.env": "deny",
+          "*.env.*": "deny",
+          "*.env.example": "allow"
+        },
+        "external_directory": {
+          "/tmp/**": "allow"
+        }
+      }
+    },
+    "deep": {
+      "mode": "primary",
+      "prompt": "{file:./prompts/deep.md}",
+      "reasoningEffort": "medium",
+      "color": "#D4A76A",
+      "permission": {
+        "read": {
+          "*": "allow",
+          "*.env": "deny",
+          "*.env.*": "deny",
+          "*.env.example": "allow"
+        },
+        "external_directory": {
+          "/tmp/**": "allow"
+        }
+      }
+    },
+    "search": {
+      "mode": "subagent",
+      "prompt": "{file:./prompts/search.md}",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "oracle": {
+      "mode": "subagent",
+      "reasoningEffort": "xhigh",
+      "prompt": "{file:./prompts/oracle.md}",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "librarian": {
+      "mode": "subagent",
+      "prompt": "{file:./prompts/librarian.md}",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "carpenter": {
+      "mode": "subagent",
+      "prompt": "{file:./prompts/carpenter.md}"
+    },
+    "plan": {
+      "disable": true
+    },
+    "build": {
+      "disable": true
+    },
+    "general": {
+      "disable": true
+    },
+    "explore": {
+      "disable": true
+    }
+  }
+}

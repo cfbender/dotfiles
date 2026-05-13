@@ -24,6 +24,7 @@ export def gwip [] {
     git ls-files --deleted | git rm err> /dev/null | git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"
 }
 alias pn = pnpm
+alias oc = ocx oc
 export def gr [] {
     let current = git rev-parse --abbrev-ref HEAD
     let branch = git reflog | egrep -io "moving from ([^[:space:]]+)" | awk '{ print $3 }' | awk ' !x[$0]++' | egrep -v '^[a-f0-9]{40}$' | head -n 100 | lines | where {|b| $b != $current } | str join (

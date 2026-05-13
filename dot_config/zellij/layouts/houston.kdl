@@ -4,7 +4,7 @@ layout {
             plugin location="zellij:tab-bar"
         }
         children
-        pane size=1 borderless=true {
+        pane size=1 borderless=true  {
             plugin location="zellij:status-bar"
         }
     }
@@ -12,24 +12,24 @@ layout {
         pane command="nvim" close_on_exit=false borderless=true
     }
     tab name="  " split_direction="vertical" {
-        pane
-        pane split_direction="horizontal" {
+        pane close_on_exit=false
+        pane split_direction="horizontal" close_on_exit=false {
             pane command="aube" close_on_exit=false {
                 args "-r" "dev"
             }
-            pane
+            pane close_on_exit=false
         }
     }
     tab name="󰂓󰙨 " {
-        pane 
+        pane close_on_exit=false
     }
     tab name=" " split_direction="vertical" {
         pane command="iex" close_on_exit=false {
             args "-S" "mix" "phx.server"
         }
-        pane split_direction="horizontal"
+        pane split_direction="horizontal" close_on_exit=false
     }
     tab name="󱚥 " {
-        pane command="opencode" close_on_exit=false borderless=true
+        pane command="oc" close_on_exit=false borderless=true
     }
 }

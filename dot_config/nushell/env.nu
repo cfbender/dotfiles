@@ -44,6 +44,9 @@ if (which jj | is-not-empty) {
 
 $env.OPENCODE_AGENT_SKILLS_SUPERPOWERS_MODE = true
 
+# Default OCX profile (overridable per-directory)
+use ($nu.default-config-dir | path join scripts ocx_profile.nu)
+
 # pnpm
 $env.PNPM_HOME = $env.HOME | path join Library pnpm 
 

@@ -6,13 +6,4 @@
     "directory": "./dist",
     "not_found_handling": "404-page"
   }
-
-  // After deploying once via wrangler.dev URL and confirming the registry
-  // serves correctly, add the custom domain route by uncommenting this and
-  // running `wrangler deploy` again. Requires DNS for opencode.cfb.dev to be
-  // managed by Cloudflare (zone already in your account).
-  //
-  // "routes": [
-  //   { "pattern": "opencode.cfb.dev/*", "custom_domain": true }
-  // ]
 }

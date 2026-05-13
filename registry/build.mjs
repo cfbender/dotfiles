@@ -155,8 +155,6 @@ async function syncFiles() {
 // ----------------------------------------------------------------------------
 
 function buildManifest(version) {
-  const depNames = [...SKILLS, ...COMMANDS].map((c) => c.name);
-
   const components = [];
 
   for (const { name, description } of SKILLS) {
@@ -203,7 +201,6 @@ function buildManifest(version) {
       name,
       type: "profile",
       description,
-      dependencies: depNames,
       files,
     });
   }

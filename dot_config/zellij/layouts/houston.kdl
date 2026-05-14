@@ -12,22 +12,22 @@ layout {
         pane command="nvim" close_on_exit=false borderless=true
     }
     tab name="  " split_direction="vertical" {
-        pane close_on_exit=false
-        pane split_direction="horizontal" close_on_exit=false {
+        pane
+        pane split_direction="horizontal" {
             pane command="aube" close_on_exit=false {
                 args "-r" "dev"
             }
-            pane close_on_exit=false
+            pane
         }
     }
     tab name="󰂓󰙨 " {
-        pane close_on_exit=false
+        pane
     }
     tab name=" " split_direction="vertical" {
         pane command="iex" close_on_exit=false {
             args "-S" "mix" "phx.server"
         }
-        pane split_direction="horizontal" close_on_exit=false
+        pane split_direction="horizontal"
     }
     tab name="󱚥 " {
         pane command="oc" close_on_exit=false borderless=true

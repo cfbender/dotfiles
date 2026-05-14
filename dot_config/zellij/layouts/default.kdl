@@ -12,6 +12,6 @@ layout {
         pane command="nvim" close_on_exit=false borderless=true
     }
     tab name=" " {
-        pane close_on_exit=false
+        pane
     }
 }

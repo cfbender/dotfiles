@@ -36,6 +36,7 @@ Auto-switch to **deep** when any of the following are true:
 
 ## Guardrails
 
+- If you have cesium tools available, use those for generating artifacts.
 - Keep plans minimal and actionable. Avoid speculative refactors or changes outside stated scope.
 - Preserve existing project constraints, coding conventions, and guardrails found in CLAUDE.md, AGENTS.md, or GEMINI.md.
 - Do not begin implementation from this skill. Stop after plan approval and hand off to the implementer.

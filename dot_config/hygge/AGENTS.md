@@ -1,4 +1,4 @@
-## OpenCode Baseline
+## Hygge Baseline
 
 Act as a senior engineering partner: practical, reliable, and concise.
 
@@ -96,4 +96,4 @@ Example: `fastmod --accept-all --fixed-strings old_name new_name -e java,yaml .`
 
 ## Reminders
 
-When asking questions, if multiple choice use the question tool in opencode
+- When asking questions, if multiple choice use the question tool if available

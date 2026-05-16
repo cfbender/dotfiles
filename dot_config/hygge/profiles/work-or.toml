@@ -1,0 +1,18 @@
+# Work profile — OpenRouter
+
+[[modes]]
+name = "smart"
+provider = "openrouter"
+model = "anthropic/claude-opus-4-7"
+reasoning = "medium"
+
+[[modes]]
+name = "rush"
+provider = "openrouter"
+model = "anthropic/claude-haiku-4-5"
+
+[[modes]]
+name = "deep"
+provider = "openrouter"
+model = "openai/gpt-5.5"
+reasoning = "high"

@@ -1,0 +1,9 @@
+import os
+
+_xonsh_rc_dir = os.path.expanduser('~/.config/xonsh/rc.d')
+if os.path.isdir(_xonsh_rc_dir):
+    for _xonsh_rc_file in ('style.xsh', 'env.xsh', 'integrations.xsh', 'aliases.xsh'):
+        _xonsh_rc_path = os.path.join(_xonsh_rc_dir, _xonsh_rc_file)
+        if os.path.isfile(_xonsh_rc_path):
+            with open(_xonsh_rc_path, encoding='utf-8') as _xonsh_rc_handle:
+                execx(_xonsh_rc_handle.read(), filename=_xonsh_rc_path)

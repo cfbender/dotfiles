@@ -1,4 +1,6 @@
 # Personal profile — alternative models via OpenRouter
+small_provider = "opencode-go"
+small_model = "deepseek/deepseek-v4-flash"
 
 [[modes]]
 name = "smart"

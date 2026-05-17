@@ -1,5 +1,8 @@
 # Work profile — OpenRouter
 
+small_provider = "openrouter"
+small_model = "deepseek/deepseek-v4-flash"
+
 [[modes]]
 name = "smart"
 provider = "openrouter"

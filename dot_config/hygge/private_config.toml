@@ -1,0 +1,47 @@
+default_profile = 'work-direct'
+
+[compaction]
+threshold_pct = 75
+
+[model]
+name = 'claude-haiku-4-5-20251001'
+provider = 'anthropic'
+
+[[modes]]
+color = '#8995A8'
+description = 'Balanced — routes work, delegates to subagents'
+name = 'smart'
+prompt = 'file:prompts/smart.md'
+reasoning = 'medium'
+
+[[modes]]
+color = '#C75B7A'
+description = 'Fast local edits, minimal verification'
+name = 'rush'
+prompt = 'file:prompts/rush.md'
+
+[[modes]]
+color = '#D4A76A'
+description = 'Complex multi-step, high reasoning'
+name = 'deep'
+prompt = 'file:prompts/deep.md'
+reasoning = 'high'
+
+[notifications]
+enabled = true
+permission_ask = true
+turn_complete = false
+
+[permission]
+file_read_outside_pwd = 'ask'
+file_write = 'allow'
+mcp = 'allow'
+network = 'ask'
+shell = 'allow'
+subagent = 'allow'
+
+[plugins]
+sources = ['github:cfbender/quorum', 'local:~/code/github/cesium']
+
+[ui]
+nerd_fonts = true

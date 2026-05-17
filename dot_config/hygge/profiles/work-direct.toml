@@ -1,5 +1,8 @@
 # Work profile — direct API providers
 
+small_provider = "openai"
+small_model = "gpt-5.4-mini"
+
 [[modes]]
 name = "smart"
 provider = "openai"

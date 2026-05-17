@@ -1,0 +1,6 @@
+import os
+
+_xonsh_xdg_rc = os.path.expanduser('~/.config/xonsh/rc.xsh')
+if os.path.exists(_xonsh_xdg_rc):
+    with open(_xonsh_xdg_rc, encoding='utf-8') as _xonsh_rc_handle:
+        execx(_xonsh_rc_handle.read(), filename=_xonsh_xdg_rc)

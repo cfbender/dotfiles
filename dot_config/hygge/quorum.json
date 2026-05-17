@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cfbender/quorum/main/schema.json",
+  "members": [
+    {
+      "name": "quorum_gpt_5_3_codex",
+      "providerID": "openai",
+      "modelID": "gpt-5.3-codex",
+      "label": "gpt-5.3-codex"
+    },
+    {
+      "name": "quorum_opus",
+      "providerID": "anthropic",
+      "modelID": "claude-opus-4.7",
+      "label": "opus-4.7"
+    },
+    {
+      "name": "quorum_gpt_5_5",
+      "providerID": "openai",
+      "modelID": "gpt-5.5",
+      "label": "gpt-5.5"
+    }
+  ],
+  "triggerMode": "auto"
+}

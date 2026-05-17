@@ -8,8 +8,7 @@ $fill \
 $hostname \
 $time\n \
 $shell\
-[>](fg:fg) 
-"""
+[>](fg:fg) """
 
 palette = "claret"
 
@@ -55,7 +54,7 @@ white = "#DDD3C7"
 
 [directory]
 format = "(fg:overlay)[ $path ]($style)(fg:overlay)"
-style = "bg:overlay fg:blue"
+style = "fg:blue"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -71,7 +70,7 @@ symbol = " "
 
 [git_branch]
 format = "(fg:overlay)[ $symbol $branch ]($style)(fg:overlay)"
-style = "bg:overlay fg:orange"
+style = "fg:orange"
 symbol = ""
 
 [git_status]
@@ -82,7 +81,7 @@ disabled = true
 [time]
 disabled = false
 format = "(fg:overlay)[ $time  ]($style)(fg:overlay)"
-style = "bg:overlay fg:cyan"
+style = "fg:cyan"
 time_format = "%I:%M%P"
 use_12hr = true
 
@@ -90,8 +89,8 @@ use_12hr = true
 disabled = false
 format = "(fg:overlay)[  $user ]($style)(fg:overlay)"
 show_always = true
-style_root = "bg:overlay fg:blue"
-style_user = "bg:overlay fg:blue"
+style_root = "fg:blue"
+style_user = "fg:blue"
 
 [hostname]
 ssh_only = false

@@ -1,0 +1,4 @@
+name = "xonsh"
+version = "0.1.0"
+description = "A Hygge Lua plugin"
+entrypoint = "plugin.lua"

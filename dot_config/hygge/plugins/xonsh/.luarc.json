@@ -1,0 +1,10 @@
+{
+  "diagnostics.globals": [
+    "hygge"
+  ],
+  "runtime.version": "Lua 5.1",
+  "workspace.checkThirdParty": false,
+  "workspace.library": [
+    ".hygge/types"
+  ]
+}

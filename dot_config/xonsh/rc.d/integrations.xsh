@@ -27,4 +27,4 @@ if shutil.which('direnv'):
 if shutil.which('mise'):
     _xonsh_integrations_exec_init(['mise', 'activate', 'xonsh'])
 
-source ~/.config/television/shell/integration.xsh
+source ~/.config/television/shell/completion.xsh

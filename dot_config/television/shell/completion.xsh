@@ -191,10 +191,10 @@ if $SHELL_TYPE in ("best", "prompt_toolkit", "prompt-toolkit", "ptk"):
 
     @events.on_ptk_create
     def tv_keybindings(bindings, **kw):
-        @bindings.add("{tv_smart_autocomplete_keybinding}", eager=True)
+        @bindings.add("c-t", eager=True)
         def _tv_smart_autocomplete(event):
             tv_smart_autocomplete(event)
 
-        @bindings.add("{tv_shell_history_keybinding}", eager=True)
+        @bindings.add("c-r", eager=True)
         def _tv_shell_history(event):
             tv_shell_history(event)

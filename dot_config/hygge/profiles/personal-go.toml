@@ -17,3 +17,18 @@ name = "deep"
 provider = "opencode-go"
 model = "mimo/mimo-v2.5-pro"
 reasoning = "high"
+
+[subagents.search]
+model = "deepseek/deepseek-v4-flash"
+
+[subagents.oracle]
+model = "deepseek/deepseek-v4-pro"
+
+[subagents.librarian]
+model = "deepseek/deepseek-v4-pro"
+
+[subagents.review]
+model = "opencode-go/qwen3.6-plus"
+
+[subagents.carpenter]
+model = "deepseek/deepseek-v4-pro"

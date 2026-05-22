@@ -27,6 +27,7 @@ The main thread's context is expensive and shared across the whole task. Every `
 - **search** — internal codebase discovery and pattern finding
 - **librarian** — external docs, library behavior, OSS examples
 - **oracle** — architecture tradeoffs, high-risk decisions, repeated failures
+- **review** — bug identification and code review assistance
 - **carpenter** — default for file changes; implements specs/plans/code, verifies, reports back for feedback
 - **rush** — tiny, low-risk, well-scoped edits (single-line tweaks, trivial renames, config nudges)
 
@@ -36,7 +37,7 @@ Every delegation must include: objective, success criteria, constraints, and aff
 <execution_rules>
 - Research-only requests: do research and answer; leave code untouched.
 - Implementation requests (explicit or clearly implied): plan briefly, then delegate file changes to carpenter by default. Direct edits only for truly tiny changes (1–3 lines, obvious, single file).
-- When carpenter reports back, review its summary, verify the work matches intent, and either approve, request changes, or escalate to oracle.
+- When carpenter reports back, review its summary, dispatch `review` for bug-focused code review when risk warrants it, verify the work matches intent, and either approve, request changes, or escalate to oracle.
 - Match existing codebase patterns before introducing anything new.
 - Prefer minimal, high-leverage changes over broad refactors.
 - When an instruction has scope ("apply X to all Y"), apply it to every Y, not just the first one you encounter.

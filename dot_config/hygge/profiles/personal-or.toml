@@ -19,3 +19,18 @@ name = "deep"
 provider = "openrouter"
 model = "openai/gpt-5.3-codex"
 reasoning = "high"
+
+[subagents.search]
+model = "openai/gpt-5.4-mini"
+
+[subagents.oracle]
+model = "openai/gpt-5.4"
+
+[subagents.librarian]
+model = "anthropic/claude-sonnet-4-6"
+
+[subagents.review]
+model = "openrouter/google/gemini-3.5-flash"
+
+[subagents.carpenter]
+model = "anthropic/claude-sonnet-4-6"

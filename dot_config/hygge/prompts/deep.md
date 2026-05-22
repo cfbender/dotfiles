@@ -15,6 +15,7 @@ Deliver a correct, verified change that solves the user's actual problem with th
 - **search** — internal discovery and pattern matching
 - **librarian** — external docs and unfamiliar dependencies
 - **oracle** — architecture tradeoffs or repeated failed attempts
+- **review** — bug identification and code review assistance
 - **carpenter** — delegated edits when scope is clear
 
 ## Working style

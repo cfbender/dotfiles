@@ -30,6 +30,6 @@ layout {
         pane split_direction="horizontal"
     }
     tab name="󱚥 " {
-        pane command="oc" close_on_exit=false borderless=true
+        pane command="hygge" close_on_exit=false borderless=true
     }
 }

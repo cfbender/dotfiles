@@ -24,9 +24,9 @@ Project-specific guidance (`CLAUDE.md` / local `AGENTS.md`) overrides this file.
 
 ## qmd
 
-`qmd` reads from its index (not directly from the filesystem). `qmd get` only works for indexed files.
+`qmd` reads from its index (not directly from the filesystem). `qmd get` and `qmd query` only works for indexed files.
 
-For any repo, bootstrap once before using `qmd get`:
+For any repo, bootstrap once before using `qmd get` or `qmd query`:
 - `qmd collection add . --name $(basename "$PWD")`
 - `qmd update`
 - `qmd embed --chunk-strategy auto`

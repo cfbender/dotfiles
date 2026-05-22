@@ -3,10 +3,6 @@ default_profile = 'work-direct'
 [compaction]
 threshold_pct = 75
 
-[model]
-name = 'claude-haiku-4-5-20251001'
-provider = 'anthropic'
-
 [[modes]]
 color = '#8995A8'
 description = 'Balanced — routes work, delegates to subagents'
@@ -27,6 +23,30 @@ name = 'deep'
 prompt = 'file:prompts/deep.md'
 reasoning = 'high'
 
+[subagents.search]
+description = "Read-only codebase locator"
+tools = ["file_read", "grep", "glob", "bash"]
+prompt = "file:prompts/search.md"
+
+[subagents.oracle]
+description = "Senior technical advisor for hard decisions"
+tools = ["file_read", "grep", "glob"]
+prompt = "file:prompts/oracle.md"
+
+[subagents.librarian]
+description = "External reference and documentation specialist"
+tools = ["file_read", "bash", "grep"]
+prompt = "file:prompts/librarian.md"
+
+[subagents.review]
+description = "Bug identification and code review assistance"
+tools = ["file_read", "grep", "glob", "bash"]
+prompt = "file:prompts/review.md"
+
+[subagents.carpenter]
+description = "Spec/plan implementer — writes code from specs"
+prompt = "file:prompts/carpenter.md"
+
 [notifications]
 enabled = true
 permission_ask = true
@@ -41,7 +61,7 @@ shell = 'allow'
 subagent = 'allow'
 
 [plugins]
-sources = ['github:cfbender/quorum', 'local:~/code/github/cesium']
+sources = ['github:cfbender/quorum', 'github:cfbender/cesium']
 
 [ui]
 nerd_fonts = true

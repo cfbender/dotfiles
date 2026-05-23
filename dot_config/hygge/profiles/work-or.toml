@@ -1,7 +1,7 @@
 # Work profile — OpenRouter
 
 small_provider = "openrouter"
-small_model = "deepseek/deepseek-v4-flash"
+small_model = "google/gemini-3.5-flash"
 
 [[modes]]
 name = "smart"
@@ -22,7 +22,7 @@ model = "openai/gpt-5.5"
 reasoning = "high"
 
 [subagents.search]
-model = "openrouter/google/gemini-3-flash-preview"
+model = "openrouter/google/gemini-3.5-flash"
 
 [subagents.oracle]
 model = "openrouter/openai/gpt-5.4"

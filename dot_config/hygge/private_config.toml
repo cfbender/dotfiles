@@ -23,30 +23,6 @@ name = 'deep'
 prompt = 'file:prompts/deep.md'
 reasoning = 'high'
 
-[subagents.search]
-description = "Read-only codebase locator"
-tools = ["file_read", "grep", "glob", "bash"]
-prompt = "file:prompts/search.md"
-
-[subagents.oracle]
-description = "Senior technical advisor for hard decisions"
-tools = ["file_read", "grep", "glob"]
-prompt = "file:prompts/oracle.md"
-
-[subagents.librarian]
-description = "External reference and documentation specialist"
-tools = ["file_read", "bash", "grep"]
-prompt = "file:prompts/librarian.md"
-
-[subagents.review]
-description = "Bug identification and code review assistance"
-tools = ["file_read", "grep", "glob", "bash"]
-prompt = "file:prompts/review.md"
-
-[subagents.carpenter]
-description = "Spec/plan implementer — writes code from specs"
-prompt = "file:prompts/carpenter.md"
-
 [notifications]
 enabled = true
 permission_ask = true
@@ -62,6 +38,31 @@ subagent = 'allow'
 
 [plugins]
 sources = ['github:cfbender/quorum', 'github:cfbender/cesium']
+
+[subagents]
+[subagents.carpenter]
+description = 'Spec/plan implementer — writes code from specs'
+prompt = 'file:prompts/carpenter.md'
+
+[subagents.librarian]
+description = 'External reference and documentation specialist'
+prompt = 'file:prompts/librarian.md'
+tools = ['file_read', 'bash', 'grep']
+
+[subagents.oracle]
+description = 'Senior technical advisor for hard decisions'
+prompt = 'file:prompts/oracle.md'
+tools = ['file_read', 'grep', 'glob']
+
+[subagents.review]
+description = 'Bug identification and code review assistance'
+prompt = 'file:prompts/review.md'
+tools = ['file_read', 'grep', 'glob', 'bash']
+
+[subagents.search]
+description = 'Read-only codebase locator'
+prompt = 'file:prompts/search.md'
+tools = ['file_read', 'grep', 'glob', 'bash']
 
 [ui]
 nerd_fonts = true

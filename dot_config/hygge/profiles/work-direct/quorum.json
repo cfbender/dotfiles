@@ -20,5 +20,6 @@
       "label": "gpt-5.5"
     }
   ],
-  "triggerMode": "auto"
+  "triggerMode": "auto",
+  "specDir": "docs/quorum/specs"
 }

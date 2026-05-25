@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cfbender/quorum/main/schema.json",
+  "members": [
+    {
+      "name": "quorum_sonnet_4_6",
+      "providerID": "openrouter",
+      "modelID": "anthropic/claude-sonnet-4-6",
+      "label": "sonnet-4.6"
+    },
+    {
+      "name": "quorum_gpt_5_3_codex",
+      "providerID": "openrouter",
+      "modelID": "openai/gpt-5.3-codex",
+      "label": "gpt-5.3-codex"
+    },
+    {
+      "name": "quorum_gemini_3_5_flash",
+      "providerID": "openrouter",
+      "modelID": "google/gemini-3.5-flash",
+      "label": "gemini-3.5-flash"
+    }
+  ],
+  "triggerMode": "auto",
+  "specDir": "docs/quorum/specs"
+}

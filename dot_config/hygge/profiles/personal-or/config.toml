@@ -1,5 +1,6 @@
 # Personal profile — OpenRouter, cost-optimized
 
+[model]
 small_provider = "openrouter"
 small_model = "deepseek/deepseek-v4-flash"
 

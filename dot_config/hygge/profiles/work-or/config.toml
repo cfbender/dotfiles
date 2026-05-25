@@ -1,5 +1,6 @@
 # Work profile — OpenRouter
 
+[model]
 small_provider = "openrouter"
 small_model = "google/gemini-3.5-flash"
 

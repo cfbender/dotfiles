@@ -4,7 +4,7 @@
     {
       "name": "quorum_sonnet_4_6",
       "providerID": "openrouter",
-      "modelID": "anthropic/claude-sonnet-4-6",
+      "modelID": "anthropic/claude-sonnet-4.6",
       "label": "sonnet-4.6"
     },
     {
@@ -20,6 +20,5 @@
       "label": "gemini-3.5-flash"
     }
   ],
-  "triggerMode": "auto",
-  "specDir": "docs/quorum/specs"
+  "triggerMode": "auto"
 }

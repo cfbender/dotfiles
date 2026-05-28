@@ -2,10 +2,10 @@
   "$schema": "https://raw.githubusercontent.com/cfbender/quorum/main/schema.json",
   "members": [
     {
-      "name": "quorum_opus_4_7",
+      "name": "quorum_opus_4_8",
       "providerID": "openrouter",
-      "modelID": "anthropic/claude-opus-4-7",
-      "label": "opus-4.7"
+      "modelID": "anthropic/claude-opus-4.8",
+      "label": "opus-4.8"
     },
     {
       "name": "quorum_gpt_5_5",
@@ -20,6 +20,5 @@
       "label": "gemini-3.5-flash"
     }
   ],
-  "triggerMode": "auto",
-  "specDir": "docs/quorum/specs"
+  "triggerMode": "auto"
 }

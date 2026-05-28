@@ -1,4 +1,5 @@
-# Personal profile — alternative models via OpenRouter
+# Personal profile — alternative models via opencode-go
+
 [model]
 small_provider = "opencode-go"
 small_model = "deepseek-v4-flash"
@@ -20,16 +21,21 @@ model = "mimo-v2.5-pro"
 reasoning = "high"
 
 [subagents.search]
+provider = "opencode-go"
 model = "deepseek-v4-flash"
 
 [subagents.oracle]
+provider = "opencode-go"
 model = "deepseek-v4-pro"
 
 [subagents.librarian]
+provider = "opencode-go"
 model = "deepseek-v4-pro"
 
 [subagents.review]
+provider = "opencode-go"
 model = "qwen3.6-plus"
 
 [subagents.carpenter]
+provider = "opencode-go"
 model = "deepseek-v4-pro"

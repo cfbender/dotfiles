@@ -33,7 +33,7 @@ file_read_outside_pwd = 'ask'
 file_write = 'allow'
 mcp = 'allow'
 network = 'ask'
-shell = 'ask'
+shell = 'allow'
 subagent = 'allow'
 
 [plugins]

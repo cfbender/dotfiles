@@ -10,8 +10,8 @@
     {
       "name": "quorum_opus",
       "providerID": "anthropic",
-      "modelID": "claude-opus-4.7",
-      "label": "opus-4.7"
+      "modelID": "claude-opus-4.8",
+      "label": "opus-4.8"
     },
     {
       "name": "quorum_gpt_5_5",
@@ -20,6 +20,5 @@
       "label": "gpt-5.5"
     }
   ],
-  "triggerMode": "auto",
-  "specDir": "docs/quorum/specs"
+  "triggerMode": "auto"
 }

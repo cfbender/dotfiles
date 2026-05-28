@@ -20,6 +20,5 @@
       "label": "qwen3.6-plus"
     }
   ],
-  "triggerMode": "auto",
-  "specDir": "docs/quorum/specs"
+  "triggerMode": "auto"
 }

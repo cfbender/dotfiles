@@ -35,8 +35,8 @@ provider = "anthropic"
 model = "claude-sonnet-4-6"
 
 [subagents.review]
-provider = "anthropic"
-model = "claude-sonnet-4-6"
+provider = "openai"
+model = "gpt-5.5"
 
 [subagents.carpenter]
 provider = "anthropic"

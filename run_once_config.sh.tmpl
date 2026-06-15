@@ -41,6 +41,11 @@ if ! command -v mise &>/dev/null; then
   curl https://mise.run | sh
 fi
 
+if ! command -v xonsh &>/dev/null; then
+  TARGET_DIR=$HOME/.local/xonsh-env PYTHON_VER=3.11 XONSH_VER='xonsh[full]' \
+  /bin/bash -c "$(curl -fsSL https://xon.sh/install/mamba-install-xonsh.sh)"
+fi
+
 ya pkg add {{ range .yazi.plugins }}{{ . | quote }} {{ end }} || true
 
 if [ ! -d ~/.agents/skills ]; then

@@ -1,0 +1,36 @@
+[model]
+small_provider = "openai"
+small_model = "gpt-5.4-mini"
+
+[[modes]]
+name = "smart"
+provider = "openai"
+model = "gpt-5.5"
+reasoning = "high"
+
+[[modes]]
+name = "rush"
+provider = "openai"
+model = "gpt-5.5"
+reasoning = "none"
+
+[[modes]]
+name = "deep"
+provider = "openai"
+model = "gpt-5.5"
+reasoning = "xhigh"
+
+[subagents.search]
+model = "openai/gpt-5.4-mini"
+
+[subagents.oracle]
+model = "openai/gpt-5.5"
+
+[subagents.librarian]
+model = "openai/gpt-5.5"
+
+[subagents.review]
+model = "openai/gpt-5.5"
+
+[subagents.carpenter]
+model = "openai/gpt-5.5"

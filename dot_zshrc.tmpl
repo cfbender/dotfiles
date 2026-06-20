@@ -39,6 +39,13 @@ export OCX_PROFILE="${OCX_PROFILE:-work-or}"
 export OCX_PROFILE="${OCX_PROFILE:-personal-zen}"
 {{- end }}
 
+# Default OMP profile (overridable per-directory via direnv .envrc)
+{{- if .work }}
+export OMP_PROFILE="${OMP_PROFILE:-work-or}"
+{{- else }}
+export OMP_PROFILE="${OMP_PROFILE:-personal-direct}"
+{{- end }}
+
 # SSH/GPG configuration
 if [[ -n "$SSH_CONNECTION" ]]; then
   export PINENTRY_USER_DATA="USE_CURSES=1"

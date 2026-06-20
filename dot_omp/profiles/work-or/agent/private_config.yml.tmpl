@@ -1,0 +1,44 @@
+# Ported from dot_config/hygge/private_config.toml.tmpl and
+# dot_config/hygge/profiles/work-or/config.toml.
+#
+# OMP profiles are full user-level config roots. This file repeats the common
+# agent settings because profiles do not inherit from dot_omp/agent/config.yml.
+
+setupVersion: 1
+
+theme:
+  dark: claret
+  light: claret
+
+compaction:
+  thresholdPercent: 75
+
+ask:
+  notify: "on"
+completion:
+  notify: "off"
+
+symbolPreset: "nerd"
+
+tools:
+  approvalMode: "yolo"
+  approval:
+    bash: "allow"
+    edit: "allow"
+    read: "allow"
+    task: "allow"
+    write: "allow"
+    browser: "prompt"
+    github: "prompt"
+    web_search: "prompt"
+
+defaultThinkingLevel: "medium"
+modelRoles:
+  default: "openrouter/anthropic/claude-opus-4.8:medium"
+  smol: "openrouter/google/gemini-3.5-flash"
+  slow: "openrouter/openai/gpt-5.5:high"
+  plan: "openrouter/anthropic/claude-opus-4.8:medium"
+  task: "openrouter/anthropic/claude-sonnet-4.6"
+  advisor: "openrouter/openai/gpt-5.4"
+  title: "openrouter/google/gemini-3.5-flash"
+  commit: "openrouter/openai/gpt-5.5:off"

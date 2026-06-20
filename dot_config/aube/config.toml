@@ -2,3 +2,4 @@
 trustPolicyIgnoreAfter = 10080
 lowDownloadThreshold = 500
 trustPolicyExclude = ["effect"]
+allowedUnpopularPackages = ["@cfbender/*"]

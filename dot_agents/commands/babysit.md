@@ -1,10 +1,10 @@
 ---
-description: Babysit the current branch's PR — address CodeRabbit feedback until its review is approved, keep CI green, then request a reviewer
+description: Babysit the current branch's PR — address CodeRabbit feedback until its review is approved, keep CI green, request a reviewer, then work their feedback until they approve
 ---
 
 Babysit the pull request for the current branch through to ready-to-merge.
 The reviewer to request once CodeRabbit approves is: **$1** (if `$1` is empty,
-skip the reviewer-request step and say so).
+skip the reviewer-request and reviewer-feedback steps and say so).
 
 You are driving this autonomously. Do not stop at the first status check —
 loop until the exit condition below is met or you hit a genuine blocker that
@@ -92,15 +92,61 @@ Confirm it landed (`gh pr view <n> --json reviewRequests`). Then post a short PR
 comment summarizing: feedback addressed + threads resolved, CodeRabbit approved,
 CI status, and that `@$1` is requested.
 
-## 4. Exit condition & report
+## 4. Reviewer feedback loop (repeat until $1 approves)
+
+After `$1` is requested, keep working their feedback until they **approve** —
+same rhythm as the CodeRabbit loop, but `$1` is a human, so respond in MY voice.
+
+1. Poll the review state on an interval — humans aren't instant. Sleep a few
+   minutes between checks (`sleep 180`), print a one-line heartbeat each pass
+   (`[babysit] waiting on $1 review — <timestamp>`), and don't spam the API.
+   ```
+   gh pr view <n> --json reviewDecision,reviews
+   gh api graphql -f query='{ repository(owner:"<owner>", name:"<repo>") {
+     pullRequest(number:<n>) { reviewThreads(first:100) { nodes {
+       id isResolved isOutdated path
+       comments(first:5){ nodes{ databaseId author{login} body } } } } } } }'
+   ```
+2. For each **unresolved** thread from `$1` (and any inline review comments they
+   left), treat it like the real review it is:
+   - **Verify against the current code first** — same as CodeRabbit, their note
+     might already be handled or rest on a misread.
+   - If they're **right**: make the minimal fix (+ a test when it's behavioral),
+     run the validation gate, commit, push.
+   - If you **disagree**: don't silently cave — reply with the reasoning and
+     let them call it. Their decision wins once they've weighed in.
+   - Reply on the thread, and resolve it once it's actually addressed (a fix
+     landed or they agreed it's a non-issue). Leave it open if the ball is in
+     their court.
+3. **Write replies in MY voice** — casual, lowercase-leaning, lead with the
+   point, no formal scaffolding, no "Thanks for the review!" openers, praise
+   only when it's genuinely warranted. Examples of the tone:
+   - `good catch, that'd leak across orgs — scoped it to org_id now`
+   - `left this as-is, the retry's already idempotent so a double-send is a no-op. lmk if you'd rather i guard it anyway`
+   - `done, also added a test for the resolved→reopen path since it was uncovered`
+   - `fair, pulled the helper out so it's reusable`
+4. After any push, the CodeRabbit loop (step 1) and CI (step 2) apply again —
+   re-clear those before considering the reviewer loop settled. Then loop back
+   to 4.1.
+5. If `$1` **requests changes**, that's a hard gate — keep iterating until they
+   re-review to approval. If they approve, this phase is done.
+
+Guardrails:
+- Never resolve a reviewer's thread just to clear the queue — only when it's
+  genuinely handled or they agreed.
+- Don't argue in circles. State your case once; if they hold, do it their way.
+- You **cannot** approve on their behalf or dismiss their review to unblock.
+
+## 5. Exit condition & report
 
 You are done when: CodeRabbit approved, all gating CI green (note any async
-suites still running), and `$1` requested. Report the final
+suites still running), `$1` requested, **and `$1` has approved** (or, if `$1`
+was empty, through the request step only). Report the final
 `reviewDecision`/`mergeStateStatus` and state plainly what (if anything) still
-blocks merge — typically just the human review you just requested.
+blocks merge.
 
-**You cannot merge or approve on a human's behalf.** If the only remaining
-blocker is the required human approval, say so and stop; don't wait on it.
-Stop and surface to the user if you hit a real blocker (CI failure you can't
-fix, a finding that needs a product decision, merge conflicts, or unpushed
-local commits).
+**You cannot merge or approve on a human's behalf.** Once `$1` has approved and
+everything's green, say it's ready to merge and stop — don't merge it yourself
+unless the user asks. Stop and surface to the user if you hit a real blocker (CI
+failure you can't fix, a finding that needs a product decision, merge conflicts,
+unpushed local commits, or a reviewer ask you can't resolve without a call).

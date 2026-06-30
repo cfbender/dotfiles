@@ -38,10 +38,12 @@ c. For each candidate PR, fetch `gh pr view <N> --json number,title,headRefOid,s
 
 ### 2. Decide what needs a (re)review
 
-For each candidate PR, compare its `headRefOid` against the state file:
-- **New PR or head SHA changed since last review** → review it now.
-- **Already reviewed at this exact head SHA** → skip. Print `PR #N — already reviewed at <sha>, skipping`.
-- **Author pushed new commits** → re-review (head SHA changed).
+First, resolve **my** handle once per run: `gh api user --jq .login` (this is the reviewer identity — the loop reviews *as me*).
+
+For each candidate PR, check my own latest review and the head SHA:
+- **Already approved by me at the current head** → skip entirely, post nothing. Fetch my reviews (`gh api repos/:owner/:repo/pulls/<N>/reviews`); if my most-recent review is `APPROVED` and its `commit_id` is the current `headRefOid`, print `PR #N — already approved by me at <sha>, skipping` and move on. Do not re-approve and do not re-comment.
+- **Already reviewed at this exact head SHA** (per the state file) → skip. Print `PR #N — already reviewed at <sha>, skipping`.
+- **New PR, or head SHA changed since my last review** → review it now (the author pushed new commits; any prior approval is stale and a fresh pass is warranted).
 
 ### 3. Review a PR
 
@@ -112,6 +114,7 @@ Then start the next iteration from step 1.
 
 - **MUST** loop continuously. Do not exit after one pass. The only exit is the user interrupting.
 - **MUST** write the casual, informal voice described above for everything you post to GitHub. Re-read your draft comments and strip any formality before posting.
+- **MUST NOT** post anything on a PR I've **already approved at the current head SHA** — no re-approval, no new comment. Skip it (re-review only once the author pushes new commits past my approval).
 - **MUST NOT** post trivial nitpicks, style nags, or "consider X" suggestions that don't matter.
 - **MUST NOT** re-review a PR at the same head SHA you've already reviewed — check the state file.
 - **MUST NOT** duplicate comments already on the PR — check existing comments first.

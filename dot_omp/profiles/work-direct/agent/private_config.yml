@@ -22,11 +22,13 @@ tools:
     web_search: allow
 defaultThinkingLevel: high
 modelRoles:
-  default: openai/gpt-5.5:high
-  smol: openai/gpt-5.4-mini
-  slow: anthropic/claude-opus-4-8:high
-  plan: openai/gpt-5.5:high
+  default: openai-codex/gpt-5.5:high
+  smol: openai-codex/gpt-5.4-mini
+  slow: anthropic/claude-fable-5:high
+  plan: openai-codex/gpt-5.5:high
   task: anthropic/claude-sonnet-5
-  advisor: openai/gpt-5.4
-  title: openai/gpt-5.4-mini
-  commit: openai/gpt-5.5:off
+  advisor: openai-codex/gpt-5.4
+  title: openai-codex/gpt-5.4-mini
+  commit: openai-codex/gpt-5.5:off
+advisor:
+  enabled: true

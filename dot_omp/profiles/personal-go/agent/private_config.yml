@@ -30,3 +30,5 @@ modelRoles:
   advisor: opencode-go/deepseek-v4-pro
   title: opencode-go/deepseek-v4-flash
   commit: opencode-go/deepseek-v4-flash:off
+advisor:
+  enabled: true

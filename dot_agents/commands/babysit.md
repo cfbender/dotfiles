@@ -125,6 +125,7 @@ same rhythm as the CodeRabbit loop, but `$1` is a human, so respond in MY voice.
    - `left this as-is, the retry's already idempotent so a double-send is a no-op. lmk if you'd rather i guard it anyway`
    - `done, also added a test for the resolved→reopen path since it was uncovered`
    - `fair, pulled the helper out so it's reusable`
+   - DO NOT use emdash, only `-` instead of that character.
 4. After any push, the CodeRabbit loop (step 1) and CI (step 2) apply again —
    re-clear those before considering the reviewer loop settled. Then loop back
    to 4.1.

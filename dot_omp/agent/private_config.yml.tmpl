@@ -1,59 +1,6 @@
-# Ported from dot_config/hygge/private_config.toml.tmpl and the active
-# Hygge default profile (work-direct when .work is true, otherwise personal-direct).
-#
-# OMP does not consume Hygge Lua plugins, quorum profiles, declarative subagent
-# TOML, or mode prompt bundles, so those are intentionally not represented here.
-
-setupVersion: 1
-
-theme:
-  dark: claret
-  light: claret
-
-compaction:
-  thresholdPercent: 75
-
-# Hygge notifications.enabled=true, permission_ask=true, turn_complete=false.
-"ask.notify": "on"
-"completion.notify": "off"
-
-# Hygge ui.nerd_fonts=true.
-symbolPreset: "nerd"
-
-# Hygge permissions mapped to OMP tool approvals where there is an equivalent.
-# OMP has no direct file_read_outside_pwd or generic network permission split;
-# explicit network-facing tools are prompted while shell/write/task stay allowed.
-tools:
-  approvalMode: "yolo"
-  approval:
-    bash: "allow"
-    edit: "allow"
-    read: "allow"
-    task: "allow"
-    write: "allow"
-    browser: "prompt"
-    github: "prompt"
-    web_search: "prompt"
-
-# Hygge mode/profile model routing mapped to OMP roles.
-defaultThinkingLevel: "high"
-modelRoles:
-{{ if .work }}
-  default: "openai/gpt-5.5:high"
-  smol: "openai/gpt-5.4-mini"
-  slow: "anthropic/claude-opus-4-8:high"
-  plan: "openai/gpt-5.5:high"
-  task: "anthropic/claude-sonnet-5"
-  advisor: "openai/gpt-5.4"
-  title: "openai/gpt-5.4-mini"
-  commit: "openai/gpt-5.5"
-{{ else }}
-  default: "openai/gpt-5.5:high"
-  smol: "openai/gpt-5.4-mini"
-  slow: "openai/gpt-5.5:xhigh"
-  plan: "openai/gpt-5.5:high"
-  task: "openai/gpt-5.5"
-  advisor: "openai/gpt-5.5"
-  title: "openai/gpt-5.4-mini"
-  commit: "openai/gpt-5.5"
-{{ end }}
+{{- /* Default (no active $OMP_PROFILE) omp config. Deep-merged from the
+       single source of truth in .chezmoidata/omp.yml, using the same builder
+       as each profile config, so there is no drift.
+       .work selects which profile is the machine default (see omp.defaults). */ -}}
+{{- $default := index .omp.defaults (ternary "work" "personal" .work) -}}
+{{ includeTemplate "omp-config" (dict "profile" $default "omp" .omp) }}

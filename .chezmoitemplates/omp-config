@@ -1,0 +1,6 @@
+{{- /* Render a full omp config.yml for profile `.profile` by deep-merging
+       that profile's delta over `.omp.base`. Callers pass:
+         includeTemplate "omp-config" (dict "profile" "<name>" "omp" .omp) */ -}}
+{{- $profile := index .omp.profiles .profile -}}
+{{- $cfg := mergeOverwrite (deepCopy .omp.base) $profile -}}
+{{- $cfg | toYaml -}}

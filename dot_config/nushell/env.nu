@@ -48,6 +48,9 @@ $env.OPENCODE_AGENT_SKILLS_SUPERPOWERS_MODE = true
 # Default OCX profile (overridable per-directory)
 use ($nu.default-config-dir | path join scripts ocx_profile.nu)
 
+# Default OMP profile (overridable per-directory, e.g. via direnv)
+use ($nu.default-config-dir | path join scripts omp_profile.nu)
+
 # pnpm
 $env.PNPM_HOME = $env.HOME | path join Library pnpm 
 

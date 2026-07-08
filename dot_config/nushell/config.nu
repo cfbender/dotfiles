@@ -785,6 +785,9 @@ source ~/.zoxide.nu
 source $"($nu.cache-dir)/carapace.nu"
 source ~/.config/nushell/scripts/aliases.nu
 
+# omp profile switcher (`ompp`); startup OMP_PROFILE seeding lives in env.nu
+use ($nu.default-config-dir | path join scripts omp_profile.nu) *
+
 def ra [] {
     overlay use --reload ~/.config/nushell/scripts/aliases.nu
 }

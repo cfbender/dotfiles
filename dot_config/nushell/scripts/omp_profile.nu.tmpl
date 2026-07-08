@@ -1,0 +1,79 @@
+# Oh My Pi (omp) profile switcher — the `ompp` command.
+#
+# Profiles live in ~/.omp/profiles/<name>/agent/. Switching a profile just
+# sets $env.OMP_PROFILE, which relocates OMP's user config base to that
+# profile (per-directory direnv overrides of OMP_PROFILE still take
+# precedence). The choice is persisted to ~/.omp/active-profile so newly
+# spawned shells inherit it.
+#
+# Templated by chezmoi: the machine default comes from the .work boolean.
+
+def omp-dir []: nothing -> string { $nu.home-dir | path join .omp }
+def omp-profiles-dir []: nothing -> string { omp-dir | path join profiles }
+def omp-state-file []: nothing -> string { omp-dir | path join active-profile }
+def omp-default-profile []: nothing -> string {
+{{- if .work }}
+    "{{ .omp.defaults.work }}"
+{{- else }}
+    "{{ .omp.defaults.personal }}"
+{{- end }}
+}
+
+# All installed profile names.
+def omp-profiles []: nothing -> list<string> {
+    let dir = (omp-profiles-dir)
+    if ($dir | path exists) {
+        ls $dir | where type == dir | get name | path basename | sort
+    } else { [] }
+}
+
+# Resolve the active profile: live env > persisted state > machine default.
+def omp-active []: nothing -> string {
+    if not ($env.OMP_PROFILE? | is-empty) {
+        $env.OMP_PROFILE
+    } else if ((omp-state-file) | path exists) {
+        open --raw (omp-state-file) | str trim
+    } else {
+        omp-default-profile
+    }
+}
+
+def "nu-complete omp-profiles" []: nothing -> list<string> { omp-profiles }
+
+# Startup: seed OMP_PROFILE from the persisted state or the machine default,
+# unless something upstream (e.g. direnv) already set it.
+export-env {
+    if ($env.OMP_PROFILE? | is-empty) {
+        $env.OMP_PROFILE = (omp-active)
+    }
+}
+
+# ompp          print the active profile and list all installed ones
+# ompp <name>   switch to <name> for this session and persist it
+export def --env ompp [
+    profile?: string@"nu-complete omp-profiles" # profile to switch to
+] {
+    let available = (omp-profiles)
+    if $profile == null {
+        if ($available | is-empty) {
+            print $"no omp profiles found in (omp-profiles-dir)"
+            return
+        }
+        let active = (omp-active)
+        $available
+        | each {|p| if $p == $active { $"* ($p)" } else { $"  ($p)" } }
+        | str join (char newline)
+        | print
+        return
+    }
+    if ($profile not-in $available) {
+        error make {msg: $"omp profile '($profile)' not found. available: ($available | str join ', ')"}
+    }
+    $env.OMP_PROFILE = $profile
+    mkdir (omp-dir)
+    $profile | save --force (omp-state-file)
+    let role = (try {
+        open ((omp-profiles-dir) | path join $profile agent config.yml) | get modelRoles.default
+    } catch { "unknown" })
+    print $"switched to ($profile)  \(modelRoles.default = ($role)\)"
+}

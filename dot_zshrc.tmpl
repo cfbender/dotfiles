@@ -39,12 +39,40 @@ export OCX_PROFILE="${OCX_PROFILE:-work-or}"
 export OCX_PROFILE="${OCX_PROFILE:-personal-zen}"
 {{- end }}
 
-# Default OMP profile (overridable per-directory via direnv .envrc)
+# Default OMP profile: live env > persisted ~/.omp/active-profile > machine
+# default. Overridable per-directory via direnv .envrc; `ompp` (below) switches.
+if [[ -z "${OMP_PROFILE:-}" ]]; then
+  if [[ -r "$HOME/.omp/active-profile" ]]; then
+    export OMP_PROFILE="$(<"$HOME/.omp/active-profile")"
+  else
 {{- if .work }}
-export OMP_PROFILE="${OMP_PROFILE:-work-or}"
+    export OMP_PROFILE="{{ .omp.defaults.work }}"
 {{- else }}
-export OMP_PROFILE="${OMP_PROFILE:-personal-direct}"
+    export OMP_PROFILE="{{ .omp.defaults.personal }}"
 {{- end }}
+  fi
+fi
+
+# ompp [name]: print/switch the active omp profile (persists to ~/.omp/active-profile)
+ompp() {
+  local dir="$HOME/.omp/profiles"
+  if [[ -z "$1" ]]; then
+    local active="${OMP_PROFILE:-}"
+    for p in "$dir"/*(/N); do
+      p="${p:t}"
+      [[ "$p" == "$active" ]] && print "* $p" || print "  $p"
+    done
+    return
+  fi
+  if [[ ! -d "$dir/$1" ]]; then
+    print -u2 "omp profile '$1' not found"
+    return 1
+  fi
+  export OMP_PROFILE="$1"
+  mkdir -p "$HOME/.omp"
+  print -r -- "$1" > "$HOME/.omp/active-profile"
+  print "switched to $1"
+}
 
 # SSH/GPG configuration
 if [[ -n "$SSH_CONNECTION" ]]; then

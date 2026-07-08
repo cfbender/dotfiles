@@ -1,0 +1,103 @@
+# Single source of truth for Oh My Pi (omp) config profiles.
+#
+# `base` holds every setting shared across profiles. Each entry under
+# `profiles` is a *delta* deep-merged over `base` at chezmoi build time
+# (see .chezmoitemplates/omp-config). Profiles that only re-route models
+# therefore carry just `defaultThinkingLevel` + `modelRoles`.
+#
+# OMP resolves a profile via $OMP_PROFILE, relocating the user base to
+# ~/.omp/profiles/<name>/agent. It never merges a base profile itself, so
+# the merge must happen here — this file is the only place duplication lives.
+omp:
+  base:
+    setupVersion: 1
+    theme:
+      dark: claret
+      light: claret
+    compaction:
+      thresholdPercent: 75
+    ask:
+      notify: "on"
+    completion:
+      notify: "off"
+    symbolPreset: nerd
+    tools:
+      approvalMode: yolo
+      approval:
+        bash: allow
+        edit: allow
+        read: allow
+        task: allow
+        write: allow
+        browser: allow
+        github: prompt
+        web_search: allow
+    advisor:
+      enabled: true
+
+  # Default profile picked for ~/.omp/agent/config.yml (no active profile).
+  # Mirrors the OMP_PROFILE defaults in dot_zshrc.tmpl / omp_profile.nu.
+  defaults:
+    work: work-or
+    personal: personal-direct
+
+  profiles:
+    personal-or:
+      defaultThinkingLevel: medium
+      modelRoles:
+        default: openrouter/anthropic/claude-sonnet-5:medium
+        smol: openrouter/deepseek/deepseek-v4-flash
+        slow: openrouter/openai/gpt-5.3-codex:high
+        plan: openrouter/anthropic/claude-sonnet-5:medium
+        task: openrouter/anthropic/claude-sonnet-5
+        advisor: openrouter/openai/gpt-5.4
+        title: openrouter/deepseek/deepseek-v4-flash
+        commit: openrouter/anthropic/claude-haiku-4.5:off
+
+    personal-direct:
+      defaultThinkingLevel: high
+      modelRoles:
+        default: openai-codex/gpt-5.5:high
+        smol: openai-codex/gpt-5.4-mini
+        slow: openai-codex/gpt-5.5:xhigh
+        plan: openai-codex/gpt-5.5:high
+        task: openai-codex/gpt-5.5
+        advisor: openai-codex/gpt-5.5
+        title: openai-codex/gpt-5.4-mini
+        commit: openai-codex/gpt-5.5:off
+
+    personal-go:
+      defaultThinkingLevel: medium
+      modelRoles:
+        default: opencode-go/deepseek-v4-pro:medium
+        smol: opencode-go/deepseek-v4-flash
+        slow: opencode-go/mimo-v2.5-pro:high
+        plan: opencode-go/deepseek-v4-pro:medium
+        task: opencode-go/deepseek-v4-pro
+        advisor: opencode-go/deepseek-v4-pro
+        title: opencode-go/deepseek-v4-flash
+        commit: opencode-go/deepseek-v4-flash:off
+
+    work-or:
+      defaultThinkingLevel: medium
+      modelRoles:
+        default: openrouter/anthropic/claude-opus-4.8:medium
+        smol: openrouter/google/gemini-3.5-flash
+        slow: openrouter/anthropic/claude-fable-5:xhigh
+        plan: openrouter/anthropic/claude-fable-5:medium
+        task: openrouter/anthropic/claude-sonnet-5
+        advisor: openrouter/openai/gpt-5.5
+        title: openrouter/google/gemini-3.5-flash
+        commit: openrouter/openai/gpt-5.4:off
+
+    work-direct:
+      defaultThinkingLevel: high
+      modelRoles:
+        default: openai-codex/gpt-5.5:high
+        smol: openai-codex/gpt-5.4-mini
+        slow: anthropic/claude-fable-5:high
+        plan: openai-codex/gpt-5.5:high
+        task: anthropic/claude-sonnet-5
+        advisor: openai-codex/gpt-5.4
+        title: openai-codex/gpt-5.4-mini
+        commit: openai-codex/gpt-5.5:off

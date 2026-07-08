@@ -34,6 +34,9 @@ omp:
         web_search: allow
     advisor:
       enabled: true
+    startup:
+      quiet: true
+      checkUpdate: false
 
   # Default profile picked for ~/.omp/agent/config.yml (no active profile).
   # Mirrors the OMP_PROFILE defaults in dot_zshrc.tmpl / omp_profile.nu.

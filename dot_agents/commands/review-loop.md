@@ -1,5 +1,5 @@
 ---
-description: Continuously loop, reviewing PRs by an author that reference a Linear project — posts casual comments/approval as needed
+description: Continuously loop, reviewing PRs by an author, optionally scoped to a Linear project - posts casual comments/approval as needed
 ---
 
 You are running a **continuous review loop**. You do not stop after one pass — you loop until the user interrupts you.
@@ -7,11 +7,11 @@ You are running a **continuous review loop**. You do not stop after one pass —
 ## Arguments
 
 - `$1` — GitHub author handle (e.g. `brettinternet`). Required.
-- `$2` — Linear project identifier (e.g. `TICK`). Required.
-- `$@` — anything after `$2` is treated as extra `gh search prs` qualifiers (e.g. `draft:false`, `label:bug`). Pass them through verbatim. Ignore a bare `PRs`/`prs` token — that's just a trigger word the user typed, not a qualifier.
+- Optional arguments — first discard any bare `PRs`/`prs` trigger token. Then inspect the first remaining token after `$1`: treat it as a Linear project identifier/prefix only when it matches `^[A-Z][A-Z0-9_-]*$` (e.g. `TICK`). A token containing `:` or beginning with `-` is a `gh search prs` qualifier, not a Linear identifier.
+- Qualifiers — when that first remaining token is recognized as the Linear identifier, pass every token after it through verbatim as extra `gh search prs` qualifiers. Otherwise there is no Linear scope and every remaining token after `$1` is a qualifier. Thus `/review-loop alice TICK label:bug` is Linear-scoped, while `/review-loop alice label:bug` reviews all of Alice's matching open PRs.
 
-If `$1` or `$2` is empty, stop immediately and tell the user the usage:
-`/review-loop <github-author> <linear-project> [extra gh qualifiers...]`
+If `$1` is empty, stop immediately and tell the user the usage:
+`/review-loop <github-author> [linear-project] [extra gh qualifiers...]`
 
 ## Loop state
 
@@ -27,12 +27,12 @@ Run this cycle forever. Between iterations, sleep for **5 minutes** (`bash` with
 
 ### 1. Discover PRs to review
 
-a. Use the **linear** MCP tools to fetch open, in-progress issues in the `$2` project. The goal is to identify the set of Linear ticket identifiers (e.g. `TICK-42`) that the author is actively working on. If the linear tool isn't available or fails, fall back to **all** open PRs by `$1` in this repo and infer ticket refs from PR titles/bodies.
+a. If a Linear project identifier was supplied, use the **linear** MCP tools to fetch open, in-progress issues in that project. The goal is to identify the set of Linear ticket identifiers (e.g. `TICK-42`) that the author is actively working on. If no Linear project identifier was supplied, or if the linear tool isn't available or fails, review **all** matching open PRs by `$1` in this repo; do not require or infer a ticket reference.
 
 b. Use `gh search prs` (via `bash`) to find **open** PRs authored by `$1` in the current repo's remote (`gh repo view --json nameWithOwner` to resolve owner/repo). Combine:
    - `--author "$1" --state open`
-   - any user-supplied qualifiers from `$@`
-   - scope to PRs whose title/body reference a ticket from step (a) when the linear lookup succeeded
+   - any user-supplied qualifiers
+   - scope to PRs whose title/body reference a ticket from step (a) only when a Linear project identifier was supplied and the lookup succeeded
 
 c. For each candidate PR, fetch `gh pr view <N> --json number,title,headRefOid,state,isDraft,headRefName,author,body`. Skip drafts unless the user passed `draft:false` (i.e. respect their qualifier choice — by default skip drafts since they're not ready).
 
@@ -75,7 +75,8 @@ Examples of the voice:
 - `think this misses the org_id scoping - devices from other orgs would leak in`
 
 Posting mechanics (`bash` with `gh`):
-- **Inline comments on specific lines:** `gh pr review <N> --request --body "<comment>"` won't target lines; for line-specific notes use the GitHub API via `gh api` to post review comments on the diff. Prefer a single review payload with inline comments when there are multiple findings:
+- **Prefer inline comments for file-specific findings:** when a finding applies to a particular changed file and line, post it on that diff line instead of putting it in a top-level review body. This keeps the feedback beside the code it concerns. Use a top-level body only for cross-cutting findings, overall context, or issues that cannot be anchored to a changed line.
+- **Inline comments on specific files/lines:** `gh pr review <N> --request --body "<comment>"` won't target a file or line; use the GitHub API via `gh api` to post review comments on the diff. Prefer a single review payload with inline comments when there are multiple findings:
   ```bash
   gh api repos/:owner/:repo/pulls/<N>/reviews \
     -f event=COMMENT \
@@ -84,7 +85,7 @@ Posting mechanics (`bash` with `gh`):
     -F "comments[][line]=<line>" \
     -F "comments[][body]=<casual comment>"
   ```
-  Use `gh pr view <N> --json files` to get valid paths. Only comment on lines present in the diff.
+  Use `gh pr view <N> --json files` to get valid paths and `gh pr diff <N>` to choose the exact changed line. Set each comment's `path` to the relevant file. Only anchor comments to lines present in the diff; if the relevant file has no commentable changed line, put the finding in the top-level review body and name the file explicitly.
 - **Approval:** if there are no blockers and the change is sound, approve with a short comment:
   ```bash
   gh pr review <N> --approve --body "<short casual approval>"
@@ -119,9 +120,10 @@ Then start the next iteration from step 1.
 - **MUST NOT** post trivial nitpicks, style nags, or "consider X" suggestions that don't matter.
 - **MUST NOT** re-review a PR at the same head SHA you've already reviewed — check the state file.
 - **MUST NOT** duplicate comments already on the PR — check existing comments first.
+- **MUST** post file-specific findings as inline comments on the relevant changed line whenever GitHub permits it; reserve top-level review text for cross-cutting or unanchorable findings.
 - **MUST NOT** approve a PR that has real blockers. Request changes instead.
 - **MUST NOT** push, merge, or close PRs. You only comment and approve/request-changes.
 - **MUST NOT** expand scope beyond review — don't check out branches or edit files.
 - **MUST** keep each iteration's console output short — one status line + per-PR one-liners. Don't dump diffs or reviews into the terminal.
 - If `gh` is not authenticated or the repo has no remote, stop and tell the user clearly.
-- If the linear MCP tools are unavailable, degrade gracefully to all open PRs by the author (step 1.a fallback) and keep looping.
+- If no Linear project identifier is supplied, or if the linear MCP tools are unavailable, degrade gracefully to all matching open PRs by the author and keep looping.

@@ -63,6 +63,8 @@ omp:
         default: openai-codex/gpt-5.6-sol:high
         smol: openai-codex/gpt-5.6-luna
         slow: openai-codex/gpt-5.6-sol:xhigh
+        designer: openai-codex/gpt-5.6-sol:high
+        vision: openai-codex/gpt-latest:high
         plan: openai-codex/gpt-5.6-sol:high
         task: openai-codex/gpt-5.6-terra
         advisor: openai-codex/gpt-5.6-terra
@@ -101,6 +103,8 @@ omp:
         default: openai-codex/gpt-5.6-sol:high
         smol: openai-codex/gpt-5.6-luna
         slow: anthropic/claude-fable-5:high
+        designer: anthropic/claude-fable-5:high
+        vision: openai-codex/gpt-latest:high
         plan: openai-codex/gpt-5.6-sol:high
         task: anthropic/claude-sonnet-5
         advisor: openai-codex/gpt-5.6-terra

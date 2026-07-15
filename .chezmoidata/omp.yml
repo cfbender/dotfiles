@@ -48,9 +48,11 @@ omp:
     personal-or:
       defaultThinkingLevel: medium
       modelRoles:
-        default: openrouter/anthropic/claude-sonnet-5:medium
+        default: openrouter/openai/gpt-5.6-terra:medium
         smol: openrouter/deepseek/deepseek-v4-flash
         slow: openrouter/openai/gpt-5.6-terra:high
+        designer: openrouter/anthropic/claude-sonnet-5:medium
+        vision: openrouter/openai/gpt-latest:high
         plan: openrouter/anthropic/claude-sonnet-5:medium
         task: openrouter/anthropic/claude-sonnet-5
         advisor: openrouter/openai/gpt-5.4
@@ -74,12 +76,14 @@ omp:
     personal-go:
       defaultThinkingLevel: medium
       modelRoles:
-        default: opencode-go/deepseek-v4-pro:medium
+        default: opencode-go/kimi-k2.7-code:medium
         smol: opencode-go/deepseek-v4-flash
-        slow: opencode-go/mimo-v2.5-pro:high
-        plan: opencode-go/deepseek-v4-pro:medium
-        task: opencode-go/deepseek-v4-pro
-        advisor: opencode-go/deepseek-v4-pro
+        slow: opencode-go/glm-5.2:high
+        designer: opencode-go/glm-5.2:high
+        vision: opencode-go/mimo-v2.5-pro:high
+        plan: opencode-go/glm-5.2:high
+        task: opencode-go/kimi-k2.7-code
+        advisor: opencode-go/qwen3.7-max:medium
         title: opencode-go/deepseek-v4-flash
         commit: opencode-go/deepseek-v4-flash:off
 

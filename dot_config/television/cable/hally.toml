@@ -1,0 +1,112 @@
+[metadata]
+name = "hally"
+description = "Project directories prioritized by active Herdr workspaces"
+requirements = ["herdr", "jq"]
+
+[source]
+command = '''
+STATE_DIR="$HOME/.local/state/hally"
+WORKSPACE_STATUS=""
+FOCUSED_IDS="|"
+
+if workspaces=$(herdr workspace list 2>/dev/null) && panes=$(herdr pane list 2>/dev/null); then
+  while IFS=$'\t' read -r workspace_id focused; do
+    [[ "$focused" == "true" ]] && FOCUSED_IDS+="${workspace_id}|"
+  done < <(printf '%s' "$workspaces" | jq -r '.result.workspaces[] | [.workspace_id, (.focused | tostring)] | @tsv')
+
+  while IFS=$'\t' read -r cwd workspace_id; do
+    [[ -z "$cwd" ]] && continue
+    case "$cwd" in
+      "$HOME/.local/share/chezmoi"|"$HOME/.local/share/chezmoi/"*)
+        project="$HOME/.local/share/chezmoi"
+        ;;
+      "$HOME/code/"*)
+        relative=${cwd#"$HOME/code/"}
+        owner=${relative%%/*}
+        repository=${relative#*/}
+        repository=${repository%%/*}
+        project="$HOME/code/$owner/$repository"
+        ;;
+      *)
+        continue
+        ;;
+    esac
+
+    case "$FOCUSED_IDS" in
+      *"|${workspace_id}|"*) state=F ;;
+      *)                     state=R ;;
+    esac
+    WORKSPACE_STATUS+="|${project}=${state}"
+  done < <(printf '%s' "$panes" | jq -r '.result.panes[] | [(.foreground_cwd // .cwd // ""), .workspace_id] | @tsv')
+fi
+WORKSPACE_STATUS+="|"
+
+SORTABLE=""
+for dir in ~/code/*/*/ ~/.local/share/chezmoi; do
+  [[ -d "$dir" ]] || continue
+  dir=${dir%/}
+  name=${dir##*/}
+  name=${name^^}
+
+  case "$WORKSPACE_STATUS" in
+    *"|${dir}=F|"*) marker=">"; priority=1 ;;
+    *"|${dir}=R|"*) marker="+"; priority=1 ;;
+    *)               marker="-"; priority=2 ;;
+  esac
+
+  state_key=${dir#"$HOME/"}
+  state_key=${state_key//\//__}
+  state_file="$STATE_DIR/$state_key"
+  if [[ -f "$state_file" ]]; then
+    mtime=$(stat -c '%Y' "$state_file" 2>/dev/null || stat -f '%m' "$state_file" 2>/dev/null || echo 0)
+  else
+    mtime=0
+  fi
+
+  SORTABLE+="${priority}|${mtime}|${dir}"$'\t'"${marker} ${name}"$'\n'
+done
+
+printf '%s' "$SORTABLE" | sort -t'|' -k1,1n -k2,2rn | while IFS='|' read -r _ _ rest; do
+  [[ -n "$rest" ]] && printf '%s\n' "$rest"
+done
+'''
+display = "{split:\t:1}"
+output = "{split:\t:0}"
+shell = "bash"
+
+[preview]
+command = '''
+display='{split:\t:1}'
+name="${display#* }"
+dir='{split:\t:0}'
+
+echo "--- $name ---"
+echo
+
+panes=$(herdr pane list 2>/dev/null || true)
+workspace_id=$(printf '%s' "$panes" | jq -r --arg target "$dir" '
+  [.result.panes[]
+    | select(
+        .cwd == $target
+        or .foreground_cwd == $target
+        or ((.cwd // "") | startswith($target + "/"))
+        or ((.foreground_cwd // "") | startswith($target + "/"))
+      )
+    | .workspace_id
+  ][0] // empty
+' 2>/dev/null)
+
+if [[ -z "$workspace_id" ]]; then
+  echo "Not open in Herdr"
+  echo
+  printf 'Directory: %s\n' "$dir"
+  exit 0
+fi
+
+herdr pane list 2>/dev/null | jq -r --arg id "$workspace_id" '
+  .result.panes[]
+  | select(.workspace_id == $id)
+  | "\(.agent_status // "unknown")  \(.terminal_title_stripped // "shell")\n  \(.foreground_cwd // .cwd)\n"
+'
+'''
+shell = "bash"

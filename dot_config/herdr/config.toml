@@ -1,3 +1,5 @@
+onboarding = false
+
 # Keep Herdr's native workflow; only carry over the familiar prefix and Claret palette.
 
 [theme]
@@ -24,6 +26,16 @@ peach = "#C5975B"
 [keys]
 # Keep Herdr's prefix-first defaults, with direct tab navigation matching tmux.
 prefix = "ctrl+a"
-previous_tab = ["prefix+p", "alt+p"]
-next_tab = ["prefix+n", "alt+n"]
+previous_tab = ["prefix+p", "alt+h"]
+next_tab = ["prefix+n", "alt+l"]
 switch_tab = ["prefix+1..9", "alt+1..9"]
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+[[keys.command]]
+key = "prefix+f"
+type = "popup"
+command = "hally.sh --inside"
+description = "open project workspace"
+width = "80%"
+height = "70%"

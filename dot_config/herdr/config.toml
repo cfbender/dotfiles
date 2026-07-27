@@ -1,0 +1,29 @@
+# Keep Herdr's native workflow; only carry over the familiar prefix and Claret palette.
+
+[theme]
+name = "terminal"
+
+[theme.custom]
+accent = "#D4A76A"
+panel_bg = "#180810"
+surface0 = "#211618"
+surface1 = "#2B1F22"
+surface_dim = "#3A2E25"
+overlay0 = "#71685E"
+overlay1 = "#9E9288"
+text = "#DDD3C7"
+subtext0 = "#BDB3A7"
+mauve = "#C75B7A"
+green = "#8FA86E"
+yellow = "#D4A76A"
+red = "#C44536"
+blue = "#8995A8"
+teal = "#7A9460"
+peach = "#C5975B"
+
+[keys]
+# Keep Herdr's prefix-first defaults, with direct tab navigation matching tmux.
+prefix = "ctrl+a"
+previous_tab = ["prefix+p", "alt+p"]
+next_tab = ["prefix+n", "alt+n"]
+switch_tab = ["prefix+1..9", "alt+1..9"]

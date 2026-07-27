@@ -105,9 +105,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/skills.git",
       "skillPath": "skills/find-skills/SKILL.md",
-      "skillFolderHash": "eb6a23305aea6e340d14b9de3766e721f9f4861b",
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
       "installedAt": "2026-03-13T18:27:05.991Z",
-      "updatedAt": "2026-06-29T16:56:32.755Z"
+      "updatedAt": "2026-07-19T21:58:52.685Z"
     },
     "simplify": {
       "source": "brianlovin/claude-config",
@@ -141,72 +141,63 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/grill-with-docs/SKILL.md",
-      "skillFolderHash": "21adba95de7d93065d9fec725ddf37f871e01d05",
+      "skillFolderHash": "5fdcdeedf2d0c73b3ecb1da0a464dd885590f8d6",
       "installedAt": "2026-05-05T15:29:30.238Z",
-      "updatedAt": "2026-06-29T16:56:33.672Z"
+      "updatedAt": "2026-07-19T21:58:54.012Z"
     },
     "improve-codebase-architecture": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
-      "skillFolderHash": "e5beae48471adf87c513b5cbcb0ca347467546da",
+      "skillFolderHash": "bce229692e60dff3462e49bc5e774e83bef348e6",
       "installedAt": "2026-05-05T15:29:30.253Z",
-      "updatedAt": "2026-06-29T16:56:34.403Z"
+      "updatedAt": "2026-07-19T21:58:54.923Z"
     },
     "tdd": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/tdd/SKILL.md",
-      "skillFolderHash": "7e6fad2aedf8648f6154af32915eebd12c6d51cc",
+      "skillFolderHash": "0a727bd358b855cbcc1c35cfff21ef31f9ffb8de",
       "installedAt": "2026-05-05T15:29:30.264Z",
-      "updatedAt": "2026-06-29T16:56:35.122Z"
-    },
-    "to-issues": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/to-issues/SKILL.md",
-      "skillFolderHash": "8d7393a4127ee678f4b99070f436a2a87014c6e7",
-      "installedAt": "2026-05-05T15:29:30.269Z",
-      "updatedAt": "2026-06-29T16:56:36.262Z"
-    },
-    "to-prd": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/to-prd/SKILL.md",
-      "skillFolderHash": "d74909eec8906ceb3341a9b30e2e51cdf62a67c7",
-      "installedAt": "2026-05-05T15:29:30.284Z",
-      "updatedAt": "2026-06-29T16:56:37.938Z"
+      "updatedAt": "2026-07-19T21:58:55.753Z"
     },
     "setup-matt-pocock-skills": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
-      "skillFolderHash": "8d7fc1569ee7c4a50827091a795daa490212506d",
+      "skillFolderHash": "634cf9b010bca5701642aca736dce899822f08f7",
       "installedAt": "2026-05-05T15:29:30.289Z",
-      "updatedAt": "2026-06-29T16:56:38.982Z"
+      "updatedAt": "2026-07-19T21:58:56.748Z"
     },
     "triage": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/triage/SKILL.md",
-      "skillFolderHash": "3e7a49151929d884365035cb322de099c15b33d3",
+      "skillFolderHash": "258364be8354f726bf4080077cd92d86d08c69eb",
       "installedAt": "2026-05-05T15:29:30.295Z",
-      "updatedAt": "2026-06-29T16:56:39.839Z"
+      "updatedAt": "2026-07-19T21:58:58.072Z"
     },
     "grill-me": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/productivity/grill-me/SKILL.md",
-      "skillFolderHash": "8320e7b87f7b208f50ce165b1dd43d1e93c8e801",
+      "skillFolderHash": "c817f6f36acd483294144694a935a76d3e3eb101",
       "installedAt": "2026-05-05T15:29:30.325Z",
-      "updatedAt": "2026-06-29T16:56:40.529Z"
+      "updatedAt": "2026-07-19T21:58:59.053Z"
+    },
+    "lnr": {
+      "source": "dkarter/lnr",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dkarter/lnr.git",
+      "skillPath": "skills/lnr/SKILL.md",
+      "skillFolderHash": "8da9699d9d398fe20ddec87a8c20485a4eb5ea8e",
+      "installedAt": "2026-07-27T14:34:57.712Z",
+      "updatedAt": "2026-07-27T14:34:57.712Z"
     }
   },
   "dismissed": {
@@ -215,16 +206,16 @@
   "lastSelectedAgents": [
     "amp",
     "antigravity",
+    "antigravity-cli",
     "cline",
     "codex",
     "cursor",
     "deepagents",
-    "dexto",
-    "firebender",
     "gemini-cli",
     "github-copilot",
-    "kimi-cli",
+    "kimi-code-cli",
     "opencode",
-    "warp"
+    "warp",
+    "zed"
   ]
 }

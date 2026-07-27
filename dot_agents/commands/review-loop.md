@@ -127,3 +127,4 @@ Then start the next iteration from step 1.
 - **MUST** keep each iteration's console output short — one status line + per-PR one-liners. Don't dump diffs or reviews into the terminal.
 - If `gh` is not authenticated or the repo has no remote, stop and tell the user clearly.
 - If no Linear project identifier is supplied, or if the linear MCP tools are unavailable, degrade gracefully to all matching open PRs by the author and keep looping.
+- Don't fill the response with information such as CI state or summarizing their work back to them. Prefer an empty approval over obvious fluff, but specific callouts are fair if necessary

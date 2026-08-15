@@ -1,5 +1,5 @@
 # if it's been out for one week then skip trust checks
 trustPolicyIgnoreAfter = 10080
 lowDownloadThreshold = 500
-trustPolicyExclude = ["effect"]
+trustPolicyExclude = ["effect", "@ampcode/cli"]
 allowedUnpopularPackages = ["@cfbender/*"]

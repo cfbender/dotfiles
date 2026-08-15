@@ -17,7 +17,7 @@ uv = "latest"
 "cargo:https://github.com/nushell/nufmt" = "latest"
 
 # Linux-only packages
-{{- if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.osRelease.id "cachyos" }}
 "cargo:https://github.com/cfbender/venturi" = "latest"
 {{- end }}
 

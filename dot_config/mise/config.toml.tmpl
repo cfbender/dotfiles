@@ -1,4 +1,7 @@
 [tools]
+"npm:@ampcode/cli" = "latest"
+
+{{- if .workstation }}
 # Core languages & runtimes
 aube = "latest"
 bun = "latest"
@@ -22,7 +25,6 @@ uv = "latest"
 {{- end }}
 
 # npm packages
-"npm:@ampcode/cli" = "latest"
 "npm:@biomejs/biome" = "latest"
 "npm:@tobilu/qmd" = "latest"
 "npm:@cfbender/cesium" = "latest"
@@ -49,6 +51,7 @@ task = "latest"
 typos = "latest"
 yq = "latest"
 zellij = "latest"
+{{- end }}
 
 [settings]
 experimental = true

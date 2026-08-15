@@ -22,18 +22,17 @@ uv = "latest"
 {{- end }}
 
 # npm packages
+"npm:@ampcode/cli" = "latest"
 "npm:@biomejs/biome" = "latest"
-"npm:@google/gemini-cli" = "latest"
 "npm:@tobilu/qmd" = "latest"
-"npm:@withgraphite/graphite-cli" = "latest"
 "npm:@cfbender/cesium" = "latest"
-"npm:ocx" = "latest"
 "npm:@oh-my-pi/pi-coding-agent" = "latest"
 
 # github packages
 "github:mamba-org/micromamba-releases" = "latest"
-"github:cfbender/hygge" = "latest"
+{{- if .work }}
 "github:dkarter/lnr" = "latest"
+{{- end }}
 
 # go packages
 "go:github.com/charmbracelet/crush" = "latest"

@@ -29,6 +29,8 @@ prefix = "ctrl+a"
 previous_tab = ["prefix+p", "alt+h"]
 next_tab = ["prefix+n", "alt+l"]
 switch_tab = ["prefix+1..9", "alt+1..9"]
+previous_agent = "prefix+["
+next_agent = "prefix+]"
 navigate_workspace_up = "k"
 navigate_workspace_down = "j"
 

@@ -20,7 +20,7 @@ rust = "latest"
 "cargo:https://github.com/nushell/nufmt" = "latest"
 
 # Linux-only packages
-{{- if eq .chezmoi.osRelease.id "cachyos" }}
+{{- if eq (dig "id" "" .chezmoi.osRelease) "cachyos" }}
 "cargo:https://github.com/cfbender/venturi" = "latest"
 {{- end }}
 
@@ -42,9 +42,7 @@ ast-grep = "latest"
 gum = "latest"
 herdr = "latest"
 hyperfine = "latest"
-opencode = "latest"
 pitchfork = "latest"
-rtk = "latest"
 task = "latest"
 typos = "latest"
 yq = "latest"
